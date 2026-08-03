@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'e0dc2c70-7cb4-41fb-9ef6-56b818dfe18d'
-  PropagateID: 'e0dc2c70-7cb4-41fb-9ef6-56b818dfe18d'
-  ReservedCode1: '824aa6b9-6555-445e-8b6b-c6238eb348ae'
-  ReservedCode2: '824aa6b9-6555-445e-8b6b-c6238eb348ae'
+  ProduceID: '2118a633-8152-4fab-894a-2bedbd87c948'
+  PropagateID: '2118a633-8152-4fab-894a-2bedbd87c948'
+  ReservedCode1: 'e34dd1ff-1039-4e62-b566-e165bafdd337'
+  ReservedCode2: 'e34dd1ff-1039-4e62-b566-e165bafdd337'
 ---
 
 # CTF 解题笔记本
@@ -44,6 +44,8 @@ CTF解题笔记本/
 │   └── 07-easyheap/           #   #22 堆溢出+Fastbin Attack
 │       ├── exploit.py
 │       └── decompiled.txt
+│   └── pwn-arcanum/             # 通用 自动化PWN分析解题工具 (4种策略,一键出flag)
+│       └── pwn_arcanum.py       #     ret2text/ret2shellcode/ret2syscall/ret2libc, 跨平台
 ├── Crypto/                  # 密码学
 │   ├── 06-rsa-basic/        #   #6 RSA 基础解密
 │   │   ├── rsa_decrypt.py
@@ -129,6 +131,8 @@ pip install -r requirements.txt
 > **自动化IR扫描器（Linux版）**（`IR/auto-ir-scanner/ir_scanner.py`）：v1.3, 18模块全量排查, SUID提权检测(GTFOBins风格35+种二进制), 智能异常分析(基线对比+攻击链推断), **Flag汇总引擎(从全部模块结果中提取flag模式并标注来源)**, JSON/HTML报告, 自动Web根目录探测
 >
 > **自动化IR扫描器（Windows版）**（`IR/auto-ir-scanner/ir_scanner_win.py`）：v1.2, WinRM/pypsrp远程连接(默认端口5985), 18模块全量排查, 隐藏账户($结尾)检测, Windows Defender隔离区恢复, 未签名驱动检测, IFEO Debugger劫持, 智能异常分析(Windows基线+攻击链推断), **Flag汇总引擎(从全部模块结果中提取flag模式并标注来源)**, JSON/HTML报告, 实测248秒/17个发现/风险100
+>
+> **PWN Arcanum 工具**（`PWN/pwn-arcanum/pwn_arcanum.py`）：4种自动利用策略 — ret2text(调后门函数) / ret2shellcode(跳转shellcode) / ret2syscall(ROP链execve) / ret2libc(leak+system两阶段)，自动静态分析(保护检查/危险函数/后门检测/gadget搜索)，自动策略推荐，硬编码多架构shellcode(不依赖asm)，纯pwntools远程利用(跨平台Windows/macOS/Linux)
 >
 > **PCAP Arcanum 工具**（`IR/19-pcap-arcanum/pcap_arcanum.py`）：13检测模块一键出flag — 蚁剑/冰蝎/哥斯拉/菜刀/CS + SQL注入还原 + 凭证提取 + DNS/ICMP隐写 + 反向Shell + Shiro反序列化 + 文件传输 + 协议统计/全局搜索
 >
