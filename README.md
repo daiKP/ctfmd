@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '1d049a79-cf61-4163-ac99-5bb05f221f39'
-  PropagateID: '1d049a79-cf61-4163-ac99-5bb05f221f39'
-  ReservedCode1: 'e70e8f09-5343-4601-a593-528beb6979a2'
-  ReservedCode2: 'e70e8f09-5343-4601-a593-528beb6979a2'
+  ProduceID: '60527397-bca7-4971-9e97-41be50c19166'
+  PropagateID: '60527397-bca7-4971-9e97-41be50c19166'
+  ReservedCode1: '1bff0490-64a4-4af3-a33b-9bb5a63ac4ed'
+  ReservedCode2: '1bff0490-64a4-4af3-a33b-9bb5a63ac4ed'
 ---
 
 # CTF 解题笔记本
@@ -81,9 +81,9 @@ CTF解题笔记本/
 │       └── kuang_analyze.py      #     挖矿程序逆向分析
 │   └── 22-linux-web-ir2/         #26 Linux Web应急响应 (PHPEMS)
 │       └── linux_web_ir2.py      #     靶机SSH排查脚本
-│   └── auto-ir-scanner/          #通用 自动化IR扫描器 (18模块+智能分析)
-│       ├── ir_scanner.py         #     Linux版 v1.2 (1626行, SUID提权检测, JSON/HTML报告)
-│       └── ir_scanner_win.py     #     Windows版 v1.1 (1880行, WinRM/pypsrp, 隐藏账户/Defender/驱动Rootkit检测, JSON/HTML报告)
+│   └── auto-ir-scanner/          #通用 自动化IR扫描器 (18模块+智能分析+Flag汇总)
+│       ├── ir_scanner.py         #     Linux版 v1.3 (1636行, SUID提权检测, JSON/HTML报告, Flag汇总)
+│       └── ir_scanner_win.py     #     Windows版 v1.2 (~1980行, WinRM/pypsrp, 隐藏账户/Defender/驱动Rootkit检测, Flag汇总, JSON/HTML报告)
 └── screenshots/             # 关键截图
 ```
 
@@ -125,9 +125,9 @@ pip install -r requirements.txt
 
 核心库：gmpy2, pycryptodome, pwntools, capstone, pefile, sympy, scapy, paramiko, pypsrp
 
-> **自动化IR扫描器（Linux版）**（`IR/auto-ir-scanner/ir_scanner.py`）：v1.2, 18模块全量排查, SUID提权检测(GTFOBins风格35+种二进制), 智能异常分析(基线对比+攻击链推断), JSON/HTML报告, 自动Web根目录探测
+> **自动化IR扫描器（Linux版）**（`IR/auto-ir-scanner/ir_scanner.py`）：v1.3, 18模块全量排查, SUID提权检测(GTFOBins风格35+种二进制), 智能异常分析(基线对比+攻击链推断), **Flag汇总引擎(从全部模块结果中提取flag模式并标注来源)**, JSON/HTML报告, 自动Web根目录探测
 >
-> **自动化IR扫描器（Windows版）**（`IR/auto-ir-scanner/ir_scanner_win.py`）：v1.1, WinRM/pypsrp远程连接(默认端口5985), 18模块全量排查, 隐藏账户($结尾)检测, Windows Defender隔离区恢复, 未签名驱动检测, IFEO Debugger劫持, 智能异常分析(Windows基线+攻击链推断), JSON/HTML报告, 实测248秒/17个发现/风险100
+> **自动化IR扫描器（Windows版）**（`IR/auto-ir-scanner/ir_scanner_win.py`）：v1.2, WinRM/pypsrp远程连接(默认端口5985), 18模块全量排查, 隐藏账户($结尾)检测, Windows Defender隔离区恢复, 未签名驱动检测, IFEO Debugger劫持, 智能异常分析(Windows基线+攻击链推断), **Flag汇总引擎(从全部模块结果中提取flag模式并标注来源)**, JSON/HTML报告, 实测248秒/17个发现/风险100
 >
 > **PCAP Arcanum 工具**额外依赖：scapy（pcap读取）、pycryptodome（AES解密）
 >

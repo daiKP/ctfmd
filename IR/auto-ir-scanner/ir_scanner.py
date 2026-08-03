@@ -44,7 +44,7 @@ def banner():
  | |  | | | |  _ \ |_| |  _|  | | | |  | | | | |
  | |__| |_| | |_) |  _  | |___ | | | |__| |_| | |___
   \____\___/|____/|_| |_|_____|___| \____\___/|_____|
-   Incidence Response Scanner  -  18 Modules  -  v1.2
+   Incidence Response Scanner  -  18 Modules  -  v1.3
 """
     print(C.cyan(art))
 
@@ -1349,10 +1349,111 @@ class IRScanner:
         print(C.green("  [*] 扫描完成, 共 %d 个发现, 风险评分 %d (%s)" % (
             len(self.findings), score, level)))
 
+        # Flag 汇总
+        flag_hits = self._flag_hunt()
+        if flag_hits:
+            print()
+            print(C.bold(C.cyan("  [Flag 汇总]")))
+            print(C.cyan("  以下是在各模块扫描结果中发现的 flag 模式,"
+                         "可往上翻看对应模块了解上下文:"))
+            print()
+            for item in flag_hits:
+                src = C.yellow("[%s > %s]" % (item['module'], item['key']))
+                print("    " + C.green(item['flag']) + "  " + src)
+                if item['line']:
+                    print("        " + C.cyan(item['line'][:200]))
+            print()
+            print(C.green("  [*] 共发现 %d 个 flag 命中" % len(flag_hits)))
+        else:
+            print()
+            print(C.yellow("  [*] 未在扫描结果中发现 flag 模式"))
+
+    # ============================================================
+    # Flag 搜索引擎
+    # ============================================================
+    def _flag_hunt(self):
+        """从所有模块结果中提取 flag 模式, 标注来源模块和 key"""
+        FLAG_PATTERNS = [
+            re.compile(r'(?:flag|ctf|FLAG|CTF|key|KEY)\{[^}]+\}', re.IGNORECASE),
+            re.compile(r'(?:DASCTF|dasctf)\{[^}]+\}'),
+            re.compile(r'CTF2?\{[^}]+\}', re.IGNORECASE),
+            re.compile(r'(?:flag|ctf)\[[^\]]+\]', re.IGNORECASE),
+        ]
+        # 模块 key 到模块名称的映射
+        key_to_module = {}
+        for num in range(1, 18):
+            if num not in MODULES:
+                continue
+            method_name, title = MODULES[num]
+            # 模块在 results 中使用的 key 前缀
+            key_prefix = method_name.replace('scan_', '')
+            key_to_module[key_prefix] = title
+
+        hits = []
+        seen = set()
+        for mod_key, mod_data in self.results.items():
+            if mod_key == '__meta__' or mod_key == 'errors':
+                continue
+            # 确定模块显示名
+            mod_name = mod_key
+            for kp, mn in key_to_module.items():
+                if mod_key == kp or mod_key.startswith(kp):
+                    mod_name = mn
+                    break
+
+            # 遍历该模块的所有结果值
+            texts = []
+            if isinstance(mod_data, dict):
+                for sub_key, sub_val in mod_data.items():
+                    texts.append((sub_key, str(sub_val) if sub_val else ''))
+            elif isinstance(mod_data, (str, list)):
+                texts.append((mod_key, str(mod_data)))
+
+            for sub_key, text in texts:
+                if not text or len(text) < 4:
+                    continue
+                for pat in FLAG_PATTERNS:
+                    for m in pat.finditer(text):
+                        flag_str = m.group(0)
+                        if flag_str in seen:
+                            continue
+                        seen.add(flag_str)
+                        # 提取所在行
+                        pos = m.start()
+                        line_start = text.rfind('\n', 0, pos)
+                        line_start = line_start + 1 if line_start != -1 else 0
+                        line_end = text.find('\n', pos)
+                        line_end = line_end if line_end != -1 else len(text)
+                        line_text = text[line_start:line_end].strip()[:300]
+                        hits.append({
+                            'flag': flag_str,
+                            'module': mod_name,
+                            'key': sub_key,
+                            'line': line_text,
+                        })
+
+        # 也从 findings 中收集 Flag 类别
+        for f in self.findings:
+            if f.get('category') == 'Flag' and f.get('evidence'):
+                for pat in FLAG_PATTERNS:
+                    for m in pat.finditer(f['evidence']):
+                        flag_str = m.group(0)
+                        if flag_str not in seen:
+                            seen.add(flag_str)
+                            hits.append({
+                                'flag': flag_str,
+                                'module': 'findings',
+                                'key': f['description'][:60],
+                                'line': f['evidence'][:300],
+                            })
+
+        return hits
+
     # ============================================================
     # 文件输出
     # ============================================================
     def save_json(self, filepath):
+        flag_hits = self._flag_hunt()
         payload = {
             'meta': self.results.get('__meta__', {
                 'target': '%s:%s' % (self.host, self.port),
@@ -1362,6 +1463,7 @@ class IRScanner:
             }),
             'modules': {k: v for k, v in self.results.items() if k != '__meta__'},
             'findings': self.findings,
+            'flag_hunt': flag_hits,
         }
         with open(filepath, 'w', encoding='utf-8') as fh:
             json.dump(payload, fh, ensure_ascii=False, indent=2)
@@ -1436,6 +1538,19 @@ class IRScanner:
                 '<div class="modbody">%s</div></details></div>' % (
                     num, title, len(blocks), body or '<i>无数据</i>'))
 
+        # Flag 汇总 (HTML)
+        flag_hits_html = self._flag_hunt()
+        flag_rows_html = []
+        for item in flag_hits_html:
+            flag_rows_html.append(
+                '<tr><td style="color:#44ff88;font-weight:bold">%s</td>'
+                '<td>%s</td><td>%s</td>'
+                '<td><pre style="margin:0;white-space:pre-wrap;word-break:break-all;'
+                'max-height:80px;overflow:auto">%s</pre></td></tr>' % (
+                    esc(item['flag']), esc(item['module']),
+                    esc(item['key']), esc(item['line'])))
+        flag_table_html = ''.join(flag_rows_html) or '<tr><td colspan="4" style="text-align:center;color:#8b949e">未发现 flag</td></tr>'
+
         html = '''<!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -1502,8 +1617,10 @@ pre {{ background:#0d1117; border:1px solid #30363d; border-radius:4px;
 {findrows}</table>
 <h2>模块详情</h2>
 {modcards}
+<h2>Flag 汇总 ({flagcount})</h2>
+{flagtable}
 <p style="color:#8b949e;margin-top:30px;text-align:center">
-Generated by IR Scanner v1.2 &middot; {scantime}</p>
+Generated by IR Scanner v1.3 &middot; {scantime}</p>
 </body></html>'''.format(
             target=esc(meta.get('target', '%s:%s' % (self.host, self.port))),
             user=esc(self.user),
@@ -1517,6 +1634,8 @@ Generated by IR Scanner v1.2 &middot; {scantime}</p>
             total=len(self.findings),
             findrows=''.join(find_rows) or '<tr><td colspan="5" style="text-align:center;color:#8b949e">无发现</td></tr>',
             modcards=''.join(mod_cards) or '<i>无模块数据</i>',
+            flagcount=len(flag_hits_html),
+            flagtable='<table><tr><th>Flag</th><th>来源模块</th><th>结果 Key</th><th>所在行</th></tr>%s</table>' % flag_table_html,
         )
         with open(filepath, 'w', encoding='utf-8') as fh:
             fh.write(html)
