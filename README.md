@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '60527397-bca7-4971-9e97-41be50c19166'
-  PropagateID: '60527397-bca7-4971-9e97-41be50c19166'
-  ReservedCode1: '1bff0490-64a4-4af3-a33b-9bb5a63ac4ed'
-  ReservedCode2: '1bff0490-64a4-4af3-a33b-9bb5a63ac4ed'
+  ProduceID: '06ab3c4d-5c4b-424b-b367-0d09b127acc2'
+  PropagateID: '06ab3c4d-5c4b-424b-b367-0d09b127acc2'
+  ReservedCode1: '713003c2-9440-4f18-b7f8-bbd1588288db'
+  ReservedCode2: '713003c2-9440-4f18-b7f8-bbd1588288db'
 ---
 
 # CTF 解题笔记本
@@ -71,7 +71,7 @@ CTF解题笔记本/
 ├── IR/                      # 应急响应 (Incident Response)
 │   ├── 18-simpleflow-antsword/  #18 蚁剑Webshell流量分析
 │   │   └── solve.py
-│   └── 19-pcap-arcanum/         #23 PCAP Arcanum 流量取证工具
+│   └── 19-pcap-arcanum/           #23 PCAP Arcanum 流量取证工具 (13检测模块,一键出flag)
 │       ├── pcap_arcanum.py      #     自动化流量分析工具
 │       └── test_output/         #     测试输出 (报告+JSON+提取文件)
 │   └── 20-redis-incident/        #24 Redis未授权访问应急响应
@@ -129,7 +129,7 @@ pip install -r requirements.txt
 >
 > **自动化IR扫描器（Windows版）**（`IR/auto-ir-scanner/ir_scanner_win.py`）：v1.2, WinRM/pypsrp远程连接(默认端口5985), 18模块全量排查, 隐藏账户($结尾)检测, Windows Defender隔离区恢复, 未签名驱动检测, IFEO Debugger劫持, 智能异常分析(Windows基线+攻击链推断), **Flag汇总引擎(从全部模块结果中提取flag模式并标注来源)**, JSON/HTML报告, 实测248秒/17个发现/风险100
 >
-> **PCAP Arcanum 工具**额外依赖：scapy（pcap读取）、pycryptodome（AES解密）
+> **PCAP Arcanum 工具**（`IR/19-pcap-arcanum/pcap_arcanum.py`）：13检测模块一键出flag — 蚁剑/冰蝎/哥斯拉/菜刀/CS + SQL注入还原 + 凭证提取 + DNS/ICMP隐写 + 反向Shell + Shiro反序列化 + 文件传输 + 协议统计/全局搜索
 >
 > **自动化IR扫描器** 额外依赖：paramiko（Linux SSH远程连接）、pypsrp（Windows WinRM远程连接）
 >

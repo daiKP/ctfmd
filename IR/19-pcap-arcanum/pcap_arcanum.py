@@ -6,6 +6,7 @@ PCAP Arcanum - 自动化流量取证分析工具
 
 自动识别 pcap/pcapng 中的 Webshell 管理工具和 C2 框架流量，
 解码加密载荷，提取 flag 和攻击者操作时间线。
+参照 CTF-NetA 设计理念，支持一键跑出 flag。
 
 支持检测:
   1. 蚁剑 (AntSword)      - URL编码 + Base64 + 特征PHP函数
@@ -14,14 +15,25 @@ PCAP Arcanum - 自动化流量取证分析工具
   4. 中国菜刀 (Chopper)     - URL编码 + Base64 + eval/assert
   5. Cobalt Strike (CS)    - checksum8 URI + 心跳包 + Beacon特征
   6. 明文HTTP命令执行       - 通用Shell命令检测
+  7. 文件传输              - ZIP/PNG/JPEG/ELF/PE等签名检测
+  8. SQL注入还原           - 布尔盲注/联合查询/报错注入
+  9. 凭证提取              - HTTP/FTP/SMTP/MySQL/Telnet 明文凭据
+ 10. DNS/ICMP隐写          - DNS隧道子域名编码 + ICMP数据字段
+ 11. 反向Shell             - bash/nc/python反弹检测
+ 12. Shiro反序列化         - rememberMe AES解密
 
 输出:
   - 攻击工具识别结果
   - 解码后的命令和参数
   - 攻击时间线 (命令 → 响应)
-  - 自动提取 flag
+  - 自动提取 flag (全局搜索 + 各检测器专项)
   - 文件下载/上传检测
   - 加密压缩包密码提取
+  - SQL注入数据还原
+  - 明文凭证提取
+  - 隐写数据还原
+  - Shiro解密结果
+  - 协议统计概览
 
 用法:
   python pcap_arcanum.py <pcap文件路径> [--verbose] [--export-dir <dir>]
@@ -1268,6 +1280,696 @@ class FileTransferDetector(AbstractDetector):
 
 
 # ============================================================
+# SQL 注入还原检测器
+# ============================================================
+
+class SQLInjectionDetector(AbstractDetector):
+    """检测 SQL 注入攻击并还原被提取的数据"""
+
+    name = "SQL注入还原"
+
+    # 布尔盲注模式: AND (ascii(mid(...)) > N) / IF(substr(...)='c',1,0)
+    BLIND_BOOL_PATTERNS = [
+        re.compile(r"ascii\s*\(\s*mid\s*\(\s*(.+?)\s*,\s*(\d+)\s*,\s*1\s*\)\s*\)\s*([><=]+)\s*(\d+)", re.I),
+        re.compile(r"ord\s*\(\s*mid\s*\(\s*(.+?)\s*,\s*(\d+)\s*,\s*1\s*\)\s*\)\s*([><=]+)\s*(\d+)", re.I),
+        re.compile(r"substr\s*\(\s*(.+?)\s*,\s*(\d+)\s*,\s*1\s*\)\s*=\s*['\"](.+?)['\"]", re.I),
+        re.compile(r"if\s*\(\s*\(?\s*substr\s*\(\s*(.+?)\s*,\s*(\d+)\s*,\s*1\s*\)\s*=\s*['\"](.+?)['\"]", re.I),
+    ]
+    # 联合查询
+    UNION_PATTERN = re.compile(r"union\s+(?:all\s+)?select", re.I)
+    # 报错注入
+    ERROR_PATTERNS = [
+        re.compile(r"extractvalue\s*\(", re.I),
+        re.compile(r"updatexml\s*\(", re.I),
+        re.compile(r"floor\s*\(\s*rand\s*\(", re.I),
+    ]
+    # 时间盲注
+    TIME_PATTERNS = [
+        re.compile(r"sleep\s*\(\s*(\d+)\s*\)", re.I),
+        re.compile(r"benchmark\s*\(", re.I),
+    ]
+
+    def detect(self, http_pairs):
+        events = []
+        blind_data = {}  # {(extract_target, pos): [(char/int, resp_size)]}
+        has_union = False
+        has_error = False
+        has_time = False
+
+        for pair in http_pairs:
+            body = pair.get('body', '') or ''
+            path = pair.get('path', '') or ''
+            query = pair.get('raw', b'')
+            if isinstance(query, bytes):
+                query = query.decode('utf-8', errors='replace')
+            raw_request = unquote(path + ' ' + body)
+
+            # 联合查询
+            if self.UNION_PATTERN.search(raw_request):
+                has_union = True
+                events.append({
+                    'type': '联合查询注入',
+                    'method': pair.get('method', ''),
+                    'path': pair.get('path', '')[:200],
+                    'query_snippet': raw_request[:300],
+                })
+
+            # 报错注入
+            for pat in self.ERROR_PATTERNS:
+                if pat.search(raw_request):
+                    has_error = True
+                    resp_text = ''
+                    resp = pair.get('response')
+                    if resp and isinstance(resp.get('body'), bytes):
+                        resp_text = resp['body'].decode('utf-8', errors='replace')[:500]
+                    elif resp and isinstance(resp.get('body'), str):
+                        resp_text = resp['body'][:500]
+                    # 从报错响应中提取数据
+                    err_match = re.search(r"~([^\~]+)~", resp_text) or re.search(r"XPATH[^:]*:\s*(.+?)(?:\n|$)", resp_text)
+                    err_data = err_match.group(1).strip()[:200] if err_match else ''
+                    events.append({
+                        'type': '报错注入',
+                        'method': pair.get('method', ''),
+                        'path': pair.get('path', '')[:200],
+                        'query_snippet': raw_request[:300],
+                        'extracted_data': err_data,
+                    })
+                    if err_data:
+                        flag = self._extract_flag(err_data)
+                        if flag:
+                            events[-1]['flag'] = flag
+                    break
+
+            # 时间盲注
+            for pat in self.TIME_PATTERNS:
+                if pat.search(raw_request):
+                    has_time = True
+                    events.append({
+                        'type': '时间盲注',
+                        'method': pair.get('method', ''),
+                        'path': pair.get('path', '')[:200],
+                        'query_snippet': raw_request[:300],
+                    })
+                    break
+
+            # 布尔盲注分析
+            for pat in self.BLIND_BOOL_PATTERNS:
+                m = pat.search(raw_request)
+                if m:
+                    # 确定响应大小判断条件真假
+                    resp = pair.get('response')
+                    resp_size = 0
+                    if resp:
+                        body_data = resp.get('body', b'')
+                        if isinstance(body_data, bytes):
+                            resp_size = len(body_data)
+                        elif isinstance(body_data, str):
+                            resp_size = len(body_data.encode('utf-8', errors='replace'))
+
+                    if pat == self.BLIND_BOOL_PATTERNS[2] or pat == self.BLIND_BOOL_PATTERNS[3]:
+                        # substr = 'char' 模式
+                        target = m.group(1)[:50]
+                        pos = int(m.group(2))
+                        char_val = m.group(3)
+                        key = (target, pos)
+                        blind_data.setdefault(key, []).append((char_val, resp_size))
+                    elif len(m.groups()) >= 4:
+                        target = m.group(1)[:50]
+                        pos = int(m.group(2))
+                        op = m.group(3)
+                        val = int(m.group(4))
+                        key = (target, pos)
+                        blind_data.setdefault(key, []).append((op, val, resp_size))
+                    break
+
+        # 尝试还原盲注数据
+        if blind_data:
+            # 按位置排序, 使用二分法还原
+            positions = sorted(set(pos for (_, pos) in blind_data.keys()))
+            extracted = {}
+            for pos in positions:
+                # 找到该位置所有测试
+                pos_data = {}
+                for (target, p), tests in blind_data.items():
+                    if p == pos:
+                        for t in tests:
+                            if isinstance(t, tuple) and len(t) == 3:
+                                # ascii/mid 二分法
+                                op, val, size = t
+                                pos_data.setdefault(size, []).append((op, val))
+                            elif isinstance(t, tuple) and len(t) == 2:
+                                # substr='char' 直接匹配
+                                char_val, size = t
+                                pos_data.setdefault(size, []).append(('=', ord(char_val[0]) if char_val else 0))
+
+                if pos_data:
+                    # 响应最大的是 True 条件
+                    max_size = max(pos_data.keys()) if pos_data else 0
+                    true_tests = pos_data.get(max_size, [])
+                    for op, val in true_tests:
+                        if op in ('=',):
+                            extracted[pos] = chr(val) if 32 <= val <= 126 else '?'
+                        elif op in ('<', '<='):
+                            # 二分法: val 是上限
+                            if pos not in extracted:
+                                extracted[pos] = chr(val) if 32 <= val <= 126 else '?'
+
+            if extracted:
+                # 按位置排序拼接
+                min_p = min(extracted.keys())
+                max_p = max(extracted.keys())
+                result_str = ''
+                for p in range(min_p, max_p + 1):
+                    result_str += extracted.get(p, '?')
+
+                events.append({
+                    'type': '布尔盲注还原',
+                    'extracted_data': result_str,
+                })
+                flag = self._extract_flag(result_str)
+                if flag:
+                    events[-1]['flag'] = flag
+
+        confidence = 0.0
+        if has_union: confidence = max(confidence, 0.9)
+        if has_error: confidence = max(confidence, 0.85)
+        if has_time: confidence = max(confidence, 0.7)
+        if blind_data: confidence = max(confidence, 0.8)
+        return DetectorResult(self.name, confidence, events)
+
+
+# ============================================================
+# 凭证提取检测器
+# ============================================================
+
+class CredentialDetector(AbstractDetector):
+    """从明文协议中提取登录凭证 (HTTP/FTP/SMTP/MySQL/Telnet)"""
+
+    name = "凭证提取"
+
+    def detect(self, http_pairs):
+        events = []
+
+        for pair in http_pairs:
+            path = pair.get('path', '') or ''
+            body = pair.get('body', '') or ''
+            headers = pair.get('headers', {})
+            raw = pair.get('raw', b'')
+            if isinstance(raw, bytes):
+                raw = raw.decode('utf-8', errors='replace')
+
+            # HTTP 登录表单
+            if 'password' in body.lower() or 'passwd' in body.lower() or 'login' in path.lower():
+                try:
+                    if isinstance(body, str) and '&' in body:
+                        params = {}
+                        for kv in body.split('&'):
+                            if '=' in kv:
+                                k, v = kv.split('=', 1)
+                                params[unquote(k)] = unquote(v)
+                        user = params.get('username') or params.get('user') or params.get('login') or params.get('email') or ''
+                        passwd = params.get('password') or params.get('passwd') or params.get('pass') or params.get('pwd') or ''
+                        if user or passwd:
+                            # 判断是否登录成功 (302重定向 或 200 且响应非error)
+                            resp = pair.get('response')
+                            status = resp.get('status', '') if resp else ''
+                            success = '302' in status or '301' in status
+                            events.append({
+                                'type': 'HTTP登录凭证',
+                                'protocol': 'HTTP',
+                                'username': user[:100],
+                                'password': passwd[:100],
+                                'path': path[:200],
+                                'success': success,
+                            })
+                except Exception:
+                    pass
+
+            # FTP 凭证 (在TCP流中)
+            if 'USER ' in raw and 'PASS ' in raw:
+                user_m = re.search(r'USER\s+(\S+)', raw)
+                pass_m = re.search(r'PASS\s+(\S+)', raw)
+                if user_m and pass_m:
+                    events.append({
+                        'type': 'FTP凭证',
+                        'protocol': 'FTP',
+                        'username': user_m.group(1),
+                        'password': pass_m.group(1),
+                    })
+
+            # SMTP AUTH
+            if 'AUTH LOGIN' in raw or 'AUTH PLAIN' in raw:
+                lines = raw.split('\r\n') if '\r\n' in raw else raw.split('\n')
+                for line in lines:
+                    try:
+                        decoded = base64.b64decode(line.strip()).decode('utf-8', errors='replace')
+                        if decoded and '\x00' not in decoded[:3]:
+                            events.append({
+                                'type': 'SMTP凭证',
+                                'protocol': 'SMTP',
+                                'decoded': decoded[:200],
+                            })
+                    except Exception:
+                        pass
+
+            # HTTP Basic Auth
+            auth_header = headers.get('authorization', '')
+            if auth_header.startswith('Basic '):
+                try:
+                    decoded = base64.b64decode(auth_header[6:]).decode('utf-8', errors='replace')
+                    if ':' in decoded:
+                        user, pwd = decoded.split(':', 1)
+                        events.append({
+                            'type': 'HTTP Basic Auth',
+                            'protocol': 'HTTP',
+                            'username': user[:100],
+                            'password': pwd[:100],
+                        })
+                except Exception:
+                    pass
+
+        # Cookie 中可能包含凭证/flag
+        for pair in http_pairs:
+            headers = pair.get('headers', {})
+            cookie = headers.get('cookie', '')
+            if cookie:
+                flag = self._extract_flag(cookie)
+                if flag:
+                    events.append({
+                        'type': 'Cookie中的Flag',
+                        'protocol': 'HTTP',
+                        'flag': flag,
+                        'path': pair.get('path', '')[:200],
+                    })
+
+        confidence = 0.8 if events else 0.0
+        return DetectorResult(self.name, confidence, events)
+
+
+# ============================================================
+# DNS/ICMP 隐写检测器
+# ============================================================
+
+class DNSICMPSteganographyDetector(AbstractDetector):
+    """检测 DNS 隧道和 ICMP 数据隐写"""
+
+    name = "DNS/ICMP隐写"
+
+    def detect(self, http_pairs):
+        # 注: 这个检测器不依赖 http_pairs, 而是直接分析原始包
+        # 需要从 PCAPArcanum 获取原始包, 这里先用 http_pairs 中的非HTTP数据
+        events = []
+        return DetectorResult(self.name, 0.0, events)
+
+    def detect_raw(self, packets):
+        """直接分析原始数据包 (由PCAPArcanum调用)"""
+        events = []
+
+        # DNS 隧道检测
+        dns_queries = defaultdict(list)  # {domain: [subdomain]}
+        icmp_data_parts = []
+        icmp_ttl_values = []
+        icmp_id_values = []
+
+        for pkt in packets:
+            try:
+                if pkt.haslayer('DNS') and pkt['DNS'].qr == 0:
+                    # DNS 查询
+                    qname = pkt['DNS'].qd.qname.decode('utf-8', errors='replace') if hasattr(pkt['DNS'].qd, 'qname') else ''
+                    if qname:
+                        parts = qname.rstrip('.').split('.')
+                        if len(parts) >= 2:
+                            domain = '.'.join(parts[-2:])
+                            subdomain = '.'.join(parts[:-2])
+                            dns_queries[domain].append(subdomain)
+
+                if pkt.haslayer('ICMP'):
+                    icmp = pkt['ICMP']
+                    if icmp.type == 8:  # Echo request
+                        # ICMP Data 字段
+                        if hasattr(icmp, 'data') and icmp.data:
+                            raw_data = bytes(icmp.data)
+                            if len(raw_data) > 8:
+                                data_payload = raw_data[8:]  # 跳过 ICMP 头
+                                text = data_payload.decode('utf-8', errors='replace').strip()
+                                if text:
+                                    icmp_data_parts.append(text)
+
+                        # TTL 值
+                        if hasattr(pkt, 'ttl'):
+                            icmp_ttl_values.append(pkt.ttl)
+
+                        # IP ID
+                        if pkt.haslayer('IP'):
+                            icmp_id_values.append(pkt['IP'].id)
+            except Exception:
+                continue
+
+        # 分析 DNS 隧道
+        for domain, subdomains in dns_queries.items():
+            if len(subdomains) < 3:
+                continue
+            # 检测超长子域名 (DNS 隧道特征)
+            long_subs = [s for s in subdomains if len(s) > 20]
+            if long_subs and len(long_subs) / len(subdomains) > 0.5:
+                # 尝试解码子域名
+                decoded_parts = []
+                for sub in subdomains:
+                    try:
+                        # 尝试 hex 解码
+                        if all(c in '0123456789abcdefABCDEF' for c in sub.replace('.', '')):
+                            decoded = bytes.fromhex(sub.replace('.', '')).decode('utf-8', errors='replace')
+                            decoded_parts.append(decoded)
+                        else:
+                            # 尝试 base64 解码
+                            padded = sub.replace('.', '') + '=' * (4 - len(sub.replace('.', '')) % 4)
+                            decoded = base64.b64decode(padded).decode('utf-8', errors='replace')
+                            decoded_parts.append(decoded)
+                    except Exception:
+                        decoded_parts.append(sub)
+
+                full_decoded = ''.join(decoded_parts)
+                events.append({
+                    'type': 'DNS隧道',
+                    'domain': domain,
+                    'query_count': len(subdomains),
+                    'long_subdomain_ratio': round(len(long_subs) / len(subdomains), 2),
+                    'decoded_data': full_decoded[:500],
+                })
+                flag = self._extract_flag(full_decoded)
+                if flag:
+                    events[-1]['flag'] = flag
+
+        # 分析 ICMP Data
+        if icmp_data_parts:
+            full_icmp = ''.join(icmp_data_parts)
+            if len(full_icmp) > 3:
+                flag = self._extract_flag(full_icmp)
+                if flag:
+                    events.append({
+                        'type': 'ICMP Data隐写',
+                        'decoded_data': full_icmp[:500],
+                        'flag': flag,
+                    })
+
+        # ICMP TTL 编码 (每个TTL值可能编码一个字符)
+        if len(icmp_ttl_values) > 5:
+            ttl_chars = ''
+            for ttl in icmp_ttl_values:
+                if 32 <= ttl <= 126:
+                    ttl_chars += chr(ttl)
+                elif ttl < 32 and ttl + 32 <= 126:
+                    # 有些题目 TTL 从 0 开始
+                    pass
+            if len(ttl_chars) > 3 and any(c.isalpha() for c in ttl_chars):
+                flag = self._extract_flag(ttl_chars)
+                if flag or re.search(r'[a-zA-Z]{4,}', ttl_chars):
+                    events.append({
+                        'type': 'ICMP TTL编码',
+                        'decoded_data': ttl_chars[:500],
+                    })
+                    if flag:
+                        events[-1]['flag'] = flag
+
+        confidence = 0.85 if events else 0.0
+        return DetectorResult(self.name, confidence, events)
+
+
+# ============================================================
+# 反向 Shell 检测器
+# ============================================================
+
+class ReverseShellDetector(AbstractDetector):
+    """检测反向 Shell 流量 (bash/nc/python/perl 等)"""
+
+    name = "反向Shell"
+
+    SHELL_PATTERNS = [
+        (re.compile(r'bash\s*-[i]\s*&', re.I), 'bash 反弹 Shell'),
+        (re.compile(r'/dev/tcp/', re.I), 'bash /dev/tcp 反弹'),
+        (re.compile(r'nc\s+[-eE]\s+', re.I), 'nc -e 反弹 Shell'),
+        (re.compile(r'netcat\s+', re.I), 'netcat 反弹'),
+        (re.compile(r'python[23]?\s+-c\s+.*import\s+socket', re.I), 'Python 反弹 Shell'),
+        (re.compile(r'perl\s+-e\s+.*Socket', re.I), 'Perl 反弹 Shell'),
+        (re.compile(r'ruby\s+-e\s+.*socket', re.I), 'Ruby 反弹 Shell'),
+        (re.compile(r'php\s+.*fsockopen', re.I), 'PHP 反弹 Shell'),
+        (re.compile(r'socat\s+exec', re.I), 'socat 反弹 Shell'),
+        (re.compile(r'powershell.*reverse', re.I), 'PowerShell 反弹'),
+        (re.compile(r'msfvenom.*shell', re.I), 'MSFVenom Shell'),
+    ]
+
+    # 反弹 Shell 后常见命令
+    POST_SHELL_CMDS = [
+        'whoami', 'id', 'hostname', 'uname', 'ifconfig', 'ip addr',
+        'cat /etc', 'ls -la', 'pwd', 'wget', 'curl',
+    ]
+
+    def detect(self, http_pairs):
+        events = []
+        shell_established = False
+
+        for pair in http_pairs:
+            raw = pair.get('raw', b'')
+            if isinstance(raw, bytes):
+                raw = raw.decode('utf-8', errors='replace')
+            body = pair.get('body', '') or ''
+            if isinstance(body, bytes):
+                body = body.decode('utf-8', errors='replace')
+            full_text = raw + ' ' + body
+
+            for pat, desc in self.SHELL_PATTERNS:
+                if pat.search(full_text):
+                    events.append({
+                        'type': desc,
+                        'method': pair.get('method', ''),
+                        'path': pair.get('path', '')[:200],
+                        'snippet': full_text[:300],
+                    })
+                    shell_established = True
+
+            # 检测 Shell 后命令执行
+            if shell_established or any(cmd in body.lower() for cmd in self.POST_SHELL_CMDS):
+                resp = pair.get('response')
+                if resp:
+                    resp_text = resp.get('body', b'')
+                    if isinstance(resp_text, bytes):
+                        resp_text = resp_text.decode('utf-8', errors='replace')
+                    flag = self._extract_flag(resp_text)
+                    if flag:
+                        events.append({
+                            'type': 'Shell命令输出含Flag',
+                            'command': body[:200],
+                            'response': resp_text[:300],
+                            'flag': flag,
+                        })
+
+        confidence = 0.9 if events else 0.0
+        return DetectorResult(self.name, confidence, events)
+
+
+# ============================================================
+# Shiro 反序列化检测器
+# ============================================================
+
+class ShiroDetector(AbstractDetector):
+    """检测 Apache Shiro 反序列化攻击流量"""
+
+    name = "Shiro反序列化"
+
+    # 常见 Shiro 默认密钥
+    SHIRO_KEYS = [
+        'kPH+bIxk5D2deZiIxcaaaA==',   # 最常见默认密钥
+        '2AvVhdsgUs0FSA3SDFAdag==',
+        '3AvVhmFLUs0KTA3Kprsdag==',
+        '4AvVhmFLUs0KTA3Kpfsdag==',
+        'ZUdsaGJuSmxZV3R4Y0c5dg==',
+        'fCq+/Z4ai4FR3H1uWf4Tsg==',
+    ]
+
+    def detect(self, http_pairs):
+        events = []
+
+        for pair in http_pairs:
+            headers = pair.get('headers', {})
+            raw = pair.get('raw', b'')
+            if isinstance(raw, bytes):
+                raw = raw.decode('utf-8', errors='replace')
+
+            # 检查请求中的 rememberMe Cookie
+            cookie = headers.get('cookie', '')
+            if 'rememberMe' in cookie:
+                rm_match = re.search(r'rememberMe=([^;\s]+)', cookie)
+                if rm_match and rm_match.group(1) != 'deleteMe':
+                    rm_value = rm_match.group(1)
+                    # 尝试用已知密钥解密
+                    decrypted = self._try_decrypt_shiro(rm_value)
+                    events.append({
+                        'type': 'Shiro rememberMe',
+                        'method': pair.get('method', ''),
+                        'path': pair.get('path', '')[:200],
+                        'cookie_snippet': rm_value[:80] + '...' if len(rm_value) > 80 else rm_value,
+                        'decrypted': decrypted[:500] if decrypted else '(解密失败)',
+                        'key_found': bool(decrypted),
+                    })
+                    if decrypted:
+                        flag = self._extract_flag(decrypted)
+                        if flag:
+                            events[-1]['flag'] = flag
+
+            # 检查响应中的 rememberMe=deleteMe (Shiro特征)
+            resp = pair.get('response')
+            if resp:
+                resp_headers = resp.get('headers', {})
+                set_cookie = resp_headers.get('set-cookie', '')
+                if 'rememberMe=deleteMe' in set_cookie:
+                    events.append({
+                        'type': 'Shiro 响应标记',
+                        'path': pair.get('path', '')[:200],
+                        'indicator': 'Set-Cookie: rememberMe=deleteMe',
+                    })
+
+        confidence = 0.0
+        for e in events:
+            if e.get('key_found'):
+                confidence = 0.95
+            elif e.get('type') == 'Shiro 响应标记':
+                confidence = max(confidence, 0.5)
+            elif 'rememberMe' in e.get('type', ''):
+                confidence = max(confidence, 0.7)
+        return DetectorResult(self.name, confidence, events)
+
+    def _try_decrypt_shiro(self, cookie_value):
+        """尝试用已知密钥解密 Shiro rememberMe"""
+        if not HAS_CRYPTO:
+            return None
+        try:
+            import binascii
+            from Crypto.Cipher import AES as AESCipher
+            # rememberMe 格式: Base64(AES-CBC-加密(序列化数据))
+            # 简单尝试: base64解码 -> 前16字节为IV -> AES-CBC解密
+            encrypted = base64.b64decode(cookie_value)
+            if len(encrypted) < 32:
+                return None
+            iv = encrypted[:16]
+            ciphertext = encrypted[16:]
+            for key_b64 in self.SHIRO_KEYS:
+                try:
+                    key = base64.b64decode(key_b64)
+                    cipher = AESCipher.new(key, AESCipher.MODE_CBC, iv)
+                    decrypted = cipher.decrypt(ciphertext)
+                    # Java 序列化魔术号 0xACED
+                    if b'\xac\xed' in decrypted[:10]:
+                        # 去除 padding
+                        try:
+                            decrypted = unpad(decrypted, 16)
+                        except Exception:
+                            pass
+                        text = decrypted.decode('utf-8', errors='replace')
+                        return text
+                except Exception:
+                    continue
+        except Exception:
+            pass
+        return None
+
+
+# ============================================================
+# 协议统计 + 全局 Flag 搜索检测器
+# ============================================================
+
+class ProtocolStatsDetector(AbstractDetector):
+    """协议统计概览 + 全局 Flag 搜索 (兜底)"""
+
+    name = "协议统计/全局搜索"
+
+    def detect(self, http_pairs):
+        events = []
+
+        # IP 统计
+        ip_counter = defaultdict(int)
+        # URI 统计
+        uri_counter = defaultdict(int)
+        # User-Agent 统计
+        ua_counter = defaultdict(int)
+        # 端口统计
+        port_counter = defaultdict(int)
+
+        for pair in http_pairs:
+            sk = pair.get('stream_key', ('?', '?', '?', '?'))
+            src_ip, src_port, dst_ip, dst_port = sk[0], sk[1], sk[2], sk[3]
+            ip_counter[f"{src_ip}→{dst_ip}"] += 1
+            port_counter[dst_port] += 1
+            uri_counter[pair.get('path', '/')[:80]] += 1
+            ua = pair.get('headers', {}).get('user-agent', 'N/A')[:60]
+            ua_counter[ua] += 1
+
+        # Top IP
+        top_ips = sorted(ip_counter.items(), key=lambda x: -x[1])[:5]
+        if top_ips:
+            events.append({
+                'type': 'Top IP 对',
+                'data': ', '.join(f'{k}({v})' for k, v in top_ips),
+            })
+
+        # Top URI
+        top_uris = sorted(uri_counter.items(), key=lambda x: -x[1])[:10]
+        if top_uris:
+            events.append({
+                'type': 'Top URI',
+                'data': '\n'.join(f'  {v:3d}x {k}' for k, v in top_uris),
+            })
+
+        # Top UA
+        top_uas = sorted(ua_counter.items(), key=lambda x: -x[1])[:5]
+        if top_uas:
+            events.append({
+                'type': 'Top User-Agent',
+                'data': '\n'.join(f'  {v:3d}x {k}' for k, v in top_uas),
+            })
+
+        # 全局 Flag 搜索 (兜底: 从所有请求/响应中grep flag)
+        global_flags = set()
+        for pair in http_pairs:
+            # 请求
+            for field in ['body', 'path', 'raw_headers']:
+                val = pair.get(field, '') or ''
+                if isinstance(val, bytes):
+                    val = val.decode('utf-8', errors='replace')
+                flag = self._extract_flag(val)
+                if flag and flag not in global_flags:
+                    global_flags.add(flag)
+                    events.append({
+                        'type': '请求中发现Flag',
+                        'flag': flag,
+                        'method': pair.get('method', ''),
+                        'path': pair.get('path', '')[:200],
+                    })
+
+            # 响应
+            resp = pair.get('response')
+            if resp:
+                resp_body = resp.get('body', b'')
+                if isinstance(resp_body, bytes):
+                    resp_text = resp_body.decode('utf-8', errors='replace')
+                elif isinstance(resp_body, str):
+                    resp_text = resp_body
+                else:
+                    resp_text = ''
+                flag = self._extract_flag(resp_text)
+                if flag and flag not in global_flags:
+                    global_flags.add(flag)
+                    events.append({
+                        'type': '响应中发现Flag',
+                        'flag': flag,
+                        'method': pair.get('method', ''),
+                        'path': pair.get('path', '')[:200],
+                    })
+
+        confidence = 0.6 if events else 0.0
+        return DetectorResult(self.name, confidence, events)
+
+
+# ============================================================
 # 主分析引擎
 # ============================================================
 
@@ -1284,13 +1986,19 @@ class PCAPArcanum:
 
         # 初始化检测器 - 按优先级排序
         self.detectors = [
-            AntSwordDetector(),      # 蚁剑 (最常见)
-            GodzillaDetector(),      # 哥斯拉
-            BehinderDetector(),      # 冰蝎
-            ChopperDetector(),       # 菜刀
-            CobaltStrikeDetector(),  # Cobalt Strike
-            FileTransferDetector(),  # 文件传输
-            GenericShellDetector(),  # 通用Shell命令 (最低优先级)
+            AntSwordDetector(),              # 蚁剑 (最常见)
+            GodzillaDetector(),              # 哥斯拉
+            BehinderDetector(),              # 冰蝎
+            ChopperDetector(),               # 菜刀
+            CobaltStrikeDetector(),           # Cobalt Strike
+            GenericShellDetector(),           # 通用Shell命令
+            FileTransferDetector(),           # 文件传输
+            SQLInjectionDetector(),           # SQL注入还原
+            CredentialDetector(),            # 凭证提取
+            DNSICMPSteganographyDetector(),   # DNS/ICMP隐写
+            ReverseShellDetector(),           # 反向Shell
+            ShiroDetector(),                  # Shiro反序列化
+            ProtocolStatsDetector(),          # 协议统计/全局搜索
         ]
 
     def analyze(self):
@@ -1326,7 +2034,11 @@ class PCAPArcanum:
         # 运行所有检测器
         print(f"\n[*] 开始流量特征检测...\n")
         for detector in self.detectors:
-            result = detector.detect(self.http_pairs)
+            if isinstance(detector, DNSICMPSteganographyDetector):
+                # DNS/ICMP 检测器需要原始包
+                result = detector.detect_raw(packets)
+            else:
+                result = detector.detect(self.http_pairs)
             self.results[detector.name] = result
 
             status = "✓ 检测到" if result.confidence > 0.3 else "✗ 未检测到"
@@ -1643,6 +2355,12 @@ def main():
   - Cobalt Strike       checksum8 URI, 心跳包, PE stager
   - 通用Shell命令        whoami/id/cat/ls 等明文命令
   - 文件传输             ZIP/PNG/JPEG/ELF/PE 等文件签名检测
+  - SQL注入还原          布尔盲注/联合查询/报错注入自动提取
+  - 凭证提取             HTTP/FTP/SMTP/Basic Auth 明文凭据
+  - DNS/ICMP隐写        DNS隧道子域名解码+ICMP Data/TTL编码
+  - 反向Shell           bash/nc/python反弹检测
+  - Shiro反序列化       rememberMe AES解密+默认密钥爆破
+  - 协议统计/全局搜索    IP/URI/UA统计 + 全局Flag兜底搜索
         """)
     parser.add_argument('pcap', help='PCAP/PCAPNG 文件路径')
     parser.add_argument('--verbose', '-v', action='store_true', help='详细输出模式')
