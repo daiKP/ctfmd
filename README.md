@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '2e430b98-d346-4671-bfa2-bf852300be14'
-  PropagateID: '2e430b98-d346-4671-bfa2-bf852300be14'
-  ReservedCode1: '1d2a5568-5755-4836-beb8-c3fa212b81dc'
-  ReservedCode2: '1d2a5568-5755-4836-beb8-c3fa212b81dc'
+  ProduceID: '714798ea-fd4c-4f97-a12c-b9c4ef0236e2'
+  PropagateID: '714798ea-fd4c-4f97-a12c-b9c4ef0236e2'
+  ReservedCode1: '6e7cf5e4-34ca-40fd-a11c-6802eadee085'
+  ReservedCode2: '6e7cf5e4-34ca-40fd-a11c-6802eadee085'
 ---
 
 # CTF 解题笔记本
@@ -132,7 +132,8 @@ pip install -r requirements.txt
 >
 > **自动化IR扫描器（Windows版）**（`IR/auto-ir-scanner/ir_scanner_win.py`）：v1.2, WinRM/pypsrp远程连接(默认端口5985), 18模块全量排查, 隐藏账户($结尾)检测, Windows Defender隔离区恢复, 未签名驱动检测, IFEO Debugger劫持, 智能异常分析(Windows基线+攻击链推断), **Flag汇总引擎(从全部模块结果中提取flag模式并标注来源)**, JSON/HTML报告, 实测248秒/17个发现/风险100
 >
-> **PWN Arcanum 工具**（`PWN/pwn-arcanum/pwn_arcanum.py`）：v1.2, 4种自动利用策略 — ret2text(调后门函数) / ret2shellcode(跳转shellcode) / ret2syscall(ROP链execve) / ret2libc(leak+system两阶段)，自动静态分析(保护检查/危险函数/后门检测/gadget搜索)，自动策略推荐，硬编码多架构shellcode(不依赖asm)，纯pwntools远程利用(跨平台Windows/macOS/Linux)
+> **PWN Arcanum 工具**（`PWN/pwn-arcanum/pwn_arcanum.py`）：v1.3, 4种自动利用策略 — ret2text(调后门函数) / ret2shellcode(跳转shellcode) / ret2syscall(ROP链execve) / ret2libc(leak+system两阶段)，自动静态分析(保护检查/危险函数/后门检测/gadget搜索)，自动策略推荐，硬编码多架构shellcode(不依赖asm)，纯pwntools远程利用(跨平台Windows/macOS/Linux)
+> - v1.3 新增：`--ssl` 参数支持 SSL/TLS 远程连接（ncat --ssl 模式），扩展 flag 正则匹配（CTF2/DASCTF/key/GWHT/BJD）
 > - v1.2 修复：remote 模式全面重写 — 接收banner → sendline发payload(gets需\n) → cat-flag类型自动提取flag → shell类型先验证存活再交互 → Mac上interactive立即退出问题修复
 > - v1.1 新增：cat-flag gadget 字节扫描 + gets缓冲区偏移自动检测
 > - v1.0 基础：4种策略 + 自动分析 + 跨平台

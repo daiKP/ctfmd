@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/env python3
-"""PWN Arcanum v1.2 - Automated PWN Analysis & Exploitation Engine
+"""PWN Arcanum v1.3 - Automated PWN Analysis & Exploitation Engine
 
 Cross-platform (Windows / macOS / Linux) automated solver for simple PWN challenges:
   - ret2text (call win/backdoor function)
@@ -57,7 +57,7 @@ BANNER = r"""
    ___|  |     |     |   _  |     \    _  _|  _  _|  _  _|  _  |
   |      |  -  |  -  |  . | |  -- <   | | | | |_ |_| |_ | | . | |
   |______|___|_|___|_|_|\__|_|_|_\_|  |___| |___|___|___|\___|
-                                                          v1.2
+                                                          v1.3
 """
 
 # ---------------------------------------------------------------------------
@@ -1111,7 +1111,7 @@ class PWNArcanum:
         print(C.info(f"  {desc}"))
         return payload, desc
 
-    def run_remote(self, host, port, interactive=True):
+    def run_remote(self, host, port, interactive=True, ssl=False):
         """Run exploit against remote target."""
         if not HAS_PWNTOOLS:
             print(C.err("pwntools required for remote exploitation"))
@@ -1119,6 +1119,7 @@ class PWNArcanum:
 
         self.remote_host = host
         self.remote_port = port
+        self.use_ssl = ssl
 
         if self.strategy == 'ret2libc':
             # Two-stage exploit
@@ -1132,9 +1133,9 @@ class PWNArcanum:
             print(C.err("No payload built. Call build_payload() first."))
             return
 
-        print(C.info(f"Connecting to {host}:{port} ..."))
+        print(C.info(f"Connecting to {host}:{port}" + (" (SSL)" if getattr(self, 'use_ssl', False) else "") + " ..."))
         try:
-            io = remote(host, port)
+            io = remote(host, port, ssl=getattr(self, 'use_ssl', False), timeout=15)
         except Exception as e:
             print(C.err(f"Connection failed: {e}"))
             return
@@ -1252,7 +1253,7 @@ class PWNArcanum:
             return
 
         try:
-            io = remote(host, port)
+            io = remote(host, port, ssl=getattr(self, 'use_ssl', False), timeout=15)
         except Exception as e:
             print(C.err(f"Connection failed: {e}"))
             return
@@ -1418,6 +1419,12 @@ class PWNArcanum:
             r'CTF\{[^}]+\}',
             r'ctf\{[^}]+\}',
             r'FLAG\{[^}]+\}',
+            r'CTF2\{[^}]+\}',
+            r'DASCTF\{[^}]+\}',
+            r'key\{[^}]+\}',
+            r'GWHT\{[^}]+\}',
+            r'BJD\{[^}]+\}',
+            r'bjd\{[^}]+\}',
         ]
         for p in patterns:
             flags.extend(re.findall(p, data, re.I))
@@ -1429,7 +1436,7 @@ class PWNArcanum:
 # ===================================================================
 def main():
     parser = argparse.ArgumentParser(
-        description='PWN Arcanum v1.2 - Automated PWN Analysis & Exploitation',
+        description='PWN Arcanum v1.3 - Automated PWN Analysis & Exploitation',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -1478,6 +1485,8 @@ Strategies:
                         help='Dump payload as hex, do not connect')
     parser.add_argument('--no-interactive', action='store_true',
                         help='Do not enter interactive mode')
+    parser.add_argument('--ssl', action='store_true',
+                        help='Use SSL/TLS for remote connection (ncat --ssl)')
     parser.add_argument('--verbose', '-v', action='store_true',
                         help='Verbose output')
 
@@ -1563,7 +1572,7 @@ Strategies:
         print(C.hdr("STEP 4: REMOTE EXPLOITATION"))
         if libc_offsets:
             engine.libc_offsets = libc_offsets
-        engine.run_remote(host, port, interactive=not args.no_interactive)
+        engine.run_remote(host, port, interactive=not args.no_interactive, ssl=args.ssl)
     elif args.strategy == 'ret2libc':
         print(C.warn("ret2libc requires --remote for two-stage exploitation"))
     else:
