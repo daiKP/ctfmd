@@ -1167,22 +1167,18 @@ class PWNArcanum:
         if is_cat_flag:
             # cat-flag gadget: flag is printed to stdout, no shell
             print(C.info("cat-flag gadget detected, waiting for output ..."))
-            time.sleep(0.5)
-            try:
-                data = io.recvall(timeout=5)
-                if data:
-                    decoded = data.decode('utf-8', errors='replace')
-                    print(C.hit(f"Output:\n{decoded}"))
-                    flags = self._extract_flags(data)
-                    if flags:
-                        for f in flags:
-                            print(C.flag(f))
-                    else:
-                        print(C.warn("No flag pattern found in output"))
+            data = self._recv_all_safe(io)
+            if data:
+                decoded = data.decode('utf-8', errors='replace')
+                print(C.hit(f"Output:\n{decoded}"))
+                flags = self._extract_flags(data)
+                if flags:
+                    for f in flags:
+                        print(C.flag(f))
                 else:
-                    print(C.warn("No output received after payload"))
-            except Exception as e:
-                print(C.err(f"Receive error: {e}"))
+                    print(C.warn("No flag pattern found in output"))
+            else:
+                print(C.warn("No output received after payload"))
             io.close()
             return
 
@@ -1228,16 +1224,12 @@ class PWNArcanum:
                 print("\n" + C.info("Exiting interactive mode"))
         else:
             # Non-interactive: collect all output
-            time.sleep(0.5)
-            try:
-                data = io.recvall(timeout=5)
-                if data:
-                    print(C.hit(f"Received: {data.decode('utf-8', errors='replace')}"))
-                    flags = self._extract_flags(data)
-                    for f in flags:
-                        print(C.flag(f))
-            except Exception:
-                pass
+            data = self._recv_all_safe(io)
+            if data:
+                print(C.hit(f"Received: {data.decode('utf-8', errors='replace')}"))
+                flags = self._extract_flags(data)
+                for f in flags:
+                    print(C.flag(f))
 
         io.close()
 
@@ -1376,18 +1368,32 @@ class PWNArcanum:
             except KeyboardInterrupt:
                 print("\n" + C.info("Exiting"))
         else:
-            time.sleep(0.5)
-            try:
-                data = io.recvall(timeout=5)
-                if data:
-                    print(C.hit(f"Received: {data.decode('utf-8', errors='replace')}"))
-                    flags = self._extract_flags(data)
-                    for f in flags:
-                        print(C.flag(f))
-            except Exception:
-                pass
+            data = self._recv_all_safe(io)
+            if data:
+                print(C.hit(f"Received: {data.decode('utf-8', errors='replace')}"))
+                flags = self._extract_flags(data)
+                for f in flags:
+                    print(C.flag(f))
 
         io.close()
+
+    def _recv_all_safe(self, io, timeout=5):
+        """Receive all data reliably across platforms.
+
+        Uses recvrepeat (silent-timeout based) instead of recvall (EOF based).
+        On macOS, SSL connections may close uncleanly on remote crash,
+        causing recvall to miss final buffered data. recvrepeat keeps
+        calling recv until a silent timeout, collecting all segments.
+        """
+        try:
+            time.sleep(0.3)
+            data = io.recvrepeat(timeout)
+        except Exception:
+            try:
+                data = io.recvall(timeout=3)
+            except Exception:
+                data = b''
+        return data
 
     def _parse_leaked_addr(self, data):
         """Parse a leaked address from received data."""
