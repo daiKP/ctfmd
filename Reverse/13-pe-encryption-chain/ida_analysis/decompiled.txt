@@ -1,0 +1,2256 @@
+Total functions: 306
+
+Entry point: 0x140011262
+
+{'='*80}
+ALL FUNCTIONS
+{'='*80}
+  0x140011005 j__set_fmode (size=5)
+  0x14001100A j___vcrt_LoadLibraryExW (size=5)
+  0x14001100F j_?set_commode@__scrt_file_policy@@SAXXZ (size=5)
+  0x140011014 j_strcat_s (size=5)
+  0x140011019 sub_140011019 (size=5)
+  0x140011028 sub_140011028 (size=5)
+  0x14001102D j_terminate (size=5)
+  0x140011032 j___C_specific_handler (size=5)
+  0x140011037 j_??R_lambda_daad5f71a1db84f3475a074fd2d177ad_@@QEBA@XZ (size=5)
+  0x14001103C j__CRT_RTC_INITW (size=5)
+  0x140011050 sub_140011050 (size=5)
+  0x140011055 j_exit (size=5)
+  0x14001105A j__initialize_narrow_environment (size=5)
+  0x140011064 j___report_gsfailure (size=5)
+  0x140011069 j_??$_Bit_cast@_KT_Addr_storage@error_category@std@@$0A@@std@@YA_KAEBT_Addr_storage@error_category@0@@Z (size=5)
+  0x14001106E j__wmakepath_s (size=5)
+  0x140011073 sub_140011073 (size=5)
+  0x140011078 j__CrtDbgReportW (size=5)
+  0x14001107D sub_14001107D (size=5)
+  0x140011082 sub_140011082 (size=5)
+  0x140011087 sub_140011087 (size=5)
+  0x14001108C sub_14001108C (size=5)
+  0x140011091 j__get_initial_narrow_environment (size=5)
+  0x140011096 j___current_exception (size=5)
+  0x1400110A0 j_j___guard_dispatch_icall_fptr (size=5)
+  0x1400110A5 j__onexit (size=5)
+  0x1400110AA UserMathErrorFunction (size=5)
+  0x1400110AF sub_1400110AF (size=5)
+  0x1400110B4 sub_1400110B4 (size=5)
+  0x1400110BE j_?set_app_type@__scrt_main_policy@@SAXXZ (size=5)
+  0x1400110C3 j__guard_dispatch_icall_nop (size=5)
+  0x1400110CD j___GSHandlerCheckCommon (size=5)
+  0x1400110D2 sub_1400110D2 (size=5)
+  0x1400110DC j___scrt_initialize_onexit_tables (size=5)
+  0x1400110E1 j___report_securityfailure (size=5)
+  0x1400110EB TopLevelExceptionFilter (size=5)
+  0x1400110F0 j___vcrt_GetModuleHandleW (size=5)
+  0x140011109 j_nullsub_1 (size=5)
+  0x140011113 j_strcpy_s (size=5)
+  0x140011118 j__crt_atexit (size=5)
+  0x14001111D j__configthreadlocale (size=5)
+  0x14001112C j_?initialize_environment@__scrt_narrow_environment_policy@@SAHXZ (size=5)
+  0x140011136 j___scrt_uninitialize_crt (size=5)
+  0x14001113B j___scrt_is_ucrt_dll_in_use (size=5)
+  0x140011145 j___scrt_is_nonwritable_in_current_image (size=5)
+  0x14001114A j_atexit (size=5)
+  0x14001114F j___GSHandlerCheck (size=5)
+  0x140011154 sub_140011154 (size=5)
+  0x140011159 sub_140011159 (size=5)
+  0x14001115E sub_14001115E (size=5)
+  0x14001116D j_wcscpy_s (size=5)
+  0x140011172 sub_140011172 (size=5)
+  0x140011177 j__c_exit (size=5)
+  0x14001117C sub_14001117C (size=5)
+  0x140011186 sub_140011186 (size=5)
+  0x14001118B sub_14001118B (size=5)
+  0x140011190 j__initterm_e (size=5)
+  0x14001119F sub_14001119F (size=5)
+  0x1400111A4 j___security_check_cookie (size=5)
+  0x1400111A9 j__crt_at_quick_exit (size=5)
+  0x1400111C2 j__seh_filter_dll (size=5)
+  0x1400111C7 j__set_app_type (size=5)
+  0x1400111CC j__get_startup_file_mode (size=5)
+  0x1400111D6 j_?raw_length@charNode@@UEBAHXZ (size=5)
+  0x1400111DB sub_1400111DB (size=5)
+  0x1400111E0 j___raise_securityfailure (size=5)
+  0x1400111E5 sub_1400111E5 (size=5)
+  0x1400111EF j__exit (size=5)
+  0x1400111F4 j_sprintf_s (size=5)
+  0x140011208 j_?configure_argv@__scrt_narrow_argv_policy@@SAHXZ (size=5)
+  0x14001120D j___setusermatherr (size=5)
+  0x140011212 sub_140011212 (size=5)
+  0x140011217 j__CrtDbgReport (size=5)
+  0x14001121C j___scrt_is_user_matherr_present (size=5)
+  0x140011221 sub_140011221 (size=5)
+  0x140011226 j___current_exception_context (size=5)
+  0x14001122B j__register_onexit_function (size=5)
+  0x140011230 sub_140011230 (size=5)
+  0x140011235 j__execute_onexit_table (size=5)
+  0x14001123A sub_14001123A (size=5)
+  0x14001124E j_?_RTC_StackFailure@@YAXPEAXPEBD@Z (size=5)
+  0x14001125D main (size=5)
+  0x140011262 start (size=5)
+  0x140011267 j___scrt_is_managed_app (size=5)
+  0x14001126C sub_14001126C (size=5)
+  0x140011271 j___security_init_cookie (size=5)
+  0x140011285 sub_140011285 (size=5)
+  0x140011299 j_?_RTC_GetSrcLine@@YAHPEAEPEA_WKPEAH1K@Z (size=5)
+  0x1400112A3 j___p__commode (size=5)
+  0x1400112B2 j___p___argc (size=5)
+  0x1400112B7 sub_1400112B7 (size=5)
+  0x1400112BC sub_1400112BC (size=5)
+  0x1400112C1 j__set_new_mode (size=5)
+  0x1400112C6 j___scrt_initialize_default_local_stdio_options (size=5)
+  0x1400112CB j___crt_debugger_hook (size=5)
+  0x1400112E4 j___p___argv (size=5)
+  0x1400112E9 j___scrt_release_startup_lock (size=5)
+  0x1400112EE j___std_type_info_destroy_list (size=5)
+  0x1400112F3 j__RTC_CheckStackVars (size=5)
+  0x1400112F8 j___isa_available_init (size=5)
+  0x1400112FD j___scrt_fastfail (size=5)
+  0x140011307 j__initterm (size=5)
+  0x14001130C j_NtCurrentTeb (size=5)
+  0x140011311 j___scrt_acquire_startup_lock (size=5)
+  0x140011316 j_?set_fmode@__scrt_file_policy@@SAXXZ (size=5)
+  0x14001131B j__RTC_InitBase (size=5)
+  0x140011325 j__seh_filter_exe (size=5)
+  0x14001132F j___stdio_common_vsprintf_s (size=5)
+  0x140011339 j__vsprintf_s_l (size=5)
+  0x140011343 j__register_thread_local_exe_atexit_callback (size=5)
+  0x14001134D j__cexit (size=5)
+  0x140011352 sub_140011352 (size=5)
+  0x140011357 j_?_RTC_AllocaFailure@@YAXPEAXPEAU_RTC_ALLOCA_NODE@@H@Z (size=5)
+  0x14001135C j___CheckForDebuggerJustMyCode (size=5)
+  0x140011361 j___C_specific_handler_noexcept (size=5)
+  0x140011366 j_nullsub_2 (size=5)
+  0x14001136B sub_14001136B (size=5)
+  0x140011370 j__wsplitpath_s (size=5)
+  0x14001137F j__configure_narrow_argv (size=5)
+  0x140011384 j___scrt_initialize_crt (size=5)
+  0x140011389 j___vcrt_GetModuleFileNameW (size=5)
+  0x14001139D j__initialize_onexit_table (size=5)
+  0x1400113E8 j_strlen (size=5)
+  0x1400113ED sub_1400113ED (size=5)
+  0x1400113F7 j_memcmp (size=5)
+  0x1400113FC sub_1400113FC (size=5)
+  0x140011401 sub_140011401 (size=5)
+  0x1400117C5 __stdio_common_vfscanf (size=6)
+  0x1400117CB strlen (size=6)
+  0x1400117D1 memcmp (size=6)
+  0x140011830 sub_140011830 (size=103)
+  0x1400118A0 sub_1400118A0 (size=191)
+  0x140011990 sub_140011990 (size=44)
+  0x1400119C0 sub_1400119C0 (size=188)
+  0x140011A80 _RTC_AllocaHelper (size=59)
+  0x140011AD0 _RTC_CheckStackVars (size=129)
+  0x140011B80 _RTC_CheckStackVars2 (size=259)
+  0x140011CE0 _CRT_RTC_INITW (size=8)
+  0x140011CF0 _RTC_InitBase (size=63)
+  0x140011D40 _RTC_Shutdown (size=35)
+  0x140011D70 __CheckForDebuggerJustMyCode (size=60)
+  0x140011DC0 __GSHandlerCheck (size=58)
+  0x140011E10 __GSHandlerCheckCommon (size=248)
+  0x140011F60 __security_check_cookie (size=30)
+  0x140011F90 ?pre_c_initialization@@YAHXZ (size=178)
+  0x140012070 ?post_pgo_initialization@@YAHXZ (size=16)
+  0x140012090 ?pre_cpp_initialization@@YAXXZ (size=26)
+  0x1400120B0 ?__scrt_common_main@@YAHXZ (size=19)
+  0x1400120D0 ?__scrt_common_main_seh@@YAHXZ (size=414)
+  0x1400122E0 ?configure_argv@__scrt_narrow_argv_policy@@SAHXZ (size=21)
+  0x140012300 ?initialize_environment@__scrt_narrow_environment_policy@@SAHXZ (size=14)
+  0x140012320 ?invoke_main@@YAHXZ (size=62)
+  0x140012370 ?set_app_type@__scrt_main_policy@@SAXXZ (size=19)
+  0x140012390 ?set_commode@__scrt_file_policy@@SAXXZ (size=29)
+  0x1400123C0 ?set_fmode@__scrt_file_policy@@SAXXZ (size=21)
+  0x1400123E0 start_0 (size=19)
+  0x140012400 ?DebuggerProbe@@YA_NK@Z (size=54)
+  0x140012450 ?DebuggerRuntime@@YA_NKHPEAXPEB_W@Z (size=68)
+  0x1400124B0 ?_RTC_AllocaFailure@@YAXPEAXPEAU_RTC_ALLOCA_NODE@@H@Z (size=341)
+  0x140012660 ?_RTC_Failure@@YAXPEAXH@Z (size=78)
+  0x1400126D0 ?_RTC_StackFailure@@YAXPEAXPEBD@Z (size=207)
+  0x1400127E0 unknown_libname_1 (size=178)
+  0x1400128C0 ?_strlen_priv@@YA_KPEBD@Z (size=20)
+  0x1400128E0 ?failwithmessage@@YAXPEAXHHPEBD@Z (size=608)
+  0x140012B40 sub_140012B40 (size=102)
+  0x140012BE0 ?notify_debugger@@YAXAEBUtagEXCEPTION_VISUALCPP_DEBUG_INFO@@@Z (size=31)
+  0x140012C10 _RTC_UninitUse (size=197)
+  0x140012D10 _vsprintf_s_l (size=100)
+  0x140012D90 sprintf_s (size=37)
+  0x140012DC0 sub_140012DC0 (size=8)
+  0x140012DD0 sub_140012DD0 (size=8)
+  0x140012DE0 _RTC_GetErrDesc (size=23)
+  0x140012E00 ??$size@D$04@std@@YA_KAEAY04$$CBD@Z (size=6)
+  0x140012E50 _RTC_SetErrorType (size=32)
+  0x140012E80 __raise_securityfailure (size=53)
+  0x140012ED0 __report_gsfailure (size=210)
+  0x140012FE0 __report_rangecheckfailure (size=19)
+  0x140013000 __report_securityfailure (size=156)
+  0x1400130D0 __report_securityfailureEx (size=271)
+  0x140013230 capture_current_context (size=145)
+  0x1400132F0 capture_previous_context (size=178)
+  0x1400133D0 ?find_pe_section@@YAPEAU_IMAGE_SECTION_HEADER@@QEAE_K@Z (size=198)
+  0x1400134D0 ?is_potentially_valid_image_base@@YA_NQEAX@Z (size=138)
+  0x140013580 NtCurrentTeb (size=10)
+  0x140013590 __scrt_acquire_startup_lock (size=98)
+  0x140013610 __scrt_dllmain_after_initialize_c (size=45)
+  0x140013650 __scrt_dllmain_before_initialize_c (size=29)
+  0x140013680 __scrt_dllmain_crt_thread_attach (size=48)
+  0x1400136C0 __scrt_dllmain_crt_thread_detach (size=21)
+  0x1400136E0 __scrt_dllmain_exception_filter (size=101)
+  0x140013760 __scrt_dllmain_uninitialize_c (size=46)
+  0x1400137A0 __scrt_dllmain_uninitialize_critical (size=21)
+  0x1400137C0 __scrt_initialize_crt (size=73)
+  0x140013820 __scrt_initialize_onexit_tables (size=260)
+  0x140013970 __scrt_is_nonwritable_in_current_image (size=139)
+  0x140013A20 __scrt_release_startup_lock (size=47)
+  0x140013A60 __scrt_uninitialize_crt (size=63)
+  0x140013AB0 _onexit (size=125)
+  0x140013B50 at_quick_exit (size=75)
+  0x140013BB0 atexit (size=51)
+  0x140013BF0 __get_entropy (size=190)
+  0x140013CE0 __security_init_cookie (size=116)
+  0x140013D80 unknown_libname_3 (size=8)
+  0x140013D90 ?raw_length@charNode@@UEBAHXZ (size=6)
+  0x140013DA0 sub_140013DA0 (size=3)
+  0x140013DB0 _get_startup_file_mode (size=6)
+  0x140013DC0 sub_140013DC0 (size=3)
+  0x140013DD0 sub_140013DD0 (size=3)
+  0x140013DE0 sub_140013DE0 (size=22)
+  0x140013E00 sub_140013E00 (size=21)
+  0x140013E20 sub_140013E20 (size=3)
+  0x140013E30 nullsub_2 (size=3)
+  0x140013E40 nullsub_1 (size=3)
+  0x140013E50 sub_140013E50 (size=8)
+  0x140013E60 __scrt_initialize_default_local_stdio_options (size=69)
+  0x140013EC0 __scrt_is_user_matherr_present (size=37)
+  0x140013EF0 sub_140013EF0 (size=8)
+  0x140013F00 sub_140013F00 (size=8)
+  0x140013F10 __crt_debugger_hook (size=15)
+  0x140013F30 __scrt_fastfail (size=402)
+  0x140014130 __scrt_get_show_window_mode (size=81)
+  0x1400141A0 sub_1400141A0 (size=14)
+  0x1400141C0 sub_1400141C0 (size=3)
+  0x1400141D0 __scrt_is_managed_app (size=166)
+  0x1400142A0 sub_1400142A0 (size=22)
+  0x1400142C0 sub_1400142C0 (size=3)
+  0x1400142D0 __scrt_unhandled_exception_filter (size=154)
+  0x140014390 sub_140014390 (size=66)
+  0x1400143F0 sub_1400143F0 (size=66)
+  0x140014450 ??R_lambda_daad5f71a1db84f3475a074fd2d177ad_@@QEBA@XZ (size=6)
+  0x140014460 ??$_Bit_cast@_KT_Addr_storage@error_category@std@@$0A@@std@@YA_KAEBT_Addr_storage@error_category@0@@Z (size=30)
+  0x140014490 sub_140014490 (size=24)
+  0x1400144B0 __castguard_check_failure_debugbreak (size=29)
+  0x1400144E0 __castguard_check_failure_fastfail (size=35)
+  0x140014511 __set_stl_sync_api_mode (size=5)
+  0x140014520 __castguard_check_failure_os_handled (size=38)
+  0x140014550 __castguard_check_failure_os_handled_wrapper (size=40)
+  0x140014590 __castguard_compat_check (size=107)
+  0x140014620 __castguard_slow_path_check_debugbreak (size=63)
+  0x140014670 __castguard_slow_path_check_fastfail (size=69)
+  0x1400146D0 __castguard_slow_path_check_nop (size=16)
+  0x1400146F0 __castguard_slow_path_check_os_handled (size=72)
+  0x140014750 __castguard_slow_path_compat_check (size=105)
+  0x1400147E0 _guard_icall_checks_enforced (size=55)
+  0x140014840 ?GetPdbDll@@YAPEAUHINSTANCE__@@XZ (size=348)
+  0x140014A00 ?GetPdbDllFromInstallPath@@YAPEAUHINSTANCE__@@XZ (size=686)
+  0x140014D60 ?GetPdbDllPathFromFilePath@@YAHPEB_WPEA_W_K@Z (size=259)
+  0x140014EB0 ?_RTC_GetSrcLine@@YAHPEAEPEA_WKPEAH1K@Z (size=966)
+  0x140015370 __isa_available_init (size=918)
+  0x1400157F0 __scrt_is_ucrt_dll_in_use (size=37)
+  0x140015820 __C_specific_handler (size=6)
+  0x140015826 __C_specific_handler_noexcept (size=6)
+  0x14001582C __std_type_info_destroy_list (size=6)
+  0x140015832 __current_exception (size=6)
+  0x140015838 __current_exception_context (size=6)
+  0x14001583E __vcrt_GetModuleFileNameW (size=6)
+  0x140015844 __vcrt_GetModuleHandleW (size=6)
+  0x14001584A __vcrt_LoadLibraryExW (size=6)
+  0x14001585C _CrtDbgReport (size=6)
+  0x140015862 _CrtDbgReportW (size=6)
+  0x140015868 _seh_filter_exe (size=6)
+  0x14001586E _set_app_type (size=6)
+  0x140015874 __setusermatherr (size=6)
+  0x14001587A _configure_narrow_argv (size=6)
+  0x140015880 _initialize_narrow_environment (size=6)
+  0x140015886 _get_initial_narrow_environment (size=6)
+  0x14001588C _initterm (size=6)
+  0x140015892 _initterm_e (size=6)
+  0x140015898 exit (size=6)
+  0x14001589E _exit (size=6)
+  0x1400158A4 _set_fmode (size=6)
+  0x1400158AA __p___argc (size=6)
+  0x1400158B0 __p___argv (size=6)
+  0x1400158B6 _cexit (size=6)
+  0x1400158BC _c_exit (size=6)
+  0x1400158C2 _register_thread_local_exe_atexit_callback (size=6)
+  0x1400158C8 _configthreadlocale (size=6)
+  0x1400158CE _set_new_mode (size=6)
+  0x1400158D4 __p__commode (size=6)
+  0x1400158DA strcpy_s (size=6)
+  0x1400158E0 strcat_s (size=6)
+  0x1400158E6 __stdio_common_vsprintf_s (size=6)
+  0x1400158EC _seh_filter_dll (size=6)
+  0x1400158F2 _initialize_onexit_table (size=6)
+  0x1400158F8 _register_onexit_function (size=6)
+  0x1400158FE _execute_onexit_table (size=6)
+  0x140015904 _crt_atexit (size=6)
+  0x14001590A _crt_at_quick_exit (size=6)
+  0x140015910 terminate (size=6)
+  0x140015916 _wmakepath_s (size=6)
+  0x14001591C _wsplitpath_s (size=6)
+  0x140015922 wcscpy_s (size=6)
+  0x1400159D0 sub_1400159D0 (size=3)
+  0x1400159E0 sub_1400159E0 (size=3)
+  0x1400159F0 sub_1400159F0 (size=3)
+  0x140015A00 sub_140015A00 (size=7)
+  0x140015A10 sub_140015A10 (size=7)
+  0x140015A20 sub_140015A20 (size=3)
+  0x140015B80 sub_140015B80 (size=340)
+  0x140015CE0 sub_140015CE0 (size=290)
+  0x140015F90 sub_140015F90 (size=103)
+  0x140016000 sub_140016000 (size=103)
+  0x140016070 main_0 (size=551)
+  0x140016DD0 _guard_dispatch_icall_nop (size=2)
+  0x140016DF0 j___guard_dispatch_icall_fptr (size=6)
+  0x140017E40 ?filt$0@?0??notify_debugger@@YAXAEBUtagEXCEPTION_VISUALCPP_DEBUG_INFO@@@Z@4HA (size=32)
+
+================================================================================
+DECOMPILED FUNCTIONS (user code)
+================================================================================
+
+--- j__set_fmode @ 0x140011005 ---
+// attributes: thunk
+errno_t __cdecl j__set_fmode(int Mode)
+{
+  return set_fmode(Mode);
+}
+
+
+--- j_strcat_s @ 0x140011014 ---
+// attributes: thunk
+errno_t __cdecl j_strcat_s(char *Destination, rsize_t SizeInBytes, const char *Source)
+{
+  return strcat_s(Destination, SizeInBytes, Source);
+}
+
+
+--- sub_140011019 @ 0x140011019 ---
+// attributes: thunk
+__int64 sub_140011019()
+{
+  return sub_1400142C0();
+}
+
+
+--- sub_140011028 @ 0x140011028 ---
+// attributes: thunk
+__int64 sub_140011028()
+{
+  return sub_140011990();
+}
+
+
+--- j___C_specific_handler @ 0x140011032 ---
+// attributes: thunk
+EXCEPTION_DISPOSITION __cdecl j___C_specific_handler(
+        struct _EXCEPTION_RECORD *ExceptionRecord,
+        void *EstablisherFrame,
+        struct _CONTEXT *ContextRecord,
+        struct _DISPATCHER_CONTEXT *DispatcherContext)
+{
+  return _C_specific_handler(ExceptionRecord, EstablisherFrame, ContextRecord, DispatcherContext);
+}
+
+
+--- j_??R_lambda_daad5f71a1db84f3475a074fd2d177ad_@@QEBA@XZ @ 0x140011037 ---
+// attributes: thunk
+__int64 _lambda_daad5f71a1db84f3475a074fd2d177ad_::operator()()
+{
+  return ??R_lambda_daad5f71a1db84f3475a074fd2d177ad_@@QEBA@XZ();
+}
+
+
+--- j__CRT_RTC_INITW @ 0x14001103C ---
+// attributes: thunk
+_RTC_error_fnW __cdecl j__CRT_RTC_INITW(void *Res0, void **Res1, int Res2, int Res3, int Res4)
+{
+  return CRT_RTC_INITW(Res0, Res1, Res2, Res3, Res4);
+}
+
+
+--- sub_140011050 @ 0x140011050 ---
+// attributes: thunk
+__int64 sub_140011050()
+{
+  return sub_140013E50();
+}
+
+
+--- j___report_gsfailure @ 0x140011064 ---
+// attributes: thunk
+void __cdecl __noreturn j___report_gsfailure(uintptr_t StackCookie)
+{
+  _report_gsfailure(StackCookie);
+}
+
+
+--- j_??$_Bit_cast@_KT_Addr_storage@error_category@std@@$0A@@std@@YA_KAEBT_Addr_storage@error_category@0@@Z @ 0x140011069 ---
+// attributes: thunk
+__int64 std::_Bit_cast<unsigned __int64,std::error_category::_Addr_storage,0>()
+{
+  return ??$_Bit_cast@_KT_Addr_storage@error_category@std@@$0A@@std@@YA_KAEBT_Addr_storage@error_category@0@@Z();
+}
+
+
+--- j__wmakepath_s @ 0x14001106E ---
+// attributes: thunk
+errno_t __cdecl j__wmakepath_s(
+        wchar_t *Buffer,
+        size_t BufferCount,
+        const wchar_t *Drive,
+        const wchar_t *Dir,
+        const wchar_t *Filename,
+        const wchar_t *Ext)
+{
+  return wmakepath_s(Buffer, BufferCount, Drive, Dir, Filename, Ext);
+}
+
+
+--- sub_140011073 @ 0x140011073 ---
+// attributes: thunk
+__int64 sub_140011073()
+{
+  return sub_140013DD0();
+}
+
+
+--- j__CrtDbgReportW @ 0x140011078 ---
+// attributes: thunk
+__int64 j__CrtDbgReportW()
+{
+  return CrtDbgReportW();
+}
+
+
+--- sub_14001107D @ 0x14001107D ---
+// attributes: thunk
+__int64 sub_14001107D()
+{
+  return sub_140013DC0();
+}
+
+
+--- sub_140011082 @ 0x140011082 ---
+// attributes: thunk
+__int64 sub_140011082()
+{
+  return sub_1400159D0();
+}
+
+
+--- sub_140011087 @ 0x140011087 ---
+// attributes: thunk
+__int64 sub_140011087()
+{
+  return sub_140015A20();
+}
+
+
+--- sub_14001108C @ 0x14001108C ---
+// attributes: thunk
+__int64 sub_14001108C()
+{
+  return sub_140012DD0();
+}
+
+
+--- j_j___guard_dispatch_icall_fptr @ 0x1400110A0 ---
+// attributes: thunk
+__int64 __fastcall j_j___guard_dispatch_icall_fptr()
+{
+  __int64 (*v0)(void); // rax
+
+  return v0();
+}
+
+
+--- UserMathErrorFunction @ 0x1400110AA ---
+// attributes: thunk
+int __fastcall UserMathErrorFunction(struct _exception *a1)
+{
+  return unknown_libname_3(a1);
+}
+
+
+--- sub_1400110AF @ 0x1400110AF ---
+// attributes: thunk
+__int64 sub_1400110AF()
+{
+  return sub_140013DE0();
+}
+
+
+--- sub_1400110B4 @ 0x1400110B4 ---
+// attributes: thunk
+__int64 sub_1400110B4()
+{
+  return sub_140015A00();
+}
+
+
+--- j__guard_dispatch_icall_nop @ 0x1400110C3 ---
+// attributes: thunk
+__int64 __fastcall j__guard_dispatch_icall_nop()
+{
+  __int64 (*v0)(void); // rax
+
+  return v0();
+}
+
+
+--- j___GSHandlerCheckCommon @ 0x1400110CD ---
+// attributes: thunk
+__int64 j___GSHandlerCheckCommon()
+{
+  return _GSHandlerCheckCommon();
+}
+
+
+--- sub_1400110D2 @ 0x1400110D2 ---
+// attributes: thunk
+__int64 sub_1400110D2()
+{
+  return sub_1400159E0();
+}
+
+
+--- TopLevelExceptionFilter @ 0x1400110EB ---
+// attributes: thunk
+LONG __fastcall TopLevelExceptionFilter(struct _EXCEPTION_POINTERS *ExceptionInfo)
+{
+  return _scrt_unhandled_exception_filter(ExceptionInfo);
+}
+
+
+--- j_nullsub_1 @ 0x140011109 ---
+// attributes: thunk
+__int64 j_nullsub_1()
+{
+  return nullsub_1();
+}
+
+
+--- j_strcpy_s @ 0x140011113 ---
+// attributes: thunk
+errno_t __cdecl j_strcpy_s(char *Destination, rsize_t SizeInBytes, const char *Source)
+{
+  return strcpy_s(Destination, SizeInBytes, Source);
+}
+
+
+--- j__configthreadlocale @ 0x14001111D ---
+// attributes: thunk
+int __cdecl j__configthreadlocale(int Flag)
+{
+  return configthreadlocale(Flag);
+}
+
+
+--- j___GSHandlerCheck @ 0x14001114F ---
+// attributes: thunk
+__int64 j___GSHandlerCheck()
+{
+  return _GSHandlerCheck();
+}
+
+
+--- sub_140011154 @ 0x140011154 ---
+// attributes: thunk
+__int64 sub_140011154()
+{
+  return sub_1400159F0();
+}
+
+
+--- sub_140011159 @ 0x140011159 ---
+// attributes: thunk
+__int64 sub_140011159()
+{
+  return sub_140015F90();
+}
+
+
+--- sub_14001115E @ 0x14001115E ---
+// attributes: thunk
+__int64 sub_14001115E()
+{
+  return sub_140014490();
+}
+
+
+--- j_wcscpy_s @ 0x14001116D ---
+// attributes: thunk
+errno_t __cdecl j_wcscpy_s(wchar_t *Destination, rsize_t SizeInWords, const wchar_t *Source)
+{
+  return wcscpy_s(Destination, SizeInWords, Source);
+}
+
+
+--- sub_140011172 @ 0x140011172 ---
+// attributes: thunk
+__int64 sub_140011172()
+{
+  return sub_140015A10();
+}
+
+
+--- sub_14001117C @ 0x14001117C ---
+// attributes: thunk
+__int64 sub_14001117C()
+{
+  return sub_140013DA0();
+}
+
+
+--- sub_140011186 @ 0x140011186 ---
+// attributes: thunk
+__int64 sub_140011186()
+{
+  return sub_1400159E0();
+}
+
+
+--- sub_14001118B @ 0x14001118B ---
+// attributes: thunk
+__int64 sub_14001118B()
+{
+  return sub_1400118A0();
+}
+
+
+--- sub_14001119F @ 0x14001119F ---
+// attributes: thunk
+__int64 sub_14001119F()
+{
+  return sub_140013E20();
+}
+
+
+--- j__seh_filter_dll @ 0x1400111C2 ---
+// attributes: thunk
+int __cdecl j__seh_filter_dll(unsigned int ExceptionNum, struct _EXCEPTION_POINTERS *ExceptionPtr)
+{
+  return seh_filter_dll(ExceptionNum, ExceptionPtr);
+}
+
+
+--- j__set_app_type @ 0x1400111C7 ---
+// attributes: thunk
+void __cdecl j__set_app_type(_crt_app_type Type)
+{
+  set_app_type(Type);
+}
+
+
+--- j__get_startup_file_mode @ 0x1400111CC ---
+// attributes: thunk
+__int64 j__get_startup_file_mode()
+{
+  return get_startup_file_mode();
+}
+
+
+--- j_?raw_length@charNode@@UEBAHXZ @ 0x1400111D6 ---
+// attributes: thunk
+__int64 __fastcall charNode::raw_length(charNode *this)
+{
+  return ?raw_length@charNode@@UEBAHXZ(this);
+}
+
+
+--- sub_1400111DB @ 0x1400111DB ---
+// attributes: thunk
+__int64 sub_1400111DB()
+{
+  return sub_1400141C0();
+}
+
+
+--- sub_1400111E5 @ 0x1400111E5 ---
+// attributes: thunk
+__int64 sub_1400111E5()
+{
+  return sub_140014390();
+}
+
+
+--- j___setusermatherr @ 0x14001120D ---
+// attributes: thunk
+void __cdecl j___setusermatherr(_UserMathErrorFunctionPointer UserMathErrorFunction)
+{
+  _setusermatherr(UserMathErrorFunction);
+}
+
+
+--- sub_140011212 @ 0x140011212 ---
+// attributes: thunk
+void __fastcall sub_140011212()
+{
+  sub_1400143F0();
+}
+
+
+--- j__CrtDbgReport @ 0x140011217 ---
+// attributes: thunk
+__int64 j__CrtDbgReport()
+{
+  return CrtDbgReport();
+}
+
+
+--- sub_140011221 @ 0x140011221 ---
+// attributes: thunk
+__int64 sub_140011221()
+{
+  return sub_1400142A0();
+}
+
+
+--- sub_140011230 @ 0x140011230 ---
+// attributes: thunk
+__int64 sub_140011230()
+{
+  return sub_1400159F0();
+}
+
+
+--- sub_14001123A @ 0x14001123A ---
+// attributes: thunk
+__int64 sub_14001123A()
+{
+  return sub_140015A00();
+}
+
+
+--- j_?_RTC_StackFailure@@YAXPEAXPEBD@Z @ 0x14001124E ---
+// attributes: thunk
+void __fastcall _RTC_StackFailure(void *a1, const char *a2)
+{
+  ?_RTC_StackFailure@@YAXPEAXPEBD@Z(a1, a2);
+}
+
+
+--- main @ 0x14001125D ---
+// attributes: thunk
+int __fastcall main(int argc, const char **argv, const char **envp)
+{
+  return main_0(argc, argv, envp);
+}
+
+
+--- start @ 0x140011262 ---
+// attributes: thunk
+__int64 start()
+{
+  return start_0();
+}
+
+
+--- sub_14001126C @ 0x14001126C ---
+// attributes: thunk
+__int64 sub_14001126C()
+{
+  return sub_140015A10();
+}
+
+
+--- sub_140011285 @ 0x140011285 ---
+// attributes: thunk
+__int64 sub_140011285()
+{
+  return sub_140013EF0();
+}
+
+
+--- j_?_RTC_GetSrcLine@@YAHPEAEPEA_WKPEAH1K@Z @ 0x140011299 ---
+// attributes: thunk
+__int64 __fastcall _RTC_GetSrcLine(
+        unsigned __int8 *a1,
+        wchar_t *a2,
+        unsigned int a3,
+        int *a4,
+        wchar_t *a5,
+        unsigned int a6)
+{
+  return ?_RTC_GetSrcLine@@YAHPEAEPEA_WKPEAH1K@Z(a1, a2, a3, a4, a5, a6);
+}
+
+
+--- j___p__commode @ 0x1400112A3 ---
+// attributes: thunk
+int *__cdecl j___p__commode()
+{
+  return _p__commode();
+}
+
+
+--- j___p___argc @ 0x1400112B2 ---
+// attributes: thunk
+int *__cdecl j___p___argc()
+{
+  return _p___argc();
+}
+
+
+--- sub_1400112B7 @ 0x1400112B7 ---
+// attributes: thunk
+__int64 sub_1400112B7()
+{
+  return sub_140013F00();
+}
+
+
+--- sub_1400112BC @ 0x1400112BC ---
+// attributes: thunk
+__int64 sub_1400112BC()
+{
+  return sub_1400159D0();
+}
+
+
+--- j__set_new_mode @ 0x1400112C1 ---
+// attributes: thunk
+int __cdecl j__set_new_mode(int NewMode)
+{
+  return set_new_mode(NewMode);
+}
+
+
+--- j___p___argv @ 0x1400112E4 ---
+// attributes: thunk
+char ***__cdecl j___p___argv()
+{
+  return _p___argv();
+}
+
+
+--- j___std_type_info_destroy_list @ 0x1400112EE ---
+// attributes: thunk
+__int64 j___std_type_info_destroy_list()
+{
+  return _std_type_info_destroy_list();
+}
+
+
+--- j__RTC_CheckStackVars @ 0x1400112F3 ---
+// attributes: thunk
+void __fastcall j__RTC_CheckStackVars(void *Esp, _RTC_framedesc *Fd)
+{
+  ;
+}
+
+
+--- j_NtCurrentTeb @ 0x14001130C ---
+// attributes: thunk
+struct _TEB *j_NtCurrentTeb(void)
+{
+  return NtCurrentTeb();
+}
+
+
+--- j__RTC_InitBase @ 0x14001131B ---
+// attributes: thunk
+void __cdecl j__RTC_InitBase()
+{
+  RTC_InitBase();
+}
+
+
+--- j__seh_filter_exe @ 0x140011325 ---
+// attributes: thunk
+int __cdecl j__seh_filter_exe(unsigned int ExceptionNum, struct _EXCEPTION_POINTERS *ExceptionPtr)
+{
+  return seh_filter_exe(ExceptionNum, ExceptionPtr);
+}
+
+
+--- sub_140011352 @ 0x140011352 ---
+// attributes: thunk
+__int64 sub_140011352()
+{
+  return sub_140012DC0();
+}
+
+
+--- j_?_RTC_AllocaFailure@@YAXPEAXPEAU_RTC_ALLOCA_NODE@@H@Z @ 0x140011357 ---
+// attributes: thunk
+void __fastcall _RTC_AllocaFailure(void *a1, struct _RTC_ALLOCA_NODE *a2, int a3)
+{
+  ?_RTC_AllocaFailure@@YAXPEAXPEAU_RTC_ALLOCA_NODE@@H@Z(a1, a2, a3);
+}
+
+
+--- j___CheckForDebuggerJustMyCode @ 0x14001135C ---
+// attributes: thunk
+__int64 j___CheckForDebuggerJustMyCode()
+{
+  return _CheckForDebuggerJustMyCode();
+}
+
+
+--- j___C_specific_handler_noexcept @ 0x140011361 ---
+// attributes: thunk
+__int64 j___C_specific_handler_noexcept()
+{
+  return _C_specific_handler_noexcept();
+}
+
+
+--- j_nullsub_2 @ 0x140011366 ---
+// attributes: thunk
+__int64 j_nullsub_2()
+{
+  return nullsub_2();
+}
+
+
+--- sub_14001136B @ 0x14001136B ---
+// attributes: thunk
+__int64 sub_14001136B()
+{
+  return sub_1400141A0();
+}
+
+
+--- j__wsplitpath_s @ 0x140011370 ---
+// attributes: thunk
+errno_t __cdecl j__wsplitpath_s(
+        const wchar_t *FullPath,
+        wchar_t *Drive,
+        size_t DriveCount,
+        wchar_t *Dir,
+        size_t DirCount,
+        wchar_t *Filename,
+        size_t FilenameCount,
+        wchar_t *Ext,
+        size_t ExtCount)
+{
+  return wsplitpath_s(FullPath, Drive, DriveCount, Dir, DirCount, Filename, FilenameCount, Ext, ExtCount);
+}
+
+
+--- j__configure_narrow_argv @ 0x14001137F ---
+// attributes: thunk
+errno_t __cdecl j__configure_narrow_argv(_crt_argv_mode mode)
+{
+  return configure_narrow_argv(mode);
+}
+
+
+--- j_strlen @ 0x1400113E8 ---
+// attributes: thunk
+size_t __cdecl j_strlen(const char *Str)
+{
+  return strlen(Str);
+}
+
+
+--- sub_1400113ED @ 0x1400113ED ---
+// attributes: thunk
+__int64 sub_1400113ED()
+{
+  return sub_140011830();
+}
+
+
+--- sub_1400113FC @ 0x1400113FC ---
+// attributes: thunk
+__int64 sub_1400113FC()
+{
+  return sub_1400119C0();
+}
+
+
+--- sub_140011401 @ 0x140011401 ---
+// attributes: thunk
+__int64 sub_140011401()
+{
+  return sub_140016000();
+}
+
+
+--- strlen @ 0x1400117CB ---
+// attributes: thunk
+size_t __cdecl strlen(const char *Str)
+{
+  return __imp_strlen(Str);
+}
+
+
+--- sub_140011830 @ 0x140011830 ---
+__int64 __fastcall sub_140011830(__int64 a1)
+{
+  __int64 result; // rax
+  int i; // [rsp+24h] [rbp+4h]
+
+  j___CheckForDebuggerJustMyCode();
+  for ( i = 0; ; ++i )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( i >= dword_14001C17C )
+      break;
+    *(_BYTE *)(a1 + i) *= 52;
+  }
+  return result;
+}
+
+
+--- sub_1400118A0 @ 0x1400118A0 ---
+__int64 sub_1400118A0(__int64 a1, ...)
+{
+  char *v1; // rdi
+  __int64 i; // rcx
+  char v4; // [rsp+20h] [rbp+0h] BYREF
+  va_list v5; // [rsp+48h] [rbp+28h]
+  va_list va; // [rsp+168h] [rbp+148h] BYREF
+
+  va_start(va, a1);
+  v1 = &v4;
+  for ( i = 26; i; --i )
+  {
+    *(_DWORD *)v1 = -858993460;
+    v1 += 4;
+  }
+  j___CheckForDebuggerJustMyCode();
+  va_copy(v5, va);
+  _acrt_iob_func(1u);
+  return (unsigned int)sub_140011159();
+}
+
+
+--- sub_140011990 @ 0x140011990 ---
+void *sub_140011990()
+{
+  j___CheckForDebuggerJustMyCode();
+  return &unk_14001C170;
+}
+
+
+--- sub_1400119C0 @ 0x1400119C0 ---
+__int64 sub_1400119C0(__int64 a1, ...)
+{
+  char *v1; // rdi
+  __int64 i; // rcx
+  char v4; // [rsp+20h] [rbp+0h] BYREF
+  va_list v5; // [rsp+48h] [rbp+28h]
+  va_list va; // [rsp+168h] [rbp+148h] BYREF
+
+  va_start(va, a1);
+  v1 = &v4;
+  for ( i = 26; i; --i )
+  {
+    *(_DWORD *)v1 = -858993460;
+    v1 += 4;
+  }
+  j___CheckForDebuggerJustMyCode();
+  va_copy(v5, va);
+  _acrt_iob_func(0);
+  return (unsigned int)sub_140011401();
+}
+
+
+--- ?invoke_main@@YAHXZ @ 0x140012320 ---
+int __fastcall invoke_main()
+{
+  int argc; // [rsp+20h] [rbp-28h]
+  char **envp; // [rsp+28h] [rbp-20h]
+  char **argv; // [rsp+30h] [rbp-18h]
+
+  envp = j__get_initial_narrow_environment();
+  argv = *j___p___argv();
+  argc = *j___p___argc();
+  return main(argc, (const char **)argv, (const char **)envp);
+}
+
+
+--- start_0 @ 0x1400123E0 ---
+__int64 start_0()
+{
+  return __scrt_common_main();
+}
+
+
+--- ?DebuggerProbe@@YA_NK@Z @ 0x140012400 ---
+bool __fastcall DebuggerProbe(int a1)
+{
+  ULONG_PTR Arguments; // [rsp+20h] [rbp-38h] BYREF
+  int v3; // [rsp+28h] [rbp-30h]
+  char *v4; // [rsp+30h] [rbp-28h]
+  char v5; // [rsp+60h] [rbp+8h] BYREF
+
+  v3 = a1;
+  v4 = &v5;
+  v5 = 0;
+  LODWORD(Arguments) = 4097;
+  notify_debugger(&Arguments);
+  return v5 != 0;
+}
+
+
+--- ?DebuggerRuntime@@YA_NKHPEAXPEB_W@Z @ 0x140012450 ---
+bool __fastcall DebuggerRuntime(int a1, int a2, void *a3, const wchar_t *a4)
+{
+  ULONG_PTR Arguments; // [rsp+20h] [rbp-38h] BYREF
+  int v6; // [rsp+28h] [rbp-30h]
+  int v7; // [rsp+2Ch] [rbp-2Ch]
+  void *v8; // [rsp+30h] [rbp-28h]
+  char *v9; // [rsp+38h] [rbp-20h]
+  const wchar_t *v10; // [rsp+40h] [rbp-18h]
+  char v11; // [rsp+60h] [rbp+8h] BYREF
+
+  v6 = a1;
+  v9 = &v11;
+  v11 = 0;
+  LODWORD(Arguments) = 4098;
+  v7 = a2;
+  v8 = a3;
+  v10 = a4;
+  notify_debugger(&Arguments);
+  return v11 != 0;
+}
+
+
+--- ?_RTC_AllocaFailure@@YAXPEAXPEAU_RTC_ALLOCA_NODE@@H@Z @ 0x1400124B0 ---
+void __fastcall _RTC_AllocaFailure(void *a1, struct _RTC_ALLOCA_NODE *a2, int a3)
+{
+  int v3; // edi
+  struct _RTC_ALLOCA_NODE *v7; // rbx
+  char v8[24]; // [rsp+80h] [rbp-198h] BYREF
+  char v9[56]; // [rsp+98h] [rbp-180h] BYREF
+  char Buffer[272]; // [rsp+D0h] [rbp-148h] BYREF
+
+  v3 = dword_14001C028;
+  if ( dword_14001C028 != -1 )
+  {
+    if ( a2 )
+    {
+      v7 = a2 + 1;
+      unknown_libname_1(v8, v9, &a2[1], a2->allocaSize - 36);
+      j_sprintf_s(
+        Buffer,
+        0x106u,
+        "%s%s%p%s%zd%s%d%s%s%s%s%s",
+        "Stack area around _alloca memory reserved by this function is corrupted",
+        "\nAddress: 0x",
+        v7,
+        "\nSize: ",
+        a2->allocaSize - 36,
+        "\nAllocation number within this function: ",
+        a3,
+        "\nData: <",
+        v8,
+        "> ",
+        v9,
+        "\n");
+      failwithmessage(a1, v3, 4, Buffer);
+    }
+    else
+    {
+      failwithmessage(
+        a1,
+        dword_14001C028,
+        4,
+        "Stack area around _alloca memory reserved by this function is corrupted\n");
+    }
+  }
+}
+
+
+--- ?_RTC_Failure@@YAXPEAXH@Z @ 0x140012660 ---
+void __fastcall _RTC_Failure(void *a1, unsigned int a2)
+{
+  int v2; // r10d
+
+  if ( a2 > 4 )
+  {
+    failwithmessage(a1, 1, 5, "Unknown Runtime Check Error\r\n");
+  }
+  else
+  {
+    v2 = dword_14001C018[a2];
+    if ( v2 != -1 )
+      failwithmessage(a1, v2, a2, off_140019D08[a2]);
+  }
+}
+
+
+--- ?_RTC_StackFailure@@YAXPEAXPEBD@Z @ 0x1400126D0 ---
+void __fastcall _RTC_StackFailure(void *a1, const char *a2)
+{
+  int v2; // edi
+  char *v5; // r9
+  char Destination[1024]; // [rsp+20h] [rbp-418h] BYREF
+
+  v2 = dword_14001C020;
+  if ( dword_14001C020 != -1 )
+  {
+    if ( *a2 && _strlen_priv(a2) + 45 <= 0x400 )
+    {
+      j_strcpy_s(Destination, 0x400u, "Stack around the variable '");
+      j_strcat_s(Destination, 0x400u, a2);
+      j_strcat_s(Destination, 0x400u, "' was corrupted.");
+      v5 = Destination;
+    }
+    else
+    {
+      v5 = "Stack corrupted near unknown variable";
+    }
+    failwithmessage(a1, v2, 2, v5);
+  }
+}
+
+
+--- unknown_libname_1 @ 0x1400127E0 ---
+// Microsoft VisualC v14 64bit runtime
+char *__fastcall unknown_libname_1(unsigned __int8 *a1, char *a2, __int64 a3, unsigned __int64 a4)
+{
+  __int64 v4; // r15
+  __int64 v5; // rsi
+  char *v6; // rax
+  __int64 v8; // r12
+  char *v9; // rbp
+  unsigned __int8 *v10; // rdi
+  size_t v11; // r14
+  unsigned __int8 v12; // bl
+  char *result; // rax
+
+  v4 = 0;
+  v5 = 16;
+  v6 = a2;
+  if ( a4 < 0x10 )
+    v5 = a4;
+  if ( v5 )
+  {
+    v8 = a3 - (_QWORD)a1;
+    v9 = a2;
+    v10 = a1;
+    v11 = 49;
+    v4 = v5;
+    do
+    {
+      v12 = v10[v8];
+      j_sprintf_s(v9, v11, "%.2X ", v12);
+      v11 -= 3LL;
+      *v10 = v12;
+      v9 += 3;
+      ++v10;
+      --v5;
+    }
+    while ( v5 );
+    v6 = a2;
+  }
+  result = &v6[2 * v4];
+  a1[v4] = 0;
+  result[v4] = 0;
+  return result;
+}
+
+
+--- ?_strlen_priv@@YA_KPEBD@Z @ 0x1400128C0 ---
+__int64 __fastcall _strlen_priv(const char *a1)
+{
+  const char *v1; // rax
+
+  v1 = a1;
+  while ( *v1++ )
+    ;
+  return v1 - a1 - 1;
+}
+
+
+--- ?failwithmessage@@YAXPEAXHHPEBD@Z @ 0x1400128E0 ---
+void __fastcall failwithmessage(char *a1, unsigned int a2, int a3, const char *a4)
+{
+  __int64 v4; // rbp
+  __int64 (__fastcall *v5)(_QWORD, CHAR *, _QWORD, CHAR *, const char *, _DWORD, const char *); // r14
+  __int64 (__fastcall *v9)(_QWORD, WCHAR *, _QWORD, WCHAR *, const wchar_t *, _DWORD, WCHAR *); // rdi
+  int cchWideChar; // eax
+  WCHAR *v11; // rsi
+  bool v12; // al
+  int v13; // eax
+  CHAR *v14; // rbx
+  int v15; // eax
+  CHAR *v16; // r9
+  int v17[4]; // [rsp+40h] [rbp-EA8h] BYREF
+  WCHAR v18[264]; // [rsp+50h] [rbp-E98h] BYREF
+  WCHAR v19[264]; // [rsp+260h] [rbp-C88h] BYREF
+  CHAR MultiByteStr[784]; // [rsp+470h] [rbp-A78h] BYREF
+  CHAR v21[784]; // [rsp+780h] [rbp-768h] BYREF
+  WCHAR WideCharStr[512]; // [rsp+A90h] [rbp-458h] BYREF
+
+  v4 = a3;
+  v5 = nullptr;
+  v9 = (__int64 (__fastcall *)(_QWORD, WCHAR *, _QWORD, WCHAR *, const wchar_t *, _DWORD, WCHAR *))sub_14001108C();
+  if ( !v9 )
+    v5 = (__int64 (__fastcall *)(_QWORD, CHAR *, _QWORD, CHAR *, const char *, _DWORD, const char *))sub_140011352();
+  cchWideChar = MultiByteToWideChar(0xFDE9u, 0, a4, -1, nullptr, 0);
+  if ( (unsigned __int64)cchWideChar >= 0x200
+    || (v11 = WideCharStr, !MultiByteToWideChar(0xFDE9u, 0, a4, -1, WideCharStr, cchWideChar)) )
+  {
+    v11 = L"Runtime Check Error.\r\n Unable to display RTC Message.";
+  }
+  if ( DebuggerProbe(4098) )
+  {
+    v12 = DebuggerRuntime(v4, dword_140019D38[v4], a1, v11);
+    if ( v12 )
+      return;
+  }
+  else
+  {
+    v12 = 1;
+  }
+  if ( !v5 && !v9 || v12 && IsDebuggerPresent() )
+    goto LABEL_22;
+  _RTC_GetSrcLine((unsigned __int8 *)a1 - 5, v18, 0x104u, v17, v19, 0x104u);
+  if ( v9 )
+  {
+    v13 = v9(a2, v18, (unsigned int)v17[0], v19, L"Run-Time Check Failure #%d - %s", v4, v11);
+  }
+  else
+  {
+    v14 = MultiByteStr;
+    if ( !WideCharToMultiByte(0xFDE9u, 0, v18, -1, MultiByteStr, 778, nullptr, nullptr) )
+      v14 = "Unknown Filename";
+    v15 = WideCharToMultiByte(0xFDE9u, 0, v19, -1, v21, 778, nullptr, nullptr);
+    v16 = v21;
+    if ( !v15 )
+      v16 = "Unknown Module Name";
+    v13 = v5(a2, v14, (unsigned int)v17[0], v16, "Run-Time Check Failure #%d - %s", v4, a4);
+  }
+  if ( v13 == 1 )
+LABEL_22:
+    __debugbreak();
+}
+
+
+--- sub_140012B40 @ 0x140012B40 ---
+__int64 __fastcall sub_140012B40(__int64 a1)
+{
+  __int64 result; // rax
+  int i; // [rsp+24h] [rbp+4h]
+
+  j___CheckForDebuggerJustMyCode();
+  for ( i = 0; ; ++i )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( i >= dword_14001C17C )
+      break;
+    *(_BYTE *)(a1 + i) = ~*(_BYTE *)(a1 + i);
+  }
+  return result;
+}
+
+
+--- ?notify_debugger@@YAXAEBUtagEXCEPTION_VISUALCPP_DEBUG_INFO@@@Z @ 0x140012BE0 ---
+void __fastcall notify_debugger(ULONG_PTR *lpArguments)
+{
+  RaiseException(0x406D1388u, 0, 5u, lpArguments);
+}
+
+
+--- sub_140012DC0 @ 0x140012DC0 ---
+__int64 sub_140012DC0()
+{
+  return qword_14001C180;
+}
+
+
+--- sub_140012DD0 @ 0x140012DD0 ---
+__int64 sub_140012DD0()
+{
+  return qword_14001C188;
+}
+
+
+--- ??$size@D$04@std@@YA_KAEAY04$$CBD@Z @ 0x140012E00 ---
+__int64 std::size<char,5>()
+{
+  return 5;
+}
+
+
+--- capture_current_context @ 0x140013230 ---
+struct _IMAGE_RUNTIME_FUNCTION_ENTRY *__fastcall capture_current_context(struct _CONTEXT *a1)
+{
+  struct _IMAGE_RUNTIME_FUNCTION_ENTRY *result; // rax
+  ULONG64 ControlPc; // [rsp+48h] [rbp-30h]
+  unsigned __int64 ImageBase; // [rsp+50h] [rbp-28h] BYREF
+  unsigned __int64 EstablisherFrame; // [rsp+58h] [rbp-20h] BYREF
+  PVOID HandlerData; // [rsp+60h] [rbp-18h] BYREF
+
+  RtlCaptureContext(a1);
+  ControlPc = a1->Rip;
+  result = RtlLookupFunctionEntry(ControlPc, &ImageBase, nullptr);
+  if ( result )
+    return (struct _IMAGE_RUNTIME_FUNCTION_ENTRY *)RtlVirtualUnwind(
+                                                     0,
+                                                     ImageBase,
+                                                     ControlPc,
+                                                     result,
+                                                     a1,
+                                                     &HandlerData,
+                                                     &EstablisherFrame,
+                                                     nullptr);
+  return result;
+}
+
+
+--- capture_previous_context @ 0x1400132F0 ---
+ULONG64 __fastcall capture_previous_context(struct _CONTEXT *a1)
+{
+  ULONG64 result; // rax
+  int i; // [rsp+40h] [rbp-38h]
+  ULONG64 ControlPc; // [rsp+50h] [rbp-28h]
+  unsigned __int64 ImageBase; // [rsp+58h] [rbp-20h] BYREF
+  unsigned __int64 EstablisherFrame; // [rsp+60h] [rbp-18h] BYREF
+  PVOID HandlerData; // [rsp+68h] [rbp-10h] BYREF
+
+  RtlCaptureContext(a1);
+  result = a1->Rip;
+  ControlPc = result;
+  for ( i = 0; i < 2; ++i )
+  {
+    result = (ULONG64)RtlLookupFunctionEntry(ControlPc, &ImageBase, nullptr);
+    if ( !result )
+      break;
+    RtlVirtualUnwind(0, ImageBase, ControlPc, (PRUNTIME_FUNCTION)result, a1, &HandlerData, &EstablisherFrame, nullptr);
+    result = (unsigned int)(i + 1);
+  }
+  return result;
+}
+
+
+--- ?find_pe_section@@YAPEAU_IMAGE_SECTION_HEADER@@QEAE_K@Z @ 0x1400133D0 ---
+struct _IMAGE_SECTION_HEADER *__fastcall find_pe_section(unsigned __int8 *const a1, unsigned __int64 a2)
+{
+  __int64 i; // [rsp+0h] [rbp-38h]
+  unsigned __int8 *v4; // [rsp+8h] [rbp-30h]
+
+  v4 = &a1[*((int *)a1 + 15)];
+  for ( i = (__int64)&v4[*((unsigned __int16 *)v4 + 10) + 24];
+        (unsigned __int8 *)i != &v4[40 * *((unsigned __int16 *)v4 + 3) + 24 + *((unsigned __int16 *)v4 + 10)];
+        i += 40 )
+  {
+    if ( a2 >= *(unsigned int *)(i + 12) && a2 < (unsigned int)(*(_DWORD *)(i + 8) + *(_DWORD *)(i + 12)) )
+      return (struct _IMAGE_SECTION_HEADER *)i;
+  }
+  return nullptr;
+}
+
+
+--- ?is_potentially_valid_image_base@@YA_NQEAX@Z @ 0x1400134D0 ---
+bool __fastcall is_potentially_valid_image_base(char *a1)
+{
+  char *v2; // [rsp+8h] [rbp-20h]
+
+  if ( !a1 )
+    return 0;
+  if ( *(_WORD *)a1 != 23117 )
+    return 0;
+  v2 = &a1[*((int *)a1 + 15)];
+  return *(_DWORD *)v2 == 17744 && *((_WORD *)v2 + 12) == 523;
+}
+
+
+--- NtCurrentTeb @ 0x140013580 ---
+struct _TEB *NtCurrentTeb(void)
+{
+  return NtCurrentTeb();
+}
+
+
+--- unknown_libname_3 @ 0x140013D80 ---
+// Microsoft VisualC v14 64bit runtime
+// Microsoft VisualC 64bit universal runtime
+__int64 unknown_libname_3()
+{
+  return 0;
+}
+
+
+--- ?raw_length@charNode@@UEBAHXZ @ 0x140013D90 ---
+__int64 __fastcall charNode::raw_length(charNode *this)
+{
+  return 1;
+}
+
+
+--- sub_140013DA0 @ 0x140013DA0 ---
+__int64 sub_140013DA0()
+{
+  return 0;
+}
+
+
+--- sub_140013DC0 @ 0x140013DC0 ---
+__int64 sub_140013DC0()
+{
+  return 0;
+}
+
+
+--- sub_140013DD0 @ 0x140013DD0 ---
+__int64 sub_140013DD0()
+{
+  return 0;
+}
+
+
+--- sub_140013DE0 @ 0x140013DE0 ---
+void sub_140013DE0()
+{
+  InitializeSListHead(&ListHead);
+}
+
+
+--- sub_140013E00 @ 0x140013E00 ---
+__int64 sub_140013E00()
+{
+  return j___std_type_info_destroy_list();
+}
+
+
+--- sub_140013E20 @ 0x140013E20 ---
+char sub_140013E20()
+{
+  return 1;
+}
+
+
+--- sub_140013E50 @ 0x140013E50 ---
+void *sub_140013E50()
+{
+  return &unk_14001C898;
+}
+
+
+--- sub_140013EF0 @ 0x140013EF0 ---
+void *sub_140013EF0()
+{
+  return &unk_14001C8D0;
+}
+
+
+--- sub_140013F00 @ 0x140013F00 ---
+void *sub_140013F00()
+{
+  return &unk_14001C8B8;
+}
+
+
+--- sub_1400141A0 @ 0x1400141A0 ---
+__int64 sub_1400141A0()
+{
+  return sub_140011019();
+}
+
+
+--- sub_1400141C0 @ 0x1400141C0 ---
+__int64 sub_1400141C0()
+{
+  return 0;
+}
+
+
+--- sub_1400142A0 @ 0x1400142A0 ---
+LPTOP_LEVEL_EXCEPTION_FILTER sub_1400142A0()
+{
+  return SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)TopLevelExceptionFilter);
+}
+
+
+--- sub_1400142C0 @ 0x1400142C0 ---
+__int64 sub_1400142C0()
+{
+  return 0;
+}
+
+
+--- sub_140014390 @ 0x140014390 ---
+void sub_140014390()
+{
+  void (**v0)(void); // rbx
+
+  v0 = (void (**)(void))&unk_14001AFA0;
+  if ( &unk_14001AFA0 < (_UNKNOWN *)qword_14001B1B8 )
+  {
+    do
+    {
+      if ( *v0 )
+        (*v0)();
+      ++v0;
+    }
+    while ( v0 < qword_14001B1B8 );
+  }
+}
+
+
+--- sub_1400143F0 @ 0x1400143F0 ---
+void sub_1400143F0()
+{
+  void (**v0)(void); // rbx
+
+  v0 = (void (**)(void))&unk_14001B2D0;
+  if ( &unk_14001B2D0 < (_UNKNOWN *)qword_14001B4E8 )
+  {
+    do
+    {
+      if ( *v0 )
+        (*v0)();
+      ++v0;
+    }
+    while ( v0 < qword_14001B4E8 );
+  }
+}
+
+
+--- ??R_lambda_daad5f71a1db84f3475a074fd2d177ad_@@QEBA@XZ @ 0x140014450 ---
+void _lambda_daad5f71a1db84f3475a074fd2d177ad_::operator()()
+{
+  ;
+}
+
+
+--- ??$_Bit_cast@_KT_Addr_storage@error_category@std@@$0A@@std@@YA_KAEBT_Addr_storage@error_category@0@@Z @ 0x140014460 ---
+__int64 __fastcall std::_Bit_cast<unsigned __int64,std::error_category::_Addr_storage,0>(__int64 a1)
+{
+  return *(_QWORD *)a1;
+}
+
+
+--- sub_140014490 @ 0x140014490 ---
+__int64 sub_140014490()
+{
+  return std::_Bit_cast<unsigned __int64,std::error_category::_Addr_storage,0>();
+}
+
+
+--- ?GetPdbDll@@YAPEAUHINSTANCE__@@XZ @ 0x140014840 ---
+HINSTANCE __fastcall GetPdbDll()
+{
+  HINSTANCE result; // rax
+  __int64 ModuleHandleW; // rax
+  wchar_t v2[264]; // [rsp+20h] [rbp-438h] BYREF
+  wchar_t v3[264]; // [rsp+230h] [rbp-228h] BYREF
+
+  if ( byte_14001C8B1 )
+    return nullptr;
+  byte_14001C8B1 = 1;
+  result = GetPdbDllFromInstallPath();
+  if ( !result )
+  {
+    ModuleHandleW = j___vcrt_GetModuleHandleW(L"VCRUNTIME140D.dll");
+    if ( !ModuleHandleW
+      || !(unsigned int)j___vcrt_GetModuleFileNameW(ModuleHandleW, v3, 260)
+      || !GetPdbDllPathFromFilePath(v3, v2, 0x104u)
+      || (result = (HINSTANCE)j___vcrt_LoadLibraryExW(v2, 0, 2304)) == nullptr
+      && (GetLastError() != 87 || (result = (HINSTANCE)j___vcrt_LoadLibraryExW(v2, 0, 8)) == nullptr) )
+    {
+      result = (HINSTANCE)j___vcrt_LoadLibraryExW(L"MSPDB140", 0, 2560);
+      if ( !result )
+      {
+        if ( GetLastError() == 87
+          && (unsigned int)j___vcrt_GetModuleFileNameW(0, v3, 260)
+          && GetPdbDllPathFromFilePath(v3, v2, 0x104u) )
+        {
+          return (HINSTANCE)j___vcrt_LoadLibraryExW(v2, 0, 8);
+        }
+        return nullptr;
+      }
+    }
+  }
+  return result;
+}
+
+
+--- ?GetPdbDllFromInstallPath@@YAPEAUHINSTANCE__@@XZ @ 0x140014A00 ---
+__int64 __fastcall GetPdbDllFromInstallPath()
+{
+  HMODULE Library; // rdi
+  LSTATUS (__stdcall *RegOpenKeyExW)(HKEY, LPCWSTR, DWORD, REGSAM, PHKEY); // rbx
+  LSTATUS (__stdcall *RegQueryValueExW)(HKEY, LPCWSTR, LPDWORD, LPDWORD, LPBYTE, LPDWORD); // rsi
+  LSTATUS (__stdcall *RegCloseKey)(HKEY); // r14
+  int v5; // ebx
+  unsigned int v6; // r9d
+  __int64 v7; // rdx
+  __int64 v8; // rbx
+  unsigned int v9; // [rsp+40h] [rbp-C0h] BYREF
+  int v10; // [rsp+44h] [rbp-BCh] BYREF
+  __int64 v11; // [rsp+48h] [rbp-B8h] BYREF
+  _DWORD v12[132]; // [rsp+50h] [rbp-B0h] BYREF
+
+  Library = (HMODULE)j___vcrt_LoadLibraryExW(L"api-ms-win-core-registry-l1-1-0.dll", 0, 2048);
+  if ( !Library )
+  {
+    Library = (HMODULE)j___vcrt_LoadLibraryExW(L"advapi32.dll", 0, 2048);
+    if ( !Library )
+    {
+      if ( GetLastError() != 87 )
+        return 0;
+      Library = (HMODULE)j___vcrt_LoadLibraryExW(L"advapi32.dll", 0, 0);
+      if ( !Library )
+        return 0;
+    }
+  }
+  RegOpenKeyExW = (LSTATUS (__stdcall *)(HKEY, LPCWSTR, DWORD, REGSAM, PHKEY))GetProcAddress(Library, "RegOpenKeyExW");
+  if ( !RegOpenKeyExW )
+    return 0;
+  RegQueryValueExW = (LSTATUS (__stdcall *)(HKEY, LPCWSTR, LPDWORD, LPDWORD, LPBYTE, LPDWORD))GetProcAddress(
+                                                                                                Library,
+                                                                                                "RegQueryValueExW");
+  if ( !RegQueryValueExW )
+    return 0;
+  RegCloseKey = (LSTATUS (__stdcall *)(HKEY))GetProcAddress(Library, "RegCloseKey");
+  if ( !RegCloseKey )
+    return 0;
+  if ( ((unsigned int (__fastcall *)(__int64, const wchar_t *, _QWORD, __int64, __int64 *))RegOpenKeyExW)(
+         -2147483646,
+         L"SOFTWARE\\Wow6432Node\\Microsoft\\VisualStudio\\14.0\\Setup\\VC",
+         0,
+         1,
+         &v11) )
+  {
+    FreeLibrary(Library);
+    return 0;
+  }
+  v9 = 520;
+  v5 = ((__int64 (__fastcall *)(__int64, const wchar_t *, _QWORD, int *, _DWORD *, unsigned int *))RegQueryValueExW)(
+         v11,
+         L"ProductDir",
+         0,
+         &v10,
+         v12,
+         &v9);
+  ((void (__fastcall *)(__int64))RegCloseKey)(v11);
+  FreeLibrary(Library);
+  if ( v5 )
+    return 0;
+  if ( v10 != 1 )
+    return 0;
+  if ( (v9 & 1) != 0 )
+    return 0;
+  v6 = v9 >> 1;
+  if ( v9 >> 1 < 2 )
+    return 0;
+  v7 = (v9 >> 1) - 1;
+  if ( *((_WORD *)v12 + v7) )
+    return 0;
+  if ( *((_WORD *)&v12[-1] + (v9 >> 1)) != 92 )
+  {
+    *((_WORD *)v12 + v7) = 92;
+    LODWORD(v7) = v6;
+  }
+  if ( (unsigned int)~(_DWORD)v7 < 0x18 || (unsigned __int64)(unsigned int)v7 + 23 > 0x104 )
+    return 0;
+  *(_DWORD *)((char *)v12 + 2 * (unsigned int)v7) = 6881378;
+  *(_DWORD *)((char *)&v12[1] + 2 * (unsigned int)v7) = 6029422;
+  *(_DWORD *)((char *)&v12[2] + 2 * (unsigned int)v7) = 7143521;
+  *(_DWORD *)((char *)&v12[3] + 2 * (unsigned int)v7) = 3539044;
+  *(_DWORD *)((char *)&v12[4] + 2 * (unsigned int)v7) = 6029364;
+  *(_DWORD *)((char *)&v12[5] + 2 * (unsigned int)v7) = 5439565;
+  *(_DWORD *)((char *)&v12[6] + 2 * (unsigned int)v7) = 4456528;
+  *(_DWORD *)((char *)&v12[7] + 2 * (unsigned int)v7) = 3211330;
+  *(_DWORD *)((char *)&v12[8] + 2 * (unsigned int)v7) = 3145780;
+  *(_DWORD *)((char *)&v12[9] + 2 * (unsigned int)v7) = 4456494;
+  *(_DWORD *)((char *)&v12[10] + 2 * (unsigned int)v7) = 4980812;
+  *((_WORD *)&v12[11] + (unsigned int)v7) = 0;
+  v8 = j___vcrt_LoadLibraryExW(v12, 0, 2304);
+  if ( !v8 && GetLastError() == 87 )
+    return j___vcrt_LoadLibraryExW(v12, 0, 8);
+  return v8;
+}
+
+
+--- ?GetPdbDllPathFromFilePath@@YAHPEB_WPEA_W_K@Z @ 0x140014D60 ---
+_BOOL8 __fastcall GetPdbDllPathFromFilePath(const wchar_t *a1, wchar_t *a2, size_t a3)
+{
+  wchar_t Drive[8]; // [rsp+50h] [rbp-628h] BYREF
+  wchar_t Ext[256]; // [rsp+60h] [rbp-618h] BYREF
+  wchar_t Destination[256]; // [rsp+260h] [rbp-418h] BYREF
+  wchar_t Dir[256]; // [rsp+460h] [rbp-218h] BYREF
+
+  return !j__wsplitpath_s(a1, Drive, 3u, Dir, 0x100u, Destination, 0x100u, Ext, 0x100u)
+      && !j_wcscpy_s(Destination, 9u, L"MSPDB140")
+      && !j_wcscpy_s(Ext, 4u, L"DLL")
+      && j__wmakepath_s(a2, a3, Drive, Dir, Destination, Ext) == 0;
+}
+
+
+--- ?_RTC_GetSrcLine@@YAHPEAEPEA_WKPEAH1K@Z @ 0x140014EB0 ---
+__int64 __fastcall _RTC_GetSrcLine(
+        unsigned __int8 *a1,
+        wchar_t *a2,
+        int a3,
+        unsigned int *a4,
+        wchar_t *a5,
+        unsigned int a6)
+{
+  unsigned int v6; // r14d
+  int v7; // esi
+  __int64 v10; // rax
+  char *v11; // rax
+  unsigned int v12; // esi
+  unsigned int v13; // r8d
+  char *v14; // rdx
+  unsigned int v15; // edi
+  unsigned int i; // ebx
+  unsigned int v17; // eax
+  unsigned int v18; // ebx
+  HMODULE PdbDll; // rax
+  FARPROC PDBOpenValidate5; // rax
+  unsigned int *v21; // rsi
+  __int64 v22; // rbx
+  HANDLE ProcessHeap; // rax
+  unsigned int *v24; // rax
+  unsigned int v25; // edi
+  unsigned int j; // ecx
+  __int64 v27; // rdx
+  unsigned int v28; // eax
+  __int64 v29; // rcx
+  HANDLE v30; // rax
+  __int64 v32; // [rsp+50h] [rbp-49h] BYREF
+  int v33; // [rsp+58h] [rbp-41h] BYREF
+  unsigned int v34; // [rsp+5Ch] [rbp-3Dh] BYREF
+  __int64 v35; // [rsp+60h] [rbp-39h] BYREF
+  __int64 v36; // [rsp+68h] [rbp-31h] BYREF
+  __int64 v37; // [rsp+70h] [rbp-29h] BYREF
+  char v38[8]; // [rsp+78h] [rbp-21h] BYREF
+  struct _MEMORY_BASIC_INFORMATION Buffer; // [rsp+80h] [rbp-19h] BYREF
+  unsigned __int16 v40; // [rsp+F0h] [rbp+57h] BYREF
+  unsigned int v41; // [rsp+F8h] [rbp+5Fh] BYREF
+  int v42; // [rsp+100h] [rbp+67h] BYREF
+  unsigned int v43; // [rsp+108h] [rbp+6Fh] BYREF
+
+  v42 = a3;
+  v6 = 0;
+  v7 = (_DWORD)a1 - 1;
+  *a4 = 0;
+  *a2 = 0;
+  if ( !VirtualQuery(a1 - 1, &Buffer, 0x30u) )
+    return 0;
+  if ( !(unsigned int)j___vcrt_GetModuleFileNameW(Buffer.AllocationBase, a5, a6) )
+    return 0;
+  if ( *(_WORD *)Buffer.AllocationBase != 23117 )
+    return 0;
+  v10 = *((int *)Buffer.AllocationBase + 15);
+  if ( (int)v10 <= 0 )
+    return 0;
+  v11 = (char *)Buffer.AllocationBase + v10;
+  if ( *(_DWORD *)v11 != 17744 )
+    return 0;
+  v12 = v7 - LODWORD(Buffer.AllocationBase);
+  v13 = *((unsigned __int16 *)v11 + 3);
+  v14 = &v11[*((unsigned __int16 *)v11 + 10)];
+  v15 = 0;
+  for ( i = 0; i < v13; ++i )
+  {
+    v17 = *(_DWORD *)&v14[40 * i + 36];
+    if ( v12 >= v17 )
+    {
+      v15 = v12 - v17;
+      if ( v12 < *(_DWORD *)&v14[40 * i + 32] )
+        break;
+    }
+  }
+  if ( i == v13 )
+    return 0;
+  v18 = i + 1;
+  if ( byte_14001C8B2 )
+  {
+    PdbDll = (HMODULE)qword_14001C8A8;
+  }
+  else
+  {
+    if ( qword_14001C8A8 )
+      return 0;
+    PdbDll = GetPdbDll();
+    qword_14001C8A8 = (__int64)PdbDll;
+    if ( !PdbDll )
+      return 0;
+    byte_14001C8B2 = 1;
+  }
+  PDBOpenValidate5 = GetProcAddress(PdbDll, "PDBOpenValidate5");
+  if ( !PDBOpenValidate5
+    || !((unsigned int (__fastcall *)(wchar_t *, _QWORD, _QWORD, _QWORD, char *, _QWORD, _QWORD, __int64 *))PDBOpenValidate5)(
+          a5,
+          0,
+          0,
+          0,
+          v38,
+          0,
+          0,
+          &v36) )
+  {
+    return 0;
+  }
+  v21 = nullptr;
+  v32 = 0;
+  if ( (**(unsigned int (__fastcall ***)(__int64))v36)(v36) == 20091201
+    && (*(unsigned int (__fastcall **)(__int64, _QWORD, const char *, __int64 *))(*(_QWORD *)v36 + 56LL))(
+         v36,
+         0,
+         "r",
+         &v37) )
+  {
+    if ( (*(unsigned int (__fastcall **)(__int64, _QWORD, _QWORD, __int64 *, _QWORD, _QWORD, _QWORD))(*(_QWORD *)v37 + 64LL))(
+           v37,
+           (unsigned __int16)v18,
+           v15,
+           &v35,
+           0,
+           0,
+           0) )
+    {
+      if ( (*(unsigned __int8 (__fastcall **)(__int64, __int64 *))(*(_QWORD *)v35 + 208LL))(v35, &v32) && v32 )
+      {
+        if ( (*(unsigned int (__fastcall **)(__int64))(*(_QWORD *)v32 + 16LL))(v32) )
+        {
+          while ( (*(unsigned __int8 (__fastcall **)(__int64, _QWORD, unsigned int *, unsigned __int16 *, int *, unsigned int *, _QWORD))(*(_QWORD *)v32 + 24LL))(
+                    v32,
+                    0,
+                    &v43,
+                    &v40,
+                    &v33,
+                    &v41,
+                    0) )
+          {
+            if ( v40 == v18 && v43 <= v15 && v15 < v33 + v43 )
+            {
+              if ( !v41 )
+                break;
+              v22 = v41;
+              ProcessHeap = GetProcessHeap();
+              v24 = (unsigned int *)HeapAlloc(ProcessHeap, 0, 8 * v22);
+              v21 = v24;
+              if ( !v24 )
+                break;
+              if ( (*(unsigned __int8 (__fastcall **)(__int64, unsigned int *, _QWORD, _QWORD, _QWORD, unsigned int *, unsigned int *))(*(_QWORD *)v32 + 24LL))(
+                     v32,
+                     &v34,
+                     0,
+                     0,
+                     0,
+                     &v41,
+                     v24) )
+              {
+                v25 = v15 - v43;
+                if ( v25 >= *v21 )
+                {
+                  for ( j = 1; j < v41; ++j )
+                  {
+                    if ( v25 < v21[2 * j] )
+                      break;
+                  }
+                  v27 = v34;
+                  v28 = v21[2 * j - 1];
+                  v29 = v35;
+                  *a4 = v28 & 0xFFFFFF;
+                  if ( (*(unsigned __int8 (__fastcall **)(__int64, __int64, wchar_t *, int *, _QWORD, _QWORD, _QWORD))(*(_QWORD *)v29 + 224LL))(
+                         v29,
+                         v27,
+                         a2,
+                         &v42,
+                         0,
+                         0,
+                         0) )
+                  {
+                    v6 = 1;
+                  }
+                }
+              }
+              goto $DONE5$76;
+            }
+            if ( !(*(unsigned int (__fastcall **)(__int64))(*(_QWORD *)v32 + 16LL))(v32) )
+              goto $DONE5$76;
+          }
+        }
+        else
+        {
+$DONE5$76:
+          v30 = GetProcessHeap();
+          HeapFree(v30, 0, v21);
+        }
+        (**(void (__fastcall ***)(__int64))v32)(v32);
+      }
+      (*(void (__fastcall **)(__int64))(*(_QWORD *)v35 + 128LL))(v35);
+    }
+    (*(void (__fastcall **)(__int64))(*(_QWORD *)v37 + 112LL))(v37);
+  }
+  (*(void (__fastcall **)(__int64))(*(_QWORD *)v36 + 88LL))(v36);
+  return v6;
+}
+
+
+--- strcpy_s @ 0x1400158DA ---
+// attributes: thunk
+errno_t __cdecl strcpy_s(char *Destination, rsize_t SizeInBytes, const char *Source)
+{
+  return __imp_strcpy_s(Destination, SizeInBytes, Source);
+}
+
+
+--- strcat_s @ 0x1400158E0 ---
+// attributes: thunk
+errno_t __cdecl strcat_s(char *Destination, rsize_t SizeInBytes, const char *Source)
+{
+  return __imp_strcat_s(Destination, SizeInBytes, Source);
+}
+
+
+--- wcscpy_s @ 0x140015922 ---
+// attributes: thunk
+errno_t __cdecl wcscpy_s(wchar_t *Destination, rsize_t SizeInWords, const wchar_t *Source)
+{
+  return __imp_wcscpy_s(Destination, SizeInWords, Source);
+}
+
+
+--- sub_1400159D0 @ 0x1400159D0 ---
+char sub_1400159D0()
+{
+  return 1;
+}
+
+
+--- sub_1400159E0 @ 0x1400159E0 ---
+char sub_1400159E0()
+{
+  return 1;
+}
+
+
+--- sub_1400159F0 @ 0x1400159F0 ---
+char sub_1400159F0()
+{
+  return 1;
+}
+
+
+--- sub_140015A00 @ 0x140015A00 ---
+char sub_140015A00()
+{
+  return 1;
+}
+
+
+--- sub_140015A10 @ 0x140015A10 ---
+char sub_140015A10()
+{
+  return 1;
+}
+
+
+--- sub_140015A20 @ 0x140015A20 ---
+__int64 sub_140015A20()
+{
+  return 0;
+}
+
+
+--- sub_140015B80 @ 0x140015B80 ---
+__int64 __fastcall sub_140015B80(__int64 a1)
+{
+  __int64 result; // rax
+  int i; // [rsp+24h] [rbp+4h]
+
+  j___CheckForDebuggerJustMyCode();
+  for ( i = 0; ; ++i )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( i >= dword_14001C17C )
+      break;
+    if ( *(unsigned __int8 *)(a1 + i) < 0x41u || *(unsigned __int8 *)(a1 + i) > 0x5Au )
+    {
+      if ( *(unsigned __int8 *)(a1 + i) < 0x30u || *(unsigned __int8 *)(a1 + i) > 0x39u )
+      {
+        if ( *(unsigned __int8 *)(a1 + i) >= 0x61u && *(unsigned __int8 *)(a1 + i) <= 0x7Au )
+          *(_BYTE *)(a1 + i) = (*(unsigned __int8 *)(a1 + i) - 89) % 26 + 97;
+      }
+      else
+      {
+        *(_BYTE *)(a1 + i) = (*(unsigned __int8 *)(a1 + i) - 45) % 10 + 48;
+      }
+    }
+    else
+    {
+      *(_BYTE *)(a1 + i) = (*(unsigned __int8 *)(a1 + i) - 52) % 26 + 65;
+    }
+  }
+  return result;
+}
+
+
+--- sub_140015CE0 @ 0x140015CE0 ---
+__int64 __fastcall sub_140015CE0(__int64 a1)
+{
+  char *v1; // rdi
+  __int64 i; // rcx
+  __int64 result; // rax
+  char v4; // [rsp+20h] [rbp+0h] BYREF
+  char Str[44]; // [rsp+28h] [rbp+8h] BYREF
+  int j; // [rsp+54h] [rbp+34h]
+  __int64 v7; // [rsp+128h] [rbp+108h]
+  __int64 v8; // [rsp+130h] [rbp+110h]
+  size_t v9; // [rsp+138h] [rbp+118h]
+
+  v1 = &v4;
+  for ( i = 28; i; --i )
+  {
+    *(_DWORD *)v1 = -858993460;
+    v1 += 4;
+  }
+  j___CheckForDebuggerJustMyCode();
+  strcpy(Str, "NewStarCTF");
+  memset(&Str[11], 0, 9u);
+  for ( j = 0; ; ++j )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( j >= dword_14001C17C )
+      break;
+    v7 = j;
+    v8 = j;
+    v9 = j_strlen(Str);
+    *(_BYTE *)(a1 + j) += Str[j % v9];
+  }
+  return result;
+}
+
+
+--- sub_140015F90 @ 0x140015F90 ---
+int __fastcall sub_140015F90(FILE *a1, const char *a2, __crt_locale_pointers *a3, va_list a4)
+{
+  unsigned __int64 *v4; // rax
+
+  j___CheckForDebuggerJustMyCode();
+  v4 = (unsigned __int64 *)sub_140011028();
+  return _stdio_common_vfprintf(*v4, a1, a2, a3, a4);
+}
+
+
+--- sub_140016000 @ 0x140016000 ---
+int __fastcall sub_140016000(FILE *a1, const char *a2, __crt_locale_pointers *a3, va_list a4)
+{
+  unsigned __int64 *v4; // rax
+
+  j___CheckForDebuggerJustMyCode();
+  v4 = (unsigned __int64 *)sub_140011050();
+  return __stdio_common_vfscanf(*v4, a1, a2, a3, a4);
+}
+
+
+--- main_0 @ 0x140016070 ---
+int __fastcall main_0(int argc, const char **argv, const char **envp)
+{
+  char *v3; // rdi
+  __int64 i; // rcx
+  char v6; // [rsp+20h] [rbp+0h] BYREF
+  _QWORD v7[9]; // [rsp+28h] [rbp+8h]
+  char Str[132]; // [rsp+70h] [rbp+50h] BYREF
+  int j; // [rsp+F4h] [rbp+D4h]
+  _BYTE Buf1[5]; // [rsp+120h] [rbp+100h] BYREF
+  char v11[127]; // [rsp+125h] [rbp+105h] BYREF
+  int v12; // [rsp+1A4h] [rbp+184h]
+
+  v3 = &v6;
+  for ( i = 106; i; --i )
+  {
+    *(_DWORD *)v3 = -858993460;
+    v3 += 4;
+  }
+  j___CheckForDebuggerJustMyCode();
+  v7[0] = sub_1400113C5;
+  v7[1] = sub_1400113CA;
+  v7[2] = sub_1400113F2;
+  v7[3] = sub_1400113ED;
+  memset(Str, 0, 0x64u);
+  sub_14001118B();
+  sub_1400113FC();
+  dword_14001C17C = j_strlen(Str);
+  for ( j = 0; j < 4; ++j )
+    ((void (__fastcall *)(char *))v7[j])(Str);
+  Buf1[0] = -24;
+  Buf1[1] = 0x80;
+  Buf1[2] = -124;
+  Buf1[3] = 8;
+  Buf1[4] = 24;
+  strcpy(v11, "<xh");
+  v11[4] = 112;
+  v11[5] = 124;
+  v11[6] = -108;
+  v11[7] = -56;
+  v11[8] = -32;
+  v11[9] = 16;
+  v11[10] = -20;
+  v11[11] = -76;
+  v11[12] = -84;
+  v11[13] = 104;
+  v11[14] = -88;
+  v11[15] = 12;
+  v11[16] = 28;
+  v11[17] = -112;
+  v11[18] = -52;
+  v11[19] = 84;
+  v11[20] = 60;
+  v11[21] = 20;
+  v11[22] = -36;
+  v11[23] = 48;
+  memset(&v11[24], 0, 0x47u);
+  v12 = 1;
+  j_memcmp(Buf1, Str, dword_14001C17C);
+  sub_14001118B();
+  return 0;
+}
+
+
+--- j___guard_dispatch_icall_fptr @ 0x140016DF0 ---
+// attributes: thunk
+__int64 __fastcall j___guard_dispatch_icall_fptr()
+{
+  __int64 (__fastcall *v0)(); // rax
+
+  return v0();
+}
+
+
+--- ?filt$0@?0??notify_debugger@@YAXAEBUtagEXCEPTION_VISUALCPP_DEBUG_INFO@@@Z@4HA @ 0x140017E40 ---
+_BOOL8 __fastcall `notify_debugger'::`1'::filt$0(_DWORD **a1)
+{
+  return **a1 == 1080890248;
+}
+
+
+================================================================================
+ENTRY POINT FUNCTION
+================================================================================
+// attributes: thunk
+__int64 start()
+{
+  return start_0();
+}
+
+
+================================================================================
+STRING REFERENCES
+================================================================================
+  0x140019C20: Wrong!!
+
+    -> referenced by main_0 @ 0x14001625C
+  0x140019C90: Input Your flag(format:A-Z a-z): 
+    -> referenced by main_0 @ 0x1400160E9
+  0x140019CC8: Right!! flag is flag{your input}
+
+    -> referenced by main_0 @ 0x14001624E
+  0x14001A618: RegOpenKeyExW
+    -> referenced by ?GetPdbDllFromInstallPath@@YAPEAUHINSTANCE__@@XZ @ 0x140014A95
+  0x14001A640: RegCloseKey
+    -> referenced by ?GetPdbDllFromInstallPath@@YAPEAUHINSTANCE__@@XZ @ 0x140014AC5
+  0x1400209C8: _register_thread_local_exe_atexit_callback
+  0x140020A8E: _register_onexit_function

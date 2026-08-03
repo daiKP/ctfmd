@@ -1,0 +1,39 @@
+# ============================================================
+# CTF 密码学解题环境依赖
+# ============================================================
+# 安装方式:  pip install -r requirements.txt
+# 离线安装:  先在有网环境 pip download -r requirements.txt -d ./packages
+#            然后离线环境 pip install --no-index --find-links=./packages -r requirements.txt
+# 清华镜像:  pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+# ============================================================
+
+# ---- 核心密码学库 ----
+gmpy2>=2.1            # GMP 大数运算加速 (模逆元/模幂/开方/素性检测)，比Python内置快6x+
+pycryptodome>=3.20    # Crypto.Util.number (long_to_bytes/bytes_to_long/GCD/inverse)，RSA/AES/DES等
+
+# ---- 数论与因式分解 ----
+sympy>=1.12            # factorint() 因式分解 (Pollard rho + ECM)，isprime() 素性检测
+
+# ---- 逆向分析 ----
+capstone>=5.0          # Capstone 反汇编框架 (x86-64/ARM/MIPS)，用于分析解码后的指令
+pefile>=2024.0         # PE 文件解析 (Windows 逆向)，读取段/导入表/导出表
+
+# ---- PWN & 通用 ----
+pwntools>=4.12         # PWN 题远程连接、payload 构造、交互
+
+# ---- 流量分析 ----
+scapy>=2.5             # PCAP 网络流量包解析与重组
+
+# ---- 应急响应 (IR) ----
+paramiko>=3.4          # SSH 远程连接Linux靶机 (Windows无sshpass)
+pypsrp>=0.8           # WinRM 远程连接Windows靶机 (IR扫描器Windows版,默认端口5985)
+
+# ---- PyInstaller 逆向 (第25题) ----
+uncompyle6>=3.9        # Python 3.8 .pyc 反编译 (Kuang.exe 挖矿程序分析)
+
+# ---- 可选: 在线因式分解查表 ----
+# factordb>=0.5         # factordb.com API 客户端 (需联网, 离线环境注释掉)
+
+# ---- 可选: Python pyc 反编译 (第11题) ----
+# uncompyle6>=3.9       # Python 2.7 pyc 反编译
+# xdis>=8.0             # pyc 字节码反汇编 (交叉验证 uncompyle6 结果)

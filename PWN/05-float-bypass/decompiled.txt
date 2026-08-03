@@ -1,0 +1,522 @@
+
+============================================================
+Function: .init_proc @ 0x4004E8
+============================================================
+
+// Alternative name is '_init'
+void *init_proc()
+{
+  void *result; // rax
+
+  result = &__gmon_start__;
+  if ( &__gmon_start__ )
+    return (void *)_gmon_start__();
+  return result;
+}
+
+
+--- Assembly ---
+  0x4004E8: sub     rsp, 8
+  0x4004EC: mov     rax, cs:__gmon_start___ptr
+  0x4004F3: test    rax, rax
+  0x4004F6: jz      short loc_4004FD
+  0x4004F8: call    __gmon_start__
+  0x4004FD: add     rsp, 8
+  0x400501: retn
+
+============================================================
+Function: sub_400510 @ 0x400510
+============================================================
+
+__int64 sub_400510()
+{
+  return qword_601010();
+}
+
+
+--- Assembly ---
+  0x400510: push    cs:qword_601008
+  0x400516: jmp     cs:qword_601010
+
+============================================================
+Function: .puts @ 0x400520
+============================================================
+
+// attributes: thunk
+int puts(const char *s)
+{
+  return puts(s);
+}
+
+
+--- Assembly ---
+  0x400520: jmp     cs:off_601018
+
+============================================================
+Function: .system @ 0x400530
+============================================================
+
+// attributes: thunk
+int system(const char *command)
+{
+  return system(command);
+}
+
+
+--- Assembly ---
+  0x400530: jmp     cs:off_601020
+
+============================================================
+Function: .__libc_start_main @ 0x400540
+============================================================
+
+// attributes: thunk
+int __libc_start_main(
+        int (*main)(int, char **, char **),
+        int argc,
+        char **ubp_av,
+        void (*init)(),
+        void (*fini)(),
+        void (*rtld_fini)(),
+        void *stack_end)
+{
+  return _libc_start_main(main, argc, ubp_av, init, fini, rtld_fini, stack_end);
+}
+
+
+--- Assembly ---
+  0x400540: jmp     cs:off_601028
+
+============================================================
+Function: .gets @ 0x400550
+============================================================
+
+// attributes: thunk
+__int64 gets()
+{
+  return gets();
+}
+
+
+--- Assembly ---
+  0x400550: jmp     cs:off_601030
+
+============================================================
+Function: .setvbuf @ 0x400560
+============================================================
+
+// attributes: thunk
+int setvbuf(FILE *stream, char *buf, int modes, size_t n)
+{
+  return setvbuf(stream, buf, modes, n);
+}
+
+
+--- Assembly ---
+  0x400560: jmp     cs:off_601038
+
+============================================================
+Function: __gmon_start__ @ 0x400570
+============================================================
+
+// attributes: thunk
+__int64 _gmon_start__(void)
+{
+  return __gmon_start__();
+}
+
+
+--- Assembly ---
+  0x400570: jmp     cs:__gmon_start___ptr
+
+============================================================
+Function: _start @ 0x400580
+============================================================
+
+// positive sp value has been detected, the output may be wrong!
+void __fastcall __noreturn start(__int64 a1, __int64 a2, void (*a3)())
+{
+  __int64 v3; // rax
+  int v4; // esi
+  __int64 v5; // [rsp-8h] [rbp-8h] BYREF
+  char *retaddr; // [rsp+0h] [rbp+0h] BYREF
+
+  v4 = v5;
+  v5 = v3;
+  __libc_start_main((int (*)(int, char **, char **))main, v4, &retaddr, _libc_csu_init, _libc_csu_fini, a3, &v5);
+  __halt();
+}
+
+
+--- Assembly ---
+  0x400580: xor     ebp, ebp
+  0x400582: mov     r9, rdx; rtld_fini
+  0x400585: pop     rsi; argc
+  0x400586: mov     rdx, rsp; ubp_av
+  0x400589: and     rsp, 0FFFFFFFFFFFFFFF0h
+  0x40058D: push    rax
+  0x40058E: push    rsp; stack_end
+  0x40058F: mov     r8, offset __libc_csu_fini; fini
+  0x400596: mov     rcx, offset __libc_csu_init; init
+  0x40059D: mov     rdi, offset main; main
+  0x4005A4: call    ___libc_start_main
+  0x4005A9: hlt
+
+============================================================
+Function: deregister_tm_clones @ 0x4005B0
+============================================================
+
+__int64 deregister_tm_clones()
+{
+  __int64 result; // rax
+
+  result = 6295639LL - (_QWORD)&stdout;
+  if ( (unsigned __int64)(6295639LL - (_QWORD)&stdout) > 0xE )
+    return 0;
+  return result;
+}
+
+
+--- Assembly ---
+  0x4005B0: mov     eax, 601057h
+  0x4005B5: push    rbp
+  0x4005B6: sub     rax, offset stdout@@GLIBC_2_2_5
+  0x4005BC: cmp     rax, 0Eh
+  0x4005C0: mov     rbp, rsp
+  0x4005C3: jbe     short loc_4005E0
+  0x4005C5: mov     eax, 0
+  0x4005CA: test    rax, rax
+  0x4005CD: jz      short loc_4005E0
+  0x4005CF: pop     rbp
+  0x4005D0: mov     edi, offset stdout@@GLIBC_2_2_5
+  0x4005D5: jmp     rax
+  0x4005D7: align 20h
+  0x4005E0: pop     rbp
+  0x4005E1: retn
+
+============================================================
+Function: register_tm_clones @ 0x4005F0
+============================================================
+
+__int64 register_tm_clones()
+{
+  return 0;
+}
+
+
+--- Assembly ---
+  0x4005F0: mov     esi, offset stdout@@GLIBC_2_2_5
+  0x4005F5: push    rbp
+  0x4005F6: sub     rsi, offset stdout@@GLIBC_2_2_5
+  0x4005FD: sar     rsi, 3
+  0x400601: mov     rbp, rsp
+  0x400604: mov     rax, rsi
+  0x400607: shr     rax, 3Fh
+  0x40060B: add     rsi, rax
+  0x40060E: sar     rsi, 1
+  0x400611: jz      short loc_400628
+  0x400613: mov     eax, 0
+  0x400618: test    rax, rax
+  0x40061B: jz      short loc_400628
+  0x40061D: pop     rbp
+  0x40061E: mov     edi, offset stdout@@GLIBC_2_2_5
+  0x400623: jmp     rax
+  0x400625: align 8
+  0x400628: pop     rbp
+  0x400629: retn
+
+============================================================
+Function: __do_global_dtors_aux @ 0x400630
+============================================================
+
+__int64 _do_global_dtors_aux()
+{
+  __int64 result; // rax
+
+  if ( !completed_7594 )
+  {
+    result = deregister_tm_clones();
+    completed_7594 = 1;
+  }
+  return result;
+}
+
+
+--- Assembly ---
+  0x400630: cmp     cs:completed_7594, 0
+  0x400637: jnz     short locret_40064A
+  0x400639: push    rbp
+  0x40063A: mov     rbp, rsp
+  0x40063D: call    deregister_tm_clones
+  0x400642: pop     rbp
+  0x400643: mov     cs:completed_7594, 1
+  0x40064A: rep retn
+
+============================================================
+Function: frame_dummy @ 0x400650
+============================================================
+
+__int64 frame_dummy()
+{
+  return register_tm_clones();
+}
+
+
+--- Assembly ---
+  0x400650: mov     edi, offset __JCR_LIST__
+  0x400655: cmp     qword ptr [rdi], 0
+  0x400659: jnz     short loc_400660
+  0x40065B: jmp     short register_tm_clones
+  0x40065D: align 20h
+  0x400660: mov     eax, 0
+  0x400665: test    rax, rax
+  0x400668: jz      short loc_40065B
+  0x40066A: push    rbp
+  0x40066B: mov     rbp, rsp
+  0x40066E: call    rax
+  0x400670: pop     rbp
+  0x400671: jmp     register_tm_clones
+
+============================================================
+Function: func @ 0x400676
+============================================================
+
+int func()
+{
+  puts("Let's guess the number.");
+  gets();
+  if ( 11.28125 == 0.0 )
+    return system("cat /flag");
+  else
+    return puts("Its value should be 11.28125");
+}
+
+
+--- Assembly ---
+  0x400676: push    rbp
+  0x400677: mov     rbp, rsp
+  0x40067A: sub     rsp, 30h
+  0x40067E: pxor    xmm0, xmm0
+  0x400682: movss   [rbp+var_4], xmm0
+  0x400687: mov     edi, offset s; "Let's guess the number."
+  0x40068C: call    _puts
+  0x400691: lea     rax, [rbp+var_30]
+  0x400695: mov     rdi, rax
+  0x400698: mov     eax, 0
+  0x40069D: call    _gets
+  0x4006A2: movss   xmm0, [rbp+var_4]
+  0x4006A7: ucomiss xmm0, cs:dword_4007F4
+  0x4006AE: jp      short loc_4006CF
+  0x4006B0: movss   xmm0, [rbp+var_4]
+  0x4006B5: ucomiss xmm0, cs:dword_4007F4
+  0x4006BC: jnz     short loc_4006CF
+  0x4006BE: mov     edi, offset command; "cat /flag"
+  0x4006C3: mov     eax, 0
+  0x4006C8: call    _system
+  0x4006CD: jmp     short loc_4006D9
+  0x4006CF: mov     edi, offset aItsValueShould; "Its value should be 11.28125"
+  0x4006D4: call    _puts
+  0x4006D9: nop
+  0x4006DA: leave
+  0x4006DB: retn
+
+============================================================
+Function: main @ 0x4006DC
+============================================================
+
+int __fastcall main(int argc, const char **argv, const char **envp)
+{
+  setvbuf(stdout, nullptr, 2, 0);
+  setvbuf(stdin, nullptr, 2, 0);
+  func();
+  return 0;
+}
+
+
+--- Assembly ---
+  0x4006DC: push    rbp
+  0x4006DD: mov     rbp, rsp
+  0x4006E0: mov     rax, cs:stdout@@GLIBC_2_2_5
+  0x4006E7: mov     ecx, 0; n
+  0x4006EC: mov     edx, 2; modes
+  0x4006F1: mov     esi, 0; buf
+  0x4006F6: mov     rdi, rax; stream
+  0x4006F9: call    _setvbuf
+  0x4006FE: mov     rax, cs:stdin@@GLIBC_2_2_5
+  0x400705: mov     ecx, 0; n
+  0x40070A: mov     edx, 2; modes
+  0x40070F: mov     esi, 0; buf
+  0x400714: mov     rdi, rax; stream
+  0x400717: call    _setvbuf
+  0x40071C: mov     eax, 0
+  0x400721: call    func
+  0x400726: mov     eax, 0
+  0x40072B: pop     rbp
+  0x40072C: retn
+
+============================================================
+Function: __libc_csu_init @ 0x400730
+============================================================
+
+void __fastcall _libc_csu_init(unsigned int a1, __int64 a2, __int64 a3)
+{
+  signed __int64 v4; // rbp
+  __int64 i; // rbx
+
+  v4 = &_do_global_dtors_aux_fini_array_entry - _frame_dummy_init_array_entry;
+  init_proc();
+  if ( v4 )
+  {
+    for ( i = 0; i != v4; ++i )
+      ((void (__fastcall *)(_QWORD, __int64, __int64))_frame_dummy_init_array_entry[i])(a1, a2, a3);
+  }
+}
+
+
+--- Assembly ---
+  0x400730: push    r15
+  0x400732: push    r14
+  0x400734: mov     r15d, edi
+  0x400737: push    r13
+  0x400739: push    r12
+  0x40073B: lea     r12, __frame_dummy_init_array_entry
+  0x400742: push    rbp
+  0x400743: lea     rbp, __do_global_dtors_aux_fini_array_entry
+  0x40074A: push    rbx
+  0x40074B: mov     r14, rsi
+  0x40074E: mov     r13, rdx
+  0x400751: sub     rbp, r12
+  0x400754: sub     rsp, 8
+  0x400758: sar     rbp, 3
+  0x40075C: call    _init_proc
+  0x400761: test    rbp, rbp
+  0x400764: jz      short loc_400786
+  0x400766: xor     ebx, ebx
+  0x400768: nop     dword ptr [rax+rax+00000000h]
+  0x400770: mov     rdx, r13
+  0x400773: mov     rsi, r14
+  0x400776: mov     edi, r15d
+  0x400779: call    ds:(__frame_dummy_init_array_entry - 600E10h)[r12+rbx*8]
+  0x40077D: add     rbx, 1
+  0x400781: cmp     rbx, rbp
+  0x400784: jnz     short loc_400770
+  0x400786: add     rsp, 8
+  0x40078A: pop     rbx
+  0x40078B: pop     rbp
+  0x40078C: pop     r12
+  0x40078E: pop     r13
+  0x400790: pop     r14
+  0x400792: pop     r15
+  0x400794: retn
+
+============================================================
+Function: __libc_csu_fini @ 0x4007A0
+============================================================
+
+void _libc_csu_fini()
+{
+  ;
+}
+
+
+--- Assembly ---
+  0x4007A0: rep retn
+
+============================================================
+Function: .term_proc @ 0x4007A4
+============================================================
+
+// Alternative name is '_fini'
+void term_proc()
+{
+  ;
+}
+
+
+--- Assembly ---
+  0x4007A4: sub     rsp, 8
+  0x4007A8: add     rsp, 8
+  0x4007AC: retn
+
+============================================================
+Function: puts @ 0x601078
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601078: extrn puts:near
+
+============================================================
+Function: system @ 0x601080
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601080: extrn system:near
+
+============================================================
+Function: __libc_start_main @ 0x601088
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601088: extrn __libc_start_main:near
+
+============================================================
+Function: gets @ 0x601090
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601090: extrn gets:near
+
+============================================================
+Function: setvbuf @ 0x601098
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601098: extrn setvbuf:near
+
+============================================================
+Function: __imp___gmon_start__ @ 0x6010A0
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x6010A0: extrn __imp___gmon_start__:near ; weak
+
+============================================================
+Segments:
+============================================================
+
+  LOAD: 0x400000 - 0x4004E8
+  .init: 0x4004E8 - 0x400502
+  LOAD: 0x400502 - 0x400510
+  .plt: 0x400510 - 0x400570
+  .plt.got: 0x400570 - 0x400578
+  LOAD: 0x400578 - 0x400580
+  .text: 0x400580 - 0x4007A2
+  LOAD: 0x4007A2 - 0x4007A4
+  .fini: 0x4007A4 - 0x4007AD
+  LOAD: 0x4007AD - 0x4007B0
+  .rodata: 0x4007B0 - 0x4007F8
+  .eh_frame_hdr: 0x4007F8 - 0x400834
+  LOAD: 0x400834 - 0x400838
+  .eh_frame: 0x400838 - 0x40094C
+  .init_array: 0x600E10 - 0x600E18
+  .fini_array: 0x600E18 - 0x600E20
+  .jcr: 0x600E20 - 0x600E28
+  LOAD: 0x600E28 - 0x600FF8
+  .got: 0x600FF8 - 0x601000
+  .got.plt: 0x601000 - 0x601040
+  .data: 0x601040 - 0x601050
+  .bss: 0x601050 - 0x601070
+  .prgend: 0x601070 - 0x601071
+  extern: 0x601078 - 0x6010A8

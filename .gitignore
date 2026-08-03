@@ -1,0 +1,50 @@
+# ============================================================
+# CTF 解题笔记本 - .gitignore
+# ============================================================
+
+# ---- Python 临时文件 ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+
+# ---- IR 扫描器临时输出 ----
+IR/auto-ir-scanner/.temp/
+*.log
+
+# ---- PCAP 分析工具测试输出 ----
+IR/19-pcap-arcanum/test_output/
+
+# ---- 二进制文件（按需取消注释） ----
+# *.exe
+# *.dll
+# *.so
+# *.dylib
+
+# ---- 大文件 (>10MB 的单独处理) ----
+# *.pcap
+# *.pcapng
+
+# ---- IDE / 编辑器 ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---- 系统文件 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- 虚拟环境 ----
+venv/
+.venv/
+env/
+
+# ---- 离线包缓存 ----
+packages/

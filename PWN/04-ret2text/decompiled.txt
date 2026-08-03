@@ -1,0 +1,490 @@
+
+============================================================
+Function: .init_proc @ 0x400488
+============================================================
+
+void *init_proc()
+{
+  void *result; // rax
+
+  result = &_gmon_start__;
+  if ( &_gmon_start__ )
+    return (void *)__gmon_start__();
+  return result;
+}
+
+
+--- Assembly ---
+  0x400488: sub     rsp, 8
+  0x40048C: mov     rax, cs:__gmon_start___ptr
+  0x400493: test    rax, rax
+  0x400496: jz      short loc_40049D
+  0x400498: call    ___gmon_start__
+  0x40049D: add     rsp, 8
+  0x4004A1: retn
+
+============================================================
+Function: sub_4004B0 @ 0x4004B0
+============================================================
+
+__int64 sub_4004B0()
+{
+  return qword_601010();
+}
+
+
+--- Assembly ---
+  0x4004B0: push    cs:qword_601008
+  0x4004B6: jmp     cs:qword_601010
+
+============================================================
+Function: .write @ 0x4004C0
+============================================================
+
+// attributes: thunk
+ssize_t write(int fd, const void *buf, size_t n)
+{
+  return write(fd, buf, n);
+}
+
+
+--- Assembly ---
+  0x4004C0: jmp     cs:off_601018
+
+============================================================
+Function: .system @ 0x4004D0
+============================================================
+
+// attributes: thunk
+int system(const char *command)
+{
+  return system(command);
+}
+
+
+--- Assembly ---
+  0x4004D0: jmp     cs:off_601020
+
+============================================================
+Function: .__libc_start_main @ 0x4004E0
+============================================================
+
+// attributes: thunk
+int __libc_start_main(
+        int (*main)(int, char **, char **),
+        int argc,
+        char **ubp_av,
+        void (*init)(),
+        void (*fini)(),
+        void (*rtld_fini)(),
+        void *stack_end)
+{
+  return _libc_start_main(main, argc, ubp_av, init, fini, rtld_fini, stack_end);
+}
+
+
+--- Assembly ---
+  0x4004E0: jmp     cs:off_601028
+
+============================================================
+Function: .__gmon_start__ @ 0x4004F0
+============================================================
+
+// attributes: thunk
+__int64 __gmon_start__(void)
+{
+  return _gmon_start__();
+}
+
+
+--- Assembly ---
+  0x4004F0: jmp     cs:off_601030
+
+============================================================
+Function: .gets @ 0x400500
+============================================================
+
+// attributes: thunk
+__int64 gets()
+{
+  return gets();
+}
+
+
+--- Assembly ---
+  0x400500: jmp     cs:off_601038
+
+============================================================
+Function: .sprintf @ 0x400510
+============================================================
+
+// attributes: thunk
+int sprintf(char *s, const char *format, ...)
+{
+  return sprintf(s, format);
+}
+
+
+--- Assembly ---
+  0x400510: jmp     cs:off_601040
+
+============================================================
+Function: start @ 0x400520
+============================================================
+
+// positive sp value has been detected, the output may be wrong!
+void __fastcall __noreturn start(__int64 a1, __int64 a2, void (*a3)())
+{
+  __int64 v3; // rax
+  int v4; // esi
+  __int64 v5; // [rsp-8h] [rbp-8h] BYREF
+  char *retaddr; // [rsp+0h] [rbp+0h] BYREF
+
+  v4 = v5;
+  v5 = v3;
+  __libc_start_main(main, v4, &retaddr, init, fini, a3, &v5);
+  __halt();
+}
+
+
+--- Assembly ---
+  0x400520: xor     ebp, ebp
+  0x400522: mov     r9, rdx; rtld_fini
+  0x400525: pop     rsi; argc
+  0x400526: mov     rdx, rsp; ubp_av
+  0x400529: and     rsp, 0FFFFFFFFFFFFFFF0h
+  0x40052D: push    rax
+  0x40052E: push    rsp; stack_end
+  0x40052F: mov     r8, offset fini; fini
+  0x400536: mov     rcx, offset init; init
+  0x40053D: mov     rdi, offset main; main
+  0x400544: call    ___libc_start_main
+  0x400549: hlt
+
+============================================================
+Function: sub_400550 @ 0x400550
+============================================================
+
+signed __int64 sub_400550()
+{
+  signed __int64 result; // rax
+
+  result = &unk_60105F - (_UNKNOWN *)&byte_601058;
+  if ( (unsigned __int64)(&unk_60105F - (_UNKNOWN *)&byte_601058) > 0xE )
+    return 0;
+  return result;
+}
+
+
+--- Assembly ---
+  0x400550: mov     eax, offset unk_60105F
+  0x400555: push    rbp
+  0x400556: sub     rax, offset byte_601058
+  0x40055C: cmp     rax, 0Eh
+  0x400560: mov     rbp, rsp
+  0x400563: ja      short loc_400567
+  0x400565: pop     rbp
+  0x400566: retn
+  0x400567: mov     eax, 0
+  0x40056C: test    rax, rax
+  0x40056F: jz      short loc_400565
+  0x400571: pop     rbp
+  0x400572: mov     edi, offset byte_601058
+  0x400577: jmp     rax
+
+============================================================
+Function: sub_400580 @ 0x400580
+============================================================
+
+__int64 sub_400580()
+{
+  return 0;
+}
+
+
+--- Assembly ---
+  0x400580: mov     eax, offset byte_601058
+  0x400585: push    rbp
+  0x400586: sub     rax, offset byte_601058
+  0x40058C: sar     rax, 3
+  0x400590: mov     rbp, rsp
+  0x400593: mov     rdx, rax
+  0x400596: shr     rdx, 3Fh
+  0x40059A: add     rax, rdx
+  0x40059D: sar     rax, 1
+  0x4005A0: jnz     short loc_4005A4
+  0x4005A2: pop     rbp
+  0x4005A3: retn
+  0x4005A4: mov     edx, 0
+  0x4005A9: test    rdx, rdx
+  0x4005AC: jz      short loc_4005A2
+  0x4005AE: pop     rbp
+  0x4005AF: mov     rsi, rax
+  0x4005B2: mov     edi, offset byte_601058
+  0x4005B7: jmp     rdx
+
+============================================================
+Function: sub_4005C0 @ 0x4005C0
+============================================================
+
+signed __int64 sub_4005C0()
+{
+  signed __int64 result; // rax
+
+  if ( !byte_601058 )
+  {
+    result = sub_400550();
+    byte_601058 = 1;
+  }
+  return result;
+}
+
+
+--- Assembly ---
+  0x4005C0: cmp     cs:byte_601058, 0
+  0x4005C7: jnz     short locret_4005DA
+  0x4005C9: push    rbp
+  0x4005CA: mov     rbp, rsp
+  0x4005CD: call    sub_400550
+  0x4005D2: pop     rbp
+  0x4005D3: mov     cs:byte_601058, 1
+  0x4005DA: rep retn
+
+============================================================
+Function: sub_4005E0 @ 0x4005E0
+============================================================
+
+__int64 sub_4005E0()
+{
+  return sub_400580();
+}
+
+
+--- Assembly ---
+  0x4005E0: cmp     cs:qword_600E20, 0
+  0x4005E8: jz      short loc_400608
+  0x4005EA: mov     eax, 0
+  0x4005EF: test    rax, rax
+  0x4005F2: jz      short loc_400608
+  0x4005F4: push    rbp
+  0x4005F5: mov     edi, offset qword_600E20
+  0x4005FA: mov     rbp, rsp
+  0x4005FD: call    rax
+  0x4005FF: pop     rbp
+  0x400600: jmp     sub_400580
+  0x400605: align 8
+  0x400608: jmp     sub_400580
+
+============================================================
+Function: sub_40060D @ 0x40060D
+============================================================
+
+int sub_40060D()
+{
+  return system("cat flag.txt");
+}
+
+
+--- Assembly ---
+  0x40060D: push    rbp
+  0x40060E: mov     rbp, rsp
+  0x400611: mov     edi, offset command; "cat flag.txt"
+  0x400616: call    _system
+  0x40061B: pop     rbp
+  0x40061C: retn
+
+============================================================
+Function: main @ 0x40061D
+============================================================
+
+__int64 __fastcall main(int a1, char **a2, char **a3)
+{
+  char s[64]; // [rsp+0h] [rbp-80h] BYREF
+
+  write(1, "-Warm Up-\n", 0xAu);
+  write(1, "WOW:", 4u);
+  sprintf(s, "%p\n", sub_40060D);
+  write(1, s, 9u);
+  write(1, ">", 1u);
+  return gets();
+}
+
+
+--- Assembly ---
+  0x40061D: push    rbp
+  0x40061E: mov     rbp, rsp
+  0x400621: add     rsp, 0FFFFFFFFFFFFFF80h
+  0x400625: mov     edx, 0Ah; n
+  0x40062A: mov     esi, offset aWarmUp; "-Warm Up-\n"
+  0x40062F: mov     edi, 1; fd
+  0x400634: call    _write
+  0x400639: mov     edx, 4; n
+  0x40063E: mov     esi, offset aWow; "WOW:"
+  0x400643: mov     edi, 1; fd
+  0x400648: call    _write
+  0x40064D: lea     rax, [rbp+s]
+  0x400651: mov     edx, offset sub_40060D
+  0x400656: mov     esi, offset format; "%p\n"
+  0x40065B: mov     rdi, rax; s
+  0x40065E: mov     eax, 0
+  0x400663: call    _sprintf
+  0x400668: lea     rax, [rbp+s]
+  0x40066C: mov     edx, 9; n
+  0x400671: mov     rsi, rax; buf
+  0x400674: mov     edi, 1; fd
+  0x400679: call    _write
+  0x40067E: mov     edx, 1; n
+  0x400683: mov     esi, offset asc_400755; ">"
+  0x400688: mov     edi, 1; fd
+  0x40068D: call    _write
+  0x400692: lea     rax, [rbp+var_40]
+  0x400696: mov     rdi, rax
+  0x400699: mov     eax, 0
+  0x40069E: call    _gets
+  0x4006A3: leave
+  0x4006A4: retn
+
+============================================================
+Function: init @ 0x4006B0
+============================================================
+
+void __fastcall init(unsigned int a1, __int64 a2, __int64 a3)
+{
+  __int64 v4; // rbx
+  signed __int64 v5; // rbp
+
+  v4 = 0;
+  v5 = &off_600E18 - funcs_4006F9;
+  init_proc();
+  if ( v5 )
+  {
+    do
+      ((void (__fastcall *)(_QWORD, __int64, __int64))funcs_4006F9[v4++])(a1, a2, a3);
+    while ( v4 != v5 );
+  }
+}
+
+
+--- Assembly ---
+  0x4006B0: push    r15
+  0x4006B2: mov     r15d, edi
+  0x4006B5: push    r14
+  0x4006B7: mov     r14, rsi
+  0x4006BA: push    r13
+  0x4006BC: mov     r13, rdx
+  0x4006BF: push    r12
+  0x4006C1: lea     r12, funcs_4006F9
+  0x4006C8: push    rbp
+  0x4006C9: lea     rbp, off_600E18
+  0x4006D0: push    rbx
+  0x4006D1: sub     rbp, r12
+  0x4006D4: xor     ebx, ebx
+  0x4006D6: sar     rbp, 3
+  0x4006DA: sub     rsp, 8
+  0x4006DE: call    _init_proc
+  0x4006E3: test    rbp, rbp
+  0x4006E6: jz      short loc_400706
+  0x4006E8: nop     dword ptr [rax+rax+00000000h]
+  0x4006F0: mov     rdx, r13
+  0x4006F3: mov     rsi, r14
+  0x4006F6: mov     edi, r15d
+  0x4006F9: call    ds:(funcs_4006F9 - 600E10h)[r12+rbx*8]
+  0x4006FD: add     rbx, 1
+  0x400701: cmp     rbx, rbp
+  0x400704: jnz     short loc_4006F0
+  0x400706: add     rsp, 8
+  0x40070A: pop     rbx
+  0x40070B: pop     rbp
+  0x40070C: pop     r12
+  0x40070E: pop     r13
+  0x400710: pop     r14
+  0x400712: pop     r15
+  0x400714: retn
+
+============================================================
+Function: fini @ 0x400720
+============================================================
+
+void fini()
+{
+  ;
+}
+
+
+--- Assembly ---
+  0x400720: rep retn
+
+============================================================
+Function: .term_proc @ 0x400724
+============================================================
+
+void term_proc()
+{
+  ;
+}
+
+
+--- Assembly ---
+  0x400724: sub     rsp, 8
+  0x400728: add     rsp, 8
+  0x40072C: retn
+
+============================================================
+Function: write @ 0x601060
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601060: extrn write:near
+
+============================================================
+Function: system @ 0x601068
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601068: extrn system:near
+
+============================================================
+Function: __libc_start_main @ 0x601070
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601070: extrn __libc_start_main:near
+
+============================================================
+Function: gets @ 0x601078
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601078: extrn gets:near
+
+============================================================
+Function: sprintf @ 0x601080
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601080: extrn sprintf:near
+
+============================================================
+Function: __gmon_start__ @ 0x601088
+============================================================
+
+// Decompilation failed
+
+--- Assembly ---
+  0x601088: extrn __gmon_start__:near ; weak
+
+============================================================
+Imports:
+============================================================
+
+Module: .dynsym

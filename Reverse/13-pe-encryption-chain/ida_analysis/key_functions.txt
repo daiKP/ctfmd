@@ -1,0 +1,272 @@
+
+--- sub_1400113C5 @ 0x1400113C5 ---
+  THUNK -> 0x140015B80 (sub_140015B80)
+__int64 __fastcall sub_140015B80(__int64 a1)
+{
+  __int64 result; // rax
+  int i; // [rsp+24h] [rbp+4h]
+
+  j___CheckForDebuggerJustMyCode();
+  for ( i = 0; ; ++i )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( i >= dword_14001C17C )
+      break;
+    if ( *(unsigned __int8 *)(a1 + i) < 0x41u || *(unsigned __int8 *)(a1 + i) > 0x5Au )
+    {
+      if ( *(unsigned __int8 *)(a1 + i) < 0x30u || *(unsigned __int8 *)(a1 + i) > 0x39u )
+      {
+        if ( *(unsigned __int8 *)(a1 + i) >= 0x61u && *(unsigned __int8 *)(a1 + i) <= 0x7Au )
+          *(_BYTE *)(a1 + i) = (*(unsigned __int8 *)(a1 + i) - 89) % 26 + 97;
+      }
+      else
+      {
+        *(_BYTE *)(a1 + i) = (*(unsigned __int8 *)(a1 + i) - 45) % 10 + 48;
+      }
+    }
+    else
+    {
+      *(_BYTE *)(a1 + i) = (*(unsigned __int8 *)(a1 + i) - 52) % 26 + 65;
+    }
+  }
+  return result;
+}
+
+  Raw bytes: e9b6470000e911490000e96c170000e9
+
+--- sub_1400113CA @ 0x1400113CA ---
+  THUNK -> 0x140015CE0 (sub_140015CE0)
+__int64 __fastcall sub_140015CE0(__int64 a1)
+{
+  char *v1; // rdi
+  __int64 i; // rcx
+  __int64 result; // rax
+  char v4; // [rsp+20h] [rbp+0h] BYREF
+  char Str[44]; // [rsp+28h] [rbp+8h] BYREF
+  int j; // [rsp+54h] [rbp+34h]
+  __int64 v7; // [rsp+128h] [rbp+108h]
+  __int64 v8; // [rsp+130h] [rbp+110h]
+  size_t v9; // [rsp+138h] [rbp+118h]
+
+  v1 = &v4;
+  for ( i = 28; i; --i )
+  {
+    *(_DWORD *)v1 = -858993460;
+    v1 += 4;
+  }
+  j___CheckForDebuggerJustMyCode();
+  strcpy(Str, "NewStarCTF");
+  memset(&Str[11], 0, 9u);
+  for ( j = 0; ; ++j )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( j >= dword_14001C17C )
+      break;
+    v7 = j;
+    v8 = j;
+    v9 = j_strlen(Str);
+    *(_BYTE *)(a1 + j) += Str[j % v9];
+  }
+  return result;
+}
+
+  Raw bytes: e911490000e96c170000e957040000e9
+
+--- sub_1400113F2 @ 0x1400113F2 ---
+  THUNK -> 0x140012B40 (sub_140012B40)
+__int64 __fastcall sub_140012B40(__int64 a1)
+{
+  __int64 result; // rax
+  int i; // [rsp+24h] [rbp+4h]
+
+  j___CheckForDebuggerJustMyCode();
+  for ( i = 0; ; ++i )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( i >= dword_14001C17C )
+      break;
+    *(_BYTE *)(a1 + i) = ~*(_BYTE *)(a1 + i);
+  }
+  return result;
+}
+
+  Raw bytes: e949170000e9d5030000e9bf050000e9
+
+--- sub_1400113ED @ 0x1400113ED ---
+  THUNK -> 0x140011830 (sub_140011830)
+__int64 __fastcall sub_140011830(__int64 a1)
+{
+  __int64 result; // rax
+  int i; // [rsp+24h] [rbp+4h]
+
+  j___CheckForDebuggerJustMyCode();
+  for ( i = 0; ; ++i )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( i >= dword_14001C17C )
+      break;
+    *(_BYTE *)(a1 + i) *= 52;
+  }
+  return result;
+}
+
+  Raw bytes: e93e040000e949170000e9d5030000e9
+
+--- sub_1400113FC @ 0x1400113FC ---
+  THUNK -> 0x1400119C0 (sub_1400119C0)
+__int64 sub_1400119C0(__int64 a1, ...)
+{
+  char *v1; // rdi
+  __int64 i; // rcx
+  char v4; // [rsp+20h] [rbp+0h] BYREF
+  va_list v5; // [rsp+48h] [rbp+28h]
+  va_list va; // [rsp+168h] [rbp+148h] BYREF
+
+  va_start(va, a1);
+  v1 = &v4;
+  for ( i = 26; i; --i )
+  {
+    *(_DWORD *)v1 = -858993460;
+    v1 += 4;
+  }
+  j___CheckForDebuggerJustMyCode();
+  va_copy(v5, va);
+  _acrt_iob_func(0);
+  return (unsigned int)sub_140011401();
+}
+
+  Raw bytes: e9bf050000e9fa4b0000cccccccccccc
+
+--- sub_14001118B @ 0x14001118B ---
+  THUNK -> 0x1400118A0 (sub_1400118A0)
+__int64 sub_1400118A0(__int64 a1, ...)
+{
+  char *v1; // rdi
+  __int64 i; // rcx
+  char v4; // [rsp+20h] [rbp+0h] BYREF
+  va_list v5; // [rsp+48h] [rbp+28h]
+  va_list va; // [rsp+168h] [rbp+148h] BYREF
+
+  va_start(va, a1);
+  v1 = &v4;
+  for ( i = 26; i; --i )
+  {
+    *(_DWORD *)v1 = -858993460;
+    v1 += 4;
+  }
+  j___CheckForDebuggerJustMyCode();
+  va_copy(v5, va);
+  _acrt_iob_func(1u);
+  return (unsigned int)sub_140011159();
+}
+
+  Raw bytes: e910070000e9fd460000e91e480000e9
+
+--- sub_140015B80 @ 0x140015B80 ---
+__int64 __fastcall sub_140015B80(__int64 a1)
+{
+  __int64 result; // rax
+  int i; // [rsp+24h] [rbp+4h]
+
+  j___CheckForDebuggerJustMyCode();
+  for ( i = 0; ; ++i )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( i >= dword_14001C17C )
+      break;
+    if ( *(unsigned __int8 *)(a1 + i) < 0x41u || *(unsigned __int8 *)(a1 + i) > 0x5Au )
+    {
+      if ( *(unsigned __int8 *)(a1 + i) < 0x30u || *(unsigned __int8 *)(a1 + i) > 0x39u )
+      {
+        if ( *(unsigned __int8 *)(a1 + i) >= 0x61u && *(unsigned __int8 *)(a1 + i) <= 0x7Au )
+          *(_BYTE *)(a1 + i) = (*(unsigned __int8 *)(a1 + i) - 89) % 26 + 97;
+      }
+      else
+      {
+        *(_BYTE *)(a1 + i) = (*(unsigned __int8 *)(a1 + i) - 45) % 10 + 48;
+      }
+    }
+    else
+    {
+      *(_BYTE *)(a1 + i) = (*(unsigned __int8 *)(a1 + i) - 52) % 26 + 65;
+    }
+  }
+  return result;
+}
+
+  Raw bytes: 48894c240855574881ec08010000488d
+
+--- sub_140015CE0 @ 0x140015CE0 ---
+__int64 __fastcall sub_140015CE0(__int64 a1)
+{
+  char *v1; // rdi
+  __int64 i; // rcx
+  __int64 result; // rax
+  char v4; // [rsp+20h] [rbp+0h] BYREF
+  char Str[44]; // [rsp+28h] [rbp+8h] BYREF
+  int j; // [rsp+54h] [rbp+34h]
+  __int64 v7; // [rsp+128h] [rbp+108h]
+  __int64 v8; // [rsp+130h] [rbp+110h]
+  size_t v9; // [rsp+138h] [rbp+118h]
+
+  v1 = &v4;
+  for ( i = 28; i; --i )
+  {
+    *(_DWORD *)v1 = -858993460;
+    v1 += 4;
+  }
+  j___CheckForDebuggerJustMyCode();
+  strcpy(Str, "NewStarCTF");
+  memset(&Str[11], 0, 9u);
+  for ( j = 0; ; ++j )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( j >= dword_14001C17C )
+      break;
+    v7 = j;
+    v8 = j;
+    v9 = j_strlen(Str);
+    *(_BYTE *)(a1 + j) += Str[j % v9];
+  }
+  return result;
+}
+
+  Raw bytes: 48894c24085556574881ec5001000048
+
+--- sub_140011830 @ 0x140011830 ---
+__int64 __fastcall sub_140011830(__int64 a1)
+{
+  __int64 result; // rax
+  int i; // [rsp+24h] [rbp+4h]
+
+  j___CheckForDebuggerJustMyCode();
+  for ( i = 0; ; ++i )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( i >= dword_14001C17C )
+      break;
+    *(_BYTE *)(a1 + i) *= 52;
+  }
+  return result;
+}
+
+  Raw bytes: 48894c240855574881ec08010000488d
+
+--- sub_140012B40 @ 0x140012B40 ---
+__int64 __fastcall sub_140012B40(__int64 a1)
+{
+  __int64 result; // rax
+  int i; // [rsp+24h] [rbp+4h]
+
+  j___CheckForDebuggerJustMyCode();
+  for ( i = 0; ; ++i )
+  {
+    result = (unsigned int)dword_14001C17C;
+    if ( i >= dword_14001C17C )
+      break;
+    *(_BYTE *)(a1 + i) = ~*(_BYTE *)(a1 + i);
+  }
+  return result;
+}
+
+  Raw bytes: 48894c240855574881ec08010000488d
