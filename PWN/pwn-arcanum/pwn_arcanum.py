@@ -161,15 +161,21 @@ class BinaryAnalyzer:
                             'PIE': 'unknown', 'RELRO': 'unknown'}
 
     def _analyze_protections(self):
-        # Use pwntools checksec
-        sec = self.elf.checksec()
-        # sec returns a dict-like with protection flags
-        self.protections = {
-            'NX': sec.get('NX', 'unknown'),
-            'Canary': sec.get('Canary', 'unknown'),
-            'PIE': sec.get('PIE', 'unknown'),
-            'RELRO': sec.get('RELRO', 'unknown'),
-        }
+        """Detect binary protections via ELF object attributes.
+        Robust across pwntools versions (checksec() may return dict, str, or namedtuple).
+        """
+        self.protections = {}
+        # NX: elf.nx is a bool (True = NX enabled)
+        self.protections['NX'] = bool(getattr(self.elf, 'nx', False))
+        # Canary: check for __stack_chk_fail in symbols
+        has_canary = ('__stack_chk_fail' in self.elf.symbols
+                      or '__stack_chk_fail_local' in self.elf.symbols)
+        self.protections['Canary'] = has_canary
+        # PIE: elf.pie is a bool (True = PIE enabled)
+        self.protections['PIE'] = bool(getattr(self.elf, 'pie', False))
+        # RELRO: elf.relro returns 'Full', 'Partial', or 'No'
+        relro = getattr(self.elf, 'relro', None)
+        self.protections['RELRO'] = relro if relro else 'No'
 
     def _find_dangerous(self):
         """Find dangerous functions: gets, read, scanf, strcpy, memcpy, etc."""
