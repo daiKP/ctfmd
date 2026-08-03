@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '2aee3ded-da3c-42a5-bb99-a3f131159f19'
-  PropagateID: '2aee3ded-da3c-42a5-bb99-a3f131159f19'
-  ReservedCode1: '9667eedf-2506-4d4b-bb87-30760deb1b78'
-  ReservedCode2: '9667eedf-2506-4d4b-bb87-30760deb1b78'
+  ProduceID: '1d049a79-cf61-4163-ac99-5bb05f221f39'
+  PropagateID: '1d049a79-cf61-4163-ac99-5bb05f221f39'
+  ReservedCode1: 'e70e8f09-5343-4601-a593-528beb6979a2'
+  ReservedCode2: 'e70e8f09-5343-4601-a593-528beb6979a2'
 ---
 
 # CTF 解题笔记本
@@ -174,5 +174,68 @@ pip install --no-index --find-links=./packages -r requirements.txt
 | IR | 6 | #18, #23, #24, #25, #26, #27 |
 
 **总计：27 题**
+
+> AI生成
+## Git 同步（Windows ↔ Mac）
+
+仓库地址：https://github.com/daiKP/ctfmd
+
+### 首次克隆（Mac 端）
+
+```bash
+git clone https://github.com/daiKP/ctfmd.git
+cd ctfmd
+pip3 install -r requirements.txt
+```
+
+### 日常同步
+
+```bash
+# Windows 端推送更新（解题后）
+cd "C:\Users\j520x\.local\share\TeleAgent\TeleAgent的工作空间\test_output\CTF解题笔记本"
+git add .
+git commit -m "新增第XX题解题记录"
+git push
+
+# Mac 端拉取更新
+cd ctfmd
+git pull
+```
+
+### 跨平台注意事项
+
+| 项目 | Windows | Mac | 说明 |
+|------|---------|-----|------|
+| IDA Pro | `Z:\IDA\ida.exe` | `/Applications/IDA Pro 9.3/ida` | 路径不同，按实际安装位置调整 |
+| Python | `py -3` / `python` | `python3` | Mac 默认 python3 |
+| pwntools | 原生支持 | `pip3 install pwntools` | Mac 需先装 brew + libmpc |
+| gmpy2 | 预编译 wheel | `brew install gmp mpfr libmpc` 后 `pip3 install gmpy2` | Mac 需手动装依赖库 |
+| paramiko | 原生支持 | `pip3 install paramiko` | Mac 原生支持 |
+| pypsrp | 原生支持 | `pip3 install pypsrp` | Mac 原生支持 |
+
+### Mac 端依赖安装
+
+```bash
+# Homebrew 基础库（gmpy2 依赖）
+brew install gmp mpfr libmpc
+
+# Python 依赖
+pip3 install -r requirements.txt
+
+# 验证关键库
+python3 -c "import gmpy2; print('gmpy2 OK')"
+python3 -c "import Crypto; print('pycryptodome OK')"
+python3 -c "from pwn import *; print('pwntools OK')"
+```
+
+### 离线迁移（比赛断网环境）
+
+在有网的 Mac 上打包依赖，拷贝到比赛机离线安装：
+
+```bash
+pip3 download -r requirements.txt -d ./packages
+# 拷贝 packages/ 到比赛机后
+pip3 install --no-index --find-links=./packages -r requirements.txt
+```
 
 > AI生成
