@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '714798ea-fd4c-4f97-a12c-b9c4ef0236e2'
-  PropagateID: '714798ea-fd4c-4f97-a12c-b9c4ef0236e2'
-  ReservedCode1: '6e7cf5e4-34ca-40fd-a11c-6802eadee085'
-  ReservedCode2: '6e7cf5e4-34ca-40fd-a11c-6802eadee085'
+  ProduceID: 'fecb21c4-125d-4520-af77-e593e73405a3'
+  PropagateID: 'fecb21c4-125d-4520-af77-e593e73405a3'
+  ReservedCode1: '539b192b-48df-428b-96a5-d67dc6153a75'
+  ReservedCode2: '539b192b-48df-428b-96a5-d67dc6153a75'
 ---
 
 # CTF 解题笔记本
@@ -17,78 +17,81 @@ AIGC:
 
 ```
 CTF解题笔记本/
-├── CTF解题笔记本.md          # 主笔记本（27题完整记录 + 赛事情报 + 备考指南）
+├── CTF解题笔记本.md          # 主笔记本（29题完整记录 + 赛事情报 + 备考指南）
 ├── README.md                # 本文件
 ├── requirements.txt         # Python 依赖清单
-├── Web/                     # Web 安全
+├── Web/                     # Web 安全（8题）
 │   ├── 01-php-eval/         #   #1 可变变量 + eval
 │   ├── 02-php-sha1/         #   #2 sha1 数组绕过
 │   ├── 03-flask-blind-sqli/ #   #3 Flask 布尔盲注
 │   ├── 07-php-regex-base64/ #   #7 正则混淆 + Base64
 │   ├── 08-sqli-union/       #   #8 UNION 回显注入
 │   ├── 09-php-cookie/       #   #9 逻辑绕过 + Cookie
-│   └── 17-traffic-analysis/  #17 流量分析 SQL盲注还原
+│   ├── 17-traffic-analysis/ #  #17 流量分析 SQL盲注还原
+│   │   └── solve.py
+│   └── 20-file-upload-llf/  #  #20 文件上传 任意文件读取
 │       └── solve.py
-│   └── 20-file-upload-llf/   #20 文件上传 任意文件读取
-│       └── solve.py
-├── PWN/                     # 二进制利用
+├── PWN/                     # 二进制利用（5题）
 │   ├── 04-ret2text/         #   #4 栈溢出 + 后门
 │   │   ├── exploit.py
-│   │   └── decompiled.txt   #     IDA 反编译存档
-│   └── 05-float-bypass/     #   #5 栈溢出 + 浮点绕过
-│       ├── exploit.py
-│       └── decompiled.txt
-│   └── 06-bypwn/             #   #21 栈溢出+Ret2Shellcode
+│   │   └── decompiled.txt
+│   ├── 05-float-bypass/     #   #5 栈溢出 + 浮点绕过
 │   │   ├── exploit.py
 │   │   └── decompiled.txt
-│   └── 07-easyheap/           #   #22 堆溢出+Fastbin Attack
-│       ├── exploit.py
-│       └── decompiled.txt
-│   └── pwn-arcanum/             # 通用 自动化PWN分析解题工具 (4种策略,一键出flag)
-│       └── pwn_arcanum.py       #     ret2text/ret2shellcode/ret2syscall/ret2libc, 跨平台
-├── Crypto/                  # 密码学
+│   ├── 06-bypwn/            #  #21 栈溢出+Ret2Shellcode
+│   │   ├── exploit.py
+│   │   └── decompiled.txt
+│   ├── 07-easyheap/         #  #22 堆溢出+Fastbin Attack
+│   │   ├── exploit.py
+│   │   └── decompiled.txt
+│   └── pwn-arcanum/         #  通用 自动化PWN分析解题工具
+│       └── pwn_arcanum.py   #     4种策略(ret2text/shellcode/syscall/libc), 跨平台
+├── Crypto/                  # 密码学（5题）
 │   ├── 06-rsa-basic/        #   #6 RSA 基础解密
 │   │   ├── rsa_decrypt.py
-│   │   └── rsa_toolkit.py   #     可复用 RSA 工具库
-│   ├── 14-bjdctf-yanzi/     #   #14 燕言燕语 Hex+维吉尼亚
+│   │   └── rsa_toolkit.py
+│   ├── 14-bjdctf-yanzi/     #  #14 燕言燕语 Hex+维吉尼亚
 │   │   └── solve.py
-│   ├── 15-bjdctf-laowenmang/  #15 老文盲了 生僻字拼音
+│   ├── 15-bjdctf-laowenmang/#  #15 老文盲了 生僻字拼音
 │   │   └── solve.py
-│   └── 16-affine-cipher/     #   #16 仿射密码+模逆元
+│   ├── 16-affine-cipher/    #  #16 仿射密码+模逆元
+│   │   └── solve.py
+│   └── 19-easyencode/       #  #19 多层编码
 │       └── solve.py
-│   └── 19-easyencode/        #   #19 五层嵌套编码
-│       └── solve.py
-├── Reverse/                 # 逆向工程
-│   ├── 10-java-bytecode/    #   #10 Java 字节码逆向
-│   ├── 11-python-pyc/       #   #11 Python pyc 逆向
-│   ├── 12-elf-aes-md5/      #   #12 ELF 自修改+AES+MD5
+├── Reverse/                 # 逆向工程（4题）
+│   ├── 10-java-bytecode/    #  #10 Java 字节码逆向
+│   ├── 11-python-pyc/       #  #11 Python pyc 逆向
+│   ├── 12-elf-aes-md5/      #  #12 ELF 自修改+AES+MD5
 │   │   ├── solve.py
 │   │   ├── extract_data.py
 │   │   ├── disasm.py
-│   │   └── ida_analysis/    #     IDA 反编译存档
-│   └── 13-pe-encryption-chain/  #13 PE 四阶段加密链
+│   │   └── ida_analysis/
+│   └── 13-pe-encryption-chain/ #13 PE 四阶段加密链
 │       ├── solve.py
 │       ├── analyze_pe.py
-│       └── ida_analysis/    #     IDA 反编译存档
-├── IR/                      # 应急响应 (Incident Response)
+│       └── ida_analysis/
+├── IR/                      # 应急响应（7题）
 │   ├── 18-simpleflow-antsword/  #18 蚁剑Webshell流量分析
 │   │   └── solve.py
-│   └── 19-pcap-arcanum/           #23 PCAP Arcanum 流量取证工具 (13检测模块,一键出flag)
-│       ├── pcap_arcanum.py      #     自动化流量分析工具
-│       ├── log_arcanum.py       #     自动化日志分析工具 (7检测模块,一键出flag)
-│       └── test_output/         #     测试输出 (报告+JSON+提取文件)
-│   └── 20-redis-incident/        #24 Redis未授权访问应急响应
-│       └── ir_scan.py            #     靶机SSH排查脚本
-│   └── 21-win-web-ir/            #25 Windows Web应急响应
-│       ├── win_web_ir.py         #     靶机排查脚本
-│       └── kuang_analyze.py      #     挖矿程序逆向分析
-│   └── 22-linux-web-ir2/         #26 Linux Web应急响应 (PHPEMS)
-│       └── linux_web_ir2.py      #     靶机SSH排查脚本
-│   └── auto-ir-scanner/          #通用 自动化IR扫描器 (18模块+智能分析+Flag汇总)
-│       ├── ir_scanner.py         #     Linux版 v1.3 (1636行, SUID提权检测, JSON/HTML报告, Flag汇总)
-│       └── ir_scanner_win.py     #     Windows版 v1.2 (~1980行, WinRM/pypsrp, 隐藏账户/Defender/驱动Rootkit检测, Flag汇总, JSON/HTML报告)
+│   ├── 19-pcap-arcanum/     #  #23 PCAP+Log Arcanum 流量/日志取证工具
+│   │   ├── pcap_arcanum.py
+│   │   ├── log_arcanum.py
+│   │   └── test_output/
+│   ├── 20-redis-incident/   #  #24 Redis未授权访问应急响应
+│   │   └── ir_scan.py
+│   ├── 21-win-web-ir/       #  #25 Windows Web应急响应
+│   │   ├── win_web_ir.py
+│   │   └── kuang_analyze.py
+│   ├── 22-linux-web-ir2/    #  #26 Linux Web应急响应 (PHPEMS)
+│   │   └── linux_web_ir2.py
+│   └── auto-ir-scanner/     #  通用 自动化IR扫描器
+│       ├── ir_scanner.py    #     Linux版 v1.3 (18模块+SUID提权+Flag汇总)
+│       └── ir_scanner_win.py#     Windows版 v1.2 (WinRM+隐藏账户/Defender检测)
 └── screenshots/             # 关键截图
 ```
+
+> **注**：目录编号为创建顺序，与题号不完全一致。题号映射见下表。
+> 第27题(c3pool)和第28题(testpwn)无独立脚本目录，记录在主笔记本中。
 
 ## 题目概览
 
@@ -121,6 +124,8 @@ CTF解题笔记本/
 | 25 | IR       | Windows Web应急响应 | IP:192.168.126.1 账户:hack168$ 密码:rebeyond 矿池:wakuang.zhigongshanfang.top |
 | 26 | IR       | Linux Web应急响应 (PHPEMS) | IP:192.168.20.131 密码:Network@2020 flag1-3 |
 | 27 | IR       | Windows挖矿应急响应 (c3pool) | IP:192.168.115.131 端口:3389 矿池:auto.c3pool.org 钱包:4APXVhuk... |
+| 28 | PWN      | testpwn (Warm Up) SSL+ret2text | CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc} |
+| 29 | IR       | 帕鲁杯应急响应挑战赛 (52子题) | 5个FLAG已验证 (BrYeaVj54009rDIZzu4O / flag{hack_palu} / flag{hi_palu_f10g} / flag{234567uyhgn_aiduyai} / CVE-2024-29201) |
 
 ```bash
 pip install -r requirements.txt
@@ -179,12 +184,12 @@ pip install --no-index --find-links=./packages -r requirements.txt
 | 类型 | 题数 | 题号 |
 |------|------|------|
 | Web | 8 | #1, #2, #3, #7, #8, #9, #17, #20 |
-| PWN | 4 | #4, #5, #21, #22 |
+| PWN | 5 | #4, #5, #21, #22, #28 |
 | Crypto | 5 | #6, #14, #15, #16, #19 |
 | Reverse | 4 | #10, #11, #12, #13 |
-| IR | 6 | #18, #23, #24, #25, #26, #27 |
+| IR | 7 | #18, #23, #24, #25, #26, #27, #29 |
 
-**总计：27 题**
+**总计：29 题**（第29题为帕鲁杯综合IR实战，内含52道子题）
 
 > AI生成
 ## Git 同步（Windows ↔ Mac）

