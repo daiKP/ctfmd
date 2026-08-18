@@ -21,19 +21,22 @@ pefile>=2024.0         # PE 文件解析 (Windows 逆向)，读取段/导入表/
 # ---- PWN & 通用 ----
 pwntools>=4.12         # PWN 题远程连接、payload 构造、交互
 
+# ---- 通用 HTTP ----
+requests>=2.31           # HTTP 请求库 (Web 题盲注脚本 / IR Win Webshell / 文件上传)
+
 # ---- 流量分析 ----
 scapy>=2.5             # PCAP 网络流量包解析与重组
 
 # ---- 应急响应 (IR) ----
 paramiko>=3.4          # SSH 远程连接Linux靶机 (Windows无sshpass)
-pypsrp>=0.8           # WinRM 远程连接Windows靶机 (IR扫描器Windows版,默认端口5985)
+pypsrp>=0.9            # WinRM 远程连接Windows靶机 (IR扫描器Windows版,默认端口5985)
 
 # ---- PyInstaller 逆向 (第25题) ----
 uncompyle6>=3.9        # Python 3.8 .pyc 反编译 (Kuang.exe 挖矿程序分析)
 
-# ---- 可选: 在线因式分解查表 ----
-# factordb>=0.5         # factordb.com API 客户端 (需联网, 离线环境注释掉)
+# ---- 在线因式分解查表 (可选) ----
+factordb-python>=1.3    # factordb.com API 客户端 (Crypto RSA 因式分解在线查表, 需联网)
+                        # 注意: PyPI 包名为 factordb-python, import 名为 factordb
 
-# ---- 可选: Python pyc 反编译 (第11题) ----
-# uncompyle6>=3.9       # Python 2.7 pyc 反编译
-# xdis>=8.0             # pyc 字节码反汇编 (交叉验证 uncompyle6 结果)
+# ---- Web 知识库查询系统 ----
+flask>=3.0              # Web 查询系统 (app.py)，启动: python3 app.py → localhost:5000
