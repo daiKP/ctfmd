@@ -3,10 +3,10 @@ AIGC:
   ContentProducer: '001191110102MAD55U9H0F10002'
   ContentPropagator: '001191110102MAD55U9H0F10002'
   Label: '1'
-  ProduceID: '46c44184-6c2f-49ef-97f7-5d44b2fc361d'
-  PropagateID: '46c44184-6c2f-49ef-97f7-5d44b2fc361d'
-  ReservedCode1: 'bce1683e-6054-4162-a79a-101a69c21766'
-  ReservedCode2: 'bce1683e-6054-4162-a79a-101a69c21766'
+  ProduceID: 'ee6433ce-6537-477c-a86c-eeed0ac7203b'
+  PropagateID: 'ee6433ce-6537-477c-a86c-eeed0ac7203b'
+  ReservedCode1: '40ce7a7e-5acc-4375-b458-ba348f4889bd'
+  ReservedCode2: '40ce7a7e-5acc-4375-b458-ba348f4889bd'
 ---
 
 # CTF 解题笔记本
@@ -41,6 +41,7 @@ AIGC:
 | 15 | Crypto | 老文盲了 生僻字拼音 | `BJD{淛匶襫黼瀬鎶軄鶛驕鳓哵}` | [solve.py](Crypto/15-bjdctf-laowenmang/solve.py) |
 | 16 | Crypto | 仿射密码+模逆元 | `flag{c29yY2VyeQ==}` | [solve.py](Crypto/16-affine-cipher/solve.py) |
 | 19 | Crypto | easyencode 多层编码 | `Dest0g3{Deoding_...}` | [solve.py](Crypto/19-easyencode/solve.py) |
+| 32 | Crypto | AES-CBC Padding Oracle Attack | `flag{85642866b227c0313db3e18c5ca44aad}` | [solve.py](Crypto/32-aes-cbc-padding-oracle/solve.py) |
 
 | 10 | Reverse | Java 字节码逆向 | `This_is_the_flag_!` | — |
 | 11 | Reverse | pyc 反编译 | `GWHT{Just_Re...}` | — |
@@ -56,10 +57,10 @@ AIGC:
 
 ## 统计
 
-- **总题数**：31
+- **总题数**：32
 - **Web**：11 题（PHP 5 + Flask 1 + SQL 1 + 流量分析 1 + SSTI 2 + 代码混淆动态审计 1）
 - **PWN**：5 题（栈溢出 Ret2Text 系列 + Ret2Shellcode + 堆溢出 Fastbin + SSL ret2text）
-- **Crypto**：5 题（RSA + 维吉尼亚密码 + 生僻字拼音 + 仿射密码 + 多层编码）
+- **Crypto**：6 题（RSA + 维吉尼亚密码 + 生僻字拼音 + 仿射密码 + 多层编码 + AES-CBC Padding Oracle）
 - **Reverse**：4 题（Java / Python / ELF / PE）
 - **IR（应急响应）**：6 题（Webshell 流量分析 + 自动化流量取证工具 + Redis未授权访问 + Windows Web应急响应 + Linux Web应急响应PHPEMS + Windows挖矿应急响应）
 - **知识点补充**：27 个专题
@@ -6078,6 +6079,97 @@ GET /xk0SzyKwfzw.php?Efa5BVG=id
 | 反调试/检测 | 后门检测到扫描行为后自毁 | 模拟正常请求，控制请求频率 |
 
 > 知识点专题：[PHP代码混淆与海量后门动态审计](Web/knowledge/PHP代码混淆与海量后门动态审计.md)
+
+> AI生成
+---
+
+## 第32题：AES-CBC Padding Oracle Attack
+
+### 题目信息
+
+| 项目 | 内容 |
+|------|------|
+| 题目类型 | Crypto - AES-CBC Padding Oracle |
+| 难度 | 中 |
+| 来源 | 企业安全测试题 |
+| 日期 | 2026-08-18 |
+| 服务器 | tcp://218.94.126.123:35260/ |
+| Flag | `flag{85642866b227c0313db3e18c5ca44aad}` |
+
+### 题目描述
+
+服务器提供 AES-CBC 加解密系统（server.py），KEY/IV 由 job_name 派生（固定）。用户可：
+1. 获取 `encrypt(job_name + ":" + flag)` 的密文
+2. 加密自定义消息
+3. 解密任意 hex 密文（返回 padding 验证结果）
+4. 退出
+
+解密接口会检查 padding 合法性：合法时解密并输出明文（但检测到 `b'flag'` 会返回 "Warning!!!"），不合法时返回 "verification failed!!!"。
+
+### 解题思路
+
+**1. 块对齐设计**
+
+用 15 字节 job_name（如 `aaaaaaaaaaaaaaa`），使 `job_name + ":"` = 16 字节恰好占满第一个 block，flag 从第二个 block 开始。验证：选项2加密 `"hello"` 时密文第一个 block 与选项1完全一致。
+
+**2. Oracle 识别**
+
+选项3的解密接口泄露了 padding 是否合法：
+- `"verification failed!!!"` → padding 非法
+- 其他任何响应（`"Your decrypted message:"` / `"Warning!!!"` / `"Sorry!"`）→ padding 合法
+
+这是一个标准的 Padding Oracle。
+
+**3. Padding Oracle Attack**
+
+对每个密文块 `C_i`（i=1,2,3），构造 `forged_prev(16B) + C_i(16B)` 发给选项3：
+
+- 从最后一个字节开始（pad=1），暴力枚举 `forged_prev[15]` 的 256 种值
+- 当 padding 合法时，`D(C_i)[15] = guess ^ 1`，进而 `P_i[15] = D(C_i)[15] ^ C_{i-1}[15]`
+- 逐步向前推进 `pad=2,3,...,16`，每步利用已解出的中间值设置已知字节
+- pad=1 时需二次验证（修改前一字节确认不是 2 字节 padding 的误判）
+
+**4. 性能优化**
+
+- 用 `recv_until(b"choice: ")` 精确读取响应，避免超时等待
+- 单次请求约 40ms，3 块 × 16 字节 × 平均 128 次 ≈ 4 分钟完成
+
+**5. 绕过 flag 检测**
+
+选项3检测 `b'flag' in text_info` 返回 "Warning!!!"，但这同时也是 padding 正确的信号，不影响 Oracle 判断。
+
+### 密文结构
+
+```
+C0: a90eab612f6502fffef82185b7e43ce5  ← encrypt("aaaaaaaaaaaaaaa:")
+C1: b69cc4c3e554567f56ec25b5d53c38a6  ← encrypt(flag[0:16])  = "flag{85642866b22"
+C2: 3f1d161bb02b249f98f302a508c2b380  ← encrypt(flag[16:32]) = "7c0313db3e18c5ca"
+C3: a8d74856ff4097c7d7cbc769c6e55f1b  ← encrypt("44aad}" + padding)
+```
+
+### 恢复结果
+
+```
+块1: flag{85642866b22
+块2: 7c0313db3e18c5ca
+块3: 44aad}（去除padding后）
+```
+
+**FLAG: `flag{85642866b227c0313db3e18c5ca44aad}`**
+
+### 知识点总结
+
+| 要素 | 说明 |
+|------|------|
+| 考点 | AES-CBC Padding Oracle Attack |
+| 识别特征 | `MODE_CBC` + 有 padding 校验 + 解密接口泄露成功/失败 |
+| 关键技巧 | 控制 job_name 长度实现块对齐；pad=1 时二次验证防误判 |
+| 性能要点 | 用精确 `recv_until` 替代超时等待，从 850ms/请求降至 40ms/请求 |
+| 绕过 | flag 字样检测不影响 Oracle（也是padding正确的信号之一） |
+| 关联知识 | PKCS#7 Padding、CBC 解密链 `P_i = D(C_i) XOR C_{i-1}` |
+
+> 知识点专题：[AES-CBC Padding Oracle 原理与实战](Crypto/knowledge/AES-CBC-Padding-Oracle.md)
+> 解题脚本：[solve.py](Crypto/32-aes-cbc-padding-oracle/solve.py)
 
 > AI生成
 ---
